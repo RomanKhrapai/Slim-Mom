@@ -7,41 +7,31 @@ const Navigation = () => {
 
     const isLoggedIn = true
 
-    if (isLoggedIn) {
-      return (
-        <nav>
-          <NavLink to={'/'}>
-            <img src={logo} alt={'logo'}/>
-          </NavLink>
-          <div className={styles.vector1}/>
-          <NavLink className={({isActive}) =>
-            isActive ? styles.nav__link_active : styles.nav__link} to={'/diary'}>
-            Diary
-          </NavLink>
-          <NavLink className={({isActive}) =>
-            isActive ? styles.nav__link_active : styles.nav__link} to={'/calculator'}>
-            Calculator
-          </NavLink>
-        </nav>
-      )
-    } else {
-      return (
-        <nav>
-          <NavLink to={'/'}>
-            <img src={logo} alt={'logo'}/>
-          </NavLink>
-          <div className={styles.vector1}/>
-          <NavLink className={({isActive}) =>
-            isActive ? styles.nav__link_active : styles.nav__link} to={'/login'}>
-            Sign In
-          </NavLink>
-          <NavLink className={({isActive}) =>
-            isActive ? styles.nav__link_active : styles.nav__link} to={'/registration'}>
-            Registration
-          </NavLink>
-        </nav>
-      )
-    }
+    const getNavLinkClassName = ({isActive}) => isActive ? styles.nav__link_active : styles.nav__link
+
+    return (<nav>
+      <NavLink to={'/'}>
+        <img src={logo} alt={'logo'}/>
+      </NavLink>
+      <div className={styles.vector1}/>
+      {isLoggedIn ?
+        <><NavLink className={getNavLinkClassName} to={'/diary'}>
+          Diary
+        </NavLink>
+        <NavLink className={getNavLinkClassName} to={'/calculator'}>
+          Calculator
+        </NavLink></>
+      :
+        <><NavLink className={getNavLinkClassName} to={'/login'}>
+        Sign In
+        </NavLink>
+        <NavLink className={getNavLinkClassName} to={'/registration'}>
+        Registration
+        </NavLink></>
+      }
+    </nav>)
+
+
 
 }
 
