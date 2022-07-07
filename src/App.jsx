@@ -2,6 +2,7 @@ import React from 'react';
 import Header from "./Components/Header";
 import styles from 'App.module.scss';
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
+import MainPage from 'pages/MainPage';
 
 export const App = () => {
 
@@ -13,7 +14,7 @@ export const App = () => {
         <Header/>
         {isLoggedIn ?
           <Routes>
-            <Route path={'/'} element={<h1>Main Private Component</h1>} />
+            <Route path={'/'} element={<MainPage/>} />
             <Route path={'/diary'} element={<h1>Diary Private Component</h1>} />
             <Route path={'/calculator'} element={<h1>Calculator Private Component</h1>} />
             <Route path={'*'} replace={true} element={<Navigate to={'/'}/>}/>
