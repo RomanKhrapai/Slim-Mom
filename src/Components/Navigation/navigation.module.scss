@@ -1,5 +1,46 @@
 
 
 nav {
+  align-items: flex-end;
+  display: flex;
 
+  img {
+
+  }
+
+  .vector1 {
+    width: 32px;
+    height: 0px;
+    border: 2px solid #E0E0E0;
+    transform: rotate(90deg);
+    align-self: end;
+    margin-bottom: 10px;
+
+  }
+
+  a {
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 13px;
+    letter-spacing: 0.04em;
+
+  }
+
+  .nav__link {
+    margin-right: 10px;
+    margin-bottom: 5px;
+    color: #9B9FAA;
+
+
+  }
+  .nav__link_active {
+    margin-right: 10px;
+    margin-bottom: 5px;
+
+    color: #212121;
+  }
 }
