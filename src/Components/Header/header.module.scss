@@ -1,0 +1,27 @@
+
+header {
+  margin-top: 80px;
+  margin-bottom: 147px;
+  padding-left: 16px;
+  padding-right: 32px;
+  align-items: flex-end;
+  display: flex;
+
+  img {
+
+  }
+
+  .vector1 {
+    width: 32px;
+    height: 0px;
+    border: 2px solid #E0E0E0;
+    transform: rotate(90deg);
+    align-self: end;
+    margin-bottom: 5px;
+  }
+
+  a {
+    display: inline-block;
+    margin-right: 10px;
+  }
+}
