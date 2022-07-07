@@ -1,17 +1,13 @@
 import React from 'react';
+import Header from "./Components/Header";
+import styles from 'App.module.scss';
 
 export const App = () => {
   return (
     <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101',
-      }}
+      className={styles.App}
     >
+      <Header/>
       React homework template
     </div>
   );
