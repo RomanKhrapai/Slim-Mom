@@ -8,7 +8,7 @@
 
 .inputBox {
     position: relative;
-    margin-bottom: 32px;
+    margin-bottom: 40px;
 
     &:focus-within .labelAbsolute {
     transform: translateY(-100%);
@@ -121,4 +121,14 @@ background-color: #FC842D;
     font-weight: 700;
             color: #FC842D;
 }
+}
+
+.errorMessage {
+position: absolute;
+bottom: -70%;
+font-size: 10px;
+line-height: 1.2em;
+letter-spacing: 0.04em;
+color: #FC842D;
+
 }
