@@ -2,6 +2,8 @@ export default [
   {
     userId: 1,
     name: 'user1',
+    email: 'user1@gmail.com',
+    password: 'user123',
     age: 27,
     blood: 2,
     current: 75,
@@ -11,6 +13,8 @@ export default [
   {
     userId: 2,
     name: 'user2',
+    email: 'user2@gmail.com',
+    password: 'user123',
     age: 20,
     blood: 4,
     current: 80,
@@ -20,6 +24,8 @@ export default [
   {
     userId: 3,
     name: 'user3',
+    email: 'user3@gmail.com',
+    password: 'user123',
     age: 45,
     blood: 1,
     current: 90,
