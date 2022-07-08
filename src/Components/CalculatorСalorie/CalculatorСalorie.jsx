@@ -37,7 +37,8 @@ const сalculatorСalorie = () => {
   //Имитация открытия модалки
   const openModal = () => {
     console.log('Modal is open');
-    window.confirm()
+    window.confirm();
+    console.log('Modal is close');
   };
 
 
