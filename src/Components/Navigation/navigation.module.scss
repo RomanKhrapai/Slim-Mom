@@ -1,46 +1,58 @@
-
-
 nav {
   align-items: flex-end;
   display: flex;
-
   img {
-
   }
-
   .vector1 {
     width: 32px;
     height: 0px;
-    border: 2px solid #E0E0E0;
+    border: 2px solid #e0e0e0;
     transform: rotate(90deg);
     align-self: end;
     margin-bottom: 10px;
-
+    transition: 0.3s ease;
+    &:hover,
+    &:focus {
+      border: 2px solid black;
+    }
   }
-
   a {
-    display: inline-block;
+    display: inline-flex;
     text-decoration: none;
     text-transform: uppercase;
-
     font-weight: 700;
     font-size: 14px;
     line-height: 13px;
     letter-spacing: 0.04em;
-
   }
-
   .nav__link {
     margin-right: 10px;
     margin-bottom: 5px;
-    color: #9B9FAA;
-
-
+    color: #9b9faa;
+    transition: 0.3s ease;
+    &:hover,
+    &:focus {
+      color: black;
+    }
   }
   .nav__link_active {
     margin-right: 10px;
     margin-bottom: 5px;
-
     color: #212121;
+  }
+  .logo {
+    transition: 0.3s ease;
+    padding-bottom: 6px;
+    margin-bottom: -6px;
+    // без падингу паличка випирає з оутлайну при фокусі
+    &:hover .vector1,
+    &:focus .vector1 {
+      border: 2px solid black;
+    }
+  }
+  .active__logo {
+    .vector1 {
+      border: 2px solid black;
+    }
   }
 }

@@ -8,12 +8,12 @@ const Navigation = () => {
     const isLoggedIn = true
 
     const getNavLinkClassName = ({isActive}) => isActive ? styles.nav__link_active : styles.nav__link
-
+    const getLogoClassName = ({isActive}) => isActive ? styles.active__logo : styles.logo
     return (<nav>
-      <NavLink to={'/'}>
+      <NavLink className={getLogoClassName} to={'/'}>
         <img src={logo} alt={'logo'}/>
+        <div className={styles.vector1}/>
       </NavLink>
-      <div className={styles.vector1}/>
       {isLoggedIn ?
         <><NavLink className={getNavLinkClassName} to={'/diary'}>
           Diary
