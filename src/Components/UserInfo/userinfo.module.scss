@@ -1,0 +1,64 @@
+
+.userinfo {
+  display: flex;
+  margin-left: auto;
+  h3 {
+
+    margin: 0;
+    cursor: default;
+  }
+
+  .vector1 {
+    width: 32px;
+    height: 0px;
+    border: 2px solid #e0e0e0;
+    transform: rotate(90deg);
+    align-self: end;
+    margin-bottom: 10px;
+    transition: 0.3s ease;
+
+    &:hover,
+    &:focus {
+      border: 2px solid black;
+    }
+  }
+
+
+}
+@media screen and (max-width: 360px){
+  .userinfo {
+    position: absolute;
+    top: 82px;
+    left: 0;
+    width: 100vw;
+    height: 40px;
+    background: #EFF1F3;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    h3 {
+
+      margin: 0;
+      cursor: default;
+      margin-left: auto;
+
+    }
+
+    .vector1 {
+      width: 32px;
+      height: 0px;
+      border: 2px solid #e0e0e0;
+      transform: rotate(90deg);
+      align-self: end;
+      margin-bottom: 18px;
+      transition: 0.3s ease;
+
+      &:hover,
+      &:focus {
+        border: 2px solid black;
+      }
+    }
+
+
+  }
+}

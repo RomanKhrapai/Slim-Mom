@@ -1,4 +1,6 @@
 nav {
+  z-index: 100;
+  max-width: 1280px;
   align-items: flex-end;
   display: flex;
   img {
@@ -26,7 +28,35 @@ nav {
     letter-spacing: 0.04em;
   }
   .nav__link {
-    margin-right: 10px;
+    margin-right: 16px;
+    margin-bottom: 5px;
+    color: #9b9faa;
+    transition: 0.3s ease;
+    &:hover,
+    &:focus {
+      color: black;
+    }
+
+  }
+  .nav__link.nav__link_active {
+    color: #212121;
+  }
+  .nav__link {
+    margin-right: 16px;
+    margin-bottom: 5px;
+    color: #9b9faa;
+    transition: 0.3s ease;
+    &:hover,
+    &:focus {
+      color: black;
+    }
+
+  }
+  .nav__link.nav__link_active {
+    color: #212121;
+  }
+  .nav__link__loggedIn {
+    margin-right: 16px;
     margin-bottom: 5px;
     color: #9b9faa;
     transition: 0.3s ease;
@@ -35,9 +65,7 @@ nav {
       color: black;
     }
   }
-  .nav__link_active {
-    margin-right: 10px;
-    margin-bottom: 5px;
+  .nav__link__loggedIn.nav__link__loggedIn_active {
     color: #212121;
   }
   .logo {
@@ -54,5 +82,95 @@ nav {
     .vector1 {
       border: 2px solid black;
     }
+  }
+  .menu__button {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .vector1 {
+    display: none;
+  }
+
+  nav {
+    align-items: center;
+
+    .nav__link {
+      margin-bottom: 0px;
+      &:last-child {
+        margin-right: 0px;
+      }
+    }
+    .nav__link.nav__link_active {
+      margin-bottom: 0px;
+      color: black;
+
+    }
+    .nav__link.nav__link_active {
+      color: #212121;
+    }
+    .nav__link__loggedIn {
+      margin: 0 !important;
+      color: #9B9FAA;
+      transition: 0.3s ease;
+      &:hover,
+      &:focus {
+        color: #ffffff;
+      }
+    }
+    .nav__link__loggedIn.nav__link__loggedIn_active {
+      color: #ffffff;
+    }
+    a:nth-child(2) {
+      margin-left: auto;
+    }
+
+    .menu {
+      z-index: 1;
+      background: #264061;
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      top: 82px;
+      left: 0;
+
+      transition: 0.5s ease-in-out;
+      opacity: 100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .menu__isClosed {
+      transition: 0.5s ease-in-out;
+      background: #264061;
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      top: 82px;
+      left: 0;
+      opacity: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+  }
+
+  .menu__button {
+    display: block !important;
+    margin-left: 50px;
+
+  }
+}
+@media screen and (max-width: 360px) {
+  .menu {
+    top: 122px !important;
+  }
+  .menu__button {
+    margin-left: auto;
+
   }
 }
