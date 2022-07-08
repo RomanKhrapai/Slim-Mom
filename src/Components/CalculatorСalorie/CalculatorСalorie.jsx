@@ -47,11 +47,11 @@ const сalculatorСalorie = () => {
       <>
         <UserInfo userData={user} />
         <button type="button" onClick={changeActive}>
-          Change information
+          Edit information
         </button>
-        <button type="button" onClick={openModal}>
+        {/* <button type="button" onClick={openModal}>
           View your losing weight plan
-        </button>
+        </button> */}
       </>
     );
   }
@@ -60,7 +60,7 @@ const сalculatorСalorie = () => {
     <>
       <DailyCaloriesForm userData={user} />
       <button type="button" onClick={changeActive}>
-        Close Changes
+        Cancel
       </button>
     </>
   );
