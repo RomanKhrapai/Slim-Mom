@@ -1,0 +1,33 @@
+{
+    "Calculate your daily calorie intake": "Calculate your daily calorie intake right now",
+    "Register": "Register",
+    "Sign In": "Sign In",
+    
+    "navigation": {
+        "Diary": "Diary",
+        "Calculator": "Calculator",
+        "Sign In": "Sign in",
+        "Registration": "Registration"
+    },
+
+    "calculator": {
+        "Change information": "Change information",
+        "View your losing weight plan": "View your losing weight plan",
+        "Close Changes": "Close Changes",
+        
+        "heightError": "Enter your height within {{min}} - {{max}} cm",
+        "ageError": "Enter your age within {{min}} - {{max}}",
+        "currentError": "Enter your weight within {{min}} - {{max}} kg",
+        "desiredError": "Enter your weight within {{min}} - {{max}} kg",
+        "Only numerics": "Only numerics",
+
+        "Height": "Height",
+        "Age": "Age",
+        "Current weight": "Current weight",
+        "Desired weight": "Desired weight",
+        "cm": "cm",
+        "kg": "kg",
+        "Blood type": "Blood type",
+        "Start losing weight": "Start losing weight"
+    }
+}
