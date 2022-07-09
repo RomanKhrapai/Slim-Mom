@@ -1,3 +1,14 @@
+
+@import "../src/Scss/variables.scss";
+
+.App {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #010101;
+  width: 1280px;
+  margin: 0 auto;
+}
 .container {
   width: 100%;
   margin-left: auto;
