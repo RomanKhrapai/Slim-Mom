@@ -1,19 +1,11 @@
 import { React } from 'react';
-import PropTypes from 'prop-types';
 import styles from '../Modal/ModalContent.module.scss'
-import crossIcon from '../../images/cross.svg';
-import arrowIcon from '../../images/arrow1.svg'
 
-export default function ModalContent({onClose}){
+
+export default function ModalContent(){
 
     return(
         <>
-                  <button className={styles.modal__close_button} onClick={onClose}>
-            <img className={styles.modal__cross_icon} src={crossIcon} alt="cross" />
-          </button>
-          <button className={styles.modal__close_mobile} onClick={onClose}>
-            <img className={styles.modal__arrow_icon} src={arrowIcon} alt="arrow" />
-          </button>
           <h2 className={styles.modal__title}>
             Your recommended daily <br/> calorie intake is
           </h2>
@@ -33,8 +25,3 @@ export default function ModalContent({onClose}){
         </>
     )
 }
-
-ModalContent.propTypes = {
-    onClose: PropTypes.func,
-  };
-  

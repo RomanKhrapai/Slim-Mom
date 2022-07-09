@@ -4,8 +4,6 @@ import Header from './Components/Header';
 import styles from 'App.module.scss';
 import Modal from './Components/Modal';
 import ModalContent from 'Components/Modal/ModalContent';
-import crossIcon from './images/cross.svg';
-import arrowIcon from './images/arrow1.svg'
 
 
 
@@ -19,9 +17,9 @@ export const App = () => {
     <>
  {/* <div className={styles.App}>  */}
       <Header />
-      {/* <button type="button" onClick={toggleModal}>
+      <button type="button" onClick={toggleModal}>
         open modal
-      </button> */}
+      </button>
 
       {showModal && (
         <Modal onClose={toggleModal}>
