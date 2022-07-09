@@ -1,12 +1,14 @@
 import { Formik } from "formik";
 import React, { useState } from "react";
 
+import PropTypes from 'prop-types';
+
 import s from './DailyCaloriesForm.module.scss';
 
   import 'react-toastify/dist/ReactToastify.css';
 
 
-const DailyCaloriesForm = () => {
+const DailyCaloriesForm = ({ data = { height: '', age: '', current: '', desired: '', blood: '1' }, textBtn }) => {
     const [formData, setFormData] = useState({});
 
     const getDailyCalories = () => {
@@ -19,7 +21,7 @@ const DailyCaloriesForm = () => {
     }
 
     return (<><Formik
-        initialValues={{ height: '', age: '', current: '', desired: '', blood: '1'}}
+        initialValues={data}
         validate={(values) => {
             const errors = {};
             const valueRequire = {
@@ -155,11 +157,16 @@ const DailyCaloriesForm = () => {
                     </label>
         </div>
 
-        <button type="submit">Start losing weight</button>
+                     <button type="submit">{textBtn}</button>
     </form>
              }}
     </Formik>
     </>)
+}
+
+DailyCaloriesForm.propTypes = {
+    textBtn: PropTypes.string,
+    data: PropTypes.object
 }
 
 export default DailyCaloriesForm;

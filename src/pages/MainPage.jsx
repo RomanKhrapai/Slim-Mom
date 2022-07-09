@@ -6,7 +6,7 @@ import DailyCaloriesForm from "Components/DailyCaloriesForm";
 const MainPage = () => {
     return (<div>
         <h1>Main Private Component</h1>
-        <DailyCaloriesForm/>
+        <DailyCaloriesForm textBtn='Start losing weight' />
     </div>);
 };
 
