@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import styles from './navigation.module.scss';
-import logoLarge from '../../images/logo.svg';
 import { NavLink } from 'react-router-dom';
 import largeLogo from '../../images/logo.svg';
 import mediumLogo from '../../images/logo1-tablet.svg';
 import smallLogo from '../../images/logo1-mobile.svg';
 import UserInfo from '../UserInfo';
-import { screenTypes, useGetTypeOfScreen } from '../../hooks/useGetTypeOfScreen';
-console.log(styles);
+import {
+  screenTypes,
+  useGetTypeOfScreen,
+} from '../../hooks/useGetTypeOfScreen';
 
 const Navigation = () => {
   const isLoggedIn = true;
@@ -23,9 +24,12 @@ const Navigation = () => {
   const getLogoClassName = ({ isActive }) =>
     isActive ? styles.active__logo : styles.logo;
 
-  const screen = useGetTypeOfScreen()
+  const screen = useGetTypeOfScreen();
   const getLogo = () => {
     if (screen === screenTypes.smallType) {
+      if (isLoggedIn) {
+        return mediumLogo;
+      }
       return smallLogo;
     } else if (screen === screenTypes.mediumType) {
       return mediumLogo;
@@ -33,27 +37,44 @@ const Navigation = () => {
       return largeLogo;
     }
   };
-  console.log(screen);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <nav>
-      <NavLink className={getLogoClassName} to={'/'}>
+      <NavLink
+        onClick={() => setIsMenuOpen(false)}
+        className={getLogoClassName}
+        to={'/'}
+      >
         <img src={getLogo()} alt={'logo'} />
         <div className={styles.vector1} />
       </NavLink>
       {isLoggedIn ? (
         <>
           <div className={isMenuOpen ? styles.menu : styles.menu__isClosed}>
-            <NavLink onClick={() => setIsMenuOpen(!isMenuOpen)} className={getLoggedInLinkClassName} to={'/diary'}>
+            <NavLink
+              onClick={() => setIsMenuOpen(false)}
+              className={getLoggedInLinkClassName}
+              to={'/diary'}
+            >
               Diary
             </NavLink>
-            <NavLink onClick={() => setIsMenuOpen(!isMenuOpen)} className={getLoggedInLinkClassName} to={'/calculator'}>
+            <NavLink
+              onClick={() => setIsMenuOpen(false)}
+              className={getLoggedInLinkClassName}
+              to={'/calculator'}
+            >
               Calculator
             </NavLink>
           </div>
           <UserInfo />
-          <button className={styles.menu__button} onClick={() => setIsMenuOpen(!isMenuOpen)}>Menu</button>
+          <button
+            className={styles.menu__button}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            Menu
+          </button>
         </>
       ) : (
         <>
