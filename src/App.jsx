@@ -1,33 +1,42 @@
-import { React, useState} from 'react';
+import { React, useState } from 'react';
 
 import Header from './Components/Header';
 import styles from 'App.module.scss';
-import Modal from './Components/Modal';
-import ModalContent from 'Components/Modal/ModalContent';
 
-
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import MainPage from 'pages/MainPage';
+import CalculatorPage from 'pages/CalculatorPage';
 
 export const App = () => {
-  const [showModal, setShowModal] = useState(false);
+  const isLoggedIn = true;
 
-  const toggleModal = () => {
-    setShowModal(!showModal);
-  };
   return (
-    <>
- {/* <div className={styles.App}>  */}
-      <Header />
-      <button type="button" onClick={toggleModal}>
-        open modal
-      </button>
-
-      {showModal && (
-        <Modal onClose={toggleModal}>
-          <ModalContent onClose={toggleModal}/>
-        </Modal>
-      )}
-{/* </div>  */}
-</>
-   
+    <div className={styles.App}>
+      <BrowserRouter basename={'Slim-Mom'}>
+        <Header />
+        {isLoggedIn ? (
+          <Routes>
+            <Route path={'/'} element={<MainPage />} />
+            <Route path={'/diary'} element={<h1>Diary Private Component</h1>} />
+            <Route path={'/calculator'} element={<CalculatorPage />} />
+            <Route path={'*'} replace={true} element={<Navigate to={'/'} />} />
+          </Routes>
+        ) : (
+          <Routes>
+            <Route path={'/'} element={<h1>Main Public Component</h1>} />
+            <Route
+              path={'/registration'}
+              element={<h1>Registration Component</h1>}
+            />
+            <Route path={'/login'} element={<h1>Login Component</h1>} />
+            <Route
+              path={'*'}
+              replace={true}
+              element={<Navigate to={'/register'} />}
+            />
+          </Routes>
+        )}
+      </BrowserRouter>
+    </div>
   );
 };
