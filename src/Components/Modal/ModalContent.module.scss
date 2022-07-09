@@ -1,0 +1,179 @@
+@import '../../Scss/variables.scss';
+
+
+.modal__title {
+    font-family: "VerdanaBold";
+    padding-left: 20px;
+    padding-right: 48px;
+    padding-top: 40px;
+    margin: 0 0 40px 0;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.44;
+    text-align: center;
+  
+    color: $title-color;
+  
+    @media screen and(min-width: 768px) {
+      font-size: 26px;
+      line-height: 1.2;
+      padding-top: 64px;
+      padding-left: 153px;
+      padding-right: 153px;
+      margin: 0 0 20px 0;
+      text-align: center;
+    }
+  }
+  
+  .modal__calories {
+    font-family: 'VerdanaBold';
+    position: relative;
+    margin: 0 0 32px 0;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 1.2;
+    text-align: center;
+    letter-spacing: 0.04em;
+  
+    color: $calculator-color;
+  }
+  
+  .modal__calories_small {
+    font-size: 16px;
+    line-height: 1.18;
+    letter-spacing: 0.04em;
+  }
+  
+  .modal__button {
+    font-family: 'VerdanaBold';
+    display: block;
+    width: 210px;
+    height: 43px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.2;
+  
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.04em;
+    border-color: transparent;
+    color:$main-background-color;
+    background:$buttons-color;
+    box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+    border-radius: 30px;
+    cursor: pointer;
+  
+    @media screen and(min-width: 768px) {
+  
+    }
+  }
+  
+  .modal__close_button {
+    @media screen and(max-width: 767px) {
+      display: none;
+    }
+  
+    @media screen and(min-width: 768px) {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      left: 632px;
+      top: 20px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+  
+      &:hover {
+        background-color:$buttons-color;
+        border-radius: 50%;
+      }
+    }
+  }
+  
+  .modal__close_mobile {
+    height: 40px;
+    width: 100vw;
+    border: none;
+    background:$button-back-color;
+    cursor: pointer;
+  
+    @media screen and(min-width: 768px) {
+      display: none;
+    }
+  }
+  
+  .modal__cross_icon {
+    @media screen and(min-width: 768px) {
+      transform: translate(-13%, 11%);
+    }
+  }
+  
+  .modal__arrow_icon {
+    transform: translate(65%, 11%);
+  }
+  
+  .modal__second_title {
+    font-family: 'VerdanaBold';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.2;
+    margin-top: 0;
+    margin-bottom: 0;
+    letter-spacing: 0.04em;
+  
+    color: $title-color;
+  
+    border: none;
+    border-top: 1px solid rgba(224, 224, 224, 0.2);
+    display: block;
+    outline: none;
+    padding: 20px 0 0;
+    width: 280px;
+  
+    @media screen and(min-width: 768px) {
+      border-top: 1px solid rgb(224, 224, 224);
+      width: 330px;
+      padding: 12px 0 0;
+    }
+  }
+  
+  .modal__list {
+    display: block;
+    padding: 0 0 0 20px;
+    text-align: center;
+    margin: 27px 0 0 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.04em;
+  
+    color: $main-text-color;
+  }
+  
+  .modal__list_item {
+    &:not(:last-child){
+      margin-bottom: 21px;
+  
+    }
+  }
+  
+  .modal__list_wrapper{
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  @media screen and(min-width: 768px){
+    padding-left: 171px;
+    padding-right: 171px;
+  }
+  }
+  
