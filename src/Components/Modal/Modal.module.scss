@@ -1,0 +1,75 @@
+@import "../../Scss/variables.scss";
+
+
+.backdrope {
+  @media screen and(min-width: 768px) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: $backdrop-color;
+  }
+}
+
+.modal {
+  min-width: 320px;
+
+  background:$main-background-color;
+
+  @media screen and(min-width: 768px) {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 672px;
+      height: 573px;
+      box-shadow: 0px 22px 40px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.modal__close_button {
+  @media screen and(max-width: 767px) {
+    display: none;
+  }
+
+  @media screen and(min-width: 768px) {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 632px;
+    top: 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color:$buttons-color;
+      border-radius: 50%;
+    }
+  }
+}
+
+.modal__close_mobile {
+  text-align: left;
+  padding-left: 20px;
+  height: 40px;
+  width: 100vw;
+  border: none;
+  background:$button-back-color;
+  cursor: pointer;
+
+  @media screen and(min-width: 768px) {
+    display: none;
+  }
+}
+
+.modal__cross_icon {
+  @media screen and(min-width: 768px) {
+    transform: translate(-13%, 11%);
+  }
+}
+
+.modal__arrow_icon {
+  // transform: translate(-1100%, 11%);
+}

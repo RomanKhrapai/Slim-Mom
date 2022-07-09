@@ -1,35 +1,45 @@
-import React from 'react';
-import Header from "./Components/Header";
+import { React, lazy } from 'react';
+import { ToastContainer } from 'react-toastify';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+
+import CalculatorPage from 'pages/CalculatorPage';
+import Header from 'components/Header';
 import styles from 'App.module.scss';
-import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
-import MainPage from 'pages/MainPage';
+
+const LoginView = lazy(() => import('pages/LoginPage/LoginPage'));
+const RegisterView = lazy(() => import('pages/RegisterPage/RegisterPage'));
+const MainPage = lazy(() => import('pages/MainPage/MainPage'));
 
 export const App = () => {
-
-  const isLoggedIn = true
+  const isLoggedIn = true;
 
   return (
     <div className={styles.App}>
       <BrowserRouter basename={'Slim-Mom'}>
-        <Header/>
-        {isLoggedIn ?
+        <Header />
+
+        {isLoggedIn ? (
           <Routes>
-            <Route path={'/'} element={<MainPage/>} />
+            <Route path={'/'} element={<MainPage />} />
             <Route path={'/diary'} element={<h1>Diary Private Component</h1>} />
-            <Route path={'/calculator'} element={<h1>Calculator Private Component</h1>} />
-            <Route path={'*'} replace={true} element={<Navigate to={'/'}/>}/>
-          </Routes> :
+            <Route path={'/calculator'} element={<CalculatorPage />} />
+            <Route path={'*'} replace={true} element={<Navigate to={'/'} />} />
+          </Routes>
+        ) : (
           <Routes>
             <Route path={'/'} element={<h1>Main Public Component</h1>} />
-            <Route path={'/registration'} element={<h1>Registration Component</h1>}/>
-            <Route path={'/login'} element={<h1>Login Component</h1>}/>
-            <Route path={'*'} replace={true} element={<Navigate to={'/register'}/>}/>
+            <Route path={'/registration'} element={<RegisterView />} />
+            <Route path={'/login'} element={<LoginView />} />
+            <Route
+              path={'*'}
+              replace={true}
+              element={<Navigate to={'/register'} />}
+            />
           </Routes>
-        }
-
+        )}
       </BrowserRouter>
+
+      <ToastContainer autoClose={3000} />
     </div>
   );
-
-
 };
