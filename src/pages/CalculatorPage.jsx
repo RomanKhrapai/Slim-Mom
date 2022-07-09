@@ -1,5 +1,5 @@
 import React from 'react';
-import CalculatorСalorie from 'Components/CalculatorСalorie';
+import CalculatorСalorie from '../components/CalculatorСalorie';
 
 const CalculatorPage = () => {
   return (

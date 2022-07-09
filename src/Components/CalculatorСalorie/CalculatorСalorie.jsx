@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import DailyCaloriesForm from 'Components/DailyCaloriesForm';
+import DailyCaloriesForm from 'components/DailyCaloriesForm';
 import UserInfo from './UserInfo';
 import users from '../usersDB';
 // Имитация базы и поиска пользователя, для проверки работоспособности
@@ -8,7 +8,7 @@ const userId = users[0].userId;
 const user = users.find(user => user.userId === userId);
 
 const сalculatorСalorie = () => {
-    // Активность режима редактирования
+  // Активность режима редактирования
   const [activeModerate, setActiveModerate] = useState(false);
 
   const changeActive = () => {
@@ -21,7 +21,6 @@ const сalculatorСalorie = () => {
     window.confirm();
     console.log('Modal is close');
   };
-
 
   if (!activeModerate) {
     return (

@@ -1,20 +1,14 @@
-import { ToastContainer } from 'react-toastify';
-
 import { React, lazy } from 'react';
-
-import Header from './Components/Header';
-
+import { ToastContainer } from 'react-toastify';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import MainPage from 'pages/MainPage';
+
 import CalculatorPage from 'pages/CalculatorPage';
-
-import AuthNav from 'components/AuthNav/AuthNav';
-
+import Header from 'components/Header';
 import styles from 'App.module.scss';
 
 const LoginView = lazy(() => import('pages/LoginPage/LoginPage'));
 const RegisterView = lazy(() => import('pages/RegisterPage/RegisterPage'));
-const HomeView = lazy(() => import('pages/MainPage/MainPage'));
+const MainPage = lazy(() => import('pages/MainPage/MainPage'));
 
 export const App = () => {
   const isLoggedIn = true;
@@ -22,8 +16,8 @@ export const App = () => {
   return (
     <div className={styles.App}>
       <BrowserRouter basename={'Slim-Mom'}>
-        <AuthNav />
         <Header />
+
         {isLoggedIn ? (
           <Routes>
             <Route path={'/'} element={<MainPage />} />
