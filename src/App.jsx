@@ -1,11 +1,20 @@
-import { React, useState } from 'react';
+import { ToastContainer } from 'react-toastify';
+
+import { React, lazy } from 'react';
 
 import Header from './Components/Header';
-import styles from 'App.module.scss';
 
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import MainPage from 'pages/MainPage';
 import CalculatorPage from 'pages/CalculatorPage';
+
+import AuthNav from 'components/AuthNav/AuthNav';
+
+import styles from 'App.module.scss';
+
+const LoginView = lazy(() => import('pages/LoginPage/LoginPage'));
+const RegisterView = lazy(() => import('pages/RegisterPage/RegisterPage'));
+const HomeView = lazy(() => import('pages/MainPage/MainPage'));
 
 export const App = () => {
   const isLoggedIn = true;
@@ -13,6 +22,7 @@ export const App = () => {
   return (
     <div className={styles.App}>
       <BrowserRouter basename={'Slim-Mom'}>
+        <AuthNav />
         <Header />
         {isLoggedIn ? (
           <Routes>
@@ -24,11 +34,8 @@ export const App = () => {
         ) : (
           <Routes>
             <Route path={'/'} element={<h1>Main Public Component</h1>} />
-            <Route
-              path={'/registration'}
-              element={<h1>Registration Component</h1>}
-            />
-            <Route path={'/login'} element={<h1>Login Component</h1>} />
+            <Route path={'/registration'} element={<RegisterView />} />
+            <Route path={'/login'} element={<LoginView />} />
             <Route
               path={'*'}
               replace={true}
@@ -37,6 +44,8 @@ export const App = () => {
           </Routes>
         )}
       </BrowserRouter>
+
+      <ToastContainer autoClose={3000} />
     </div>
   );
 };
