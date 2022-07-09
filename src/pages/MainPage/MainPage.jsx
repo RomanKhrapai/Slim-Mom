@@ -1,10 +1,9 @@
-import React from 'react';
+import React from "react";
 
-export default function HomeView() {
-  return (
-    <>
-      <div className='homepage_title'>Calculator</div>
-      <p className='homepage_text'>Calculate your weight in our App</p>
-    </>
-  );
-}
+const MainPage = () => {
+    return (<div>
+        <h1>Main Private Component</h1>
+    </div>);
+};
+
+export default MainPage;

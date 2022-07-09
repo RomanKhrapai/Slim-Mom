@@ -1,42 +1,40 @@
-import { React, useState } from 'react';
+import React from 'react';
+import { Route, Routes } from "react-router-dom";
+import { Suspense, lazy } from "react";
+import { ToastContainer } from "react-toastify";
+import AuthNav from 'components/AuthNav/AuthNav';
 
-import Header from './Components/Header';
-import styles from 'App.module.scss';
+import s from'./App.module.scss';
 
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import MainPage from 'pages/MainPage';
-import CalculatorPage from 'pages/CalculatorPage';
+const LoginView = lazy(()=> import('pages/LoginPage/LoginPage'));
+const RegisterView = lazy(()=> import('pages/RegisterPage/RegisterPage'));
+const HomeView = lazy(()=> import('pages/MainPage/MainPage'));
+
 
 export const App = () => {
-  const isLoggedIn = true;
-
   return (
-    <div className={styles.App}>
-      <BrowserRouter basename={'Slim-Mom'}>
-        <Header />
-        {isLoggedIn ? (
+    <div className={s.container}>
+        <>
+        <AuthNav/>
+          <Suspense fallback={<h1>Loading....</h1>}>
           <Routes>
-            <Route path={'/'} element={<MainPage />} />
-            <Route path={'/diary'} element={<h1>Diary Private Component</h1>} />
-            <Route path={'/calculator'} element={<CalculatorPage />} />
-            <Route path={'*'} replace={true} element={<Navigate to={'/'} />} />
-          </Routes>
-        ) : (
-          <Routes>
-            <Route path={'/'} element={<h1>Main Public Component</h1>} />
-            <Route
-              path={'/registration'}
-              element={<h1>Registration Component</h1>}
-            />
-            <Route path={'/login'} element={<h1>Login Component</h1>} />
-            <Route
-              path={'*'}
-              replace={true}
-              element={<Navigate to={'/register'} />}
-            />
-          </Routes>
-        )}
-      </BrowserRouter>
+              <Route path="/" element={<HomeView />} />
+              <Route
+                path="/register"
+                restricted
+                element={
+                  <RegisterView />                 }
+              />
+              <Route
+                path="/login"
+                restricted
+                element={<LoginView />
+                }
+              />
+            </Routes>
+          </Suspense>
+        </>
+      <ToastContainer autoClose={3000} />
     </div>
   );
-};
+}
