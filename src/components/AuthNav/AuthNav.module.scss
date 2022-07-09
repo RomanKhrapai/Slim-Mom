@@ -1,0 +1,40 @@
+.authnav {
+  display: flex;
+  justify-content: right;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.authnav_item {
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.authnav_link {
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 13px;
+    letter-spacing: 0.04em;
+
+    color: #9B9FAA;
+    &:hover {
+      color: #212121;
+    }
+  }
+
+.authnav_link_active {
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 13px;
+  letter-spacing: 0.04em;
+  color: #212121;;
+}
+

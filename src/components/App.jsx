@@ -1,34 +1,21 @@
 import React from 'react';
-import { Route, Routes, Navigate } from "react-router-dom";
-import { useEffect, Suspense, lazy } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { Route, Routes } from "react-router-dom";
+import { Suspense, lazy } from "react";
 import { ToastContainer } from "react-toastify";
-import { authOperations, authSelectors } from "redux/auth";
-import AppBar from "components/AppBar/AppBar";
+import AuthNav from './AuthNav/AuthNav';
 
-import './App.css';
+import s from'./App.module.scss';
 
 const LoginView = lazy(()=> import('pages/LoginPage/LoginPage'));
 const RegisterView = lazy(()=> import('pages/RegisterPage/RegisterPage'));
-const HomeView = lazy(()=> import('pages/HomePage/HomePage'));
+const HomeView = lazy(()=> import('pages/MainPage/MainPage'));
 
 
 export default function App() {
-  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
-  const dispatch = useDispatch();
-  const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
-
-  useEffect(() => {
-    dispatch(authOperations.fetchCurrentUser());
-  }, [dispatch]);
-
   return (
-    <div className='container'>
-      {isFetchingCurrentUser ? (
-        <h1>Loading....</h1>
-      ) : (
+    <div className={s.container}>
         <>
-          <AppBar />
+        <AuthNav/>
           <Suspense fallback={<h1>Loading....</h1>}>
           <Routes>
               <Route path="/" element={<HomeView />} />
@@ -36,45 +23,19 @@ export default function App() {
                 path="/register"
                 restricted
                 element={
-                  !isLoggedIn ? <RegisterView /> : <Navigate to="/contacts" />
-                }
+                  <RegisterView />                 }
               />
               <Route
                 path="/login"
-                redirectTo="/contacts"
                 restricted
-                element={
-                  !isLoggedIn ? <LoginView /> : <Navigate to="/contacts" />
+                element={<LoginView />
                 }
               />
             </Routes>
           </Suspense>
         </>
-      )}
+      
       <ToastContainer autoClose={3000} />
     </div>
   );
 }
-
-
-
-/*import React from 'react';
-
-export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101',
-        backgroundColor : "blue"
-      }}
-    >
-      React homework template
-    </div>
-  );
-};
-*/

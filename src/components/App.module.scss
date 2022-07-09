@@ -1,0 +1,26 @@
+.container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 1000px;
+      
+    @media screen and (min-width: 320px) {
+      max-height: 718px;
+    }
+    @media screen and (min-width: 768px) {
+      max-width: 768px;
+      padding: 0 32px;
+      background-image:  url('../images/strawberry.png'),url('../images/banana.png'), url('../images/vector.png'), url('../images/leaves.png');
+      background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+      background-size: contain,contain, cover, cover ;
+      background-position:  top 300px right 0px, bottom 250px right -300px, -25% -55%, top ;
+    
+    }
+    @media screen and (min-width: 1024px) {
+      max-width: 1024px;
+      padding: 0 70px;
+      background-image:  url('../images/strawberry.png'),url('../images/banana.png'), url('../images/vector.png');
+      background-size: contain,contain, cover;
+      background-position:  top 300px right 0px, bottom 150px right -300px, -50% -55% ;
+    }
+}

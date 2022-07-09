@@ -1,4 +1,4 @@
-.form {
+.registration_form {
   width: 85%;
   margin-bottom: 15px;
   padding-left: 20px;
@@ -16,10 +16,9 @@
     padding-left: 32px;
     align-items: baseline;
     width: 350px;
-  }
 }
-
-.login_label {
+}
+.registration_label {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -33,17 +32,17 @@
 
   &:last-child {
     margin-bottom: 0;
-  }
 }
-.login_input {
-    padding: 8px 0 0;
+}
+.registration_input {
+  padding: 8px 0 0;
     display: block;
     width: 100%;
     border: none;
     border-bottom: 1px solid #E0E0E0;
     outline: none;
-}
-.login_button {
+};
+.registration_button {
   width: 182px;
   height: 44px;
   margin-left: 69px;

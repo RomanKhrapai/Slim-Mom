@@ -1,14 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { authOperations } from "redux/auth";
-import './RegisterForm.css';
+import { toast } from 'react-toastify';
+import s from './RegisterForm.module.scss';
 
 export default function RegisterForm() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const dispatch = useDispatch();
 
     const handleChange = e => {
         const { name, value } = e.currentTarget;
@@ -27,18 +25,24 @@ export default function RegisterForm() {
 
       const handleSubmit = e => {
         e.preventDefault();
-        dispatch(authOperations.register({ name, email, password }));
+        if (!name.trim() || !email.trim() || !password.trim()) {
+          return toast.error('Будь ласка, заповніть всі поля');
+        } else if (password.length < 7) {
+          return toast.info(
+            'Пароль має містити не менш ніж 7 символів',
+          );
+        }
         setName('');
         setEmail('');
         setPassword('');
       };
 
       return (
-        <form className="registration_form" onSubmit={handleSubmit}>
-          <label className="registration_label">
-            <span>Нікнейм</span>
+        <form className={s.registration_form} onSubmit={handleSubmit}>
+          <label className={s.registration_label}>
+            <span>Нікнейм*</span>
             <input
-              className="registration_input"
+              className={s.registration_input}
               type="text"
               name="name"
               value={name}
@@ -50,10 +54,10 @@ export default function RegisterForm() {
               required
             />
           </label>
-          <label className="registration_label">
-            <span>Імейл</span>
+          <label className={s.registration_label}>
+            <span>Імейл*</span>
             <input
-              className="registration_input"
+              className={s.registration_input}
               type="email"
               name="email"
               value={email}
@@ -63,10 +67,10 @@ export default function RegisterForm() {
               required
             />
           </label>
-          <label className="registration_label">
-            <span>Пароль</span>
+          <label className={s.registration_label}>
+            <span>Пароль*</span>
             <input
-              className="registration_input"
+              className={s.registration_input}
               type="password"
               name="password"
               value={password}
@@ -76,7 +80,7 @@ export default function RegisterForm() {
               required
             />
           </label>
-          <button className="registration_button" type="submit">Зареєструватися</button>
+          <button className={s.registration_button} type="submit">Зареєструватися</button>
         </form>
       );
     }

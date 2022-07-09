@@ -1,12 +1,12 @@
 import React from 'react';
 import RegisterForm from "components/RegisterForm/RegisterForm";
-import './RegisterPage.css';
+import s from './RegisterPage.module.scss';
 
 export default function RegisterView() {
     return (
-      <>
-        <div className="registration_title">РЕЄСТРАЦІЯ</div>
+        <div className={s.maincontent}>
+        <div className={s.registration_title}>РЕЄСТРАЦІЯ</div>
         <RegisterForm />
-      </>
+      </div>
     );
   }

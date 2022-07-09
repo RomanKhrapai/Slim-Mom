@@ -1,12 +1,14 @@
 import React from 'react';
 import LoginForm from "components/LoginForm/LoginForm";
-import './LoginPage.css';
+import s from'./LoginPage.module.scss';
 
 export default function LoginView() {
     return (
-      <>
-        <div className="loginpage_title">ЛОГІНІЗАЦІЯ</div>
+      <div className={s.maincontent}>
+      <div className={s.loginpage_title}>ЛОГІНІЗАЦІЯ</div>
         <LoginForm />
-      </>
+      </div>
     );
   }
+
+  

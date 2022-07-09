@@ -1,13 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { authOperations } from 'redux/auth';
+import {toast} from 'react-toastify';
 import s from'./LoginForm.module.scss';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const dispatch = useDispatch();
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
@@ -24,7 +22,9 @@ export default function LoginForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(authOperations.logIn({ email, password }));
+    if (!email.trim() || !password.trim()) {
+      return toast.error('Будь ласка, заповність всі поля');
+    }
     setEmail('');
     setPassword('');
   };
@@ -32,7 +32,7 @@ export default function LoginForm() {
   return (
     <form className={s.form} onSubmit={handleSubmit}>
       <label className={s.login_label}>
-        <span>Імейл</span>
+        <span>Імейл*</span>
         <input
           className= {s.login_input}
           type="email"
@@ -45,7 +45,7 @@ export default function LoginForm() {
         />
       </label>
       <label className={s.login_label}>
-        <span>Пароль</span>
+        <span>Пароль*</span>
         <input
           className={s.login_input}
           type="password"
@@ -57,7 +57,7 @@ export default function LoginForm() {
           required
         />
       </label>
-      <button type="submit">Увійти</button>
+      <button className={s.login_button} type="submit">Увійти</button>
     </form>
   );
 }

@@ -39,3 +39,7 @@ ul {
   margin-bottom: 0;
   padding-left: 0;
 }
+div {
+  margin: 0;
+  padding: 0;
+}
