@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from "react";
+import { useTranslation } from 'react-i18next';
 import styles from './navigation.module.scss';
 import { NavLink } from 'react-router-dom';
 import largeLogo from '../../images/logo.svg';
@@ -26,19 +27,17 @@ const Navigation = () => {
   const getLogoClassName = ({ isActive }) =>
     isActive ? styles.active__logo : styles.logo;
 
-  const screen = useGetTypeOfScreen();
+  const { t } = useTranslation();
+  const screen = useGetTypeOfScreen()
   const getLogo = () => {
     if (screen === screenTypes.smallType) {
-      if (isLoggedIn) {
-        return mediumLogo;
-      }
       return smallLogo;
     } else if (screen === screenTypes.mediumType) {
       return mediumLogo;
     } else {
       return largeLogo;
     }
-  };
+  }
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -60,14 +59,14 @@ const Navigation = () => {
               className={getLoggedInLinkClassName}
               to={'/diary'}
             >
-              Diary
+              {t('navigation.Diary')}
             </NavLink>
             <NavLink
               onClick={() => setIsMenuOpen(false)}
               className={getLoggedInLinkClassName}
               to={'/calculator'}
             >
-              Calculator
+              {t("navigation.Calculator")}
             </NavLink>
           </div>
           <UserInfo />
@@ -81,10 +80,10 @@ const Navigation = () => {
       ) : (
         <>
           <NavLink className={getNavLinkClassName} to={'/login'}>
-            Sign In
+            {t("navigation.Sign In")}
           </NavLink>
           <NavLink className={getNavLinkClassName} to={'/registration'}>
-            Registration
+            {t("navigation.Registration")}
           </NavLink>
         </>
       )}
