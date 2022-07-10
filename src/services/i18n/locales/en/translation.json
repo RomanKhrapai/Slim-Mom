@@ -29,5 +29,12 @@
         "kg": "kg",
         "Blood type": "Blood type",
         "Start losing weight": "Start losing weight"
+    },
+
+    "modal": {
+        "Your recommended daily calorie intake is": "Your recommended daily calorie intake is",
+        "kcal": "kcal",
+        "Foods you should not eat": "Foods you should not eat",
+        "Start losing weight": "Start losing weight"
     }
 }

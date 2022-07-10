@@ -1,10 +1,12 @@
-import React from 'react';
+import {React, useState} from 'react';
 import { useTranslation } from 'react-i18next';
 
 import DailyCaloriesForm from 'components/DailyCaloriesForm';
 
+
 const MainPage = () => {
   const { t, i18n } = useTranslation();
+
 
   return (
     <div>

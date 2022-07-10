@@ -1,0 +1,23 @@
+@import '../../Scss/variables.scss';
+  
+  .modal__button {
+    font-family: 'VerdanaBold';
+    display: block;
+    width: 210px;
+    height: 43px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.2;
+  
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.04em;
+    border-color: transparent;
+    color:$main-background-color;
+    background:$buttons-color;
+    box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+    border-radius: 30px;
+    cursor: pointer;
+  
+  }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
 import s from '../Modal/Modal.module.scss';
 import crossIcon from '../../images/cross.svg';
-import arrowIcon from '../../images/arrow1.svg'
+import arrowIcon from '../../images/arrow1.svg';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -29,13 +29,14 @@ export default function Modal({ children, onClose }) {
   return createPortal(
     <div className={s.backdrope} onClick={handleBackdropClick}>
       <div className={s.modal}>
-      <button className={s.modal__close_button} onClick={onClose}>
-            <img className={s.modal__cross_icon} src={crossIcon} alt="cross" />
-          </button>
-          <button className={s.modal__close_mobile} onClick={onClose}>
-            <img className={s.modal__arrow_icon} src={arrowIcon} alt="arrow" />
-          </button>
-        {children}</div>
+        <button className={s.modal__close_button} onClick={onClose}>
+          <img className={s.modal__cross_icon} src={crossIcon} alt="cross" />
+        </button>
+        <button className={s.modal__close_mobile} onClick={onClose}>
+          <img className={s.modal__arrow_icon} src={arrowIcon} alt="arrow" />
+        </button>
+        {children}
+      </div>
     </div>,
     modalRoot
   );

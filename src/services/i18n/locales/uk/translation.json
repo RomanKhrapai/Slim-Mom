@@ -29,5 +29,12 @@
         "kg": "кг",
         "Blood type": "Група крові",
         "Start losing weight": "Розпочати схуднення"
+    },
+
+    "modal": {
+        "Your recommended daily calorie intake is": "Ваша рекомендована добова норма споживання калорій становить",
+        "kcal": "ккал",
+        "Foods you should not eat": "Продукти, які вам не слід їсти",
+        "Start losing weight": "Розпочати схуднення"
     }
 }
