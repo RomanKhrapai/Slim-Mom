@@ -1,5 +1,5 @@
 import React from 'react';
-import LoginForm from "components/LoginForm/LoginForm";
+import LoginForm from "../../components/LoginForm/LoginForm";
 import s from'./LoginPage.module.scss';
 
 export default function LoginView() {
@@ -11,4 +11,3 @@ export default function LoginView() {
     );
   }
 
-  

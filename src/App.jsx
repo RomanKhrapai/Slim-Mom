@@ -1,16 +1,15 @@
-import { React, lazy } from 'react';
+import { React, lazy, Suspense } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import i18n from './services/i18n/config';
-
 import { useTranslation } from 'react-i18next';
 import CalculatorPage from 'pages/CalculatorPage';
 import Header from 'components/Header';
 import styles from 'App.module.scss';
 
-const LoginView = lazy(() => import('pages/LoginPage/LoginPage'));
-const RegisterView = lazy(() => import('pages/RegisterPage/RegisterPage'));
-const MainPage = lazy(() => import('pages/MainPage'));
+const LoginView = lazy(() => import('./pages/LoginPage/LoginPage'));
+const RegisterView = lazy(() => import('./pages/RegisterPage/RegisterPage'));
+const MainPage = lazy(() => import('./pages/MainPage'));
 
 export const App = () => {
   const isLoggedIn = true;
@@ -20,11 +19,11 @@ export const App = () => {
   const changeLanguage = lng => {
     i18n.changeLanguage(lng);
   };
-
   return (
     <div className={styles.App}>
       <BrowserRouter basename={'Slim-Mom'}>
         <Header />
+        <Suspense fallback={<div>LOADER</div>}>
         {isLoggedIn ? (
           <Routes>
             <Route path={'/'} element={<MainPage />} />
@@ -48,13 +47,15 @@ export const App = () => {
             <Route
               path={'*'}
               replace={true}
-              element={<Navigate to={'/register'} />}
+              element={<Navigate to={'/registration'} />}
             />
           </Routes>
         )}
+        </Suspense>
+
       </BrowserRouter>
 
       <ToastContainer autoClose={3000} />
     </div>
-  );
+  )
 };

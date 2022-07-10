@@ -1,5 +1,5 @@
 import React from 'react';
-import RegisterForm from "components/RegisterForm/RegisterForm";
+import RegisterForm from "../../components/RegisterForm/RegisterForm";
 import s from './RegisterPage.module.scss';
 
 export default function RegisterView() {

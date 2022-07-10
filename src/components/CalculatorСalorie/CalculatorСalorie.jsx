@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import DailyCaloriesForm from 'components/DailyCaloriesForm';
+import DailyCaloriesForm from '../DailyCaloriesForm';
 import UserInfo from './UserInfo';
 
 import { useTranslation } from 'react-i18next';

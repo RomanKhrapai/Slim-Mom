@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+
 import DailyCaloriesForm from 'components/DailyCaloriesForm';
 import Modal from 'components/Modal';
 import ModalContent from 'components/Modal/ModalContent';
