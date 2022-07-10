@@ -28,7 +28,7 @@
   font-size: 14px;
   line-height: 1.2em;
   letter-spacing: 0.04em;
-  color: #9B9FAA;
+  color: $main-text-color;
 
   &:last-child {
     margin-bottom: 0;
@@ -39,7 +39,7 @@
     display: block;
     width: 100%;
     border: none;
-    border-bottom: 1px solid #E0E0E0;
+    border-bottom: 1px solid $border-color;
     outline: none;
 };
 .registration_button {
@@ -54,9 +54,9 @@
   font-size: 14px;
   line-height: 17px;
 
-  background: #FC842D;
+  background: $buttons-color;
   cursor: pointer;
-  color: #ffffff;
+  color: $main-background-color;
   border-radius: 30px;
   border: none;
 
