@@ -1,7 +1,7 @@
 import { React } from 'react';
 import styles from '../Modal/ModalContent.module.scss';
 import { useTranslation } from 'react-i18next';
-import Button from 'src/components/Button/Button';
+import Button from 'components/Button/Button';
 
 export default function ModalContent() {
   const { t, i18n } = useTranslation();
