@@ -5,11 +5,12 @@ import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
 import s from './DailyCaloriesForm.module.scss';
+import Button from 'components/Button/Button';
 
 
 const DailyCaloriesForm = ({
-  userData = { height: '', age: '', current: '', desired: '', blood: '1' }, setDailyCalories, setForbiddenProducts}) => {
-//   const [formData, setFormData] = useState({});
+  userData = { height: '', age: '', current: '', desired: '', blood: '1' }, setDailyCalories, setForbiddenProducts, onOpenModal}) => {
+  const [formData, setFormData] = useState({});
   const { t } = useTranslation();
 
   const getDailyCalories = (values) => {
@@ -107,8 +108,9 @@ const DailyCaloriesForm = ({
           return errors;
         }}
         onSubmit={(values, { resetForm }) => {
-            // setFormData(values);
+            setFormData(values);
             setDailyCalories(getDailyCalories(values));
+            onOpenModal();
             resetForm();
         }}
       >
@@ -285,7 +287,7 @@ const DailyCaloriesForm = ({
               </div>
                   </div>
 
-              <button type="submit">{t('calculator.Start losing weight')}</button>
+                  <Button type="submit">{t('Start losing weight')}</Button>
             </form>
           );
         }}
@@ -297,7 +299,8 @@ const DailyCaloriesForm = ({
 DailyCaloriesForm.propTypes = {
     userData: PropTypes.object,
     setDailyCalories: PropTypes.func,
-    setForbiddenProducts: PropTypes.func
+    setForbiddenProducts: PropTypes.func,
+    onOpenModal: PropTypes.func
 };
 
 export default DailyCaloriesForm;
