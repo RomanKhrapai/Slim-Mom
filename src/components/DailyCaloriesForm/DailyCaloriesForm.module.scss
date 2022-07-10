@@ -170,16 +170,15 @@ background-color: #FC842D;
 
 .radioInput:checked + & + span {
     font-weight: 700;
-            color: #FC842D;
+    color: #FC842D;
 }
 }
 
 .errorMessage {
 position: absolute;
 bottom: -70%;
-font-size: 10px;
+font-size: 8px;
 line-height: 1.2em;
 letter-spacing: 0.04em;
 color: #FC842D;
-
 }
