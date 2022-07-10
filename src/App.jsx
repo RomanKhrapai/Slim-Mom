@@ -24,7 +24,7 @@ export const App = () => {
   return (
     <div className={styles.App}>
       <BrowserRouter basename={'Slim-Mom'}>
-        <Header />m
+        <Header />
         {isLoggedIn ? (
           <Routes>
             <Route path={'/'} element={<MainPage />} />
