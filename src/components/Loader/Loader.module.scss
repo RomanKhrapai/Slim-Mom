@@ -1,0 +1,93 @@
+@import "../../Scss/variables.scss";
+
+
+* {
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+body {
+    padding-top: 10em;
+    text-align: center;
+}
+
+.loader {
+    position: relative;
+    margin: auto;
+    width: 350px;
+    color: $main-background-color;
+    font: Verdana;
+    font-weight: 700;
+    font-size: 250%;
+    background: linear-gradient(180deg, $buttons-color 0, $buttons-color 100%);
+    box-shadow: inset 0 5px 20px $main-background-color;
+    text-shadow: 5px 5px 5px rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+.loader:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+span {
+    float: left;
+    height: 100px;
+    line-height: 120px;
+    width: 50px;
+}
+
+.covers {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.covers span {
+    background: linear-gradient(180deg, $main-background-color 50%, $buttons-color 100%);
+    animation: up 2s infinite;
+}
+
+@keyframes up {
+    0% {
+        margin-bottom: 0;
+    }
+
+    16% {
+        margin-bottom: 100%;
+        height: 20px;
+    }
+
+    50% {
+        margin-bottom: 0;
+    }
+
+    100% {
+        margin-bottom: 0;
+    }
+}
+
+.covers span:nth-child(2) {
+    animation-delay: .142857s;
+}
+
+.covers span:nth-child(3) {
+    animation-delay: .285714s;
+}
+
+.covers span:nth-child(4) {
+    animation-delay: .428571s;
+}
+
+.covers span:nth-child(5) {
+    animation-delay: .571428s;
+}
+
+.covers span:nth-child(6) {
+    animation-delay: .714285s;
+}
+
+.covers span:nth-child(7) {
+    animation-delay: .857142s;
+}
