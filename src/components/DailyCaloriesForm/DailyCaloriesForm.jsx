@@ -6,22 +6,19 @@ import PropTypes from 'prop-types';
 
 import s from './DailyCaloriesForm.module.scss';
 
-import 'react-toastify/dist/ReactToastify.css';
 
 const DailyCaloriesForm = ({
-  data = { height: '', age: '', current: '', desired: '', blood: '1' },
-  textBtn,
-}) => {
-  const [formData, setFormData] = useState({});
+  userData = { height: '', age: '', current: '', desired: '', blood: '1' }, setDailyCalories, setForbiddenProducts}) => {
+//   const [formData, setFormData] = useState({});
   const { t } = useTranslation();
 
-  const getDailyCalories = () => {
+  const getDailyCalories = (values) => {
     return (
-      10 * Number(formData.current) +
-      6.25 * Number(formData.height) -
-      5 * Number(formData.age) -
+      10 * Number(values.current) +
+      6.25 * Number(values.height) -
+      5 * Number(values.age) -
       161 -
-      10 * (Number(formData.current) - Number(formData.desired))
+      10 * (Number(values.current) - Number(values.desired))
     );
   };
 
@@ -33,7 +30,7 @@ const DailyCaloriesForm = ({
   return (
     <>
       <Formik
-        initialValues={data}
+        initialValues={userData}
         validate={values => {
           const errors = {};
           const valueRequire = {
@@ -110,8 +107,9 @@ const DailyCaloriesForm = ({
           return errors;
         }}
         onSubmit={(values, { resetForm }) => {
-          setFormData(values);
-          resetForm();
+            // setFormData(values);
+            setDailyCalories(getDailyCalories(values));
+            resetForm();
         }}
       >
         {({
@@ -123,8 +121,9 @@ const DailyCaloriesForm = ({
           handleSubmit,
         }) => {
           return (
-            <form className={s.form} onSubmit={handleSubmit}>
-              <div className={s.inputBox}>
+              <form className={s.form} onSubmit={handleSubmit}>
+                  <div className={s.inputsContainer}>
+                    <div className={s.inputBox}>
                 <input
                   className={s.input}
                   id="height"
@@ -208,8 +207,6 @@ const DailyCaloriesForm = ({
 
               <div
                 className={s.bloodBox}
-                onChange={handleChange}
-                onBlur={handleBlur}
               >
                 <p className={`${s.label} ${s.labelBlood}`}>
                   {t('calculator.Blood type')} *
@@ -222,7 +219,9 @@ const DailyCaloriesForm = ({
                     name="blood"
                     value="1"
                     checked={values.blood === '1'}
-                    required
+                required
+                onChange={handleChange}
+                onBlur={handleBlur}
                   />
 
                   <div className={s.radioBox}>
@@ -239,6 +238,8 @@ const DailyCaloriesForm = ({
                     value="2"
                     checked={values.blood === '2'}
                     required
+                onChange={handleChange}
+                onBlur={handleBlur}
                   />
 
                   <div className={s.radioBox}>
@@ -254,7 +255,9 @@ const DailyCaloriesForm = ({
                     name="blood"
                     value="3"
                     checked={values.blood === '3'}
-                    required
+                required
+                onChange={handleChange}
+                onBlur={handleBlur}
                   />
 
                   <div className={s.radioBox}>
@@ -270,7 +273,9 @@ const DailyCaloriesForm = ({
                     name="blood"
                     value="4"
                     checked={values.blood === '4'}
-                    required
+                required
+                onChange={handleChange}
+                onBlur={handleBlur}
                   />
                   <div className={s.radioBox}>
                     <span></span>
@@ -278,7 +283,9 @@ const DailyCaloriesForm = ({
                   <span>4</span>
                 </label>
               </div>
-              <button type="submit">{textBtn}</button>
+                  </div>
+
+              <button type="submit">{t('calculator.Start losing weight')}</button>
             </form>
           );
         }}
@@ -288,8 +295,9 @@ const DailyCaloriesForm = ({
 };
 
 DailyCaloriesForm.propTypes = {
-  textBtn: PropTypes.string,
-  data: PropTypes.object,
+    userData: PropTypes.object,
+    setDailyCalories: PropTypes.func,
+    setForbiddenProducts: PropTypes.func
 };
 
 export default DailyCaloriesForm;
