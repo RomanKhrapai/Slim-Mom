@@ -27,24 +27,26 @@
 
 
     @media screen and (min-width: 768px) {
-flex-basis: calc(100% / 2 - 32px);
-margin-right: 32px;
+flex-basis: 240px;
+
 
 &:nth-child(1) {
     order: 1;
+    margin-right: 32px;
 }
 
 &:nth-child(2) {
     order: 3;
+    margin-right: 32px;
 }
 
 &:nth-child(3) {
-    margin-right: 0;
+
     order: 5;
 }
 
 &:nth-child(4) {
-    margin-right: 0;
+
     order: 2;
 }
 
@@ -85,6 +87,10 @@ transform: translateY(-100%);
 
 .labelBlood {
     margin-bottom: 8px;
+@media screen and (min-width: 768px) {
+    border-bottom: 1px solid #E0E0E0;
+        padding-bottom: 8px;
+}
 }
 
 .bloodBox {
@@ -102,6 +108,7 @@ transform: translateY(-100%);
 }
 
  @media screen and (min-width: 768px) {
+flex-basis: 240px;
 order: 4;
  }
 }
