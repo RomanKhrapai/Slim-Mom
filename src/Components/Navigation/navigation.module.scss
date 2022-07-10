@@ -96,10 +96,6 @@ nav {
       color: $activeColor;
     }
 
-    //a:nth-child(2) {
-    //  margin-left: auto;
-    //}
-
 
   }
   .menu__button {
@@ -125,15 +121,23 @@ nav {
     .nav__link.nav__link_active {
       margin-bottom: 0px;
     }
-    //a:nth-child(2) {
-    //  margin-left: 0;
-    //}
 
     .vector1 {
       display: none;
     }
+
     .menu__button {
       display: block !important;
+      border: none;
+      background: none;
+      cursor: pointer;
+      width: 24px;
+      height: 24px;
+      padding: 0;
+    }
+    .menu__button__isOpen {
+      width: 12px;
+      height: 12px;
     }
     .menu {
       z-index: 1;
@@ -195,3 +199,5 @@ nav {
     margin-left: auto;
   }
 }
+
+

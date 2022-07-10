@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom';
 import largeLogo from '../../images/logo.svg';
 import mediumLogo from '../../images/logo1-tablet.svg';
 import smallLogo from '../../images/logo1-mobile.svg';
+import menuSvg from '../../images/burger-menu1.svg'
+import closeSvg from '../../images/close-button1.svg'
 import UserInfo from '../UserInfo';
 import {
   screenTypes,
@@ -73,7 +75,7 @@ const Navigation = () => {
             className={styles.menu__button}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            Menu
+            <img className={isMenuOpen ? styles.menu__button__isOpen : styles.menu__button__isClosed} src={isMenuOpen ? closeSvg : menuSvg} alt={'menu'}/>
           </button>
         </>
       ) : (
