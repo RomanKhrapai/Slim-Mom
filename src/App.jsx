@@ -24,8 +24,7 @@ export const App = () => {
   return (
     <div className={styles.App}>
       <BrowserRouter basename={'Slim-Mom'}>
-        <Header />
-
+        <Header />m
         {isLoggedIn ? (
           <Routes>
             <Route path={'/'} element={<MainPage />} />
@@ -34,6 +33,7 @@ export const App = () => {
               element={<h1>{t('Calculate your daily calorie intake')}</h1>}
             />
             <Route path={'/calculator'} element={<CalculatorPage />} />
+
             <Route path={'*'} replace={true} element={<Navigate to={'/'} />} />
           </Routes>
         ) : (
@@ -44,6 +44,7 @@ export const App = () => {
             />
             <Route path={'/registration'} element={<RegisterView />} />
             <Route path={'/login'} element={<LoginView />} />
+
             <Route
               path={'*'}
               replace={true}
