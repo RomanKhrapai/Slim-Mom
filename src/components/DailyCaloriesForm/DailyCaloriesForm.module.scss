@@ -1,18 +1,54 @@
 .form {
-    width: 85%;
+    width: 240px;
 
     @media screen and (min-width: 768px) {
-        width: 100%;
+    width: 512px;
     }
+}
+
+.inputsContainer {
+    margin-bottom: 40px;
+
+    @media screen and (min-width: 768px) {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
 }
 
 .inputBox {
     position: relative;
     margin-bottom: 40px;
 
+
     &:focus-within .labelAbsolute {
     transform: translateY(-100%);
     }
+
+
+    @media screen and (min-width: 768px) {
+flex-basis: calc(100% / 2 - 32px);
+margin-right: 32px;
+
+&:nth-child(1) {
+    order: 1;
+}
+
+&:nth-child(2) {
+    order: 3;
+}
+
+&:nth-child(3) {
+    margin-right: 0;
+    order: 5;
+}
+
+&:nth-child(4) {
+    margin-right: 0;
+    order: 2;
+}
+
+}
 }
 
 
@@ -52,7 +88,6 @@ transform: translateY(-100%);
 }
 
 .bloodBox {
-    margin-bottom: 40px;
 
  & label {
         margin-right: 24px;
@@ -65,17 +100,25 @@ transform: translateY(-100%);
  & label:last-of-type {
             margin-right: 0;
 }
+
+ @media screen and (min-width: 768px) {
+order: 4;
+ }
 }
 
 .radio {
     position: relative;
     display: inline-block;
-    padding: 5px 0 5px 38px;
+    padding: 5px 0 5px 32px;
     margin-right: 24px;
 
         &:last-of-type {
                 margin-right: 0;
             }
+
+    @media screen and (min-width: 768px) {
+        margin-right: 28px;
+    }
 }
 
 .radioInput {
@@ -88,15 +131,16 @@ transform: translateY(-100%);
 
 .radioBox {
 position: absolute;
-top: 0;
+top: 50%;
 left: 0;
+transform: translateY(-50%);
 display: flex;
 align-items: center;
 justify-content: center;
 width: 20px;
 height: 20px;
 background-color: #fff;
-border: 3px solid #E0E0E0;
+border: 1px solid #E0E0E0;
 border-radius: 50%;
 
 & span {

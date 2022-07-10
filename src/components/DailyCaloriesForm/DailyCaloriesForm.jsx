@@ -6,12 +6,9 @@ import PropTypes from 'prop-types';
 
 import s from './DailyCaloriesForm.module.scss';
 
-import 'react-toastify/dist/ReactToastify.css';
 
 const DailyCaloriesForm = ({
-  data = { height: '', age: '', current: '', desired: '', blood: '1' },
-  textBtn,
-}) => {
+  userData = { height: '', age: '', current: '', desired: '', blood: '1' }}) => {
   const [formData, setFormData] = useState({});
   const { t } = useTranslation();
 
@@ -33,7 +30,7 @@ const DailyCaloriesForm = ({
   return (
     <>
       <Formik
-        initialValues={data}
+        initialValues={userData}
         validate={values => {
           const errors = {};
           const valueRequire = {
@@ -123,8 +120,9 @@ const DailyCaloriesForm = ({
           handleSubmit,
         }) => {
           return (
-            <form className={s.form} onSubmit={handleSubmit}>
-              <div className={s.inputBox}>
+              <form className={s.form} onSubmit={handleSubmit}>
+                  <div className={s.inputsContainer}>
+                    <div className={s.inputBox}>
                 <input
                   className={s.input}
                   id="height"
@@ -208,8 +206,6 @@ const DailyCaloriesForm = ({
 
               <div
                 className={s.bloodBox}
-                onChange={handleChange}
-                onBlur={handleBlur}
               >
                 <p className={`${s.label} ${s.labelBlood}`}>
                   {t('calculator.Blood type')} *
@@ -222,7 +218,9 @@ const DailyCaloriesForm = ({
                     name="blood"
                     value="1"
                     checked={values.blood === '1'}
-                    required
+                required
+                onChange={handleChange}
+                onBlur={handleBlur}
                   />
 
                   <div className={s.radioBox}>
@@ -239,6 +237,8 @@ const DailyCaloriesForm = ({
                     value="2"
                     checked={values.blood === '2'}
                     required
+                onChange={handleChange}
+                onBlur={handleBlur}
                   />
 
                   <div className={s.radioBox}>
@@ -254,7 +254,9 @@ const DailyCaloriesForm = ({
                     name="blood"
                     value="3"
                     checked={values.blood === '3'}
-                    required
+                required
+                onChange={handleChange}
+                onBlur={handleBlur}
                   />
 
                   <div className={s.radioBox}>
@@ -270,7 +272,9 @@ const DailyCaloriesForm = ({
                     name="blood"
                     value="4"
                     checked={values.blood === '4'}
-                    required
+                required
+                onChange={handleChange}
+                onBlur={handleBlur}
                   />
                   <div className={s.radioBox}>
                     <span></span>
@@ -278,7 +282,9 @@ const DailyCaloriesForm = ({
                   <span>4</span>
                 </label>
               </div>
-              <button type="submit">{textBtn}</button>
+                  </div>
+
+              <button type="submit">{t('calculator.Start losing weight')}</button>
             </form>
           );
         }}
@@ -288,8 +294,7 @@ const DailyCaloriesForm = ({
 };
 
 DailyCaloriesForm.propTypes = {
-  textBtn: PropTypes.string,
-  data: PropTypes.object,
+  userData: PropTypes.object,
 };
 
 export default DailyCaloriesForm;
