@@ -8,17 +8,17 @@ import s from './DailyCaloriesForm.module.scss';
 
 
 const DailyCaloriesForm = ({
-  userData = { height: '', age: '', current: '', desired: '', blood: '1' }}) => {
-  const [formData, setFormData] = useState({});
+  userData = { height: '', age: '', current: '', desired: '', blood: '1' }, setDailyCalories, setForbiddenProducts}) => {
+//   const [formData, setFormData] = useState({});
   const { t } = useTranslation();
 
-  const getDailyCalories = () => {
+  const getDailyCalories = (values) => {
     return (
-      10 * Number(formData.current) +
-      6.25 * Number(formData.height) -
-      5 * Number(formData.age) -
+      10 * Number(values.current) +
+      6.25 * Number(values.height) -
+      5 * Number(values.age) -
       161 -
-      10 * (Number(formData.current) - Number(formData.desired))
+      10 * (Number(values.current) - Number(values.desired))
     );
   };
 
@@ -107,8 +107,9 @@ const DailyCaloriesForm = ({
           return errors;
         }}
         onSubmit={(values, { resetForm }) => {
-          setFormData(values);
-          resetForm();
+            // setFormData(values);
+            setDailyCalories(getDailyCalories(values));
+            resetForm();
         }}
       >
         {({
@@ -294,7 +295,9 @@ const DailyCaloriesForm = ({
 };
 
 DailyCaloriesForm.propTypes = {
-  userData: PropTypes.object,
+    userData: PropTypes.object,
+    setDailyCalories: PropTypes.func,
+    setForbiddenProducts: PropTypes.func
 };
 
 export default DailyCaloriesForm;
