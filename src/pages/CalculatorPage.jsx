@@ -1,6 +1,9 @@
 import React from 'react';
-import CalculatorСalorie from 'Components/CalculatorСalorie';
+
 import { useTranslation } from 'react-i18next';
+
+import CalculatorСalorie from '../components/CalculatorСalorie';
+
 
 const CalculatorPage = () => {
   const { t } = useTranslation();

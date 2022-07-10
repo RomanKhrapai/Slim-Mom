@@ -2,9 +2,16 @@ import { Formik } from 'formik';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import PropTypes from 'prop-types';
+
 import s from './DailyCaloriesForm.module.scss';
 
-const DailyCaloriesForm = () => {
+import 'react-toastify/dist/ReactToastify.css';
+
+const DailyCaloriesForm = ({
+  data = { height: '', age: '', current: '', desired: '', blood: '1' },
+  textBtn,
+}) => {
   const [formData, setFormData] = useState({});
   const { t } = useTranslation();
 
@@ -26,13 +33,7 @@ const DailyCaloriesForm = () => {
   return (
     <>
       <Formik
-        initialValues={{
-          height: '',
-          age: '',
-          current: '',
-          desired: '',
-          blood: '1',
-        }}
+        initialValues={data}
         validate={values => {
           const errors = {};
           const valueRequire = {
@@ -54,44 +55,56 @@ const DailyCaloriesForm = () => {
             values.height < valueRequire.height.min ||
             values.height > valueRequire.height.max
           ) {
-            errors.height = t("calculator.heightError", {min: valueRequire.height.min, max: valueRequire.height.max})
+            errors.height = t('calculator.heightError', {
+              min: valueRequire.height.min,
+              max: valueRequire.height.max,
+            });
           }
 
           if (
             values.age < valueRequire.age.min ||
             values.age > valueRequire.age.max
           ) {
-            errors.age = t("calculator.ageError", {min: valueRequire.age.min, max: valueRequire.age.max});
+            errors.age = t('calculator.ageError', {
+              min: valueRequire.age.min,
+              max: valueRequire.age.max,
+            });
           }
 
           if (
             values.current < valueRequire.weight.min ||
             values.current > valueRequire.weight.max
           ) {
-            errors.current = t("calculator.currentError", {min: valueRequire.weight.min, max: valueRequire.weight.max});
+            errors.current = t('calculator.currentError', {
+              min: valueRequire.weight.min,
+              max: valueRequire.weight.max,
+            });
           }
 
           if (
             values.desired < valueRequire.weight.min ||
             values.desired > valueRequire.weight.max
           ) {
-            errors.desired = t("calculator.desiredError", {min: valueRequire.weight.min, max: valueRequire.weight.max});
+            errors.desired = t('calculator.desiredError', {
+              min: valueRequire.weight.min,
+              max: valueRequire.weight.max,
+            });
           }
 
           if (!+values.height) {
-            errors.height = t("calculator.Only numerics");
+            errors.height = t('calculator.Only numerics');
           }
 
           if (!+values.age) {
-            errors.age = t("calculator.Only numerics");
+            errors.age = t('calculator.Only numerics');
           }
 
           if (!+values.current) {
-            errors.current = t("calculator.Only numerics");
+            errors.current = t('calculator.Only numerics');
           }
 
           if (!+values.desired) {
-            errors.desired = t("calculator.Only numerics");
+            errors.desired = t('calculator.Only numerics');
           }
 
           return errors;
@@ -129,7 +142,7 @@ const DailyCaloriesForm = () => {
                   className={getActiveClass(values.height)}
                   htmlFor="height"
                 >
-                  {t("calculator.Height")}, {t("calculator.cm")} *
+                  {t('calculator.Height')}, {t('calculator.cm')} *
                 </label>
               </div>
               <div className={s.inputBox}>
@@ -147,7 +160,7 @@ const DailyCaloriesForm = () => {
                   <div className={s.errorMessage}>{errors.age}</div>
                 )}
                 <label className={getActiveClass(values.age)} htmlFor="age">
-                {t("calculator.Age")} *
+                  {t('calculator.Age')} *
                 </label>
               </div>
               <div className={s.inputBox}>
@@ -168,7 +181,7 @@ const DailyCaloriesForm = () => {
                   className={getActiveClass(values.current)}
                   htmlFor="current"
                 >
-                  {t("calculator.Current weight")}, {t("calculator.kg")} *
+                  {t('calculator.Current weight')}, {t('calculator.kg')} *
                 </label>
               </div>
               <div className={s.inputBox}>
@@ -189,7 +202,7 @@ const DailyCaloriesForm = () => {
                   className={getActiveClass(values.desired)}
                   htmlFor="desired"
                 >
-                  {t("calculator.Desired weight")}, {t("calculator.kg")} *
+                  {t('calculator.Desired weight')}, {t('calculator.kg')} *
                 </label>
               </div>
 
@@ -198,7 +211,9 @@ const DailyCaloriesForm = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               >
-                <p className={`${s.label} ${s.labelBlood}`}>{t("calculator.Blood type")} *</p>
+                <p className={`${s.label} ${s.labelBlood}`}>
+                  {t('calculator.Blood type')} *
+                </p>
 
                 <label className={s.radio}>
                   <input
@@ -263,14 +278,18 @@ const DailyCaloriesForm = () => {
                   <span>4</span>
                 </label>
               </div>
-
-              <button type="submit">{t("calculator.Start losing weight")}</button>
+              <button type="submit">{textBtn}</button>
             </form>
           );
         }}
       </Formik>
     </>
   );
+};
+
+DailyCaloriesForm.propTypes = {
+  textBtn: PropTypes.string,
+  data: PropTypes.object,
 };
 
 export default DailyCaloriesForm;
