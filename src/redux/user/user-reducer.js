@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import DailyCaloriesForm from 'Components/DailyCaloriesForm';
 import userOperations from './user-operation';
 
 const userSlice = createSlice({
