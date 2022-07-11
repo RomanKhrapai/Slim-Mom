@@ -9,6 +9,18 @@
         "Sign In": "Sign in",
         "Registration": "Registration"
     },
+    "authentification" : { 
+        "Email" : "Email",
+        "Your email": "Your email",
+        "Password" : "Password",
+        "Your password": "Your password",
+        "Name" : "Name",
+        "Your name": "Your name",
+        "Please, fill all fields in the form" : "Please, fill all fields in the form",
+        "Password must contain 8-254 symbols" : "Password must contain 8-254 symbols",
+        "Your name must contain 3-254 symbols" : "Your name must contain 3-254 symbols"
+    },
+
 
     "calculator": {
         "Change information": "Change information",
