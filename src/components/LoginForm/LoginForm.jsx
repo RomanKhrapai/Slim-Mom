@@ -1,7 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {toast} from 'react-toastify';
 import s from'./LoginForm.module.scss';
+
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
@@ -20,44 +22,47 @@ export default function LoginForm() {
     }
   };
 
+  const { t } = useTranslation();
+
   const handleSubmit = e => {
     e.preventDefault();
     if (!email.trim() || !password.trim()) {
-      return toast.error('Будь ласка, заповність всі поля');
+      return toast.error('Please, fill all fields in the form');
     }
     setEmail('');
     setPassword('');
   };
 
+
   return (
     <form className={s.form} onSubmit={handleSubmit}>
       <label className={s.login_label}>
-        <span>Імейл*</span>
+        <span> {t('authentification.Email')}</span>
         <input
           className= {s.login_input}
           type="email"
           name="email"
           value={email}
           onChange={handleChange}
-          placeholder="Ваш імейл"
+          placeholder={t('authentification.Your email')}
           aria-label="Input for your email"
-          required
+          
         />
       </label>
       <label className={s.login_label}>
-        <span>Пароль*</span>
+        <span>{t('authentification.Password')}</span>
         <input
           className={s.login_input}
           type="password"
           name="password"
           value={password}
           onChange={handleChange}
-          placeholder="Ваш пароль"
+          placeholder={t('authentification.Your password')}
           aria-label="Input for your password"
-          required
+          
         />
       </label>
-      <button className={s.login_button} type="submit">Увійти</button>
+      <button className={s.login_button} type="submit">{t('navigation.Sign In')}</button>
     </form>
   );
 }
