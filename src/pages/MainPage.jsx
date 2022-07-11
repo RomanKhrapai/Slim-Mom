@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-
 import DailyCaloriesForm from 'components/DailyCaloriesForm';
 import Modal from 'components/Modal';
 import ModalContent from 'components/Modal/ModalContent';
@@ -14,7 +13,7 @@ const MainPage = () => {
 
   const toggleModal = () => {
     setShowModal(!showModal);
-  }
+  };
 
   return (
     <div>
@@ -24,9 +23,15 @@ const MainPage = () => {
         setForbiddenProducts={setForbiddenProducts}
         onOpenModal={toggleModal}
       />
-      { showModal && <Modal onClose={toggleModal}>
-        <ModalContent forbiddenProducts={forbiddenProducts} dailyCalories={dailyCalories} />
-      </Modal> }
+
+      {showModal && (
+        <Modal onClose={toggleModal}>
+          <ModalContent
+            forbiddenProducts={forbiddenProducts}
+            dailyCalories={dailyCalories}
+          />
+        </Modal>
+      )}
     </div>
   );
 };

@@ -24,38 +24,41 @@ export const App = () => {
       <BrowserRouter basename={'Slim-Mom'}>
         <Header />
         <Suspense fallback={<div>LOADER</div>}>
-        {isLoggedIn ? (
-          <Routes>
-            <Route path={'/'} element={<MainPage />} />
-            <Route
-              path={'/diary'}
-              element={<h1>{t('Calculate your daily calorie intake')}</h1>}
-            />
-            <Route path={'/calculator'} element={<CalculatorPage />} />
+          {isLoggedIn ? (
+            <Routes>
+              <Route path={'/'} element={<MainPage />} />
+              <Route
+                path={'/diary'}
+                element={<h1>{t('Calculate your daily calorie intake')}</h1>}
+              />
+              <Route path={'/calculator'} element={<CalculatorPage />} />
 
-            <Route path={'*'} replace={true} element={<Navigate to={'/'} />} />
-          </Routes>
-        ) : (
-          <Routes>
-            <Route
-              path={'/'}
-              element={<h1>{t('Calculate your daily calorie intake')}</h1>}
-            />
-            <Route path={'/registration'} element={<RegisterView />} />
-            <Route path={'/login'} element={<LoginView />} />
+              <Route
+                path={'*'}
+                replace={true}
+                element={<Navigate to={'/'} />}
+              />
+            </Routes>
+          ) : (
+            <Routes>
+              <Route
+                path={'/'}
+                element={<h1>{t('Calculate your daily calorie intake')}</h1>}
+              />
+              <Route path={'/registration'} element={<RegisterView />} />
+              <Route path={'/login'} element={<LoginView />} />
 
-            <Route
-              path={'*'}
-              replace={true}
-              element={<Navigate to={'/registration'} />}
-            />
-          </Routes>
-        )}
+              <Route
+                path={'*'}
+                replace={true}
+                element={<Navigate to={'/registration'} />}
+              />
+            </Routes>
+          )}
         </Suspense>
-
       </BrowserRouter>
 
       <ToastContainer autoClose={3000} />
     </div>
-  )
+  );
 };

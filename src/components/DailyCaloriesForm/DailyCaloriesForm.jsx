@@ -7,13 +7,16 @@ import PropTypes from 'prop-types';
 import s from './DailyCaloriesForm.module.scss';
 import Button from 'components/Button/Button';
 
-
 const DailyCaloriesForm = ({
-  userData = { height: '', age: '', current: '', desired: '', blood: '1' }, setDailyCalories, setForbiddenProducts, onOpenModal}) => {
+  userData = { height: '', age: '', current: '', desired: '', blood: '1' },
+  setDailyCalories,
+  setForbiddenProducts,
+  onOpenModal,
+}) => {
   const [formData, setFormData] = useState({});
   const { t } = useTranslation();
 
-  const getDailyCalories = (values) => {
+  const getDailyCalories = values => {
     return (
       10 * Number(values.current) +
       6.25 * Number(values.height) -
@@ -108,10 +111,10 @@ const DailyCaloriesForm = ({
           return errors;
         }}
         onSubmit={(values, { resetForm }) => {
-            setFormData(values);
-            setDailyCalories(getDailyCalories(values));
-            onOpenModal();
-            resetForm();
+          setFormData(values);
+          setDailyCalories(getDailyCalories(values));
+          onOpenModal();
+          resetForm();
         }}
       >
         {({
@@ -123,171 +126,168 @@ const DailyCaloriesForm = ({
           handleSubmit,
         }) => {
           return (
-              <form className={s.form} onSubmit={handleSubmit}>
-                  <div className={s.inputsContainer}>
-                    <div className={s.inputBox}>
-                <input
-                  className={s.input}
-                  id="height"
-                  name="height"
-                  type="text"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.height}
-                  required
-                />
-                {errors.height && touched.height && (
-                  <div className={s.errorMessage}>{errors.height}</div>
-                )}
-                <label
-                  className={getActiveClass(values.height)}
-                  htmlFor="height"
-                >
-                  {t('calculator.Height')}, {t('calculator.cm')} *
-                </label>
-              </div>
-              <div className={s.inputBox}>
-                <input
-                  className={s.input}
-                  id="age"
-                  name="age"
-                  type="text"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.age}
-                  required
-                />
-                {errors.age && touched.age && (
-                  <div className={s.errorMessage}>{errors.age}</div>
-                )}
-                <label className={getActiveClass(values.age)} htmlFor="age">
-                  {t('calculator.Age')} *
-                </label>
-              </div>
-              <div className={s.inputBox}>
-                <input
-                  className={s.input}
-                  id="current"
-                  name="current"
-                  type="text"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.current}
-                  required
-                />
-                {errors.current && touched.current && (
-                  <div className={s.errorMessage}>{errors.current}</div>
-                )}
-                <label
-                  className={getActiveClass(values.current)}
-                  htmlFor="current"
-                >
-                  {t('calculator.Current weight')}, {t('calculator.kg')} *
-                </label>
-              </div>
-              <div className={s.inputBox}>
-                <input
-                  className={s.input}
-                  id="desired"
-                  name="desired"
-                  type="text"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.desired}
-                  required
-                />
-                {errors.desired && touched.desired && (
-                  <div className={s.errorMessage}>{errors.desired}</div>
-                )}
-                <label
-                  className={getActiveClass(values.desired)}
-                  htmlFor="desired"
-                >
-                  {t('calculator.Desired weight')}, {t('calculator.kg')} *
-                </label>
-              </div>
-
-              <div
-                className={s.bloodBox}
-              >
-                <p className={`${s.label} ${s.labelBlood}`}>
-                  {t('calculator.Blood type')} *
-                </p>
-
-                <label className={s.radio}>
+            <form className={s.form} onSubmit={handleSubmit}>
+              <div className={s.inputsContainer}>
+                <div className={s.inputBox}>
                   <input
-                    className={s.radioInput}
-                    type="radio"
-                    name="blood"
-                    value="1"
-                    checked={values.blood === '1'}
-                required
-                onChange={handleChange}
-                onBlur={handleBlur}
-                  />
-
-                  <div className={s.radioBox}>
-                    <span></span>
-                  </div>
-                  <span>1</span>
-                </label>
-
-                <label className={s.radio}>
-                  <input
-                    className={s.radioInput}
-                    type="radio"
-                    name="blood"
-                    value="2"
-                    checked={values.blood === '2'}
+                    className={s.input}
+                    id="height"
+                    name="height"
+                    type="text"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.height}
                     required
-                onChange={handleChange}
-                onBlur={handleBlur}
                   />
-
-                  <div className={s.radioBox}>
-                    <span></span>
-                  </div>
-                  <span>2</span>
-                </label>
-
-                <label className={s.radio}>
+                  {errors.height && touched.height && (
+                    <div className={s.errorMessage}>{errors.height}</div>
+                  )}
+                  <label
+                    className={getActiveClass(values.height)}
+                    htmlFor="height"
+                  >
+                    {t('calculator.Height')}, {t('calculator.cm')} *
+                  </label>
+                </div>
+                <div className={s.inputBox}>
                   <input
-                    className={s.radioInput}
-                    type="radio"
-                    name="blood"
-                    value="3"
-                    checked={values.blood === '3'}
-                required
-                onChange={handleChange}
-                onBlur={handleBlur}
+                    className={s.input}
+                    id="age"
+                    name="age"
+                    type="text"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.age}
+                    required
                   />
-
-                  <div className={s.radioBox}>
-                    <span></span>
-                  </div>
-                  <span>3</span>
-                </label>
-
-                <label className={s.radio}>
+                  {errors.age && touched.age && (
+                    <div className={s.errorMessage}>{errors.age}</div>
+                  )}
+                  <label className={getActiveClass(values.age)} htmlFor="age">
+                    {t('calculator.Age')} *
+                  </label>
+                </div>
+                <div className={s.inputBox}>
                   <input
-                    className={s.radioInput}
-                    type="radio"
-                    name="blood"
-                    value="4"
-                    checked={values.blood === '4'}
-                required
-                onChange={handleChange}
-                onBlur={handleBlur}
+                    className={s.input}
+                    id="current"
+                    name="current"
+                    type="text"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.current}
+                    required
                   />
-                  <div className={s.radioBox}>
-                    <span></span>
-                  </div>
-                  <span>4</span>
-                </label>
+                  {errors.current && touched.current && (
+                    <div className={s.errorMessage}>{errors.current}</div>
+                  )}
+                  <label
+                    className={getActiveClass(values.current)}
+                    htmlFor="current"
+                  >
+                    {t('calculator.Current weight')}, {t('calculator.kg')} *
+                  </label>
+                </div>
+                <div className={s.inputBox}>
+                  <input
+                    className={s.input}
+                    id="desired"
+                    name="desired"
+                    type="text"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.desired}
+                    required
+                  />
+                  {errors.desired && touched.desired && (
+                    <div className={s.errorMessage}>{errors.desired}</div>
+                  )}
+                  <label
+                    className={getActiveClass(values.desired)}
+                    htmlFor="desired"
+                  >
+                    {t('calculator.Desired weight')}, {t('calculator.kg')} *
+                  </label>
+                </div>
+
+                <div className={s.bloodBox}>
+                  <p className={`${s.label} ${s.labelBlood}`}>
+                    {t('calculator.Blood type')} *
+                  </p>
+
+                  <label className={s.radio}>
+                    <input
+                      className={s.radioInput}
+                      type="radio"
+                      name="blood"
+                      value="1"
+                      checked={values.blood === '1'}
+                      required
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+
+                    <div className={s.radioBox}>
+                      <span></span>
+                    </div>
+                    <span>1</span>
+                  </label>
+
+                  <label className={s.radio}>
+                    <input
+                      className={s.radioInput}
+                      type="radio"
+                      name="blood"
+                      value="2"
+                      checked={values.blood === '2'}
+                      required
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+
+                    <div className={s.radioBox}>
+                      <span></span>
+                    </div>
+                    <span>2</span>
+                  </label>
+
+                  <label className={s.radio}>
+                    <input
+                      className={s.radioInput}
+                      type="radio"
+                      name="blood"
+                      value="3"
+                      checked={values.blood === '3'}
+                      required
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+
+                    <div className={s.radioBox}>
+                      <span></span>
+                    </div>
+                    <span>3</span>
+                  </label>
+
+                  <label className={s.radio}>
+                    <input
+                      className={s.radioInput}
+                      type="radio"
+                      name="blood"
+                      value="4"
+                      checked={values.blood === '4'}
+                      required
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    <div className={s.radioBox}>
+                      <span></span>
+                    </div>
+                    <span>4</span>
+                  </label>
+                </div>
               </div>
-                  </div>
-
-                  <Button type="submit">{t('Start losing weight')}</Button>
+              <Button type="submit">{t('Start losing weight')}</Button>
             </form>
           );
         }}
@@ -297,10 +297,10 @@ const DailyCaloriesForm = ({
 };
 
 DailyCaloriesForm.propTypes = {
-    userData: PropTypes.object,
-    setDailyCalories: PropTypes.func,
-    setForbiddenProducts: PropTypes.func,
-    onOpenModal: PropTypes.func
+  userData: PropTypes.object,
+  setDailyCalories: PropTypes.func,
+  setForbiddenProducts: PropTypes.func,
+  onOpenModal: PropTypes.func,
 };
 
 export default DailyCaloriesForm;

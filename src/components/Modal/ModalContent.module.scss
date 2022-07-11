@@ -3,24 +3,26 @@
 .modal__title {
   font-family: 'VerdanaBold';
   padding-left: 20px;
-  padding-right: 48px;
   padding-top: 40px;
-  margin: 0 0 40px 0;
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
   line-height: 1.44;
-  text-align: center;
+  text-align: left;
+  max-width: 320px;
+  margin: 0 auto 40px auto;
+
 
   color: $title-color;
 
   @media screen and(min-width: 768px) {
+    min-width: 365px;
     font-size: 26px;
     line-height: 1.2;
     padding-top: 64px;
-    padding-left: 153px;
-    padding-right: 153px;
-    margin: 0 0 20px 0;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0 auto 20px auto;
     text-align: center;
   }
 }
@@ -92,12 +94,13 @@
 }
 
 .modal__list_wrapper {
-  max-width: 280px;
+  max-width: 320px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 20px;
   padding-right: 20px;
   @media screen and(min-width: 768px) {
+    margin: 0;
     padding-left: 171px;
     padding-right: 171px;
   }
