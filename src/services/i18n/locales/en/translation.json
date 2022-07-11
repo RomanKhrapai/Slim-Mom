@@ -20,12 +20,12 @@
         "Password must contain 8-254 symbols" : "Password must contain 8-254 symbols",
         "Your name must contain 3-254 symbols" : "Your name must contain 3-254 symbols"
     },
-
-
     "calculator": {
         "Change information": "Change information",
+        "Add information": "Add information",
         "View your losing weight plan": "View your losing weight plan",
         "Close Changes": "Close Changes",
+        "Your Parametrs": "Your Parametrs",
         
         "heightError": "Enter your height within {{min}} - {{max}} cm",
         "ageError": "Enter your age within {{min}} - {{max}}",
