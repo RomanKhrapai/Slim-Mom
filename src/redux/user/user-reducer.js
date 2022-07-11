@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+import DailyCaloriesForm from 'Components/DailyCaloriesForm';
 import userOperations from './user-operation';
 
-export const userSlice = createSlice({
+const userSlice = createSlice({
   name: 'user',
   initialState: { id: 1, name: '', dairy: {}, isFetchingUser: false },
   reducers: {},
@@ -57,3 +58,5 @@ export const userSlice = createSlice({
     },
   },
 });
+
+export default userSlice.reducer

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import productsOperations from './products-operation';
 
-export const productSlice = createSlice({
+const productSlice = createSlice({
   name: 'products',
   initialState: { pending: false },
   reducers: {},
@@ -26,3 +26,5 @@ export const productSlice = createSlice({
     },
   },
 });
+
+export default productSlice.reducer

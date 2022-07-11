@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import authOperations from './auth-operations';
 
-export const authSlice = createSlice({
+ const authSlice = createSlice({
   name: 'auth',
   initialState: { isAuthorised: true, isPending: false },
   reducers: {},
@@ -37,3 +37,5 @@ export const authSlice = createSlice({
     },
   },
 });
+
+export default authSlice.reducer
