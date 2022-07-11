@@ -1,11 +1,14 @@
 import { React, lazy, Suspense } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 import i18n from './services/i18n/config';
 import { useTranslation } from 'react-i18next';
 import CalculatorPage from 'pages/CalculatorPage';
 import Header from 'components/Header';
 import styles from 'App.module.scss';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoginView = lazy(() => import('./pages/LoginPage/LoginPage'));
 const RegisterView = lazy(() => import('./pages/RegisterPage/RegisterPage'));
@@ -16,12 +19,15 @@ export const App = () => {
 
   const { t } = useTranslation();
 
+
   const changeLanguage = lng => {
     i18n.changeLanguage(lng);
   };
   return (
     <div className={styles.App}>
       <BrowserRouter basename={'Slim-Mom'}>
+
+<Provider store={store}>
         <Header />
         <Suspense fallback={<div>LOADER</div>}>
         {isLoggedIn ? (
@@ -40,7 +46,7 @@ export const App = () => {
             <Route
               path={'/'}
               element={<h1>{t('Calculate your daily calorie intake')}</h1>}
-            />
+              />
             <Route path={'/registration'} element={<RegisterView />} />
             <Route path={'/login'} element={<LoginView />} />
 
@@ -48,14 +54,16 @@ export const App = () => {
               path={'*'}
               replace={true}
               element={<Navigate to={'/registration'} />}
-            />
+              />
           </Routes>
         )}
         </Suspense>
-
+        </Provider>
+         
       </BrowserRouter>
 
       <ToastContainer autoClose={3000} />
     </div>
   )
+
 };
