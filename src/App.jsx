@@ -19,7 +19,6 @@ export const App = () => {
 
   const { t } = useTranslation();
 
-
   const changeLanguage = lng => {
     i18n.changeLanguage(lng);
   };
@@ -30,15 +29,14 @@ export const App = () => {
 <Provider store={store}>
         <Header />
         <Suspense fallback={<div>LOADER</div>}>
-        {isLoggedIn ? (
-          <Routes>
-            <Route path={'/'} element={<MainPage />} />
-            <Route
-              path={'/diary'}
-              element={<h1>{t('Calculate your daily calorie intake')}</h1>}
-            />
-            <Route path={'/calculator'} element={<CalculatorPage />} />
-
+          {isLoggedIn ? (
+            <Routes>
+              <Route path={'/'} element={<MainPage />} />
+              <Route
+                path={'/diary'}
+                element={<h1>{t('Calculate your daily calorie intake')}</h1>}
+              />
+              <Route path={'/calculator'} element={<CalculatorPage />} />
             <Route path={'*'} replace={true} element={<Navigate to={'/'} />} />
           </Routes>
         ) : (
@@ -59,11 +57,8 @@ export const App = () => {
         )}
         </Suspense>
         </Provider>
-         
-      </BrowserRouter>
-
+       </BrowserRouter>
       <ToastContainer autoClose={3000} />
     </div>
-  )
-
+  );
 };
