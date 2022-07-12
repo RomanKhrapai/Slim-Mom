@@ -7,9 +7,9 @@ import CalculatorСalorie from '../components/CalculatorСalorie';
 
 const CalculatorPage = () => {
   const { t } = useTranslation();
-  
+
   return (
-    <div>
+    <div style={{marginTop: '200px'}}>
       <h1>{t('Calculate your daily calorie intake')}</h1>
       <CalculatorСalorie />
     </div>
