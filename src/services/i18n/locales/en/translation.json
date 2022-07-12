@@ -1,52 +1,60 @@
 {
-    "Calculate your daily calorie intake": "Calculate your daily calorie intake right now",
-    "Register": "Register",
-    "Sign In": "Sign In",
-    
-    "navigation": {
-        "Diary": "Diary",
-        "Calculator": "Calculator",
-        "Sign In": "Sign in",
-        "Registration": "Registration"
-    },
-    "authentification" : { 
-        "Email" : "Email",
-        "Your email": "Your email",
-        "Password" : "Password",
-        "Your password": "Your password",
-        "Name" : "Name",
-        "Your name": "Your name",
-        "Please, fill all fields in the form" : "Please, fill all fields in the form",
-        "Password must contain 8-254 symbols" : "Password must contain 8-254 symbols",
-        "Your name must contain 3-254 symbols" : "Your name must contain 3-254 symbols"
-    },
+  "Calculate your daily calorie intake": "Calculate your daily calorie intake right now",
+  "Register": "Register",
+  "Sign In": "Sign In",
 
+  "navigation": {
+    "Diary": "Diary",
+    "Calculator": "Calculator",
+    "Sign In": "Sign in",
+    "Registration": "Registration"
+  },
+  "authentification": {
+    "Email": "Email",
+    "Your email": "Your email",
+    "Password": "Password",
+    "Your password": "Your password",
+    "Name": "Name",
+    "Your name": "Your name",
+    "This fied is required": "This fied is required",
+    "Invalid email address": "Invalid email address",
+    "This filed must contain more than 3 symbols": "This filed must contain more than 3 symbols",
+    "This filed must contain more than 8 symbols": "This filed must contain more than 8 symbols",
+    "This filed must contain only letters": "This filed must contain only letters"
+  },
 
-    "calculator": {
-        "Change information": "Change information",
-        "View your losing weight plan": "View your losing weight plan",
-        "Close Changes": "Close Changes",
-        
-        "heightError": "Enter your height within {{min}} - {{max}} cm",
-        "ageError": "Enter your age within {{min}} - {{max}}",
-        "currentError": "Enter your weight within {{min}} - {{max}} kg",
-        "desiredError": "Enter your weight within {{min}} - {{max}} kg",
-        "Only numerics": "Only numerics",
+  "calculator": {
+    "Change information": "Change information",
+    "View your losing weight plan": "View your losing weight plan",
+    "Close Changes": "Close Changes",
 
-        "Height": "Height",
-        "Age": "Age",
-        "Current weight": "Current weight",
-        "Desired weight": "Desired weight",
-        "cm": "cm",
-        "kg": "kg",
-        "Blood type": "Blood type",
-        "Start losing weight": "Start losing weight"
-    },
+    "heightError": "Enter your height within {{min}} - {{max}} cm",
+    "ageError": "Enter your age within {{min}} - {{max}}",
+    "currentError": "Enter your weight within {{min}} - {{max}} kg",
+    "desiredError": "Enter your weight within {{min}} - {{max}} kg",
+    "Only numerics": "Only numerics",
 
-    "modal": {
-        "Your recommended daily calorie intake is": "Your recommended daily calorie intake is",
-        "kcal": "kcal",
-        "Foods you should not eat": "Foods you should not eat",
-        "Start losing weight": "Start losing weight"
-    }
+    "Height": "Height",
+    "Age": "Age",
+    "Current weight": "Current weight",
+    "Desired weight": "Desired weight",
+    "cm": "cm",
+    "kg": "kg",
+    "Blood type": "Blood type",
+    "Start losing weight": "Start losing weight"
+  },
+
+  "modal": {
+    "Your recommended daily calorie intake is": "Your recommended daily calorie intake is",
+    "kcal": "kcal",
+    "Foods you should not eat": "Foods you should not eat",
+    "Start losing weight": "Start losing weight"
+  },
+  "kcal": "kcal",
+  "Left": "Left",
+  "Consumed": "Consumed",
+  "Daily rate": "Daily rate",
+  "n% of normal": "n% of normal",
+  "Foods you should not eat": "Foods you should not eat",
+  "Summary for": "Summary for"
 }

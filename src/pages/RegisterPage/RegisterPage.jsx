@@ -8,7 +8,7 @@ export default function RegisterView() {
   const { t } = useTranslation();
 
     return (
-        <div className={s.maincontent}>
+        <div   style={{marginTop: '200px'}} className={s.maincontent}>
         <div className={s.registration_title}>{t('navigation.Registration')}</div>
         <RegisterForm />
       </div>

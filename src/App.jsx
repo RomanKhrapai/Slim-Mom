@@ -1,4 +1,4 @@
-import { React, lazy, Suspense, useState } from 'react';
+import { React, lazy, Suspense } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -30,47 +30,61 @@ export const App = () => {
     setShowModal(!showModal);
   };
 
-
   return (
     <>
       <BrowserRouter basename={'Slim-Mom'}>
+        <Provider store={store}>
+         <div className={showModal ? styles.images_container_overflow_hidden : styles.images_container}>
+          <Header />
+          <Container>
+          <Suspense fallback={<div>LOADER</div>}>
+            {isLoggedIn ? (
+              <Routes>  
+                <Route path={'/'} element={<MainPage />} />
+                <Route
+                  path={'/diary'}
+                  element={
+                    <h1 style={{ marginTop: '200px' }}>
+                      {t('Calculate your daily calorie intake')}
+                    </h1>
+                  }
+                />
+                <Route path={'/calculator'} element={<CalculatorPage />} />
+                <Route
+                  path={'*'}
+                  replace={true}
+                  element={<Navigate to={'/'} />}
+                />
+              </Routes>
+            ) : (
+              <Routes>
+                <Route
+                  path={'/'}
+                  element={
+                    <h1 style={{ marginTop: '200px' }}>
+                      {t('Calculate your daily calorie intake')}
+                    </h1>
+                  }
+                />
+                <Route path={'/registration'} element={<RegisterView />} />
+                <Route path={'/login'} element={<LoginView />} />
 
-<Provider store={store}>
-    <div className={showModal ? styles.images_container_overflow_hidden : styles.images_container}>
-        <Header />
-        <Container>
-        <Suspense fallback={<div>LOADER</div>}>
-          {isLoggedIn ? (
-            <Routes>
-              <Route path={'/'} element={<MainPage toggleModal={toggleModal} showModal={showModal} />} />
-              <Route
-                path={'/diary'}
-                element={<h1>{t('Calculate your daily calorie intake')}</h1>}
-              />
-              <Route path={'/calculator'} element={<CalculatorPage />} />
-            <Route path={'*'} replace={true} element={<Navigate to={'/'} />} />
-          </Routes>
-        ) : (
-          <Routes>
-            <Route
-              path={'/'}
-              element={<h1>{t('Calculate your daily calorie intake')}</h1>}
-              />
-            <Route path={'/registration'} element={<RegisterView />} />
-            <Route path={'/login'} element={<LoginView />} />
 
-            <Route
-              path={'*'}
-              replace={true}
-              element={<Navigate to={'/registration'} />}
-              />
-          </Routes>
-        )}
-        </Suspense>
-        </Container>
+
+                <Route
+                  path={'*'}
+                  replace={true}
+                  element={<Navigate to={'/registration'} />}
+                />
+              </Routes>
+            )}
+          </Suspense>
+
+    </Container>
     </div>
         </Provider>
-       </BrowserRouter>
+      </BrowserRouter>
+
       <ToastContainer autoClose={3000} />
     </>
   );

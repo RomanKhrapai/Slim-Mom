@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import DailyCaloriesForm from 'components/DailyCaloriesForm';
 import Modal from 'components/Modal';
 import ModalContent from 'components/Modal/ModalContent';
+import WrapperDisplayNone from 'components/WrapperDisplayNone/WrapperDisplayNone';
 
 const MainPage = () => {
   const { t, i18n } = useTranslation();
@@ -16,13 +17,15 @@ const MainPage = () => {
   };
 
   return (
-    <div>
-      <h1>{t('Calculate your daily calorie intake')}</h1>
-      <DailyCaloriesForm
-        setDailyCalories={setDailyCalories}
-        setForbiddenProducts={setForbiddenProducts}
-        onOpenModal={toggleModal}
-      />
+    <div style={{ marginTop: '200px' }}>
+      <WrapperDisplayNone showModal={showModal}>
+        <h1>{t('Calculate your daily calorie intake')}</h1>
+        <DailyCaloriesForm
+          setDailyCalories={setDailyCalories}
+          setForbiddenProducts={setForbiddenProducts}
+          onOpenModal={toggleModal}
+        />
+      </WrapperDisplayNone>
 
       {showModal && (
         <Modal onClose={toggleModal}>
