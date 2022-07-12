@@ -16,9 +16,11 @@
         "Your password": "Your password",
         "Name" : "Name",
         "Your name": "Your name",
-        "Please, fill all fields in the form" : "Please, fill all fields in the form",
-        "Password must contain 8-254 symbols" : "Password must contain 8-254 symbols",
-        "Your name must contain 3-254 symbols" : "Your name must contain 3-254 symbols"
+        "This fied is required" : "This fied is required",
+        "Invalid email address" : "Invalid email address",
+        "This filed must contain more than 3 symbols" : "This filed must contain more than 3 symbols",
+        "This filed must contain more than 8 symbols" : "This filed must contain more than 8 symbols",
+        "This filed must contain only letters" : "This filed must contain only letters"
     },
 
 

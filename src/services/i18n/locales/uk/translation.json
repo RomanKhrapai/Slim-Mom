@@ -16,9 +16,11 @@
         "Your password": "Ваш пароль",
         "Name" : "Iм'я",
         "Your name": "Вашe ім'я",
-        "Please, fill all fields in the form" : "Будь ласка, заповність всі поля у формі",
-        "Password must contain 8-254 symbols" : "Ваш пароль має містити від 8 до 254 символів",
-        "Your name must contain 3-254 symbols" : "Ваше ім'я має містити від 3 до 254 символів"
+        "This fied is required" : "Це поле є обов'язковим",
+        "Invalid email address" : "Невалідне значення імейлу",
+        "This filed must contain more than 3 symbols" : "Це поле має містити більше 3-х символів",
+        "This filed must contain more than 8 symbols" : "Це поле має містити більше 8-ми символів",
+        "This filed must contain only letters" : "Це поле має містити лише літери"
     },
 
     "calculator": {

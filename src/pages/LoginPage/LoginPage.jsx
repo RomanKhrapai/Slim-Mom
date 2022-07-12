@@ -10,8 +10,8 @@ export default function LoginView() {
     return (
       <div className={s.maincontent}>
       <div className={s.loginpage_title}>{t('navigation.Sign In')}</div>
-        <LoginForm />
+      <LoginForm />
+  
       </div>
     );
   }
-
