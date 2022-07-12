@@ -221,7 +221,7 @@ const DailyCaloriesForm = ({
                       type="radio"
                       name="blood"
                       value="1"
-                      checked={values.blood === '1'}
+                      checked={values.blood == '1'}
                       required
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -239,7 +239,7 @@ const DailyCaloriesForm = ({
                       type="radio"
                       name="blood"
                       value="2"
-                      checked={values.blood === '2'}
+                      checked={values.blood == '2'}
                       required
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -257,7 +257,7 @@ const DailyCaloriesForm = ({
                       type="radio"
                       name="blood"
                       value="3"
-                      checked={values.blood === '3'}
+                      checked={values.blood == '3'}
                       required
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -275,7 +275,7 @@ const DailyCaloriesForm = ({
                       type="radio"
                       name="blood"
                       value="4"
-                      checked={values.blood === '4'}
+                      checked={values.blood == '4'}
                       required
                       onChange={handleChange}
                       onBlur={handleBlur}
