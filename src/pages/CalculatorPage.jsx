@@ -11,7 +11,7 @@ const CalculatorPage = () => {
 
   return (
     <div className={s.health_box}>
-      <div>
+      <div style={{marginTop: '200px'}}>
         <h1>{t('Calculate your daily calorie intake')}</h1>
         <CalculatorСalorie />
       </div>
