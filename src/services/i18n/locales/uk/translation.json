@@ -1,54 +1,61 @@
 {
-    "Calculate your daily calorie intake": "Розрахуйте свою денну норму калорій прямо зараз",
-    "Register": "Реєстрація",
+  "Calculate your daily calorie intake": "Розрахуйте свою денну норму калорій прямо зараз",
+  "Register": "Реєстрація",
+  "Sign In": "Увійти",
+
+  "navigation": {
+    "Diary": "Щоденник",
+    "Calculator": "Калькулятор",
     "Sign In": "Увійти",
+    "Registration": "Реєстрація"
+  },
+  "authentification": {
+    "Email": "Iмейл",
+    "Your email": "Ваш імейл",
+    "Password": "Пароль",
+    "Your password": "Ваш пароль",
+    "Name": "Iм'я",
+    "Your name": "Вашe ім'я",
+    "This fied is required": "Це поле є обов'язковим",
+    "Invalid email address": "Невалідне значення імейлу",
+    "This filed must contain more than 3 symbols": "Це поле має містити більше 3-х символів",
+    "This filed must contain more than 8 symbols": "Це поле має містити більше 8-ми символів",
+    "This filed must contain only letters": "Це поле має містити лише літери"
+  },
+  "calculator": {
+    "Change information": "Редагувати інформацію",
+    "Add information": "Додати інформацію",
+    "View your losing weight plan": "Переглянути свій план схуднення",
+    "Close Changes": "Закрити зміни",
+    "Your Parametrs": "Ваші параметри",
 
-    "navigation": {
-        "Diary": "Щоденник",
-        "Calculator": "Калькулятор",
-        "Sign In": "Увійти",
-        "Registration": "Реєстрація"
-    },
-    "authentification" : { 
-        "Email" : "Iмейл",
-        "Your email": "Ваш імейл",
-        "Password" : "Пароль",
-        "Your password": "Ваш пароль",
-        "Name" : "Iм'я",
-        "Your name": "Вашe ім'я",
-        "This fied is required" : "Це поле є обов'язковим",
-        "Invalid email address" : "Невалідне значення імейлу",
-        "This filed must contain more than 3 symbols" : "Це поле має містити більше 3-х символів",
-        "This filed must contain more than 8 symbols" : "Це поле має містити більше 8-ми символів",
-        "This filed must contain only letters" : "Це поле має містити лише літери"
-    },
-    "calculator": {
-        "Change information": "Редагувати інформацію",
-        "Add information": "Додати інформацію",
-        "View your losing weight plan": "Переглянути свій план схуднення",
-        "Close Changes": "Закрити зміни",
-        "Your Parametrs": "Ваші параметри",
+    "heightError": "Ваш зріст має бути в діапазоні {{min}} - {{max}} см",
+    "ageError": "Ваш вік має бути в діапазоні {{min}} - {{max}} років",
+    "currentError": "Ваша поточна вага має бути в діапазоні {{min}} - {{max}} кг",
+    "desiredError": "Ваша бажана вага має бути в діапазоні {{min}} - {{max}} кг",
+    "Only numerics": "Допускається лише числове значення",
 
-        "heightError": "Ваш зріст має бути в діапазоні {{min}} - {{max}} см",
-        "ageError": "Ваш вік має бути в діапазоні {{min}} - {{max}} років",
-        "currentError": "Ваша поточна вага має бути в діапазоні {{min}} - {{max}} кг",
-        "desiredError": "Ваша бажана вага має бути в діапазоні {{min}} - {{max}} кг",
-        "Only numerics": "Допускається лише числове значення",
+    "Height": "Зріст",
+    "Age": "Вік",
+    "Current weight": "Поточна вага",
+    "Desired weight": "Бажана вага",
+    "cm": "см",
+    "kg": "кг",
+    "Blood type": "Група крові",
+    "Start losing weight": "Розпочати схуднення"
+  },
 
-        "Height": "Зріст",
-        "Age": "Вік",
-        "Current weight": "Поточна вага",
-        "Desired weight": "Бажана вага",
-        "cm": "см",
-        "kg": "кг",
-        "Blood type": "Група крові",
-        "Start losing weight": "Розпочати схуднення"
-    },
-
-    "modal": {
-        "Your recommended daily calorie intake is": "Ваша рекомендована добова норма споживання калорій становить",
-        "kcal": "ккал",
-        "Foods you should not eat": "Продукти, які вам не слід їсти",
-        "Start losing weight": "Розпочати схуднення"
-    }
+  "modal": {
+    "Your recommended daily calorie intake is": "Ваша рекомендована добова норма споживання калорій становить",
+    "kcal": "ккал",
+    "Foods you should not eat": "Продукти, які вам не слід їсти",
+    "Start losing weight": "Розпочати схуднення"
+  },
+  "kcal": "ккал",
+  "Left": "Залишилось",
+  "Consumed": "Спожили",
+  "Daily rate": "Добова норма",
+  "n% of normal": "% від норми",
+  "Foods you should not eat": "Продукти, які вам не слід їсти",
+  "Summary for": "Підсумок на"
 }

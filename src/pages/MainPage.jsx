@@ -17,13 +17,14 @@ const MainPage = () => {
   };
 
   return (
-    <div  style={{marginTop: '200px'}}><WrapperDisplayNone showModal={showModal}>
-      <h1>{t('Calculate your daily calorie intake')}</h1>
-      <DailyCaloriesForm
-        setDailyCalories={setDailyCalories}
-        setForbiddenProducts={setForbiddenProducts}
-        onOpenModal={toggleModal}
-      />
+    <div style={{ marginTop: '200px' }}>
+      <WrapperDisplayNone showModal={showModal}>
+        <h1>{t('Calculate your daily calorie intake')}</h1>
+        <DailyCaloriesForm
+          setDailyCalories={setDailyCalories}
+          setForbiddenProducts={setForbiddenProducts}
+          onOpenModal={toggleModal}
+        />
       </WrapperDisplayNone>
 
       {showModal && (

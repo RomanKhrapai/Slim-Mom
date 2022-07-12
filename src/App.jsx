@@ -22,42 +22,55 @@ export const App = () => {
   const changeLanguage = lng => {
     i18n.changeLanguage(lng);
   };
+
   return (
     <div className={styles.App}>
       <BrowserRouter basename={'Slim-Mom'}>
+        <Provider store={store}>
+          <Header />
+          <Suspense fallback={<div>LOADER</div>}>
+            {isLoggedIn ? (
+              <Routes>
+                <Route path={'/'} element={<MainPage />} />
+                <Route
+                  path={'/diary'}
+                  element={
+                    <h1 style={{ marginTop: '200px' }}>
+                      {t('Calculate your daily calorie intake')}
+                    </h1>
+                  }
+                />
+                <Route path={'/calculator'} element={<CalculatorPage />} />
+                <Route
+                  path={'*'}
+                  replace={true}
+                  element={<Navigate to={'/'} />}
+                />
+              </Routes>
+            ) : (
+              <Routes>
+                <Route
+                  path={'/'}
+                  element={
+                    <h1 style={{ marginTop: '200px' }}>
+                      {t('Calculate your daily calorie intake')}
+                    </h1>
+                  }
+                />
+                <Route path={'/registration'} element={<RegisterView />} />
+                <Route path={'/login'} element={<LoginView />} />
 
-<Provider store={store}>
-        <Header />
-        <Suspense fallback={<div>LOADER</div>}>
-          {isLoggedIn ? (
-            <Routes>
-              <Route path={'/'} element={<MainPage />} />
-              <Route
-                path={'/diary'}
-                element={<h1   style={{marginTop: '200px'}}>{t('Calculate your daily calorie intake')}</h1>}
-              />
-              <Route path={'/calculator'} element={<CalculatorPage />} />
-            <Route path={'*'} replace={true} element={<Navigate to={'/'} />} />
-          </Routes>
-        ) : (
-          <Routes>
-            <Route
-              path={'/'}
-              element={<h1   style={{marginTop: '200px'}}>{t('Calculate your daily calorie intake')}</h1>}
-              />
-            <Route path={'/registration'} element={<RegisterView />} />
-            <Route path={'/login'} element={<LoginView />} />
-
-            <Route
-              path={'*'}
-              replace={true}
-              element={<Navigate to={'/registration'} />}
-              />
-          </Routes>
-        )}
-        </Suspense>
+                <Route
+                  path={'*'}
+                  replace={true}
+                  element={<Navigate to={'/registration'} />}
+                />
+              </Routes>
+            )}
+          </Suspense>
         </Provider>
-       </BrowserRouter>
+      </BrowserRouter>
+
       <ToastContainer autoClose={3000} />
     </div>
   );
