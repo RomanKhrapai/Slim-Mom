@@ -1,4 +1,4 @@
-import { React, lazy, Suspense } from 'react';
+import { React, lazy, Suspense, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import i18n from './services/i18n/config';
@@ -19,43 +19,47 @@ export const App = () => {
   const changeLanguage = lng => {
     i18n.changeLanguage(lng);
   };
+
   return (
     <div className={styles.App}>
       <BrowserRouter basename={'Slim-Mom'}>
         <Header />
         <Suspense fallback={<div>LOADER</div>}>
-        {isLoggedIn ? (
-          <Routes>
-            <Route path={'/'} element={<MainPage />} />
-            <Route
-              path={'/diary'}
-              element={<h1>{t('Calculate your daily calorie intake')}</h1>}
-            />
-            <Route path={'/calculator'} element={<CalculatorPage />} />
+          {isLoggedIn ? (
+            <Routes>
+              <Route path={'/'} element={<MainPage />} />
+              <Route
+                path={'/diary'}
+                element={<h1>{t('Calculate your daily calorie intake')}</h1>}
+              />
+              <Route path={'/calculator'} element={<CalculatorPage />} />
 
-            <Route path={'*'} replace={true} element={<Navigate to={'/'} />} />
-          </Routes>
-        ) : (
-          <Routes>
-            <Route
-              path={'/'}
-              element={<h1>{t('Calculate your daily calorie intake')}</h1>}
-            />
-            <Route path={'/registration'} element={<RegisterView />} />
-            <Route path={'/login'} element={<LoginView />} />
+              <Route
+                path={'*'}
+                replace={true}
+                element={<Navigate to={'/'} />}
+              />
+            </Routes>
+          ) : (
+            <Routes>
+              <Route
+                path={'/'}
+                element={<h1>{t('Calculate your daily calorie intake')}</h1>}
+              />
+              <Route path={'/registration'} element={<RegisterView />} />
+              <Route path={'/login'} element={<LoginView />} />
 
-            <Route
-              path={'*'}
-              replace={true}
-              element={<Navigate to={'/registration'} />}
-            />
-          </Routes>
-        )}
+              <Route
+                path={'*'}
+                replace={true}
+                element={<Navigate to={'/registration'} />}
+              />
+            </Routes>
+          )}
         </Suspense>
-
       </BrowserRouter>
 
       <ToastContainer autoClose={3000} />
     </div>
-  )
+  );
 };

@@ -1,0 +1,203 @@
+//  @media screen and (min-width: 320px) {
+//      width: 100%;
+//  }
+//
+//  @media screen and (min-width: 768px) {
+//     display: flex;
+//  }
+// @media (min-width: 768px) and (max-width: 1280px) {
+//     min-width: 150px;
+//     min-height: 150px;
+// }
+
+ul {
+  list-style: none;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+p {
+  margin: 0;
+}
+.span_kcal {
+  margin-left: 5px;
+}
+
+.h2_title {
+  font-family: 'Verdana';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+
+  color: #212121;
+
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    margin-bottom: 20px;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    padding: 0;
+    width: 285px;
+    height: 20px;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1280px) {
+    width: 288px;
+    margin-bottom: 37px;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+  }
+}
+
+.container {
+  background: #f0f1f3;
+  @media screen and (min-width: 320px) {
+    min-width: 320px;
+    height: 360px;
+    padding-top: 40px;
+    padding-left: 20px;
+    padding-bottom: 40px;
+    padding-right: 15px;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    display: flex;
+    min-width: 768px;
+    height: 326px;
+    padding-top: 80px;
+    padding-left: 32px;
+    padding-bottom: 80px;
+    padding-right: 32px;
+    background-image: url('../../images/LayerTablet.png');
+    background-position: bottom 0px right -15px;
+    background-repeat: no-repeat;
+  }
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    flex-direction: column;
+    width: 517px;
+    height: 850px;
+    padding-top: 292px;
+    padding-left: 106px;
+    padding-bottom: 0px;
+    padding-right: 106px;
+    background-image: url('../../images/LayerHealth.png');
+    background-size: 740px 842px;
+    background-position: bottom 0px right -15px;
+    background-repeat: no-repeat;
+  }
+}
+
+.health_box {
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    min-width: 1280px;
+  }
+}
+
+.box {
+  @media screen and (min-width: 320px) {
+    width: 285px;
+    height: 152px;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    height: 166px;
+    margin-right: 49px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 288px;
+    height: 166px;
+    margin-bottom: 60px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.box_food {
+  @media screen and (min-width: 320px) {
+    width: 285px;
+    height: 152px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    height: 166px;
+    margin-bottom: 0px;
+    margin-left: 45px;
+    margin-right: 0px;
+    margin-top: 0px;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+}
+
+.title {
+  display: flex;
+  margin-bottom: 15px;
+
+  font-family: 'Verdana';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.2em;
+  letter-spacing: 0.04em;
+
+  justify-content: space-between;
+
+  color: #9b9faa;
+
+  @media screen and (min-width: 768px) {
+    text-align: right;
+  }
+  @media screen and (min-width: 768px) {
+  }
+}
+
+// .img_tablet {
+//   opacity: 0;
+//   @media screen and (min-width: 768px) and (max-width: 1279px) {
+//     opacity: 1;
+//     position: absolute;
+//     width: 428px;
+//     height: 602px;
+//     left: 1001px;
+//     top: 662px;
+//   }
+// }
+
+// .img_health {
+//   opacity: 0;
+//   @media screen and (min-width: 1280px) {
+//     opacity: 1;
+//     position: absolute;
+//     width: 170px;
+//     height: 410px;
+//     z-index: 2;
+//     bottom: 0;
+//     right: 32px;
+//   }
+// }
+
+// Для растягивания фонового изобрадения, после того. как растянули dody на вьюпорт
+// margin-left: auto;
+// margin-right: auto;

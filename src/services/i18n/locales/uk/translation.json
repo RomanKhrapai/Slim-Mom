@@ -1,40 +1,47 @@
 {
-    "Calculate your daily calorie intake": "Розрахуйте свою денну норму калорій прямо зараз",
-    "Register": "Реєстрація",
+  "Calculate your daily calorie intake": "Розрахуйте свою денну норму калорій прямо зараз",
+  "Register": "Реєстрація",
+  "Sign In": "Увійти",
+
+  "navigation": {
+    "Diary": "Щоденник",
+    "Calculator": "Калькулятор",
     "Sign In": "Увійти",
+    "Registration": "Реєстрація"
+  },
 
-    "navigation": {
-        "Diary": "Щоденник",
-        "Calculator": "Калькулятор",
-        "Sign In": "Увійти",
-        "Registration": "Реєстрація"
-    },
+  "calculator": {
+    "Change information": "Редагувати інформацію",
+    "View your losing weight plan": "Переглянути свій план схуднення",
+    "Close Changes": "Закрити зміни",
 
-    "calculator": {
-        "Change information": "Редагувати інформацію",
-        "View your losing weight plan": "Переглянути свій план схуднення",
-        "Close Changes": "Закрити зміни",
+    "heightError": "Ваш зріст має бути в діапазоні {{min}} - {{max}} см",
+    "ageError": "Ваш вік має бути в діапазоні {{min}} - {{max}} років",
+    "currentError": "Ваша поточна вага має бути в діапазоні {{min}} - {{max}} кг",
+    "desiredError": "Ваша бажана вага має бути в діапазоні {{min}} - {{max}} кг",
+    "Only numerics": "Допускається лише числове значення",
 
-        "heightError": "Ваш зріст має бути в діапазоні {{min}} - {{max}} см",
-        "ageError": "Ваш вік має бути в діапазоні {{min}} - {{max}} років",
-        "currentError": "Ваша поточна вага має бути в діапазоні {{min}} - {{max}} кг",
-        "desiredError": "Ваша бажана вага має бути в діапазоні {{min}} - {{max}} кг",
-        "Only numerics": "Допускається лише числове значення",
+    "Height": "Зріст",
+    "Age": "Вік",
+    "Current weight": "Поточна вага",
+    "Desired weight": "Бажана вага",
+    "cm": "см",
+    "kg": "кг",
+    "Blood type": "Група крові",
+    "Start losing weight": "Розпочати схуднення"
+  },
 
-        "Height": "Зріст",
-        "Age": "Вік",
-        "Current weight": "Поточна вага",
-        "Desired weight": "Бажана вага",
-        "cm": "см",
-        "kg": "кг",
-        "Blood type": "Група крові",
-        "Start losing weight": "Розпочати схуднення"
-    },
-
-    "modal": {
-        "Your recommended daily calorie intake is": "Ваша рекомендована добова норма споживання калорій становить",
-        "kcal": "ккал",
-        "Foods you should not eat": "Продукти, які вам не слід їсти",
-        "Start losing weight": "Розпочати схуднення"
-    }
+  "modal": {
+    "Your recommended daily calorie intake is": "Ваша рекомендована добова норма споживання калорій становить",
+    "kcal": "ккал",
+    "Foods you should not eat": "Продукти, які вам не слід їсти",
+    "Start losing weight": "Розпочати схуднення"
+  },
+  "kcal": "ккал",
+  "Left": "Залишилось",
+  "Consumed": "Спожили",
+  "Daily rate": "Добова норма",
+  "n% of normal": "% від норми",
+  "Food not recommended": "Не рекомендована їжа",
+  "Summary for": "Підсумок на"
 }
