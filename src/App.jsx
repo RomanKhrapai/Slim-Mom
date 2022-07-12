@@ -6,6 +6,7 @@ import { store } from './redux/store';
 import i18n from './services/i18n/config';
 import { useTranslation } from 'react-i18next';
 import CalculatorPage from 'pages/CalculatorPage';
+import Container from 'components/Container/Container';
 import Header from 'components/Header';
 import styles from 'App.module.scss';
 import 'react-toastify/dist/ReactToastify.css';
@@ -23,14 +24,22 @@ export const App = () => {
     i18n.changeLanguage(lng);
   };
 
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
+
   return (
-    <div className={styles.App}>
+    <>
       <BrowserRouter basename={'Slim-Mom'}>
         <Provider store={store}>
+         <div className={showModal ? styles.images_container_overflow_hidden : styles.images_container}>
           <Header />
+          <Container>
           <Suspense fallback={<div>LOADER</div>}>
             {isLoggedIn ? (
-              <Routes>
+              <Routes>  
                 <Route path={'/'} element={<MainPage />} />
                 <Route
                   path={'/diary'}
@@ -60,6 +69,8 @@ export const App = () => {
                 <Route path={'/registration'} element={<RegisterView />} />
                 <Route path={'/login'} element={<LoginView />} />
 
+
+
                 <Route
                   path={'*'}
                   replace={true}
@@ -68,10 +79,13 @@ export const App = () => {
               </Routes>
             )}
           </Suspense>
+
+    </Container>
+    </div>
         </Provider>
       </BrowserRouter>
 
       <ToastContainer autoClose={3000} />
-    </div>
+    </>
   );
 };
