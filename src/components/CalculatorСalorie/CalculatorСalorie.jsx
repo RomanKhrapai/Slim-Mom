@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import DailyCaloriesForm from '../DailyCaloriesForm';
 import UserInfo from './UserInfo';
-
+import Button from 'components/Button/Button';
+import s from './CalculatorCalorie.module.scss';
 import { useTranslation } from 'react-i18next';
-
 import users from '../usersDB';
+import style from '../DailyCaloriesForm//DailyCaloriesForm.module.scss';
 
 // Имитация базы и поиска пользователя, для проверки работоспособности
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 // import productsOperations from '../../redux/products/products-operation';
 // import userOperations from 'redux/user/user-operation';
 // import authOperations from 'redux/auth/auth-operations';
-
 
 const сalculatorСalorie = () => {
   // функція для перекладу
   const { t } = useTranslation();
 
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   // Активность режима редактирования
-  const userId = useSelector(state => state.user.id);
-  const user = users.find(user => user.userId === userId);
+  const userId = 2;
+  const fetchUser = users.find(user=> user.userId === userId);
+const user = fetchUser ? fetchUser: { height: '', age: '', current: '', desired: '', blood: '' };
   const [activeModerate, setActiveModerate] = useState(false);
 
   const changeActive = () => {
@@ -42,24 +43,21 @@ const сalculatorСalorie = () => {
   if (!activeModerate) {
     return (
       <>
+      <h2>{t('calculator.Your Parametrs')}</h2>
         <UserInfo userData={user} />
-        <button type="button" onClick={changeActive}>
-          {t('calculator.Change information')}
-        </button>
-        {/* <button type="button" onClick={openModal}>
+        <Button type="button"  className={style.Button} onClick={changeActive} >{fetchUser ? t('calculator.Change information'): t('calculator.Add information')}</Button>
+        {/* <Button  type="button" disabled={fetchUser? false: true} >
           {t("calculator.View your losing weight plan")}
-        </button> */}
+          </Button > */}
       </>
     );
   }
 
   return (
-    <>
+    <div className={s.Box}>
       <DailyCaloriesForm userData={user} />
-      <button type="button" onClick={changeActive}>
-        {t('calculator.Close Changes')}
-      </button>
-    </>
+      <Button type="button"  onClick={changeActive} className={s.Button} >{t('calculator.Close Changes')}</Button>
+    </div>
   );
 };
 

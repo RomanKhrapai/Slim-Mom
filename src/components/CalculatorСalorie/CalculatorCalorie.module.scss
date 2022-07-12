@@ -1,0 +1,20 @@
+.Button{
+    position: initial;
+    margin-top: 15px;
+    @media screen and (min-width: 500px) {
+        position: absolute;
+        bottom: 0px;
+        left: 250px;
+    }
+}
+.Box{
+    position: relative;
+
+}
+
+.UserBox{
+    max-width: 50%;
+    @media screen and (min-width: 768px) {
+        max-width: 30%;
+    }
+}
