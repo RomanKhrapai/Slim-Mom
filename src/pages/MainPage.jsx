@@ -17,7 +17,7 @@ const MainPage = () => {
   };
 
   return (
-    <div><WrapperDisplayNone showModal={showModal}>
+    <div  style={{marginTop: '200px'}}><WrapperDisplayNone showModal={showModal}>
       <h1>{t('Calculate your daily calorie intake')}</h1>
       <DailyCaloriesForm
         setDailyCalories={setDailyCalories}
