@@ -150,7 +150,7 @@ function RightSideBar() {
         </ul>
       </div>
       <div className={s.box_food}>
-        <h2 className={s.h2_title}>{t('Food not recommended')}</h2>
+        <h2 className={s.h2_title}>{t('Foods you should not eat')}</h2>
         <p className={s.title}>{category}</p>
       </div>
     </div>
