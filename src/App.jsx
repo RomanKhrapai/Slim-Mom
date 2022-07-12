@@ -34,7 +34,7 @@ export const App = () => {
               <Route path={'/'} element={<MainPage />} />
               <Route
                 path={'/diary'}
-                element={<h1>{t('Calculate your daily calorie intake')}</h1>}
+                element={<h1   style={{marginTop: '200px'}}>{t('Calculate your daily calorie intake')}</h1>}
               />
               <Route path={'/calculator'} element={<CalculatorPage />} />
             <Route path={'*'} replace={true} element={<Navigate to={'/'} />} />
@@ -43,7 +43,7 @@ export const App = () => {
           <Routes>
             <Route
               path={'/'}
-              element={<h1>{t('Calculate your daily calorie intake')}</h1>}
+              element={<h1   style={{marginTop: '200px'}}>{t('Calculate your daily calorie intake')}</h1>}
               />
             <Route path={'/registration'} element={<RegisterView />} />
             <Route path={'/login'} element={<LoginView />} />
