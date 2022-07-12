@@ -10,6 +10,7 @@ import Container from 'components/Container/Container';
 import Header from 'components/Header';
 import styles from 'App.module.scss';
 import 'react-toastify/dist/ReactToastify.css';
+import Loader from 'components/Loader';
 
 const LoginView = lazy(() => import('./pages/LoginPage/LoginPage'));
 const RegisterView = lazy(() => import('./pages/RegisterPage/RegisterPage'));
@@ -43,7 +44,7 @@ export const App = () => {
           >
             <Header />
             <Container>
-              <Suspense fallback={<div>LOADER</div>}>
+              <Suspense fallback={< Loader />}>
                 {isLoggedIn ? (
                   <Routes>
                     <Route path={'/'} element={<MainPage />} />
