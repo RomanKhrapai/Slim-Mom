@@ -287,7 +287,7 @@ const DailyCaloriesForm = ({
                   </label>
                 </div>
               </div>
-              <Button type="submit">{t('Start losing weight')}</Button>
+              <Button className={s.Btn} type="submit">{t('calculator.Start losing weight')}</Button>
             </form>
           );
         }}
