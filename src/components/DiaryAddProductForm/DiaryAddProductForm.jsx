@@ -1,13 +1,14 @@
 import React from 'react';
-import { useState } from 'react';
 import { useFormik } from 'formik';
+import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import Button from 'components/Button/Button';
 import classNames from 'classnames';
 import style from './DiaryAddProductForm.module.scss';
 import addIcon from '../../images/plus-icon.svg';
+import arrow from '../../images/arrow1.svg';
 
-export default function DiaryAddProductForm(isFormOpen) {
+export default function DiaryAddProductForm({isFormOpen, setIsFormOpen}) {
 
   const { t } = useTranslation();
 
@@ -35,6 +36,10 @@ export default function DiaryAddProductForm(isFormOpen) {
       alert(JSON.stringify(values, null, 2));
     },
   });
+
+  const closeButton = () => {
+    setIsFormOpen(false);
+  }
 
   const openFormClasses = classNames(style.form, style.form__isOpen);
   const closeFormClasses = classNames(style.form, style.form__isClosed);
@@ -79,6 +84,10 @@ export default function DiaryAddProductForm(isFormOpen) {
             : null}
         </div>
       </div>
+      
+      <button onClick={() => closeButton()} type="button" className={style.closeButton}>
+        <img src={arrow} alt={`arrow close icon`} />
+      </button>
 
       <Button type="submit" className={style.buttonAddMobile}>
         {t('diary.Add')}
@@ -89,4 +98,9 @@ export default function DiaryAddProductForm(isFormOpen) {
       </Button>
     </form>
   );
+}
+
+DiaryAddProductForm.propTypes = {
+  isFormOpen: PropTypes.bool,
+  setIsFormOpen: PropTypes.func,
 }

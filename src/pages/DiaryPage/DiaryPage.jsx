@@ -16,19 +16,13 @@ export default function DiaryPage() {
   return (
     <div className={style.container}>
       <PageTitle className={style.hidden}>{t('diary.Diary')}</PageTitle>
+
       <DiaryDateСalendar />
-
-      <DiaryAddProductForm isFormOpen={isFormOpen} />
-
+      <DiaryAddProductForm isFormOpen={isFormOpen} setIsFormOpen={() => setIsFormOpen(false)} />
       <DiaryProductsList />
 
-      <Button type="button" className={style.buttonShowAddProductForm}
-      onClick={() => setIsFormOpen(true)}
-      >
+      <Button type="button" className={style.buttonShowAddProductForm} onClick={() => setIsFormOpen(true)} >
         <img src={addIcon} alt={`add product icon`} className={style.addIcon} />
-        {/* <svg width="17" height="17">
-          <use href={`${sprite}#icon-plus`}></use>
-        </svg> */}
       </Button>
     </div>
   );
