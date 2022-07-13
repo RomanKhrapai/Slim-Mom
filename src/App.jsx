@@ -1,4 +1,4 @@
-import { React, lazy, Suspense } from 'react';
+import { React, lazy, Suspense, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -6,9 +6,11 @@ import { store } from './redux/store';
 import i18n from './services/i18n/config';
 import { useTranslation } from 'react-i18next';
 import CalculatorPage from 'pages/CalculatorPage';
+import Container from 'components/Container/Container';
 import Header from 'components/Header';
 import styles from 'App.module.scss';
 import 'react-toastify/dist/ReactToastify.css';
+import Loader from 'components/Loader';
 
 const LoginView = lazy(() => import('./pages/LoginPage/LoginPage'));
 const RegisterView = lazy(() => import('./pages/RegisterPage/RegisterPage'));
@@ -23,40 +25,65 @@ export const App = () => {
   const changeLanguage = lng => {
     i18n.changeLanguage(lng);
   };
+
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
+
   return (
-    <div className={styles.App}>
+    <>
       <BrowserRouter basename={'Slim-Mom'}>
+        <Provider store={store}>
+          <div
+            className={
+              showModal
+                ? styles.images_container_overflow_hidden
+                : styles.images_container
+            }
+          >
+            <Header />
+            <Container>
+              <Suspense fallback={< Loader />}>
+                {isLoggedIn ? (
+                  <Routes>
+                    <Route path={'/'} element={<MainPage />} />
+                    <Route path={'/diary'} element={<DiaryPage />} />
+                    <Route path={'/calculator'} element={<CalculatorPage />} />
+                    <Route
+                      path={'*'}
+                      replace={true}
+                      element={<Navigate to={'/'} />}
+                    />
+                  </Routes>
+                ) : (
+                  <Routes>
+                    <Route
+                      path={'/'}
+                      element={
+                        <h1 style={{ marginTop: '200px' }}>
+                          {t('Calculate your daily calorie intake')}
+                        </h1>
+                      }
+                    />
+                    <Route path={'/registration'} element={<RegisterView />} />
+                    <Route path={'/login'} element={<LoginView />} />
 
-<Provider store={store}>
-        <Header />
-        <Suspense fallback={<div>LOADER</div>}>
-          {isLoggedIn ? (
-            <Routes>
-              <Route path={'/'} element={<MainPage />} />
-              <Route path={'/diary'} element={<DiaryPage />} />
-              <Route path={'/calculator'} element={<CalculatorPage />} />
-            <Route path={'*'} replace={true} element={<Navigate to={'/'} />} />
-          </Routes>
-        ) : (
-          <Routes>
-            <Route
-              path={'/'}
-              element={<h1   style={{marginTop: '200px'}}>{t('Calculate your daily calorie intake')}</h1>}
-              />
-            <Route path={'/registration'} element={<RegisterView />} />
-            <Route path={'/login'} element={<LoginView />} />
-
-            <Route
-              path={'*'}
-              replace={true}
-              element={<Navigate to={'/registration'} />}
-              />
-          </Routes>
-        )}
-        </Suspense>
+                    <Route
+                      path={'*'}
+                      replace={true}
+                      element={<Navigate to={'/registration'} />}
+                    />
+                  </Routes>
+                )}
+              </Suspense>
+            </Container>
+          </div>
         </Provider>
-       </BrowserRouter>
+      </BrowserRouter>
+
       <ToastContainer autoClose={3000} />
-    </div>
+    </>
   );
 };

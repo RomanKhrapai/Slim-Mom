@@ -8,52 +8,67 @@ const userSlice = createSlice({
   extraReducers: {
     [userOperations.getUser.pending]: (state, action) => {
       state.isPending = true;
+      state.isLoading = true;
     },
     [userOperations.getUser.fulfilled]: (state, action) => {
       state.isPending = false;
+      state.isLoading = false;
     },
     [userOperations.getUser.rejected]: (state, action) => {
       state.isPending = false;
+      state.isLoading = false;
     },
     [userOperations.addUserInfo.pending]: (state, action) => {
       state.isFetchingUser = true;
+      state.isLoading = true;
     },
     [userOperations.addUserInfo.fulfilled]: (state, action) => {
       state.id = action.payload.id;
       state.name = action.payload.name;
       state.isFetchingUser = false;
+      state.isLoading = false;
     },
     [userOperations.addUserInfo.rejected]: (state, action) => {
       state.id = null;
       state.name = null;
       state.isFetchingUser = false;
+      state.isLoading = false;
     },
     [userOperations.getDayProducts.pending]: (state, action) => {
       state.isFetchingUser = true;
+      state.isLoading = true;
     },
     [userOperations.getDayProducts.fulfilled]: (state, action) => {
       state.isFetchingUser = false;
+      state.isLoading = false;
     },
     [userOperations.getDayProducts.rejected]: (state, action) => {
       state.isFetchingUser = false;
+      state.isLoading = false;
     },
     [userOperations.addProductToDiary.pending]: (state, action) => {
       state.isFetchingUser = true;
+      state.isLoading = true;
     },
     [userOperations.addProductToDiary.fulfilled]: (state, action) => {
       state.isFetchingUser = false;
+      state.isLoading = false;
     },
     [userOperations.addProductToDiary.rejected]: (state, action) => {
       state.isFetchingUser = false;
+      state.isLoading = false;
     },
     [userOperations.removeProductFromDiary.pending]: (state, action) => {
       state.isFetchingUser = true;
+      state.isLoading = true;
     },
     [userOperations.removeProductFromDiary.fulfilled]: (state, action) => {
       state.isFetchingUser = false;
+      state.isLoading = false;
     },
     [userOperations.removeProductFromDiary.rejected]: (state, action) => {
       state.isFetchingUser = false;
+      state.isLoading = false;
     },
   },
 });

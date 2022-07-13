@@ -20,15 +20,14 @@
   }
 }
 .maincontent {
-  padding-top: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-left: 32px;
   padding-right: 32px;
-
+  margin-top: 200px;
 
   @media screen and (min-width: 768px) {
-    padding-top: 160px;
+    margin-top: 360px;
   }
 }
