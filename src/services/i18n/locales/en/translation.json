@@ -50,5 +50,17 @@
         "kcal": "kcal",
         "Foods you should not eat": "Foods you should not eat",
         "Start losing weight": "Start losing weight"
+    },
+
+    "diary": {
+        "Diary": "Diary",
+        "Add": "Add",
+        "Enter product name": "Enter product name",
+        "Grams": "Grams",
+        "Required": "Required",
+        "Your request is too long": "Your request is too long",
+        "Must be a number": "Must be a number",
+        "g": "g",
+        "kcal": "kcal"
     }
 }

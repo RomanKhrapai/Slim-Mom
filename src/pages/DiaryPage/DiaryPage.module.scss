@@ -1,0 +1,28 @@
+@import "../../Scss/variables.scss";
+
+.container {
+  margin-top: 200px;
+  padding: 0 20px 20px;
+  position: relative;
+
+  @media (max-width: 768px) {
+    margin-top: 160px;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.buttonShowAddProductForm {
+  margin: 0 auto;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}

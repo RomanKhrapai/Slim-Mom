@@ -3,6 +3,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import CalculatorСalorie from '../components/CalculatorСalorie';
+import PageTitle from '../components/PageTitle/PageTitle';
 
 
 const CalculatorPage = () => {
@@ -10,7 +11,7 @@ const CalculatorPage = () => {
 
   return (
     <div style={{marginTop: '200px'}}>
-      <h1>{t('Calculate your daily calorie intake')}</h1>
+    <PageTitle>{t('Calculate your daily calorie intake')}</PageTitle>
       <CalculatorСalorie />
     </div>
   );

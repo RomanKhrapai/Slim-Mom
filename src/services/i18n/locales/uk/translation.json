@@ -50,5 +50,17 @@
         "kcal": "ккал",
         "Foods you should not eat": "Продукти, які вам не слід їсти",
         "Start losing weight": "Розпочати схуднення"
+    },
+
+    "diary": {
+        "Diary": "Щоденник",
+        "Add": "Додати",
+        "Enter product name": "Введіть назву продукту",
+        "Grams": "Грами",
+        "Required": "Поле обов'язкове",
+        "Your request is too long": "Скоротіть назву запиту",
+        "Must be a number": "Значення має бути числом",
+        "g": "г",
+        "kcal": "ккал"
     }
 }
