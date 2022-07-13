@@ -13,46 +13,16 @@ const users = [
     height: 170,
     desired: 65,
     category: [
-      {
-        id: '5d51694802b2373622ff553b',
-        name: 'Яйце куряче',
-      },
-      {
-        id: '5d51694802b2373622ff554d',
-        name: 'Горох',
-      },
-      {
-        id: '5d51694802b2373622ff554k',
-        name: 'Сік яблуневий',
-      },
-      {
-        id: '5d51694802b2373622ff554j',
-        name: 'Горох маш Ярмарка Платинум',
-      },
-      {
-        id: '5d51694802b2373622ff554h',
-        name: 'Горох маш Ярмарка Платинум',
-      },
-      {
-        id: '5d51694802b2373622ff554g',
-        name: 'Горох маш Ярмарка Платинум',
-      },
-      {
-        id: '5d51694802b2373622ff554f',
-        name: 'Горох маш Ярмарка Платинум',
-      },
-      {
-        id: '5d51694802b2373622ff554s',
-        name: 'Горох маш Ярмарка Платинум',
-      },
-      {
-        id: '5d51694802b2373622ff554a',
-        name: 'Горох маш Ярмарка Платинум',
-      },
-      {
-        id: '5d51694802b2373622ff554q',
-        name: 'Горох маш Ярмарка Платинум',
-      },
+      'Яйце куряче',
+      'Горох',
+      'Сік яблуневий',
+      'Горох маш Ярмарка Платинум',
+      'Горох маш Ярмарка Платинум ',
+      'Горох маш Ярмарка Платинум',
+      'Горох маш Ярмарка Платинум',
+      'Горох маш Ярмарка Платинум',
+      'Горох маш Ярмарка Платинум',
+      'Горох маш Ярмарка Платинум',
     ],
   },
   {
@@ -63,20 +33,7 @@ const users = [
     current: 80,
     height: 165,
     desired: 56,
-    category: [
-      {
-        id: '5d51694802b2373622ff553b',
-        name: 'Яйце куряче',
-      },
-      {
-        id: '5d51694802b2373622ff554d',
-        name: 'Горох',
-      },
-      {
-        id: '5d51694802b2373622ff554k',
-        name: 'Сік яблуневий',
-      },
-    ],
+    category: ['Яйце куряче', 'Горох', 'Сік яблуневий'],
   },
   {
     userId: 3,
@@ -86,17 +43,12 @@ const users = [
     current: null,
     height: null,
     desired: null,
-    category: [
-      {
-        id: '5d51694802b2373622ff554k',
-        name: 'Сік яблуневий',
-      },
-    ],
+    category: ['Сік яблуневий'],
   },
 ];
 
-// const userId = users[0].userId;
-// const user = users.find(user => user.userId === userId);
+const userId = users[0].userId;
+const user = users.find(user => user.userId === userId);
 
 //импорт данных getDailyCalories с редюсера
 const getDailyCalories = user => {
@@ -130,7 +82,7 @@ function RightSideBar() {
   const [normal, setNormal] = useState(0);
   const [category, setCategory] = useState('Your diet will be displayed here');
 
-  const user = false;
+  // const user = false;
 
   const { t } = useTranslation();
 
@@ -150,10 +102,15 @@ function RightSideBar() {
     return String(value).padStart(3, '0');
   }
 
+  const dairyData = '20.06.2022';
+
   return (
     <div className={s.container}>
       <div className={s.box}>
-        <h2 className={s.h2_title}> {t('Summary for')} -Data-</h2>
+        <h2 className={s.h2_title}>
+          {' '}
+          {t('Summary for')} {`${dairyData}`}
+        </h2>
         <ul className={s.list}>
           <li className={s.title}>
             <span>{t('Left')}</span>{' '}
@@ -193,9 +150,9 @@ function RightSideBar() {
           </div>
         ) : (
           <div className={s.box_food_list}>
-            {user.category.map(({ id, name }) => (
-              <p key={id} className={s.title}>
-                {name}
+            {user.category.map(i => (
+              <p key={i} className={s.title}>
+                {i}
               </p>
             ))}
           </div>
