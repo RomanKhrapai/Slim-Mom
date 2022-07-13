@@ -182,3 +182,15 @@ line-height: 1.2em;
 letter-spacing: 0.04em;
 color: #FC842D;
 }
+
+.Btn {
+
+    @media screen and (max-width: 767px) {
+    margin-left: auto;
+    margin-right: auto;
+    }
+
+    @media screen and (min-width: 1280px) {
+        margin-left: auto;
+}
+}
