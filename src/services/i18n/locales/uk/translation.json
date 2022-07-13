@@ -9,6 +9,7 @@
     "Sign In": "Увійти",
     "Registration": "Реєстрація"
   },
+
   "authentification": {
     "Email": "Iмейл",
     "Your email": "Ваш імейл",
@@ -22,6 +23,7 @@
     "This filed must contain more than 8 symbols": "Це поле має містити більше 8-ми символів",
     "This filed must contain only letters": "Це поле має містити лише літери"
   },
+
   "calculator": {
     "Change information": "Редагувати інформацію",
     "Add information": "Додати інформацію",
@@ -57,5 +59,17 @@
   "Daily rate": "Добова норма",
   "n% of normal": "% від норми",
   "Foods you should not eat": "Продукти, які вам не слід їсти",
-  "Summary for": "Підсумок на"
+  "Summary for": "Підсумок на",
+
+  "diary": {
+      "Diary": "Щоденник",
+      "Add": "Додати",
+      "Enter product name": "Введіть назву продукту",
+      "Grams": "Грами",
+      "Required": "Поле обов'язкове",
+      "Your request is too long": "Скоротіть назву запиту",
+      "Must be a number": "Значення має бути числом",
+      "g": "г",
+      "kcal": "ккал"
+  }
 }

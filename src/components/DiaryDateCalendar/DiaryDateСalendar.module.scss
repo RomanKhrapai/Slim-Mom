@@ -1,0 +1,29 @@
+@import '../../Scss/variables.scss';
+
+.datepicker {
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 767px) {
+    margin-bottom: 28px;
+  }
+}
+
+.title {
+  font-family: 'VerdanaBold';
+  margin-right: 20px;
+  font-size: 18px;
+  line-height: 22px;
+  color: $title-color;
+
+  @media (min-width: 768px) {
+    font-size: 34px;
+    line-height: 41px;
+  }
+}
+
+.dateButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}

@@ -1,0 +1,121 @@
+@import '../../Scss/variables.scss';
+
+.form {
+  padding: 40px 0;
+
+  @media (max-width: 767px) {
+    position: absolute;
+    width: calc(100vw - 40px);
+    top: 0;
+    background: $main-background-color;
+    height: calc(100vh - 160px);
+  }
+
+  @media (min-width: 768px) {
+    display: flex;
+    top: 0;
+    background: $main-background-color;
+  }
+}
+
+.form__isOpen {
+
+  @media (max-width: 767px) {
+    display: block;
+  }
+
+  @media (min-width: 768px) {
+    display: flex;
+    top: 0;
+    background: $main-background-color;
+  }
+}
+
+.form__isClosed {
+
+  @media (max-width: 767px) {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    display: flex;
+    top: 0;
+    background: $main-background-color;
+  }
+}
+
+.input {
+  border-top: transparent;
+  border-left: transparent;
+  border-right: transparent;
+  border-bottom: solid 1px $border-color;
+  width: 100%;
+  padding: 10px;
+
+  @media (min-width: 768px) {
+    display: inline-block;
+    padding: 10px 0;
+  }
+
+  &::placeholder {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.04em;
+
+    color: #9B9FAA;
+  }
+}
+
+.errorContainer {
+  position: relative;
+  margin-bottom: 40px;
+
+  &:first-child {
+    @media (min-width: 768px) {
+      margin-right: 20px;
+      width: 240px;
+    }
+  }
+
+  &:nth-child(2) {
+    @media (min-width: 768px) {
+      margin-right: 90px;
+      width: 105px;
+
+      & input {
+        text-align: center;
+      }
+    }
+  }
+}
+
+.errorMessage {
+  position: absolute;
+  bottom: -50%;
+  font-size: 8px;
+  line-height: 1.2em;
+  letter-spacing: 0.04em;
+  color: #FC842D;
+}
+
+.buttonAddMobile {
+  margin: 0 auto;
+  display: auto;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.buttonAddDesktop {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
+}
