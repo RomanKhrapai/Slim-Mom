@@ -15,6 +15,7 @@ import Loader from 'components/Loader';
 const LoginView = lazy(() => import('./pages/LoginPage/LoginPage'));
 const RegisterView = lazy(() => import('./pages/RegisterPage/RegisterPage'));
 const MainPage = lazy(() => import('./pages/MainPage'));
+const DiaryPage = lazy(() => import('./pages/DiaryPage/DiaryPage'));
 
 export const App = () => {
   const isLoggedIn = true;
@@ -48,14 +49,7 @@ export const App = () => {
                 {isLoggedIn ? (
                   <Routes>
                     <Route path={'/'} element={<MainPage />} />
-                    <Route
-                      path={'/diary'}
-                      element={
-                        <h1 style={{ marginTop: '200px' }}>
-                          {t('Calculate your daily calorie intake')}
-                        </h1>
-                      }
-                    />
+                    <Route path={'/diary'} element={<DiaryPage />} />
                     <Route path={'/calculator'} element={<CalculatorPage />} />
                     <Route
                       path={'*'}

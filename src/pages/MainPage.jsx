@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
+import PageTitle from '../components/PageTitle/PageTitle';
 import DailyCaloriesForm from 'components/DailyCaloriesForm';
 import Modal from 'components/Modal';
 import ModalContent from 'components/Modal/ModalContent';
@@ -15,7 +16,7 @@ const MainPage = ({showModal, toggleModal}) => {
   return (
     <div style={{ marginTop: '200px' }}>
       <WrapperDisplayNone showModal={showModal}>
-        <h1>{t('Calculate your daily calorie intake')}</h1>
+      <PageTitle>{t('Calculate your daily calorie intake')}</PageTitle>
         <DailyCaloriesForm
           setDailyCalories={setDailyCalories}
           setForbiddenProducts={setForbiddenProducts}
