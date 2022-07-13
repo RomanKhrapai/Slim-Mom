@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
+import s from './MainPage.module.scss'
+
 
 import PageTitle from '../components/PageTitle/PageTitle';
 import DailyCaloriesForm from 'components/DailyCaloriesForm';
 import Modal from 'components/Modal';
 import ModalContent from 'components/Modal/ModalContent';
 import WrapperDisplayNone from 'components/WrapperDisplayNone/WrapperDisplayNone';
+import Container from 'components/Container/Container';
 
 const MainPage = ({showModal, toggleModal}) => {
   const { t, i18n } = useTranslation();
@@ -14,7 +17,8 @@ const MainPage = ({showModal, toggleModal}) => {
   const [forbiddenProducts, setForbiddenProducts] = useState([]);
 
   return (
-    <div style={{ marginTop: '200px' }}>
+    <div className={s.images_container}>
+    <Container className={s.container}>
       <WrapperDisplayNone showModal={showModal}>
       <PageTitle>{t('Calculate your daily calorie intake')}</PageTitle>
         <DailyCaloriesForm
@@ -32,7 +36,8 @@ const MainPage = ({showModal, toggleModal}) => {
           />
         </Modal>
       )}
-    </div>
+    </Container>
+</div>
   );
 };
 
