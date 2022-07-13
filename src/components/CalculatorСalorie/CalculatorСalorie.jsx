@@ -17,12 +17,13 @@ const сalculatorСalorie = () => {
   // функція для перекладу
   const { t } = useTranslation();
 
-
   // const dispatch = useDispatch();
   // Активность режима редактирования
   const userId = 2;
-  const fetchUser = users.find(user=> user.userId === userId);
-const user = fetchUser ? fetchUser: { height: '', age: '', current: '', desired: '', blood: '' };
+  const fetchUser = users.find(user => user.userId === userId);
+  const user = fetchUser
+    ? fetchUser
+    : { height: '', age: '', current: '', desired: '', blood: '' };
   const [activeModerate, setActiveModerate] = useState(false);
 
   const changeActive = () => {
@@ -43,9 +44,13 @@ const user = fetchUser ? fetchUser: { height: '', age: '', current: '', desired:
   if (!activeModerate) {
     return (
       <>
-      <h2>{t('calculator.Your Parametrs')}</h2>
+        <h2>{t('calculator.Your Parametrs')}</h2>
         <UserInfo userData={user} />
-        <Button type="button"  className={style.Button} onClick={changeActive} >{fetchUser ? t('calculator.Change information'): t('calculator.Add information')}</Button>
+        <Button type="button" className={style.Button} onClick={changeActive}>
+          {fetchUser
+            ? t('calculator.Change information')
+            : t('calculator.Add information')}
+        </Button>
         {/* <Button  type="button" disabled={fetchUser? false: true} >
           {t("calculator.View your losing weight plan")}
           </Button > */}
@@ -56,7 +61,9 @@ const user = fetchUser ? fetchUser: { height: '', age: '', current: '', desired:
   return (
     <div className={s.Box}>
       <DailyCaloriesForm userData={user} />
-      <Button type="button"  onClick={changeActive} className={s.Button} >{t('calculator.Close Changes')}</Button>
+      <Button type="button" onClick={changeActive} className={s.Button}>
+        {t('calculator.Close Changes')}
+      </Button>
     </div>
   );
 };
