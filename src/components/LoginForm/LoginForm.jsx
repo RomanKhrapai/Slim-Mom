@@ -1,6 +1,8 @@
 import { Formik } from 'formik';
 import React, { useState } from "react";
+import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import authOperations from 'redux/auth/auth-operations.js';
 
 import s from './LoginForm.module.scss';
 
@@ -13,6 +15,7 @@ const getActiveClass = condition => {
 const LoginForm = () => {
   const [formData, setFormData] = useState({});
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   
   return (
   <>
@@ -33,12 +36,9 @@ const LoginForm = () => {
         }
         return errors;
       }}
-      onSubmit={(values, { setSubmitting, resetForm }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
-        setFormData(values);
+      onSubmit={(values, { resetForm }) => {
+        dispatch(authOperations.logIn({values}))
+        /*setFormData(values);*/
         resetForm();
       }}
     >
