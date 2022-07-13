@@ -6,7 +6,6 @@ import { store } from './redux/store';
 import i18n from './services/i18n/config';
 import { useTranslation } from 'react-i18next';
 import CalculatorPage from 'pages/CalculatorPage';
-import Container from 'components/Container/Container';
 import Header from 'components/Header';
 import styles from 'App.module.scss';
 import 'react-toastify/dist/ReactToastify.css';
@@ -36,20 +35,12 @@ export const App = () => {
     <>
       <BrowserRouter basename={'Slim-Mom'}>
         <Provider store={store}>
-          <div
-            className={
-              showModal
-                ? styles.images_container_overflow_hidden
-                : styles.images_container
-            }
-          >
             <Header />
-            <Container>
-              <Suspense fallback={< Loader />}>
+              <Suspense fallback={<div>LOADER</div>}>
                 {isLoggedIn ? (
                   <Routes>
-                    <Route path={'/'} element={<MainPage />} />
-                    <Route path={'/diary'} element={<DiaryPage />} />
+                    <Route path={'/'} element={<MainPage toggleModal={toggleModal} showModal={showModal}/>} />
+                   <Route path={'/diary'} element={<DiaryPage />} />
                     <Route path={'/calculator'} element={<CalculatorPage />} />
                     <Route
                       path={'*'}
@@ -78,8 +69,6 @@ export const App = () => {
                   </Routes>
                 )}
               </Suspense>
-            </Container>
-          </div>
         </Provider>
       </BrowserRouter>
 
