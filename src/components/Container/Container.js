@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 export default function Container({ children, className}) {
-  const classes = classNames(s.container, className);
+  const classes = classNames(className);
   return (
     <div className={classes}>
       {children}
