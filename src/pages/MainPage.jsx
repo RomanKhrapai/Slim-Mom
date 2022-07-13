@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import s from '../App.module.scss'
 
 
+import PageTitle from '../components/PageTitle/PageTitle';
 import DailyCaloriesForm from 'components/DailyCaloriesForm';
 import Modal from 'components/Modal';
 import ModalContent from 'components/Modal/ModalContent';
@@ -19,7 +20,7 @@ const MainPage = ({showModal, toggleModal}) => {
     <div className={s.images_container}>
     <Container>
       <WrapperDisplayNone showModal={showModal}>
-        <h1>{t('Calculate your daily calorie intake')}</h1>
+      <PageTitle>{t('Calculate your daily calorie intake')}</PageTitle>
         <DailyCaloriesForm
           setDailyCalories={setDailyCalories}
           setForbiddenProducts={setForbiddenProducts}

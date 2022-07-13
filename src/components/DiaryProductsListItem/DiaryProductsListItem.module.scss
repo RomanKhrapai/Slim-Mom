@@ -1,0 +1,42 @@
+@import '../../Scss/variables.scss';
+
+.tableRow {
+  height: 40px;
+}
+
+.tableCell {
+  border-bottom: 1px solid $border-color;
+}
+
+.tableCell:first-child {
+  @media (max-width: 767px) {
+    width: 45%
+  }
+
+  @media (min-width: 768px) {
+    width: 260px;
+  }
+}
+
+.tableCell:nth-child(2) {
+  @media (min-width: 768px) {
+    width: 195px;
+    padding-right: 87px;
+    text-align: center;
+  }
+}
+
+.tableCell:not(:last-child) {
+  border-right: 10px solid transparent;
+}
+
+.closeButton {
+  background: transparent;
+  border: none;
+}
+
+.closeIcon {
+  fill: $main-text-color;
+  width: 17px;
+  height: 17px;
+}
