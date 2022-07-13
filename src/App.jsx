@@ -40,7 +40,7 @@ export const App = () => {
                 {isLoggedIn ? (
                   <Routes>
                     <Route path={'/'} element={<MainPage toggleModal={toggleModal} showModal={showModal}/>} />
-                   <Route path={'/diary'} element={<DiaryPage />} />
+                    <Route path={'/diary'} element={<DiaryPage />} />
                     <Route path={'/calculator'} element={<CalculatorPage />} />
                     <Route
                       path={'*'}
@@ -69,6 +69,7 @@ export const App = () => {
                   </Routes>
                 )}
               </Suspense>
+
         </Provider>
       </BrowserRouter>
 

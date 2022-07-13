@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
-import s from '../App.module.scss'
+import s from './MainPage.module.scss'
 
 
 import PageTitle from '../components/PageTitle/PageTitle';
@@ -18,7 +18,7 @@ const MainPage = ({showModal, toggleModal}) => {
 
   return (
     <div className={s.images_container}>
-    <Container>
+    <Container className={s.container}>
       <WrapperDisplayNone showModal={showModal}>
       <PageTitle>{t('Calculate your daily calorie intake')}</PageTitle>
         <DailyCaloriesForm
