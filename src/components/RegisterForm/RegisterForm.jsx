@@ -1,6 +1,8 @@
 import { Formik } from 'formik';
 import React, { useState } from "react";
+import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import authOperations from 'redux/auth/auth-operations.js';
 
 import s from './RegisterForm.module.scss';
 
@@ -13,6 +15,7 @@ const getActiveClass = condition => {
 const RegisterForm = () => {
   const [formData, setFormData] = useState({});
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   
   return (
   <>
@@ -45,13 +48,15 @@ const RegisterForm = () => {
         }
         return errors;
       }}
-      onSubmit={(values, { setSubmitting, resetForm }) => {
-        setTimeout(() => {
+      onSubmit={(values, { resetForm }) => {
+        /*setTimeout(() => {
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
-        }, 400);
-        setFormData(values);
+        }, 400);*/
+        dispatch(authOperations.signUpUser({values}))
+        /*setFormData(values);*/
         resetForm();
+        /*dispatch(authOperations.logIn({ email, password }));*/
       }}
     >
       {({
