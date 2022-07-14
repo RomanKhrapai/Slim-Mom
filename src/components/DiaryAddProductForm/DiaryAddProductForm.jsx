@@ -2,6 +2,8 @@ import React from 'react';
 import { useFormik } from 'formik';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
+import FindProducts from './DiaryAddProductFormSearchList';
+import { productsOperations } from 'redux/products';
 import Button from 'components/Button/Button';
 import classNames from 'classnames';
 import style from './DiaryAddProductForm.module.scss';
@@ -55,7 +57,7 @@ export default function DiaryAddProductForm({isFormOpen, setIsFormOpen}) {
           name="productName"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.email}
+          value={formik.values.productName}
           className={style.input}
           placeholder={t('diary.Enter product name')}
         />
@@ -65,6 +67,10 @@ export default function DiaryAddProductForm({isFormOpen, setIsFormOpen}) {
             ? formik.errors.productName
             : null}
         </div>
+
+        {/* {formik.values.productName ?  */}
+        {/* <FindProducts requestName={formik.values.productName} /> */}
+         {/* : null} */}
       </div>
 
       <div className={style.errorContainer}>
@@ -73,7 +79,7 @@ export default function DiaryAddProductForm({isFormOpen, setIsFormOpen}) {
           name="productAmount"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.password}
+          value={formik.values.gramsAmount}
           className={style.input}
           placeholder={t('diary.Grams')}
         />
