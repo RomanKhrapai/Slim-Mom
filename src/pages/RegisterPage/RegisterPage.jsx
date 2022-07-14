@@ -10,12 +10,12 @@ export default function RegisterView() {
 
     return (
       <div className={s.images_container}>
-        {/* <Container className={s.container_reg}> */}
+        <Container className={s.container_reg}>
         <div className={s.maincontent}>
         <div className={s.registration_title}>{t('navigation.Registration')}</div>
         <RegisterForm />
       </div>
-      {/* </Container> */}
+      </Container> 
       </div>
     );
   }

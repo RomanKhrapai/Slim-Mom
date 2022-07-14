@@ -48,12 +48,12 @@ const RegisterForm = () => {
         }
         return errors;
       }}
-      onSubmit={(values, { resetForm }) => {
+      onSubmit={({name, email, password}, { resetForm }) => {
         /*setTimeout(() => {
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
         }, 400);*/
-        dispatch(authOperations.signUpUser({values}))
+        dispatch(authOperations.signUpUser({name, email, password}))
         /*setFormData(values);*/
         resetForm();
         /*dispatch(authOperations.logIn({ email, password }));*/
@@ -98,7 +98,7 @@ const RegisterForm = () => {
                 )}
           <label className={getActiveClass(values.email)} htmlFor="email">{t('authentification.Email')}</label>
           </div>
-          <div className={s.inputBox}>
+          <div className={s.inputBox_last}>
           <input
             type="password"
             name="password"

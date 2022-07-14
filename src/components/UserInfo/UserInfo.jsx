@@ -3,7 +3,8 @@ import { useTranslation } from 'react-i18next';
 import styles from './userinfo.module.scss'
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {logOut} from '../../redux/auth/auth-operations'
+import * as logOut from '../../redux/auth/auth-operations';
+//import {logOut} from '../../redux/auth/auth-operations'
 
 const UserInfo = () => {
 
@@ -12,8 +13,8 @@ const UserInfo = () => {
   const { t } = useTranslation();
 
   const tryLogOut = async () => {
-    dispatch(logOut())
-  }
+    dispatch(logOut());
+  };
 
   return (
       <div className={styles.userinfo}>
@@ -24,4 +25,4 @@ const UserInfo = () => {
   )
 }
 
-export default UserInfo
+export default UserInfo;

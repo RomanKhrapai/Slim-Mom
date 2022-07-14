@@ -9,13 +9,13 @@ export default function LoginView() {
 
     return (
       <div className={s.images_container}>
-        {/* <Container className={s.container_login}> */}
+        <Container className={s.container_login}>
       <div className={s.maincontent}>
       <div className={s.loginpage_title}>{t('navigation.Sign In')}</div>
       <LoginForm />
   
       </div>
-      {/* </Container> */}
+      </Container> 
       </div>
 
     );
