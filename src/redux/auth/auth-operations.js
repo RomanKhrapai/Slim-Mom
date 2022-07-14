@@ -49,7 +49,7 @@ const logIn = createAsyncThunk(
   }
 );
 
-const logOut = createAsyncThunk(
+export const logOut = createAsyncThunk(
   'auth/logout',
   async (_, { rejectWithValue }) => {
     try {
