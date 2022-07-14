@@ -93,12 +93,21 @@ p {
     height: 152px;
     margin-bottom: 40px;
     margin-right: auto;
+    margin-left: auto;
   }
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
+  @media screen and (min-width: 768px) and (max-width: 768px) {
     height: 166px;
     margin-right: 49px;
     margin-bottom: 0px;
     margin-top: 0px;
+    margin-left: 0px;
+  }
+  @media screen and (min-width: 769px) and (max-width: 1279px) {
+    height: 166px;
+    margin-right: 49px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-left: auto;
   }
   @media screen and (min-width: 1280px) {
     width: 288px;

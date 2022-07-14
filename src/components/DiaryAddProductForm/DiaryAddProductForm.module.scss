@@ -9,6 +9,7 @@
     top: 0;
     background: $main-background-color;
     height: calc(100vh - 160px);
+    transition: transform 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
   @media (min-width: 768px) {
@@ -117,5 +118,27 @@
 
   @media (max-width: 767px) {
     display: none;
+  }
+}
+
+.closeButton {
+  display: none;
+
+  @media (max-width: 767px) {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    position: absolute;
+    z-index: 5;
+    top: -73px;
+
+    & img {
+      height: 8px;
+      width: 20px;
+    }
   }
 }

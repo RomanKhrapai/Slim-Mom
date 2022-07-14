@@ -18,27 +18,15 @@ export default function DiaryPage() {
   return (
     <div className={s.health_box}>
       <div className={style.container}>
-        <PageTitle className={style.hidden}>{t('diary.Diary')}</PageTitle>
-        <DiaryDateСalendar />
+      <PageTitle className={style.hidden}>{t('diary.Diary')}</PageTitle>
 
-        <DiaryAddProductForm isFormOpen={isFormOpen} />
+      <DiaryDateСalendar />
+      <DiaryAddProductForm isFormOpen={isFormOpen} setIsFormOpen={() => setIsFormOpen(false)} />
+      <DiaryProductsList />
 
-        <DiaryProductsList />
-
-        <Button
-          type="button"
-          className={style.buttonShowAddProductForm}
-          onClick={() => setIsFormOpen(true)}
-        >
-          <img
-            src={addIcon}
-            alt={`add product icon`}
-            className={style.addIcon}
-          />
-          {/* <svg width="17" height="17">
-          <use href={`${sprite}#icon-plus`}></use>
-        </svg> */}
-        </Button>
+      <Button type="button" className={style.buttonShowAddProductForm} onClick={() => setIsFormOpen(true)} >
+        <img src={addIcon} alt={`add product icon`} className={style.addIcon} />
+      </Button>
       </div>
       <RightSideBar />
     </div>
