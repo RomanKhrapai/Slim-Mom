@@ -18,7 +18,7 @@ const Navigation = () => {
 
   const { isAuthorised } = useSelector(({ auth }) => auth)
   console.log(isAuthorised);
-  // const isAuthorized = true;
+  // const isAuthorised = true;
 
   const getNavLinkClassName = ({ isActive }) =>
     isActive

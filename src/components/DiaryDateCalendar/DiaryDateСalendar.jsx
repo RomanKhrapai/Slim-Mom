@@ -1,16 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import Datetime from 'react-datetime';
 import "react-datetime/css/react-datetime.css";
 import style from'./DiaryDateСalendar.module.scss';
 import calendarIcon from '../../images/icon-calendar.svg';
+import Datetime from 'react-datetime';
+import "react-datetime/css/react-datetime.css";
+import moment from 'moment';
+import Modal from '../Modal';
 
-export default function DiaryDateСalendar() {
+
+export default function DiaryDateCalendar() {
+
+  const [formattedDate, setFormattedDate] = useState(moment().format('DD, MM, YYYY'));
+  const [parsedDate, setParsedDate] = useState(Date.now());
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+
+  const getDateTime = (momentDate) => {
+    const parsedDate = Date.parse(momentDate._d.toString())
+    const formattedDate = momentDate.format('DD, MM, YYYY')
+    console.log(parsedDate, formattedDate);
+
+    setParsedDate(parsedDate)
+    setFormattedDate(formattedDate)
+  }
+
   return (
     <div className={style.datepicker}>
-      <h2 className={style.title}>20.06.2022</h2>
-      <button type="button" className={style.dateButton}>
+      <h2 className={style.title}>{formattedDate}</h2>
+      <button onClick={() => setIsCalendarOpen(!isCalendarOpen)} type="button" className={style.dateButton}>
         <img src={calendarIcon} alt={`calendar icon`} />
       </button>
-    </div>
+
+      {isCalendarOpen && <Modal onClose={() => setIsCalendarOpen(false)}>
+        <div className={style.calendarWrapper}>
+
+          <Datetime isValidDate={(current) => {
+            let today = new Date()
+            return current.isBefore(today)
+          }} value={parsedDate} input={false} timeFormat={false} dateFormat={'DD, MM, YYYY'}  onChange={getDateTime}/>
+        </div>
+
+      </Modal>}
+     </div>
   );
 }
