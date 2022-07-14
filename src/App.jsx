@@ -1,4 +1,4 @@
-import { React, lazy, Suspense, useState } from 'react';
+import { React, lazy, Suspense, useState, useContext, useEffect} from 'react';
 import { ToastContainer } from 'react-toastify';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -7,9 +7,12 @@ import i18n from './services/i18n/config';
 import { useTranslation } from 'react-i18next';
 import CalculatorPage from 'pages/CalculatorPage';
 import Header from 'components/Header';
-import styles from 'App.module.scss';
+import s from 'App.module.scss';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from 'components/Loader';
+// import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
+// import { BsSun,BsMoon } from 'react-icons/bs';
+
 
 const LoginView = lazy(() => import('./pages/LoginPage/LoginPage'));
 const RegisterView = lazy(() => import('./pages/RegisterPage/RegisterPage'));
@@ -18,6 +21,15 @@ const DiaryPage = lazy(() => import('./pages/DiaryPage/DiaryPage'));
 
 export const App = () => {
   const isLoggedIn = true;
+  // const [{theme, isDark}, toggleTheme] = useContext(ThemeContext)
+  // const [icon, setIcon] = useState(<BsSun size={40}/>)
+
+// useEffect(()=>{
+//   if(isDark){
+//     setIcon(<BsMoon size={40}/>)
+//   }
+//   else{setIcon(<BsSun size={40}/>)}
+// },[isDark])
 
   const { t } = useTranslation();
 
@@ -32,10 +44,12 @@ export const App = () => {
   };
 
   return (
-    <>
+    // <div className={showModal ? s.overflow_hidden : undefined} style={{backgroundColor: theme.backgroundColor, color: theme.color}}>
+       <div className={showModal ? s.overflow_hidden : undefined}>
       <BrowserRouter basename={'Slim-Mom'}>
         <Provider store={store}>
             <Header />
+            {/* <div onClick={toggleTheme}>{icon}</div> */}
               <Suspense fallback={<div>LOADER</div>}>
                 {isLoggedIn ? (
                   <Routes>
@@ -74,6 +88,6 @@ export const App = () => {
       </BrowserRouter>
 
       <ToastContainer autoClose={3000} />
-    </>
+    </div>
   );
 };
