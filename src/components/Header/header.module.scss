@@ -6,7 +6,15 @@ header {
   position: absolute;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 1280px) {
+  header {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+
+@media screen and (max-width: 1280px) {
   header {
     top: 0;
     padding-left: 32px;
@@ -17,14 +25,13 @@ header {
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 768px) {
   header {
     top: 0;
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 20px;
     padding-top: 20px;
-    margin-bottom: 40px;
     border-bottom: 2px solid #e0e0e0;
   }
 }

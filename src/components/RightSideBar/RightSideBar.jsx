@@ -12,7 +12,18 @@ const users = [
     current: 75,
     height: 170,
     desired: 65,
-    category: ['meet', 'coffe', 'solt'],
+    category: [
+      'Яйце куряче',
+      'Горох',
+      'Сік яблуневий',
+      'Горох маш Ярмарка Платинум',
+      'Горох маш Ярмарка Платинум ',
+      'Горох маш Ярмарка Платинум',
+      'Горох маш Ярмарка Платинум',
+      'Горох маш Ярмарка Платинум',
+      'Горох маш Ярмарка Платинум',
+      'Горох маш Ярмарка Платинум',
+    ],
   },
   {
     userId: 2,
@@ -22,7 +33,7 @@ const users = [
     current: 80,
     height: 165,
     desired: 56,
-    category: 'fish',
+    category: ['Яйце куряче', 'Горох', 'Сік яблуневий'],
   },
   {
     userId: 3,
@@ -32,24 +43,7 @@ const users = [
     current: null,
     height: null,
     desired: null,
-    category: 'coffe',
-  },
-  {
-    _id: {
-      $oid: '5d51694902b2373622ff5f81',
-    },
-    categories: {
-      en: 'безalcoholic beverages',
-      ua: 'безалкогольні напої',
-    },
-    weight: 100,
-    title: {
-      en: 'Apple compote',
-      ua: 'Яблучний компот',
-    },
-    calories: 85,
-    groupBloodNotAllowed: [null, false, false, false, false],
-    __v: 0,
+    category: ['Сік яблуневий'],
   },
 ];
 
@@ -62,7 +56,7 @@ const getDailyCalories = user => {
     return 0;
   }
   if (!user) {
-    return;
+    return 0;
   }
   return (
     10 * Number(user.current) +
@@ -88,36 +82,35 @@ function RightSideBar() {
   const [normal, setNormal] = useState(0);
   const [category, setCategory] = useState('Your diet will be displayed here');
 
-  // let location = useLocation();
-  // console.log('location', location);
+  // const user = false;
 
   const { t } = useTranslation();
 
   useEffect(() => {
+    if (!user) {
+      return;
+    }
     setDailyrate(getDailyCalories(user));
     setLeftCkal(dailyRate - consuned);
 
     setConsumed(Math.floor((porc * kall) / 100));
     setNormal(Math.floor((consuned / dailyRate) * 100));
     setCategory(user.category);
-  }, [dailyRate, consuned, user]);
-
-  console.log('leftCkal', leftCkal);
-  console.log('consuned', consuned);
-  console.log('dailyRate', dailyRate);
-  console.log('normal', normal);
-  console.log('category', category);
+  }, [dailyRate, consuned, user, porc, kall]);
 
   function addLeadingZeroKcal(value) {
     return String(value).padStart(3, '0');
   }
 
+  const dairyData = '20.06.2022';
+
   return (
     <div className={s.container}>
-      {/* <img className={s.img_tablet} src="../../images/LayerTablet.png" />
-      <img className={s.img_health} src="../../images/LayerTablet.png" /> */}
       <div className={s.box}>
-        <h2 className={s.h2_title}> {t('Summary for')} -Data-</h2>
+        <h2 className={s.h2_title}>
+          {' '}
+          {t('Summary for')} {`${dairyData}`}
+        </h2>
         <ul className={s.list}>
           <li className={s.title}>
             <span>{t('Left')}</span>{' '}
@@ -151,59 +144,22 @@ function RightSideBar() {
       </div>
       <div className={s.box_food}>
         <h2 className={s.h2_title}>{t('Foods you should not eat')}</h2>
-        <p className={s.title}>{category}</p>
+        {!user ? (
+          <div className={s.box_food_list}>
+            {<p className={s.title}>{category}</p>}
+          </div>
+        ) : (
+          <div className={s.box_food_list}>
+            {user.category.map(i => (
+              <p key={i} className={s.title}>
+                {i}
+              </p>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
 export default RightSideBar;
-
-// const getDailyRateUser = () => {
-//     const dailyRate = getDailyCalories()
-//     // setDailyrate(dailyRate);
-//     return dailyRate;
-// };
-
-// const getLeftCkalUser = () => {
-//     const left = getDailyRateUser() - getConsumedUser();
-//     // setLeftCkal(left);
-//     return left
-
-// }
-
-// const getConsumedUser = () => {
-//     const consunedUser = Math.floor((porc * kall) / gr);
-//     // setConsumed(consunedUser);
-//     return consunedUser ;
-
-// }
-
-// const getNormalUser = () => {
-//     const normalUser = Math.floor((getConsumedUser() / getDailyRateUser()) * 100);
-//     // setNormal(normalUser);
-//     return normalUser;
-// }
-
-// const getCategoryUser = () => {
-//     const categoryUser = user.category;
-//     // setCategory(categoryUser);
-//     return categoryUser;
-// }
-
-// <div>
-//     <h1> Summary for 06/20/2020</h1>
-//     <ul>
-//         <li>Left {getLeftCkalUser()}kcal</li>
-//         <li>Consumed {getConsumedUser()}kcal</li>
-//         <li>Daily rate {getDailyRateUser()}kcal</li>
-//         <li>n% of normal {getNormalUser()}%</li>
-//     </ul>
-
-//     <h1>Food not recommended</h1>
-//     <ul>
-//         <li>{getCategoryUser()}</li>
-//     </ul>
-// </div>
-
-// npm install --save react-datetime

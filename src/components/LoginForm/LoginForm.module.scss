@@ -8,12 +8,10 @@
   
 
   @media screen and (min-width: 768px) {
-    padding-left: 32px;
     align-items: baseline;
     width: 300px;
   }
   @media screen and (min-width: 1064px) {
-    padding-left: 32px;
     align-items: baseline;
     width: 350px;
 }
@@ -32,7 +30,15 @@
 .inputBox {
   position: relative;
   margin-bottom: 40px;
-  
+
+  &:focus-within .labelAbsolute {
+  transform: translateY(-100%);
+  }
+}
+.inputBox_last {
+  position: relative;
+  margin-bottom: 60px;
+
   &:focus-within .labelAbsolute {
   transform: translateY(-100%);
   }

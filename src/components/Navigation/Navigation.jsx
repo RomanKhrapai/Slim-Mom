@@ -12,9 +12,13 @@ import {
   screenTypes,
   useGetTypeOfScreen,
 } from '../../hooks/useGetTypeOfScreen';
+import { useSelector } from 'react-redux';
 
 const Navigation = () => {
-  const isLoggedIn = true;
+
+  const { isAuthorised } = useSelector(({ auth }) => auth)
+  console.log(isAuthorised);
+  // const isAuthorized = true;
 
   const getNavLinkClassName = ({ isActive }) =>
     isActive
@@ -31,6 +35,9 @@ const Navigation = () => {
   const screen = useGetTypeOfScreen()
   const getLogo = () => {
     if (screen === screenTypes.smallType) {
+      if (isAuthorised) {
+        return mediumLogo
+      }
       return smallLogo;
     } else if (screen === screenTypes.mediumType) {
       return mediumLogo;
@@ -51,7 +58,7 @@ const Navigation = () => {
         <img src={getLogo()} alt={'logo'} />
         <div className={styles.vector1} />
       </NavLink>
-      {isLoggedIn ? (
+      {isAuthorised ? (
         <>
           <div className={isMenuOpen ? styles.menu : styles.menu__isClosed}>
             <NavLink

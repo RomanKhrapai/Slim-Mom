@@ -11,9 +11,9 @@ export const useGetTypeOfScreen = () => {
 
   useEffect(() => {
     const handleWidth = () => {
-      if (window.innerWidth > 768) {
+      if (window.innerWidth > 1280) {
         setScreenType(screenTypes.largeType)
-      } else if (window.innerWidth > 500 && window.innerWidth < 768) {
+      } else if (window.innerWidth > 500 && window.innerWidth < 1280) {
         setScreenType(screenTypes.mediumType)
       } else if (window.innerWidth < 500) {
         setScreenType(screenTypes.smallType)
