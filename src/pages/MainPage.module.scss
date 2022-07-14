@@ -5,8 +5,17 @@
     flex-direction: column;
     margin-right: auto;
     margin-left: auto;
+    @keyframes show {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
   
     @media screen and (min-width: 768px) {
+      
       background-image: url('../images/banana-tablet.png'),
         url('../images/leaves-tablet.png'), url('../images/strawberry-tablet.png'),
         url('../images/vector-tablet.png');
@@ -14,6 +23,12 @@
       background-size: auto, auto, auto, auto;
       background-position: top 630px right -270px, top 520px right 150px,
         top 600px right 20px, top 500px right -20px;
+
+        @media screen and (min-device-pixel-ratio: 2),
+    screen and (min-resolution: 192dpi),
+    screen and (min-resolution: 2dppx){
+      
+    }
     }
   
     @media screen and (min-width: 1280px) {
@@ -23,18 +38,31 @@
       background-size: auto, auto, auto, auto;
       background-position: top right 200px, top -120px right -270px,
         top 470px right, top 35px right;
-         
+
+        // @media screen and (min-device-pixel-ratio: 2),
+        // screen and (min-resolution: 192dpi),
+        // screen and (min-resolution: 2dppx){
+        //   background-image: url('../images/leaves-desktop-2x.png'), url('../images/banana-desktop-2x.png'),
+        //   url('../images/strawberry-desktop-2xx.png'), url('../images/vector-desktop-2x.png');
+        // background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+        // background-size: 50%, 773px 552px, 380px 360px, 602px 816px;
+        // background-position: top right 200px, top -120px right -270px,
+        //   top 470px right, top 35px right;
+        // }
+
+        transition-timing-function:cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transition-duration: 1000ms;
     }
   }
 
   .container {
-    height: 100vh;
+    // height: 100vh;
     width: 320px;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 112px;
+    padding-top: 152px;
     padding-left: 20px;
-    padding-bottom: 100px;
+    // padding-bottom: 100px;
   
     @media screen and (min-width: 768px) {
      width: 768px;

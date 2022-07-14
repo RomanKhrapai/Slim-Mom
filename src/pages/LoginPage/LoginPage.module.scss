@@ -35,6 +35,14 @@
   flex-direction: column;
   margin-right: auto;
   margin-left: auto;
+  @keyframes show {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
   @media screen and (min-width: 768px) {
     background-image: url('../../images/banana-tablet.png'),
@@ -55,6 +63,8 @@
     background-size: auto, auto, auto, auto;
     background-position: top right 200px, top -120px right -270px,
       top 470px right, top 35px right;
+      transition-timing-function:cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition-duration: 1000ms;
   }
 }
 
