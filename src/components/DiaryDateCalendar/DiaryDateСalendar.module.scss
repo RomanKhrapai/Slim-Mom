@@ -27,3 +27,20 @@
   border: none;
   cursor: pointer;
 }
+
+.calendarWrapper {
+  //position: absolute;
+  margin-top: 60px;
+  div {
+    height: 500px;
+  }
+
+  table {
+    height: 90%;
+    thead {
+      height: 80px;
+    }
+  }
+}
+
+
