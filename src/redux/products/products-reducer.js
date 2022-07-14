@@ -6,28 +6,22 @@ const productSlice = createSlice({
   initialState: { pending: false },
   reducers: {},
   extraReducers: {
-    [productsOperations.getAllProducts.pending]: (state, action) => {
-      state.pending = true;
+    [productsOperations.getRequestProducts.pending]: (state, action) => {
       state.isLoading = true;
     },
-    [productsOperations.getAllProducts.fulfilled]: (state, action) => {
-      state.pending = false;
+    [productsOperations.getRequestProducts.fulfilled]: (state, action) => {
       state.isLoading = false;
     },
-    [productsOperations.getAllProducts.rejected]: (state, action) => {
-      state.pending = false;
+    [productsOperations.getRequestProducts.rejected]: (state, action) => {
       state.isLoading = false;
     },
     [productsOperations.getOneProduct.pending]: (state, action) => {
-      state.panding = true;
       state.isLoading = true;
     },
     [productsOperations.getOneProduct.fulfilled]: (state, action) => {
-      state.pending = false;
       state.isLoading = false;
     },
     [productsOperations.getOneProduct.rejected]: (state, action) => {
-      state.pending = false;
       state.isLoading = false;
     },
   },
