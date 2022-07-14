@@ -4,18 +4,18 @@ import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 // axios.defaults.baseURL = '';
-const userInstance = axios.create({
-  baseURL: 'http://localhost:3002/',
-});
-const dairyInstance = axios.create({
-  baseURL: 'http://localhost:3003/',
-});
+// const userInstance = axios.create({
+//   baseURL: 'http://localhost:3002/',
+// });
+// const dairyInstance = axios.create({
+//   baseURL: 'http://localhost:3003/',
+// });
 
 const getUser = createAsyncThunk(
   'user/getUser',
   async (userData, { rejectWithValue }) => {
     try {
-      const { data } = await userInstance.get(
+      const { data } = await axios.get(
         '/users/&{userData.id}',
         userData
       );
@@ -48,7 +48,7 @@ const getDayProducts = createAsyncThunk(
   'user/getDiaryProducts',
   async (diaryDate, { rejectWithValue }) => {
     try {
-      const { data } = await dairyInstance.get(`/diary`, diaryDate);
+      const { data } = await axios.get(`/diary`, diaryDate);
 
       return data;
     } catch (error) {
