@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 
 import s from './DailyCaloriesForm.module.scss';
 import Button from 'components/Button/Button';
+import { getCaloriesInfoPublic } from 'services/api/productsApi';
 
 const DailyCaloriesForm = ({
   userData = { height: '', age: '', current: '', desired: '', blood: '1' },
@@ -13,17 +14,17 @@ const DailyCaloriesForm = ({
   setForbiddenProducts,
   onOpenModal,
 }) => {
-  const [formData, setFormData] = useState({});
   const { t } = useTranslation();
 
-  const getDailyCalories = values => {
-    return (
-      10 * Number(values.current) +
-      6.25 * Number(values.height) -
-      5 * Number(values.age) -
-      161 -
-      10 * (Number(values.current) - Number(values.desired))
-    );
+  const chageType = values => {
+    return {
+      height: Number(values.height),
+      age: Number(values.age),
+      currentWeight: Number(values.current),
+      desiredWeight: Number(values.desired),
+      bloodType: Number(values.blood)
+    };
+    
   };
 
   const getActiveClass = condition => {
@@ -111,10 +112,15 @@ const DailyCaloriesForm = ({
           return errors;
         }}
         onSubmit={(values, { resetForm }) => {
-          setFormData(values);
-          setDailyCalories(getDailyCalories(values));
-          onOpenModal();
-          resetForm();
+          
+          getCaloriesInfoPublic(chageType(values)).then(({ user }) => {
+            setDailyCalories(user.dailyCalorieIntake);
+            setForbiddenProducts(user.productsNotRecommended);
+          }).then(() => {
+            onOpenModal();
+            resetForm();
+          });
+          
         }}
       >
         {({
