@@ -3,17 +3,14 @@ import { toast } from 'react-toastify';
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-// const instance = axios.create({
-//   baseURL: 'http://localhost:3004/'
-// });
-
-const getAllProducts = createAsyncThunk(
-  'products/getAll',
+const getRequestProducts = createAsyncThunk(
+  'products/getAllRequest',
+  // ожидает получить строку поиска: "любое ваше значене")
   async (userRequest, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get('/products', userRequest);
+      const { data } = await axios.get(`/products?title=${userRequest}`, userRequest);
 
-      return data;
+      return data.data.result;
     } catch (error) {
       return rejectWithValue(toast.error('This product is not found'));
     }
@@ -34,7 +31,7 @@ const getOneProduct = createAsyncThunk(
 );
 
 const productsOperations = {
-  getAllProducts,
+  getRequestProducts,
   getOneProduct,
 };
 export default productsOperations;
