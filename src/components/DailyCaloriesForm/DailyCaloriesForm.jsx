@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 
  import { toast } from 'react-toastify';
@@ -9,15 +9,19 @@ import PropTypes from 'prop-types';
 
 import s from './DailyCaloriesForm.module.scss';
 import Button from 'components/Button/Button';
-import { getCaloriesInfoPublic } from 'services/api/productsApi';
+import { useDispatch, useSelector } from 'react-redux';
+
+import userOperations from '../../redux/user/user-operation';
 
 const DailyCaloriesForm = ({
   userData = { height: '', age: '', current: '', desired: '', blood: '1' },
-  setDailyCalories,
-  setForbiddenProducts,
   onOpenModal,
 }) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const isAuthorised = useSelector(state => state.auth.isAuthorised);
+  const dailyCalories = useSelector(state => state.user.dailyCalorieIntake);
+
 
   const chageType = values => {
     return {
@@ -115,16 +119,35 @@ const DailyCaloriesForm = ({
           return errors;
         }}
         onSubmit={(values, { resetForm }) => {
-          getCaloriesInfoPublic(chageType(values)).then(({ user }) => {
-            setDailyCalories(user.dailyCalorieIntake);
-            setForbiddenProducts(user.productsNotRecommended);
-          }).then(() => {
-            onOpenModal();
-            resetForm();
-          }).catch(e => {
-            console.log(e);
-            toast.error("Ooops, something went wrong. Try again.");
+//<<<<<<< feature/dailyCaloriesForm
+          
+          if (isAuthorised) {
+            dispatch(userOperations.addUserInfo(chageType(values))).then(() => {
+              if (dailyCalories) {
+                onOpenModal();
+                resetForm();
+              }
           });
+          } else {
+            dispatch(userOperations.addVisitorInfo(chageType(values))).then(() => {
+               if (dailyCalories) {
+                onOpenModal();
+                resetForm();
+              }
+          });
+          }
+//=======
+ //         getCaloriesInfoPublic(chageType(values)).then(({ user }) => {
+  //          setDailyCalories(user.dailyCalorieIntake);
+ //           setForbiddenProducts(user.productsNotRecommended);
+  //        }).then(() => {
+  //          onOpenModal();
+   //         resetForm();
+  //        }).catch(e => {
+  //          console.log(e);
+  //          toast.error("Ooops, something went wrong. Try again.");
+ //         });
+//>>>>>>> dev
         }}>
         {({
           values,
