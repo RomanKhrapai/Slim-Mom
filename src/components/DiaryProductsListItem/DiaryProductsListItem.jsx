@@ -1,24 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import EllipsisText from "react-ellipsis-text";
 import style from "./DiaryProductsListItem.module.scss";
-import closeGreySvg from '../../images/close-button-grey.svg'
-
-EllipsisText.propTypes = {
-  text: PropTypes.string.isRequired,
-  length: PropTypes.number.isRequired,
-  tail: PropTypes.string,
-  tailClassName: PropTypes.string,
-  tooltip: PropTypes.shape({
-    copyOnClick: PropTypes.bool,
-    onAppear: PropTypes.func,
-    onDisapepear: PropTypes.func
-  })
-};
+import closeGreySvg from '../../images/close-button-grey.svg';
 
 export default function DiaryProductsListItem(rowItem) {
   const { row } = rowItem;
-
   return (
     <tr key={row.id} {...row.getRowProps()} className={style.tableRow}>
       {row.cells.map((cell, i) => {

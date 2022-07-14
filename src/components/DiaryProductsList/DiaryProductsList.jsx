@@ -2,8 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import DiaryProductsListItem from '../DiaryProductsListItem';
 import { useTable } from 'react-table';
+import EllipsisText from "react-ellipsis-text";
 import { t } from 'i18next';
 import style from './DiaryProductsList.module.scss';
+
+EllipsisText.propTypes = {
+  text: PropTypes.string.isRequired,
+  length: PropTypes.number.isRequired,
+  tail: PropTypes.string,
+  tailClassName: PropTypes.string,
+  tooltip: PropTypes.shape({
+    copyOnClick: PropTypes.bool,
+    onAppear: PropTypes.func,
+    onDisapepear: PropTypes.func
+  })
+};
 
 export default function DiaryProductsList() {
   
@@ -75,7 +88,14 @@ const columns = React.useMemo(() =>
   [
     {
       Header: "Product",
-      accessor: "name"
+      accessor: "name",
+      Cell: ({ cell: { value } }) => {
+        return (
+          <>
+            <EllipsisText text={value} length={35} />
+          </>
+        );
+      }
     },
     {
       Header: "Grams",
