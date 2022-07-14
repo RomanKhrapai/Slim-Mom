@@ -4,7 +4,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://slim-mom-server.herokuapp.com/api/';
 
-
 const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -16,6 +15,7 @@ const token = {
 
 const signUpUser = createAsyncThunk(
   'auth/register',
+  // ожидает получить данные пользователя { name: user2Test, email: "user2test@gmail.com", password: "user2test" }
   async (userData, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/auth/register ', userData);
@@ -32,10 +32,11 @@ const signUpUser = createAsyncThunk(
 
 const logIn = createAsyncThunk(
   'auth/login',
+  // Ожидает получить почту и пароль пользователя {email: "user2test@gmail.com", password: "user2test" }
   async (userData, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/auth/login', userData);
-        token.set(data.accessToken);
+      token.set(data.accessToken);
       return data;
     } catch (error) {
       return rejectWithValue(
@@ -49,10 +50,11 @@ const logIn = createAsyncThunk(
 
 export const logOut = createAsyncThunk(
   'auth/logout',
+  // Ничего не получает, делает запрос с текущим токеном и разлогинивает пользователя
   async (_, { rejectWithValue }) => {
     try {
       await axios.get('/auth/logout');
-        token.unset();
+      token.unset();
     } catch (error) {
       return rejectWithValue(toast.error('Error logout'));
     }
