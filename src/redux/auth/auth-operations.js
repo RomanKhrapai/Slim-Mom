@@ -2,10 +2,77 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-// axios.defaults.baseURL = '';
-const authInstance = axios.create({
-  baseURL: 'http://localhost:3002/',
+axios.defaults.baseURL = 'https://slim-mom-server.herokuapp.com';
+
+
+const signUpUser = createAsyncThunk('auth/register', async credentials => {
+  try {
+    const { data } = await axios.post('api/auth/register', credentials);
+    return data;
+  } catch (error) {
+    toast.error(
+      'Something wrong. Please  check that the form is filled out correctly and try again. Or go to sign in.'
+    )
+  }
 });
+const logIn = createAsyncThunk('auth/login', async credentials => {
+  try {
+    const { data } = await axios.post('api/auth/login', credentials);
+    //token.set(data.token);
+    return data;
+  } catch (error) {
+    toast.error(
+      'Something wrong. Please  check that the form is filled out correctly and try again. Or go to sign in.'
+    )
+  }
+});
+
+const logOut = createAsyncThunk('auth/logout', async () => {
+  try {
+    await axios.post('api/auth/logout');
+    //token.unset();
+  } catch (error) {
+    toast.error(
+      'Something wrong. Please  check that the form is filled out correctly and try again. Or go to sign in.'
+    )
+  }
+});
+
+const fetchCurrentUser = createAsyncThunk(
+  'auth/refresh',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    //const persistedToken = state.auth.token;
+
+   // if (persistedToken === null) {
+   //   return thunkAPI.rejectWithValue();
+   // }
+
+    //token.set(persistedToken);
+    try {
+      const { data } = await axios.get('/users/current');
+      return data;
+    } catch (error) {
+      toast.error(
+        'Something wrong. Please  check that the form is filled out correctly and try again. Or go to sign in.'
+      )
+    }
+  }
+);
+
+const authOperations = {
+  signUpUser,
+  logIn,
+  logOut,
+  fetchCurrentUser
+};
+
+export default authOperations;
+
+// axios.defaults.baseURL = '';
+/*const authInstance = axios.create({
+  baseURL: 'https://slim-mom-server.herokuapp.com/',
+});*/
 
 // const token = {
 //   set(token) {
@@ -16,8 +83,8 @@ const authInstance = axios.create({
 //   },
 // };
 
-const signUpUser = createAsyncThunk(
-  'auth/register',
+/*const signUpUser = createAsyncThunk(
+  'api/auth/register',
   async (userData, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/users/signup', userData);
@@ -33,7 +100,7 @@ const signUpUser = createAsyncThunk(
 );
 
 const logIn = createAsyncThunk(
-  'auth/login',
+  'api/auth/login',
   async (userData, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/users/login', userData);
@@ -81,11 +148,5 @@ const fetchCurrentUser = createAsyncThunk(
     }
   }
 );
+*/
 
-const authOperations = {
-  signUpUser,
-  logOut,
-  logIn,
-  fetchCurrentUser,
-};
-export default authOperations;

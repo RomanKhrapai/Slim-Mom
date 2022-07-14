@@ -36,8 +36,8 @@ const LoginForm = () => {
         }
         return errors;
       }}
-      onSubmit={(values, { resetForm }) => {
-        dispatch(authOperations.logIn({values}))
+      onSubmit={({email, password}, { resetForm })=> {
+        dispatch(authOperations.logIn({email, password}))
         /*setFormData(values);*/
         resetForm();
       }}
@@ -67,7 +67,7 @@ const LoginForm = () => {
                 )}
           <label className={getActiveClass(values.email)} htmlFor="email">{t('authentification.Email')}</label>
           </div>
-          <div className={s.inputBox}>
+          <div className={s.inputBox_last}>
           <input
             type="password"
             name="password"
