@@ -3,14 +3,6 @@ import { toast } from 'react-toastify';
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-// axios.defaults.baseURL = '';
-// const userInstance = axios.create({
-//   baseURL: 'http://localhost:3002/',
-// });
-// const dairyInstance = axios.create({
-//   baseURL: 'http://localhost:3003/',
-// });
-
 const getUser = createAsyncThunk(
   'user/getUser',
   async (userData, { rejectWithValue }) => {
@@ -19,7 +11,6 @@ const getUser = createAsyncThunk(
         '/users/&{userData.id}',
         userData
       );
-      //   token.set(data.token);
       return data;
     } catch (error) {
       return rejectWithValue(
@@ -32,25 +23,41 @@ const getUser = createAsyncThunk(
 );
 
 const addUserInfo = createAsyncThunk(
-  'user/addInfo',
+  'user/addUserInfo',
+  // ожидает получить информацию из формы и язык: { height: '165', age: '45', currentWeight: '75', desiredWeight: '54', bloodType: '3', language: "ua" }
   async (userData, { rejectWithValue }) => {
     try {
-      const { data } = await axios.patch('/users/${userId}', userData);
+      const { data } = await axios.post('/users/private/daily-calorie-intake', userData);
 
       return data;
     } catch (error) {
-      return rejectWithValue(toast.error('This product is not found'));
+      return rejectWithValue(toast.error('Somsing wrong'));
+    }
+  }
+);
+
+
+const addVisitorInfo = createAsyncThunk(
+  'user/addVisitorInfo',
+    // ожидает получить информацию из формы и язык: { height: '165', age: '45', currentWeight: '75', desiredWeight: '54', bloodType: '3', language: "ua" }
+  async (userData, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post('/users/public/daily-calorie-intake', userData);
+      return data;
+    } catch (error) {
+      return rejectWithValue(toast.error('Somsing wrong'));
     }
   }
 );
 
 const getDayProducts = createAsyncThunk(
   'user/getDiaryProducts',
+  // Ничего не получает возвращает абсолютно всё что заносилось в дневник за любое время
   async (diaryDate, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(`/diary`, diaryDate);
 
-      return data;
+      return data.data;
     } catch (error) {
       return rejectWithValue(toast.error('Cannot find products for this data'));
     }
@@ -59,9 +66,10 @@ const getDayProducts = createAsyncThunk(
 
 const addProductToDiary = createAsyncThunk(
   'user/addProduct',
-  async (dailyData, { rejectWithValue }) => {
+  // ожидает получить имя продукта в ключе, а количество в его значении {amount: 500}
+  async (product, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post(`/diary`, dailyData);
+      const { data } = await axios.post(`/diary`, product);
 
       return data;
     } catch (error) {
@@ -72,9 +80,10 @@ const addProductToDiary = createAsyncThunk(
 
 const removeProductFromDiary = createAsyncThunk(
   'user/deleteProduct',
-  async (dailyData, { rejectWithValue }) => {
+  // ожидает получить id продукта
+  async (productId, { rejectWithValue }) => {
     try {
-      const { data } = await axios.delete(`/diary`, dailyData);
+      const { data } = await axios.delete(`/diary/${productId}`, productId);
 
       return data;
     } catch (error) {
@@ -89,5 +98,6 @@ const userOperations = {
   addProductToDiary,
   removeProductFromDiary,
   getDayProducts,
+  addVisitorInfo
 };
 export default userOperations;
