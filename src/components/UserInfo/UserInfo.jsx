@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react"
+import { useTranslation } from 'react-i18next';
 import styles from './userinfo.module.scss'
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,6 +9,7 @@ const UserInfo = () => {
 
   const { user } = useSelector(state => state)
   const dispatch = useDispatch()
+  const { t } = useTranslation();
 
   const tryLogOut = async () => {
     dispatch(logOut())
@@ -17,7 +19,7 @@ const UserInfo = () => {
       <div className={styles.userinfo}>
         <h3>{user.name === '' ? 'Name' : user.name}</h3>
         <div className={styles.vector1} />
-        <button onClick={() => tryLogOut()}>Sign Out</button>
+        <button onClick={() => tryLogOut()}>{t("navigation.Sign Out")}</button>
       </div>
   )
 }

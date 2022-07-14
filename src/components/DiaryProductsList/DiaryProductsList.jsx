@@ -6,18 +6,6 @@ import EllipsisText from "react-ellipsis-text";
 import { t } from 'i18next';
 import style from './DiaryProductsList.module.scss';
 
-EllipsisText.propTypes = {
-  text: PropTypes.string.isRequired,
-  length: PropTypes.number.isRequired,
-  tail: PropTypes.string,
-  tailClassName: PropTypes.string,
-  tooltip: PropTypes.shape({
-    copyOnClick: PropTypes.bool,
-    onAppear: PropTypes.func,
-    onDisapepear: PropTypes.func
-  })
-};
-
 export default function DiaryProductsList() {
   
   const data = React.useMemo(() => 
@@ -172,4 +160,16 @@ const columns = React.useMemo(() =>
 
 DiaryProductsList.propTypes = {
   cell: PropTypes.object
+};
+
+EllipsisText.propTypes = {
+  text: PropTypes.string.isRequired,
+  length: PropTypes.number.isRequired,
+  tail: PropTypes.string,
+  tailClassName: PropTypes.string,
+  tooltip: PropTypes.shape({
+    copyOnClick: PropTypes.bool,
+    onAppear: PropTypes.func,
+    onDisapepear: PropTypes.func
+  })
 };

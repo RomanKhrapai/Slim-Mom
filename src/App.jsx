@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import i18n from './services/i18n/config';
 import { useTranslation } from 'react-i18next';
-import CalculatorPage from 'pages/CalculatorPage';
 import Header from 'components/Header';
 import styles from 'App.module.scss';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,6 +14,7 @@ const LoginView = lazy(() => import('./pages/LoginPage/LoginPage'));
 const RegisterView = lazy(() => import('./pages/RegisterPage/RegisterPage'));
 const MainPage = lazy(() => import('./pages/MainPage'));
 const DiaryPage = lazy(() => import('./pages/DiaryPage/DiaryPage'));
+const CalculatorPage = lazy(() => import('./pages/CalculatorPage'));
 
 export const App = () => {
   const isLoggedIn = true;
