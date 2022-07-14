@@ -2,6 +2,9 @@ import { Formik } from 'formik';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+ import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import PropTypes from 'prop-types';
 
 import s from './DailyCaloriesForm.module.scss';
@@ -112,17 +115,17 @@ const DailyCaloriesForm = ({
           return errors;
         }}
         onSubmit={(values, { resetForm }) => {
-          
           getCaloriesInfoPublic(chageType(values)).then(({ user }) => {
             setDailyCalories(user.dailyCalorieIntake);
             setForbiddenProducts(user.productsNotRecommended);
           }).then(() => {
             onOpenModal();
             resetForm();
+          }).catch(e => {
+            console.log(e);
+            toast.error("Ooops, something went wrong. Try again.");
           });
-          
-        }}
-      >
+        }}>
         {({
           values,
           errors,
