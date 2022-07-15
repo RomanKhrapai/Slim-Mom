@@ -29,7 +29,7 @@
   @media (min-width: 768px) {
     display: flex;
     top: 0;
-    background: $main-background-color;
+    background: transparent;
   }
 }
 
@@ -42,7 +42,7 @@
   @media (min-width: 768px) {
     display: flex;
     top: 0;
-    background: $main-background-color;
+    background: transparent;
   }
 }
 
@@ -53,6 +53,9 @@
   border-bottom: solid 1px $border-color;
   width: 100%;
   padding: 10px;
+  background-color:transparent;
+  outline: none;
+  color: #9B9FAA;
 
   @media (min-width: 768px) {
     display: inline-block;

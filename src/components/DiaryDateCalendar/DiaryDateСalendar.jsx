@@ -7,10 +7,11 @@ import Datetime from 'react-datetime';
 import "react-datetime/css/react-datetime.css";
 import moment from 'moment';
 import Modal from '../Modal';
-
+import { useContext } from 'react';
+import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
 
 export default function DiaryDateCalendar() {
-
+  const [{isDark}] = useContext(ThemeContext)
   const [formattedDate, setFormattedDate] = useState(moment().format('DD, MM, YYYY'));
   const [parsedDate, setParsedDate] = useState(Date.now());
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
@@ -26,7 +27,7 @@ export default function DiaryDateCalendar() {
 
   return (
     <div className={style.datepicker}>
-      <h2 className={style.title}>{formattedDate}</h2>
+      <h2 className={isDark ? style.title_light : style.title}>{formattedDate}</h2>
       <button onClick={() => setIsCalendarOpen(!isCalendarOpen)} type="button" className={style.dateButton}>
         <img src={calendarIcon} alt={`calendar icon`} />
       </button>

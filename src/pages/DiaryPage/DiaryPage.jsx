@@ -20,7 +20,7 @@ export default function DiaryPage() {
     <div className={s.health_box}>
       <Container className={style.container}>
       {/* <div className={style.container}> */}
-      <PageTitle className={style.hidden}>{t('diary.Diary')}</PageTitle>
+      <h1 className={style.hidden}>{t('diary.Diary')}</h1>
 
       <DiaryDateСalendar />
       <DiaryAddProductForm isFormOpen={isFormOpen} setIsFormOpen={() => setIsFormOpen(false)} />
