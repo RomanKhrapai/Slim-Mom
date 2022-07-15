@@ -57,7 +57,7 @@ const Navigation = () => {
         <img src={getLogo()} alt={'logo'} />
         <div className={styles.vector1} />
       </NavLink>
-      {isAuthorised && token !== null ? (
+      {isAuthorised ? (
         <>
           <div className={isMenuOpen ? styles.menu : styles.menu__isClosed}>
             <NavLink

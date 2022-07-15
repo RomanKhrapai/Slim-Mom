@@ -20,7 +20,6 @@ const DiaryPage = lazy(() => import('./pages/DiaryPage/DiaryPage'));
 const CalculatorPage = lazy(() => import('./pages/CalculatorPage'));
 
 export const App = () => {
-  const isLoggedIn = true;
 
   const [{ theme, isDark }, toggleTheme] = useContext(ThemeContext);
   const [icon, setIcon] = useState(<BsSun size={40} />);
@@ -47,14 +46,23 @@ export const App = () => {
     setShowModal(!showModal);
   };
 
-  const token = localStorage.getItem('token');
+  const dispatch = useDispatch();
+  const isFetchingCurrentUser = useSelector(state => state.auth.isFetchingCurrentUser);
+
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
 
   return (
+
     <div
       className={showModal ? s.overflow_hidden : undefined}
       style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
     >
       {/* <div className={showModal ? s.overflow_hidden : undefined}>  */}
+      {isFetchingCurrentUser ? (
+        <h1>Loading....</h1>
+      ) : (
       <BrowserRouter>
         <Header />
 
@@ -62,7 +70,7 @@ export const App = () => {
           {icon}
         </div>
         <Suspense fallback={<Loader />}>
-          {isAuthorised && token !== null ? (
+          {isAuthorised ? (
             <Routes>
               <Route
                 path={'/'}
@@ -98,7 +106,7 @@ export const App = () => {
           )}
         </Suspense>
       </BrowserRouter>
-
+      )}      
       <ToastContainer autoClose={3000} />
     </div>
   );
