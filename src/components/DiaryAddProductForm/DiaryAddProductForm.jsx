@@ -13,7 +13,7 @@ import arrow from '../../images/arrow1.svg';
 export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen }) {
   const [productList, setProductList] = useState([]);
   const [chosenProduct, setChosenProduct] = useState("");
-
+  
   const { t } = useTranslation();
 
   const validate = values => {

@@ -1,30 +1,39 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import DailyCaloriesForm from '../DailyCaloriesForm';
 import UserInfo from './UserInfo';
 import Button from 'components/Button/Button';
 import s from './CalculatorCalorie.module.scss';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import users from '../usersDB';
 import style from '../DailyCaloriesForm//DailyCaloriesForm.module.scss';
 
 // Имитация базы и поиска пользователя, для проверки работоспособности
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 // import productsOperations from '../../redux/products/products-operation';
-import userOperations from 'redux/user/user-operation';
-import authOperations from 'redux/auth/auth-operations';
+// import userOperations from 'redux/user/user-operation';
+// import authOperations from 'redux/auth/auth-operations';
 
 const сalculatorСalorie = () => {
   // функція для перекладу
   const { t } = useTranslation();
-
-  const dispatch = useDispatch();
-  // Активность режима редактирования
-  const userId = 2;
-  const fetchUser = users.find(user => user.userId === userId);
-  const user = fetchUser
-    ? fetchUser
-    : { height: '', age: '', current: '', desired: '', blood: '' };
   const [activeModerate, setActiveModerate] = useState(false);
+  const [user, setUser] = useState({ height: '', age: '', currentWeight: '', desiredWeight: '', bloodType: '', language: "ua" })
+  const state = useSelector(state=> state)
+  console.log(state);
+
+  useEffect(()=>{
+    setUser(state.auth.user.params);
+  },[state, user])
+
+
+  // const dispatch = useDispatch();
+  // Активность режима редактирования
+  // const userId = 2;
+  // const fetchUser = users.find(user => user.userId === userId);
+  // const user = fetchUser
+  //   ? fetchUser
+  //   : { height: '', age: '', current: '', desired: '', blood: '' };
 
   const changeActive = () => {
     // dispatch(productsOperations.getAllProducts());
@@ -50,7 +59,7 @@ const сalculatorСalorie = () => {
         <div>
         <UserInfo userData={user} />
         <Button type="button" className={style.Button} onClick={changeActive}>
-          {fetchUser
+          {state.auth.user.params.height
             ? t('calculator.Change information')
             : t('calculator.Add information')}
         </Button>
@@ -64,10 +73,13 @@ const сalculatorСalorie = () => {
 
   return (
     <div className={s.box}>
-      <DailyCaloriesForm userData={user} />
+      <div>
+        
+      <DailyCaloriesForm userData={{height: user.height, age: user.age, current: user.currentWeight, desired: user.desiredWeight, blood: user.bloodType }} />
       <Button type="button" onClick={changeActive} className={s.button}>
         {t('calculator.Close Changes')}
       </Button>
+      </div>
     </div>
   );
 };

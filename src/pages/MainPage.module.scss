@@ -5,6 +5,7 @@
     flex-direction: column;
     margin-right: auto;
     margin-left: auto;
+    
     @keyframes show {
       from {
         opacity: 0;
@@ -24,11 +25,6 @@
       background-position: top 630px right -270px, top 520px right 150px,
         top 600px right 20px, top 500px right -20px;
 
-    //     @media screen and (min-device-pixel-ratio: 2),
-    // screen and (min-resolution: 192dpi),
-    // screen and (min-resolution: 2dppx){
-      
-    // }
     }
   
     @media screen and (min-width: 1280px) {
@@ -37,7 +33,7 @@
       background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
       background-size: auto, auto, auto, auto;
       background-position: top right 200px, top -120px right -270px,
-        top 470px right, top 35px right;
+        top 470px right, bottom 0px right;
 
         // @media screen and (min-device-pixel-ratio: 2),
         // screen and (min-resolution: 192dpi),
@@ -49,7 +45,7 @@
         // background-position: top right 200px, top -120px right -270px,
         //   top 470px right, top 35px right;
         // }
-
+        // transition: left 300ms linear, margin-left 300ms ease-out;
         transition-timing-function:cubic-bezier(0.25, 0.46, 0.45, 0.94);
         transition-duration: 1000ms;
     }

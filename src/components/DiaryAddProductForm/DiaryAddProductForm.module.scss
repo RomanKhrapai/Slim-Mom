@@ -29,7 +29,7 @@
   @media (min-width: 768px) {
     display: flex;
     top: 0;
-    background: $main-background-color;
+    background: transparent;
   }
 }
 
@@ -42,7 +42,7 @@
   @media (min-width: 768px) {
     display: flex;
     top: 0;
-    background: $main-background-color;
+    background: transparent;
   }
 }
 
@@ -58,6 +58,9 @@
   font-size: 14px;
   line-height: 17px;
   letter-spacing: 0.04em;
+  background-color:transparent;
+  outline: none;
+  color: #9B9FAA;
 
   @media (min-width: 768px) {
     display: inline-block;
