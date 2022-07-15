@@ -28,7 +28,8 @@ margin-top: 81px;
   min-width: 320px;
 height: 100vh;
   background:$main-background-color;
-
+  z-index: 10;
+  
   @media screen and(min-width: 768px) {
       position: absolute;
       left: 50%;
