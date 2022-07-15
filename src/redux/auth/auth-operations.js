@@ -46,6 +46,7 @@ const logIn = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/auth/login', userData);
+      localStorage.setItem('token', data.accessToken)
       token.set(data.accessToken);
       return data;
     } catch (error) {
@@ -64,6 +65,7 @@ export const logOut = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       await axios.get('/auth/logout');
+      localStorage.removeItem('token');
       token.unset();
     } catch (error) {
       return rejectWithValue(toast.error('Error logout'));

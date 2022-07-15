@@ -46,6 +46,9 @@ const Navigation = () => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const token = localStorage.getItem('token');
+
+
   return (
     <nav>
       <NavLink
@@ -56,7 +59,7 @@ const Navigation = () => {
         <img src={getLogo()} alt={'logo'} />
         <div className={styles.vector1} />
       </NavLink>
-      {isAuthorised ? (
+      {isAuthorised && token !== null ? (
         <>
           <div className={isMenuOpen ? styles.menu : styles.menu__isClosed}>
             <NavLink
