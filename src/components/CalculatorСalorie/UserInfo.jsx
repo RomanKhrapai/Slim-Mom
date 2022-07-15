@@ -13,12 +13,12 @@ const UserInfo = ({ userData }) => {
   // const [blood, setBlood] = useStap1");
 
   return (
-    <div className={`${style.inputBox} ${s.UserBox}` }>
-      <div className={`${style.input} inputBox`}><h3 className={`lable`}>{t("calculator.Height")} </h3> <p>{userData.height} </p></div>
-      <div className={`${style.input} inputBox`}><h3 className={`lable`}>{t("calculator.Age")} </h3> <p>{userData.age}</p></div>
-      <div className={`${style.input} inputBox`}><h3 className={`lable`}>{t("calculator.Current weight")} </h3> <p> {userData.current} </p></div>
-      <div className={`${style.input} inputBox`}><h3 className={`lable`}>{t("calculator.Desired weight")} </h3> <p> {userData.desired} </p></div>
-      <div className={`${style.input} inputBox`}><h3 className={`lable`}>{t("calculator.Blood type")}</h3> <p> {userData.blood}</p></div>
+    <div className={`${s.inputBox} ${s.userBox}` }>
+      <div className={ s.input}><h3 className={s.label}>{t("calculator.Height")} </h3> <p className={s.text}>{userData.height} </p></div>
+      <div className={s.input}><h3 className={s.label}>{t("calculator.Age")} </h3> <p className={s.text}>{userData.age}</p></div>
+      <div className={s.input}><h3 className={s.label}>{t("calculator.Current weight")} </h3> <p className={s.text}> {userData.current} </p></div>
+      <div className={s.input}><h3 className={s.label}>{t("calculator.Desired weight")} </h3> <p className={s.text}> {userData.desired} </p></div>
+      <div className={s.input}><h3 className={s.label}>{t("calculator.Blood type")}</h3> <p className={s.text}> {userData.blood}</p></div>
     </div>
         
   );

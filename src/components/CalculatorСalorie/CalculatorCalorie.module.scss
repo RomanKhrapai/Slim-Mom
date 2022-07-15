@@ -1,20 +1,59 @@
-.Button{
-    position: initial;
-    margin-top: 15px;
-    @media screen and (min-width: 320px) {
-        position: absolute;
-        bottom: 0px;
-        left: 250px;
-    }
+.button {
+  position: initial;
+  margin-top: 15px;
+  @media screen and (min-width: 320px) {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+  }
 }
-.Box{
-    position: relative;
-
+.box {
+  position: relative;
+  font-size: 14px;
+  line-height: 1.2em;
+  letter-spacing: 0.04em;
+  color: #9b9faa;
 }
 
-.UserBox{
-    max-width: 50%;
-    @media screen and (min-width: 768px) {
-        max-width: 30%;
-    }
+.userBox {
+  max-width: 50%;
+  @media screen and (min-width: 768px) {
+    max-width: 30%;
+  }
+}
+
+.inputBox {
+  padding: 8px 0 30px;
+  display: block;
+  width: 100%;
+}
+
+.title {
+  margin-bottom: 15px;
+}
+
+.label {
+  padding-bottom: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.2em;
+  letter-spacing: 0.04em;
+  color: #9b9faa;
+}
+
+.text {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.2em;
+  letter-spacing: 0.04em;
+  color: #9b9faa;
+}
+
+.input {
+  padding: 8px 0 0;
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+  outline: none;
 }
