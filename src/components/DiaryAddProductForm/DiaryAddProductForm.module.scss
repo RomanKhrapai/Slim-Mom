@@ -101,15 +101,6 @@
   color: #FC842D;
 }
 
-.buttonAddMobile {
-  margin: 0 auto;
-  display: auto;
-
-  @media (min-width: 768px) {
-    display: none;
-  }
-}
-
 .buttonAddDesktop {
   width: 48px;
   height: 48px;
@@ -118,6 +109,15 @@
   justify-content: center;
 
   @media (max-width: 767px) {
+    display: none;
+  }
+}
+
+.buttonAddMobile {
+  margin: 0 auto;
+  display: auto;
+
+  @media (min-width: 768px) {
     display: none;
   }
 }
