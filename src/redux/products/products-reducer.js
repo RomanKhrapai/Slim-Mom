@@ -8,12 +8,16 @@ const productSlice = createSlice({
   extraReducers: {
     [productsOperations.getRequestProducts.pending]: (state, action) => {
       state.isLoading = true;
+      state.error = null;
     },
-    [productsOperations.getRequestProducts.fulfilled]: (state, action) => {
+    [productsOperations.getRequestProducts.fulfilled]: (state, {payload}) => {
+      console.log(state);
+      state.items = payload;
       state.isLoading = false;
     },
-    [productsOperations.getRequestProducts.rejected]: (state, action) => {
+    [productsOperations.getRequestProducts.rejected]: (state, {payload}) => {
       state.isLoading = false;
+      state.error = payload;
     },
     [productsOperations.getOneProduct.pending]: (state, action) => {
       state.isLoading = true;

@@ -64,14 +64,17 @@
   "Your diet will be displayed here": "Тут буде відображено вашу дієту",
 
   "diary": {
-    "Diary": "Щоденник",
-    "Add": "Додати",
-    "Enter product name": "Введіть назву продукту",
-    "Grams": "Грами",
-    "Required": "Поле обов'язкове",
-    "Your request is too long": "Скоротіть назву запиту",
-    "Must be a number": "Значення має бути числом",
-    "g": "г",
-    "kcal": "ккал"
+
+      "Diary": "Щоденник",
+      "Add": "Додати",
+      "Enter product name": "Введіть назву продукту",
+      "Grams": "Грами",
+      "Required": "Поле обов'язкове",
+      "Your request is too long": "Скоротіть назву запиту",
+      "Must be a number": "Значення має бути числом",
+      "g": "г",
+      "kcal": "ккал",
+      "Your amount is too long. Please, enter your amount in grams": "Завелике число. Будь ласка, введіть кількість у грамах"
+
   }
 }

@@ -1,12 +1,12 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './navigation.module.scss';
 import { NavLink } from 'react-router-dom';
 import largeLogo from '../../images/logo.svg';
 import mediumLogo from '../../images/logo1-tablet.svg';
 import smallLogo from '../../images/logo1-mobile.svg';
-import menuSvg from '../../images/burger-menu1.svg'
-import closeSvg from '../../images/close-button1.svg'
+import menuSvg from '../../images/burger-menu1.svg';
+import closeSvg from '../../images/close-button1.svg';
 import UserInfo from '../UserInfo';
 import {
   screenTypes,
@@ -15,9 +15,8 @@ import {
 import { useSelector } from 'react-redux';
 
 const Navigation = () => {
-
   const { isAuthorised } = useSelector(state => state.auth);
-  
+
   const getNavLinkClassName = ({ isActive }) =>
     isActive
       ? `${styles.nav__link_active} ${styles.nav__link}`
@@ -30,11 +29,11 @@ const Navigation = () => {
     isActive ? styles.active__logo : styles.logo;
 
   const { t } = useTranslation();
-  const screen = useGetTypeOfScreen()
+  const screen = useGetTypeOfScreen();
   const getLogo = () => {
     if (screen === screenTypes.smallType) {
       if (isAuthorised) {
-        return mediumLogo
+        return mediumLogo;
       }
       return smallLogo;
     } else if (screen === screenTypes.mediumType) {
@@ -42,9 +41,11 @@ const Navigation = () => {
     } else {
       return largeLogo;
     }
-  }
+  };
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const token = localStorage.getItem('token');
 
   return (
     <nav>
@@ -56,7 +57,7 @@ const Navigation = () => {
         <img src={getLogo()} alt={'logo'} />
         <div className={styles.vector1} />
       </NavLink>
-      {isAuthorised ? (
+      {isAuthorised && token !== null ? (
         <>
           <div className={isMenuOpen ? styles.menu : styles.menu__isClosed}>
             <NavLink
@@ -71,7 +72,7 @@ const Navigation = () => {
               className={getLoggedInLinkClassName}
               to={'/calculator'}
             >
-              {t("navigation.Calculator")}
+              {t('navigation.Calculator')}
             </NavLink>
           </div>
           <UserInfo />
@@ -79,16 +80,24 @@ const Navigation = () => {
             className={styles.menu__button}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            <img className={isMenuOpen ? styles.menu__button__isOpen : styles.menu__button__isClosed} src={isMenuOpen ? closeSvg : menuSvg} alt={'menu'}/>
+            <img
+              className={
+                isMenuOpen
+                  ? styles.menu__button__isOpen
+                  : styles.menu__button__isClosed
+              }
+              src={isMenuOpen ? closeSvg : menuSvg}
+              alt={'menu'}
+            />
           </button>
         </>
       ) : (
         <>
           <NavLink className={getNavLinkClassName} to={'/login'}>
-            {t("navigation.Sign In")}
+            {t('navigation.Sign In')}
           </NavLink>
           <NavLink className={getNavLinkClassName} to={'/registration'}>
-            {t("navigation.Registration")}
+            {t('navigation.Registration')}
           </NavLink>
         </>
       )}

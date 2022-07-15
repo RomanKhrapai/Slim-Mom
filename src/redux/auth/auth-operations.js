@@ -20,15 +20,16 @@ const signUpUser = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
        const signUpResponse = await axios.post('/auth/register ', userData);
-       console.log(signUpResponse.data);
+      //  console.log(signUpResponse.data);
        try{
          const loginResponse= await axios.post('/auth/login', {email: userData.email, password: userData.password});
-         token.set(loginResponse.data.accessToken);
          console.log(loginResponse.data);
+         token.set(loginResponse.data.accessToken);
+         localStorage.setItem('token', loginResponse.data.accessToken);
          return({...loginResponse.data, isAuthorised: true})
        }
        catch{
-       return (signUpResponse.data, {isAuthorised: false, refreshToken: "", accessToken: "" , user:{email: "", name: ""}});
+       return (signUpResponse.data, {isAuthorised: false, refreshToken: "", accessToken: "" , user:{ email: "", name: ""}});
       }
     } catch (error) {
       return rejectWithValue(
@@ -46,6 +47,7 @@ const logIn = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/auth/login', userData);
+      localStorage.setItem('token', data.accessToken)
       token.set(data.accessToken);
       return data;
     } catch (error) {
@@ -64,6 +66,7 @@ export const logOut = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       await axios.get('/auth/logout');
+      localStorage.removeItem('token');
       token.unset();
     } catch (error) {
       return rejectWithValue(toast.error('Error logout'));
@@ -72,7 +75,7 @@ export const logOut = createAsyncThunk(
 );
 
 const fetchCurrentUser = createAsyncThunk(
-  'auth/refresh',
+  'users/current-user',
   async (_, thunkAPI) => {
     const persistedToken = thunkAPI.getState().auth.user.accessToken;
 

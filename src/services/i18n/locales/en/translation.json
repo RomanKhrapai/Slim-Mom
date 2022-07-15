@@ -64,6 +64,7 @@
   "Your diet will be displayed here": "Your diet will be displayed here",
 
   "diary": {
+
     "Diary": "Diary",
     "Add": "Add",
     "Enter product name": "Enter product name",
@@ -73,5 +74,6 @@
     "Must be a number": "Must be a number",
     "g": "g",
     "kcal": "kcal"
+      "Your amount is too long. Please, enter your amount in grams": "Your amount is too long. Please, enter your amount in grams"
   }
 }
