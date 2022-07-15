@@ -71,6 +71,7 @@
       "Your request is too long": "Скоротіть назву запиту",
       "Must be a number": "Значення має бути числом",
       "g": "г",
-      "kcal": "ккал"
+      "kcal": "ккал",
+      "Your amount is too long. Please, enter your amount in grams": "Завелике число. Будь ласка, введіть кількість у грамах"
   }
 }
