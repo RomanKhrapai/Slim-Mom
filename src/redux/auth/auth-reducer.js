@@ -16,7 +16,7 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     [authOperations.signUpUser.fulfilled]: (state, action) => {
-      state.user.params = action.payload.data.user.params
+      state.user.params = action.payload.user.params
       state.user.name = action.payload.user.name;
       state.user.email = action.payload.email;
       state.user.refreshToken = action.payload.refreshToken;

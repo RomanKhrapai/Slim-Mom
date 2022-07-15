@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import { ThemeProvider } from 'components/ThemeProvider/ThemeProvider';
+import { ThemeProvider } from 'components/ThemeProvider/ThemeProvider';
 import 'react-toastify/dist/ReactToastify.css';
 import { App } from 'App';
 import './services/i18n/config';
@@ -14,9 +14,9 @@ import { store } from './redux/store';
 ReactDOM.render(
   <React.StrictMode>
      <Provider store={store}>
-    {/* <ThemeProvider> */}
+    <ThemeProvider>
     <App />
-    {/* </ThemeProvider> */}
+    </ThemeProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

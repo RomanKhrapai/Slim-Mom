@@ -1,196 +1,186 @@
 .form {
-    width: 240px;
+  width: 240px;
 
-    @media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     width: 512px;
-    }
+  }
 }
 
 .inputsContainer {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 
-    @media screen and (min-width: 768px) {
-            display: flex;
-            flex-wrap: wrap;
-            margin-bottom: 60px;
-        }
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+  }
 }
 
 .inputBox {
-    position: relative;
-    margin-bottom: 40px;
+  position: relative;
+  margin-bottom: 40px;
 
-
-    &:focus-within .labelAbsolute {
+  &:focus-within .labelAbsolute {
     transform: translateY(-100%);
+  }
+
+  @media screen and (min-width: 768px) {
+    flex-basis: 240px;
+
+    &:nth-child(1) {
+      order: 1;
+      margin-right: 32px;
     }
 
+    &:nth-child(2) {
+      order: 3;
+      margin-right: 32px;
+    }
 
-    @media screen and (min-width: 768px) {
-flex-basis: 240px;
+    &:nth-child(3) {
+      order: 5;
+    }
 
-
-&:nth-child(1) {
-    order: 1;
-    margin-right: 32px;
+    &:nth-child(4) {
+      order: 2;
+    }
+  }
 }
-
-&:nth-child(2) {
-    order: 3;
-    margin-right: 32px;
-}
-
-&:nth-child(3) {
-
-    order: 5;
-}
-
-&:nth-child(4) {
-
-    order: 2;
-}
-
-}
-}
-
 
 .input {
   padding: 8px 0 0;
-    display: block;
-    width: 100%;
-    border: none;
-    border-bottom: 1px solid #E0E0E0;
-    outline: none;
-
-    
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+  outline: none;
+background-color: transparent;
 }
 
-.label, .input {
-font-weight: 700;
-font-size: 14px;
-line-height: 1.2em;
-letter-spacing: 0.04em;
-color: #9B9FAA;
+.label,
+.input {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.2em;
+  letter-spacing: 0.04em;
+  color: #9b9faa;
 }
-
 
 .labelAbsolute {
-position: absolute;
-top: 0;
-left: 0;
-transition: transform 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .labelFocus {
-transform: translateY(-100%);
+  transform: translateY(-100%);
 }
 
 .labelBlood {
-    margin-bottom: 8px;
-@media screen and (min-width: 768px) {
-    border-bottom: 1px solid #E0E0E0;
-        padding-bottom: 8px;
-}
+  margin-bottom: 8px;
+  @media screen and (min-width: 768px) {
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 8px;
+  }
 }
 
 .bloodBox {
+  & label {
+    margin-right: 24px;
+    font-size: 14px;
+    line-height: 1.2em;
+    letter-spacing: 0.04em;
+    color: #9b9faa;
+  }
 
- & label {
-        margin-right: 24px;
-        font-size: 14px;
-        line-height: 1.2em;
-        letter-spacing: 0.04em;
-        color: #9B9FAA;
-    }
+  & label:last-of-type {
+    margin-right: 0;
+  }
 
- & label:last-of-type {
-            margin-right: 0;
-}
-
- @media screen and (min-width: 768px) {
-flex-basis: 240px;
-order: 4;
- }
+  @media screen and (min-width: 768px) {
+    flex-basis: 240px;
+    order: 4;
+  }
 }
 
 .radio {
-    position: relative;
-    display: inline-block;
-    padding: 5px 0 5px 32px;
-    margin-right: 24px;
+  position: relative;
+  display: inline-block;
+  padding: 5px 0 5px 32px;
+  margin-right: 24px;
 
-        &:last-of-type {
-                margin-right: 0;
-            }
+  &:last-of-type {
+    margin-right: 0;
+  }
 
-    @media screen and (min-width: 768px) {
-        margin-right: 28px;
-    }
+  @media screen and (min-width: 768px) {
+    margin-right: 28px;
+  }
 }
 
 .radioInput {
-    position: absolute;
-        clip: rect(0 0 0 0);
-        width: 1px;
-        height: 1px;
-        margin: -1px;
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
 }
 
 .radioBox {
-position: absolute;
-top: 50%;
-left: 0;
-transform: translateY(-50%);
-display: flex;
-align-items: center;
-justify-content: center;
-width: 20px;
-height: 20px;
-background-color: #fff;
-border: 1px solid #E0E0E0;
-border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 50%;
 
-& span {
+  & span {
     display: inline-block;
     width: 10px;
     height: 10px;
     border-radius: 50%;
-}
+  }
 
-& + span {
-font-size: 14px;
-line-height: 1.2em;
-letter-spacing: 0.04em;
-color: #9B9FAA;
-}
+  & + span {
+    font-size: 14px;
+    line-height: 1.2em;
+    letter-spacing: 0.04em;
+    color: #9b9faa;
+  }
 
-.radioInput:checked + & span {
-background-color: #FC842D;
-}
+  .radioInput:checked + & span {
+    background-color: #fc842d;
+  }
 
-.radioInput:checked + & + span {
+  .radioInput:checked + & + span {
     font-weight: 700;
-    color: #FC842D;
-}
+    color: #fc842d;
+  }
 }
 
 .errorMessage {
-position: absolute;
-bottom: -70%;
-font-size: 8px;
-line-height: 1.2em;
-letter-spacing: 0.04em;
-color: #FC842D;
+  position: absolute;
+  bottom: -70%;
+  font-size: 8px;
+  line-height: 1.2em;
+  letter-spacing: 0.04em;
+  color: #fc842d;
 }
 
 .Btn {
-
-    @media screen and (max-width: 767px) {
+  @media screen and (max-width: 767px) {
     margin-left: auto;
     margin-right: auto;
-    }
+  }
 
-    @media screen and (min-width: 1280px) {
-        margin-left: auto;
-}
+  @media screen and (min-width: 1280px) {
+    margin-left: auto;
+  }
 }

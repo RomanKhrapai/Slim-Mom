@@ -20,15 +20,15 @@ const signUpUser = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
        const signUpResponse = await axios.post('/auth/register ', userData);
-       console.log(signUpResponse.data);
+      //  console.log(signUpResponse.data);
        try{
          const loginResponse= await axios.post('/auth/login', {email: userData.email, password: userData.password});
          token.set(loginResponse.data.accessToken);
-         console.log(loginResponse.data);
+        //  console.log(loginResponse.data.user.params);
          return({...loginResponse.data, isAuthorised: true})
        }
        catch{
-       return (signUpResponse.data, {isAuthorised: false, refreshToken: "", accessToken: "" , user:{email: "", name: ""}});
+       return (signUpResponse.data, {isAuthorised: false, refreshToken: "", accessToken: "" , user:{ email: "", name: ""}});
       }
     } catch (error) {
       return rejectWithValue(
