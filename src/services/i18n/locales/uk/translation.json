@@ -7,7 +7,8 @@
     "Diary": "Щоденник",
     "Calculator": "Калькулятор",
     "Sign In": "Увійти",
-    "Registration": "Реєстрація"
+    "Registration": "Реєстрація",
+    "Sign Out": "Вийти"
   },
 
   "authentification": {

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import DiaryDateСalendar from '../../components/DiaryDateCalendar';
 import DiaryAddProductForm from '../../components/DiaryAddProductForm';
 import DiaryProductsList from '../../components/DiaryProductsList';
+import Container from 'components/Container/Container';
 import PageTitle from '../../components/PageTitle/PageTitle';
 import Button from 'components/Button/Button';
 import style from './DiaryPage.module.scss';
@@ -17,7 +18,8 @@ export default function DiaryPage() {
 
   return (
     <div className={s.health_box}>
-      <div className={style.container}>
+      <Container className={style.container}>
+      {/* <div className={style.container}> */}
       <PageTitle className={style.hidden}>{t('diary.Diary')}</PageTitle>
 
       <DiaryDateСalendar />
@@ -27,7 +29,8 @@ export default function DiaryPage() {
       <Button type="button" className={style.buttonShowAddProductForm} onClick={() => setIsFormOpen(true)} >
         <img src={addIcon} alt={`add product icon`} className={style.addIcon} />
       </Button>
-      </div>
+      </Container>
+      {/* </div> */}
       <RightSideBar />
     </div>
   );

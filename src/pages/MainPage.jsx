@@ -13,8 +13,6 @@ import Container from 'components/Container/Container';
 
 const MainPage = ({showModal, toggleModal}) => {
   const { t, i18n } = useTranslation();
-  const [dailyCalories, setDailyCalories] = useState(null);
-  const [forbiddenProducts, setForbiddenProducts] = useState([]);
 
   return (
     <div className={s.images_container}>
@@ -22,18 +20,13 @@ const MainPage = ({showModal, toggleModal}) => {
       <WrapperDisplayNone showModal={showModal}>
       <PageTitle>{t('Calculate your daily calorie intake')}</PageTitle>
         <DailyCaloriesForm
-          setDailyCalories={setDailyCalories}
-          setForbiddenProducts={setForbiddenProducts}
           onOpenModal={toggleModal}
         />
       </WrapperDisplayNone>
 
       {showModal && (
         <Modal onClose={toggleModal}>
-          <ModalContent
-            forbiddenProducts={forbiddenProducts}
-            dailyCalories={dailyCalories}
-          />
+          <ModalContent/>
         </Modal>
       )}
     </Container>
