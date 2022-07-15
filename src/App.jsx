@@ -21,11 +21,14 @@ const DiaryPage = lazy(() => import('./pages/DiaryPage/DiaryPage'));
 const CalculatorPage = lazy(() => import('./pages/CalculatorPage'));
 
 export const App = () => {
+
+  const isLoggedIn = true;
+//   const [{theme, isDark}, toggleTheme] = useContext(ThemeContext)
+//   const [icon, setIcon] = useState(<BsSun size={40}/>)
+
   
   const isAuthorised = useSelector(state => state.auth.isAuthorised);
-  
-  // const [{theme, isDark}, toggleTheme] = useContext(ThemeContext)
-  // const [icon, setIcon] = useState(<BsSun size={40}/>)
+
 
 // useEffect(()=>{
 //   if(isDark){
@@ -48,7 +51,7 @@ export const App = () => {
 
   return (
     // <div className={showModal ? s.overflow_hidden : undefined} style={{backgroundColor: theme.backgroundColor, color: theme.color}}>
-       <div className={showModal ? s.overflow_hidden : undefined}>
+        <div className={showModal ? s.overflow_hidden : undefined}> 
       <BrowserRouter basename={'Slim-Mom'}>
             <Header />
             {/* <div onClick={toggleTheme}>{icon}</div> */}
