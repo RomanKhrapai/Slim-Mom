@@ -9,9 +9,9 @@ import users from '../usersDB';
 import style from '../DailyCaloriesForm//DailyCaloriesForm.module.scss';
 
 // Имитация базы и поиска пользователя, для проверки работоспособности
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch,} from 'react-redux';
 // import productsOperations from '../../redux/products/products-operation';
-// import userOperations from 'redux/user/user-operation';
+import userOperations from 'redux/user/user-operation';
 // import authOperations from 'redux/auth/auth-operations';
 
 const сalculatorСalorie = () => {
@@ -27,7 +27,7 @@ const сalculatorСalorie = () => {
   },[state, user])
 
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // Активность режима редактирования
   // const userId = 2;
   // const fetchUser = users.find(user => user.userId === userId);
@@ -40,7 +40,7 @@ const сalculatorСalorie = () => {
     // dispatch(authOperations.logIn({email: "user2test@gmail.com", password: "user2test" }));
     // dispatch(authOperations.signUpUser({ name: "user37Test", email: "user37test@gmail.com", password: "user37test" }));
   
-    // dispatch(userOperations.addProductToDiary({date: "29299292", productId: "5d51694802b2373622ff553b", amount: 500, }))
+    // dispatch(userOperations.addProductToDiary({date: "12345", productId: "5d51694802b2373622ff553b", amount: 500, }))
     // dispatch(userOperations.getDayProducts());
     setActiveModerate(!activeModerate);
   };
