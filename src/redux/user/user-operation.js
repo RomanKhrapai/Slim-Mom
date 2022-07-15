@@ -52,10 +52,10 @@ const addVisitorInfo = createAsyncThunk(
 
 const getDayProducts = createAsyncThunk(
   'user/getDiaryProducts',
-  // Ничего не получает возвращает абсолютно всё что заносилось в дневник за любое время
-  async (diaryDate, { rejectWithValue }) => {
+  // получает дату и id пользователя {date: "29299292", user: { user: "62d09b07b161f09579378429",}
+  async (diaryData, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`/diary`, diaryDate);
+      const { data } = await axios.get(`/diary/${diaryData.date}`, diaryData);
 
       return data.data;
     } catch (error) {
@@ -66,10 +66,10 @@ const getDayProducts = createAsyncThunk(
 
 const addProductToDiary = createAsyncThunk(
   'user/addProduct',
-  // ожидает получить имя продукта в ключе, а количество в его значении {amount: 500}
-  async (product, { rejectWithValue }) => {
+  // ожидает получить id продукта, его количество и дату { date: "29299292", productId: "5d51694802b2373622ff553b", amount: 500, }
+  async (productData, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post(`/diary`, product);
+      const { data } = await axios.post(`/diary`, productData);
 
       return data;
     } catch (error) {

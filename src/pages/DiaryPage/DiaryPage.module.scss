@@ -1,12 +1,30 @@
 @import '../../Scss/variables.scss';
 
 .container {
-  margin-top: 200px;
-  padding: 0 20px 20px;
+  // margin-top: 200px;
+  // padding: 0 20px 20px;
   position: relative;
+  min-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  // padding-top: 152px;
+  // padding-left: 20px;
+  // padding-bottom: 41px;
+  padding: 152px 20px 41px 20px;
 
-  @media (max-width: 768px) {
-    margin-top: 160px;
+  // @media (max-width: 768px) {
+  //   margin-top: 160px;
+  // }
+
+  @media screen and (min-width: 768px) {
+   width: 768px;
+    padding: 180px 90px 48px 32px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    max-width: 1280px;
+    padding:293px 104px 0 16px;
+
   }
 }
 
