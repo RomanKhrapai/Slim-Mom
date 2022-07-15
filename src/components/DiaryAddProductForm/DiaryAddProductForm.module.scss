@@ -101,23 +101,38 @@
   color: #FC842D;
 }
 
+.buttonAddDesktop {
+  font-family: 'VerdanaBold';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.2;
+
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.04em;
+  border-color: transparent;
+  color:$main-background-color;
+  background:$buttons-color;
+  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  border-radius: 30px;
+  cursor: pointer;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
+}
+
 .buttonAddMobile {
   margin: 0 auto;
   display: auto;
 
   @media (min-width: 768px) {
-    display: none;
-  }
-}
-
-.buttonAddDesktop {
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  @media (max-width: 767px) {
     display: none;
   }
 }
