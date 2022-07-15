@@ -2,7 +2,7 @@
   "name": "slim-mom",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://RomanKhrapai.github.io/Slim-Mom/",
+  "homepage": "https://slim-mom7.netlify.app/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.3",
     "@testing-library/jest-dom": "^5.16.3",
