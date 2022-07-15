@@ -40,9 +40,9 @@ const сalculatorСalorie = () => {
     // dispatch(authOperations.logIn({email: "user2test@gmail.com", password: "user2test" }));
     // dispatch(authOperations.signUpUser({ name: "user37Test", email: "user37test@gmail.com", password: "user37test" }));
   
-    dispatch(userOperations.addProductToDiary({date: "12345", productId: "5d51694802b2373622ff553b", amount: 500, }))
+    // dispatch(userOperations.addProductToDiary({date: "12345", productId: "5d51694802b2373622ff553b", amount: 500, }))
     // dispatch(userOperations.getDayProducts());
-    // setActiveModerate(!activeModerate);
+    setActiveModerate(!activeModerate);
   };
 
   //Имитация открытия модалки
