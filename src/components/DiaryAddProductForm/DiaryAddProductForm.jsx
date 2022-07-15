@@ -95,12 +95,12 @@ export default function DiaryAddProductForm({isFormOpen, setIsFormOpen}) {
         <img src={arrow} alt={`arrow close icon`} />
       </button>
 
-      <Button type="submit" className={style.buttonAddMobile}>
-        {t('diary.Add')}
-      </Button>
-
       <Button type="submit" className={style.buttonAddDesktop}>
         <img src={addIcon} alt={`add product icon`} className={style.addIcon} />
+      </Button>
+
+      <Button type="submit" className={style.buttonAddMobile}>
+        {t('diary.Add')}
       </Button>
     </form>
   );
