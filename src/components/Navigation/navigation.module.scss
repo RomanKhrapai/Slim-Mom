@@ -3,7 +3,6 @@ $firstColor: #9b9faa;
 $mobileBackgoundColor: #264061;
 $mobileActiveColor: #ffffff;
 nav {
-  z-index: 100;
   align-items: flex-end;
   display: flex;
   font-family: 'GothemProBold';
@@ -11,16 +10,17 @@ nav {
   img {
   }
   .vector1 {
-    width: 32px;
-    height: 0px;
-    border: 2px solid #e0e0e0;
+    width: 36px;
+    height: 4px;
+    background-color: #e0e0e0;
     transform: rotate(90deg);
     align-self: end;
     margin-bottom: 10px;
     transition: 0.3s ease;
+    border: none;
     &:hover,
     &:focus {
-      border: 2px solid black;
+      background-color: black;
     }
   }
   a {
@@ -58,12 +58,12 @@ nav {
     // без падингу паличка випирає з оутлайну при фокусі
     &:hover .vector1,
     &:focus .vector1 {
-      border: 2px solid black;
+      background-color: black;
     }
   }
   .active__logo {
     .vector1 {
-      border: 2px solid black;
+      background-color: black;
     }
   }
   .menu__button {
