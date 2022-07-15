@@ -16,16 +16,14 @@ const token = {
 
 const signUpUser = createAsyncThunk(
   'auth/register',
-  // ожидает получить данные пользователя { name: "user2Test", email: "user2test@gmail.com", password: "user2test" }
   async (userData, { rejectWithValue }) => {
     try {
        const signUpResponse = await axios.post('/auth/register ', userData);
-      //  console.log(signUpResponse.data);
        try{
          const loginResponse= await axios.post('/auth/login', {email: userData.email, password: userData.password});
          console.log(loginResponse.data);
          token.set(loginResponse.data.accessToken);
-         localStorage.setItem('token', loginResponse.data.accessToken);
+
          return({...loginResponse.data, isAuthorised: true})
        }
        catch{
@@ -40,14 +38,13 @@ const signUpUser = createAsyncThunk(
     }
   }
 );
+//
 
 const logIn = createAsyncThunk(
   'auth/login',
-  // Ожидает получить почту и пароль пользователя {email: "user2test@gmail.com", password: "user2test" }
   async (userData, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/auth/login', userData);
-      localStorage.setItem('token', data.accessToken)
       token.set(data.accessToken);
       return data;
     } catch (error) {
@@ -62,11 +59,9 @@ const logIn = createAsyncThunk(
 
 export const logOut = createAsyncThunk(
   'auth/logout',
-  // Ничего не получает, делает запрос с текущим токеном и разлогинивает пользователя
   async (_, { rejectWithValue }) => {
     try {
       await axios.get('/auth/logout');
-      localStorage.removeItem('token');
       token.unset();
     } catch (error) {
       return rejectWithValue(toast.error('Error logout'));
@@ -75,18 +70,16 @@ export const logOut = createAsyncThunk(
 );
 
 const fetchCurrentUser = createAsyncThunk(
-  'users/current-user',
+  'auth/current',
   async (_, thunkAPI) => {
-    const persistedToken = thunkAPI.getState().auth.user.accessToken;
+    const persistedToken = thunkAPI.getState().auth.token;
 
     if (persistedToken === null) {
       return thunkAPI.rejectWithValue();
     }
-
     token.set(persistedToken);
-
     try {
-      const { data } = await axios.get('auth/refresh');
+      const { data } = await axios.get('users/current-user');
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(toast.error('Error fetch current user.'));
