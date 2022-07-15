@@ -1,14 +1,15 @@
 import { React, lazy, Suspense, useState, useContext, useEffect} from 'react';
 import { ToastContainer } from 'react-toastify';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { store } from './redux/store';
+import { useSelector } from 'react-redux';
 import i18n from './services/i18n/config';
 import { useTranslation } from 'react-i18next';
 import CalculatorPage from 'pages/CalculatorPage';
 import Header from 'components/Header';
 import s from 'App.module.scss';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from 'react-redux';
+import authOperations from 'redux/auth/auth-operations';
 import Loader from 'components/Loader';
 // import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
 // import { BsSun,BsMoon } from 'react-icons/bs';
@@ -20,7 +21,9 @@ const MainPage = lazy(() => import('./pages/MainPage'));
 const DiaryPage = lazy(() => import('./pages/DiaryPage/DiaryPage'));
 
 export const App = () => {
-  const isLoggedIn = true;
+  
+  const isAuthorised = useSelector(state => state.auth.isAuthorised);
+  
   // const [{theme, isDark}, toggleTheme] = useContext(ThemeContext)
   // const [icon, setIcon] = useState(<BsSun size={40}/>)
 
@@ -47,11 +50,10 @@ export const App = () => {
     // <div className={showModal ? s.overflow_hidden : undefined} style={{backgroundColor: theme.backgroundColor, color: theme.color}}>
        <div className={showModal ? s.overflow_hidden : undefined}>
       <BrowserRouter basename={'Slim-Mom'}>
-        <Provider store={store}>
             <Header />
             {/* <div onClick={toggleTheme}>{icon}</div> */}
               <Suspense fallback={<div>LOADER</div>}>
-                {isLoggedIn ? (
+                {isAuthorised ? (
                   <Routes>
                     <Route path={'/'} element={<MainPage toggleModal={toggleModal} showModal={showModal}/>} />
                     <Route path={'/diary'} element={<DiaryPage />} />
@@ -84,9 +86,8 @@ export const App = () => {
                 )}
               </Suspense>
 
-        </Provider>
       </BrowserRouter>
-
+      
       <ToastContainer autoClose={3000} />
     </div>
   );

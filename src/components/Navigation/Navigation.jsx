@@ -16,10 +16,8 @@ import { useSelector } from 'react-redux';
 
 const Navigation = () => {
 
-  const { isAuthorised } = useSelector(({ auth }) => auth)
-  console.log(isAuthorised);
-  // const isAuthorised = true;
-
+  const { isAuthorised } = useSelector(state => state.auth);
+  
   const getNavLinkClassName = ({ isActive }) =>
     isActive
       ? `${styles.nav__link_active} ${styles.nav__link}`

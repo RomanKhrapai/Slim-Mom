@@ -26,12 +26,14 @@ const authSlice = createSlice({
     },
     [authOperations.fetchCurrentUser.pending]: (state, action) => {
       state.isLoading = true;
+      state.isFetchingCurrentUser = true;
     },
     [authOperations.fetchCurrentUser.fulfilled]: (state, action) => {
       state.isLoading = false;
     },
     [authOperations.fetchCurrentUser.rejected]: (state, action) => {
       state.isLoading = false;
+      state.isFetchingCurrentUser = false;
     },
     [authOperations.logIn.pending]: (state, action) => {
       state.isLoading = true;
@@ -54,6 +56,7 @@ const authSlice = createSlice({
     [authOperations.logOut.fulfilled]: (state, action) => {
       state.user.email = '';
       state.user.refreshToken = '';
+      state.accessToken = null;
       state.isAuthorised = false;
       state.isLoading = false;
     },
