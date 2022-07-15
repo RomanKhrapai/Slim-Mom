@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import authOperations from 'redux/auth/auth-operations.js';
+import { useSelector } from 'react-redux';
+import Loader from '../Loader'
 
 import s from './LoginForm.module.scss';
 
@@ -16,6 +18,7 @@ const LoginForm = () => {
   const [formData, setFormData] = useState({});
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const loading = useSelector(state => state.auth.isLoading);  
   
   return (
   <>
@@ -89,6 +92,7 @@ const LoginForm = () => {
          )
         }
       </Formik>
+      { loading && <Loader /> }
     </>
   );
 };

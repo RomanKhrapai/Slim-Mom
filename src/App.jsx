@@ -58,8 +58,10 @@ useEffect(()=>{
         {/* <div className={showModal ? s.overflow_hidden : undefined}>  */}
       <BrowserRouter>
         <Header />
+
        <div className={s.button_theme_swither} onClick={toggleTheme}>{icon}</div>
-        <Suspense fallback={<div>LOADER</div>}>
+        <Suspense fallback={ <Loader /> }>
+
           {isAuthorised && token !== null ? (
             <Routes>
               <Route
