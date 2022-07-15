@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux';
 import authOperations from 'redux/auth/auth-operations';
 import Loader from 'components/Loader';
 import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
-import { BsSun,BsMoon } from 'react-icons/bs';
+import { BsSun, BsMoon } from 'react-icons/bs';
 
 const LoginView = lazy(() => import('./pages/LoginPage/LoginPage'));
 const RegisterView = lazy(() => import('./pages/RegisterPage/RegisterPage'));
@@ -22,20 +22,18 @@ const CalculatorPage = lazy(() => import('./pages/CalculatorPage'));
 export const App = () => {
   const isLoggedIn = true;
 
-  const [{theme, isDark}, toggleTheme] = useContext(ThemeContext)
-  const [icon, setIcon] = useState(<BsSun size={40}/>)
-
+  const [{ theme, isDark }, toggleTheme] = useContext(ThemeContext);
+  const [icon, setIcon] = useState(<BsSun size={40} />);
 
   const isAuthorised = useSelector(state => state.auth.isAuthorised);
 
-
-useEffect(()=>{
-  if(isDark){
-    setIcon(<BsMoon size={40}/>)
-  }
-  else{setIcon(<BsSun size={40}/>)}
-},[isDark])
-
+  useEffect(() => {
+    if (isDark) {
+      setIcon(<BsMoon size={40} />);
+    } else {
+      setIcon(<BsSun size={40} />);
+    }
+  }, [isDark]);
 
   const { t } = useTranslation();
 
@@ -52,13 +50,16 @@ useEffect(()=>{
   const token = localStorage.getItem('token');
 
   return (
-
-
-       <div className={showModal ? s.overflow_hidden : undefined} style={{backgroundColor: theme.backgroundColor, color: theme.color}}>
-        {/* <div className={showModal ? s.overflow_hidden : undefined}>  */}
+    <div
+      className={showModal ? s.overflow_hidden : undefined}
+      style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
+    >
+      {/* <div className={showModal ? s.overflow_hidden : undefined}>  */}
       <BrowserRouter>
         <Header />
-       <div className={s.button_theme_swither} onClick={toggleTheme}>{icon}</div>
+        <div className={s.button_theme_swither} onClick={toggleTheme}>
+          {icon}
+        </div>
         <Suspense fallback={<div>LOADER</div>}>
           {isAuthorised && token !== null ? (
             <Routes>
@@ -81,14 +82,11 @@ useEffect(()=>{
               <Route
                 path={'/'}
                 element={
-                 <h1 style={{ marginTop: '200px', height:'100vh' }}>
-                    {t('Calculate your daily calorie intake')}
-                  </h1>
+                  <MainPage toggleModal={toggleModal} showModal={showModal} />
                 }
               />
               <Route path={'/registration'} element={<RegisterView />} />
               <Route path={'/login'} element={<LoginView />} />
-
 
               <Route
                 path={'*'}

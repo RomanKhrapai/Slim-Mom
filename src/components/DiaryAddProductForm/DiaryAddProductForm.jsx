@@ -10,8 +10,7 @@ import style from './DiaryAddProductForm.module.scss';
 import addIcon from '../../images/plus-icon.svg';
 import arrow from '../../images/arrow1.svg';
 
-export default function DiaryAddProductForm({isFormOpen, setIsFormOpen}) {
-
+export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen }) {
   const { t } = useTranslation();
 
   const validate = values => {
@@ -41,7 +40,7 @@ export default function DiaryAddProductForm({isFormOpen, setIsFormOpen}) {
 
   const closeButton = () => {
     setIsFormOpen(false);
-  }
+  };
 
   const openFormClasses = classNames(style.form, style.form__isOpen);
   const closeFormClasses = classNames(style.form, style.form__isClosed);
@@ -70,7 +69,7 @@ export default function DiaryAddProductForm({isFormOpen, setIsFormOpen}) {
 
         {/* {formik.values.productName ?  */}
         {/* <FindProducts requestName={formik.values.productName} /> */}
-         {/* : null} */}
+        {/* : null} */}
       </div>
 
       <div className={style.errorContainer}>
@@ -90,8 +89,12 @@ export default function DiaryAddProductForm({isFormOpen, setIsFormOpen}) {
             : null}
         </div>
       </div>
-      
-      <button onClick={() => closeButton()} type="button" className={style.closeButton}>
+
+      <button
+        onClick={() => closeButton()}
+        type="button"
+        className={style.closeButton}
+      >
         <img src={arrow} alt={`arrow close icon`} />
       </button>
 
@@ -109,4 +112,4 @@ export default function DiaryAddProductForm({isFormOpen, setIsFormOpen}) {
 DiaryAddProductForm.propTypes = {
   isFormOpen: PropTypes.bool,
   setIsFormOpen: PropTypes.func,
-}
+};
