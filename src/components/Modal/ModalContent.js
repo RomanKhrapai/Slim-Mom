@@ -3,9 +3,14 @@ import styles from '../Modal/ModalContent.module.scss';
 import { useTranslation } from 'react-i18next';
 import Button from 'components/Button/Button';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 export default function ModalContent({dailyCalories,forbiddenProducts}) {
   const { t, i18n } = useTranslation();
+const navigate = useNavigate()
+const navigateToRegister = ()=>{
+  navigate("/registration")
+}
   return (
     <>
       <h2 className={styles.modal__title}>
@@ -26,7 +31,7 @@ export default function ModalContent({dailyCalories,forbiddenProducts}) {
         }
         </ol>
       </div>
-      <Button className={styles.button_additional} type="button">
+      <Button className={styles.button_additional} type="button" onClick={navigateToRegister}>
         {t('modal.Start losing weight')}
       </Button>
     </>
