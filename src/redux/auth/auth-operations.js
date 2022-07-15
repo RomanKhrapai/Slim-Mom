@@ -22,7 +22,7 @@ const signUpUser = createAsyncThunk(
        const signUpResponse = await axios.post('/auth/register ', userData);
       //  console.log(signUpResponse.data);
        try{
-         const loginResponse= await axios.post('/auth/logn', {email: userData.email, password: userData.password});
+         const loginResponse= await axios.post('/auth/login', {email: userData.email, password: userData.password});
          token.set(loginResponse.data.accessToken);
         //  console.log(loginResponse.data.user.params);
          return({...loginResponse.data, isAuthorised: true})
