@@ -6,7 +6,7 @@ const authSlice = createSlice({
   name: 'auth',
   initialState: {
     isAuthorised: false,
-    user: { name: '', email: '', id: '', refreshToken: '' },
+    user: { name: '', email: '', id: '', refreshToken: '', params:{} },
     isLoading: false,
     accessToken: ''
   },
@@ -16,7 +16,7 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     [authOperations.signUpUser.fulfilled]: (state, action) => {
-      // state.user.id = action.payload.data.user.id
+      state.user.params = action.payload.data.user.params
       state.user.name = action.payload.user.name;
       state.user.email = action.payload.email;
       state.user.refreshToken = action.payload.refreshToken;
@@ -41,6 +41,7 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     [authOperations.logIn.fulfilled]: (state, action) => {
+      state.user.params = action.payload.user.params,
       state.user.name = action.payload.user.name;
       state.user.email = action.payload.user.email;
       state.user.refreshToken = action.payload.refreshToken;
