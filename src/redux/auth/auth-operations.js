@@ -24,6 +24,7 @@ const signUpUser = createAsyncThunk(
        try{
          const loginResponse= await axios.post('/auth/login', {email: userData.email, password: userData.password});
          token.set(loginResponse.data.accessToken);
+         localStorage.setItem('token', loginResponse.data.accessToken);
         //  console.log(loginResponse.data.user.params);
          return({...loginResponse.data, isAuthorised: true})
        }
