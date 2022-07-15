@@ -54,7 +54,7 @@ export const App = () => {
       <BrowserRouter>
         <Header />
         {/* <div onClick={toggleTheme}>{icon}</div> */}
-        <Suspense fallback={<div>LOADER</div>}>
+        <Suspense fallback={ <Loader /> }>
           {isAuthorised && token !== null ? (
             <Routes>
               <Route

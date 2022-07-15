@@ -12,6 +12,7 @@ import Button from 'components/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 
 import userOperations from '../../redux/user/user-operation';
+import Loader from '../Loader';
 
 const DailyCaloriesForm = ({
   userData = { height: '', age: '', current: '', desired: '', blood: '1' },
@@ -21,6 +22,7 @@ const DailyCaloriesForm = ({
   const dispatch = useDispatch();
   const isAuthorised = useSelector(state => state.auth.isAuthorised);
   const dailyCalories = useSelector(state => state.user.dailyCalorieIntake);
+  const loading = useSelector(state => state.user.isLoading);
 
 
   const chageType = values => {
@@ -324,6 +326,7 @@ const DailyCaloriesForm = ({
           );
         }}
       </Formik>
+       { loading && <Loader /> }
     </>
   );
 };
