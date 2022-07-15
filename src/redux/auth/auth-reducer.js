@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { act } from 'react-dom/test-utils';
 import authOperations from './auth-operations';
 
 const authSlice = createSlice({
@@ -7,6 +8,7 @@ const authSlice = createSlice({
     isAuthorised: false,
     user: { name: '', email: '', id: '', refreshToken: '' },
     isLoading: false,
+    accessToken: ''
   },
   reducers: {},
   extraReducers: {
@@ -42,6 +44,7 @@ const authSlice = createSlice({
       state.user.name = action.payload.user.name;
       state.user.email = action.payload.user.email;
       state.user.refreshToken = action.payload.refreshToken;
+      state.accessToken = action.payload.accessToken;
       state.isAuthorised = true;
       state.isLoading = false;
     },
