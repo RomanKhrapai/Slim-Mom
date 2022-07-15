@@ -64,10 +64,13 @@ const сalculatorСalorie = () => {
 
   return (
     <div className={s.box}>
+      <div>
+        
       <DailyCaloriesForm userData={user} />
       <Button type="button" onClick={changeActive} className={s.button}>
         {t('calculator.Close Changes')}
       </Button>
+      </div>
     </div>
   );
 };
