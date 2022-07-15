@@ -2,6 +2,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
+
 axios.defaults.baseURL = 'https://slim-mom-server.herokuapp.com/api/';
 
 const token = {
@@ -15,11 +16,20 @@ const token = {
 
 const signUpUser = createAsyncThunk(
   'auth/register',
-  // ожидает получить данные пользователя { name: user2Test, email: "user2test@gmail.com", password: "user2test" }
+  // ожидает получить данные пользователя { name: "user2Test", email: "user2test@gmail.com", password: "user2test" }
   async (userData, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/auth/register ', userData);
-      return data;
+       const signUpResponse = await axios.post('/auth/register ', userData);
+       console.log(signUpResponse.data);
+       try{
+         const loginResponse= await axios.post('/auth/login', {email: userData.email, password: userData.password});
+         token.set(loginResponse.data.accessToken);
+         console.log(loginResponse.data);
+         return({...loginResponse.data, isAuthorised: true})
+       }
+       catch{
+       return (signUpResponse.data, {isAuthorised: false, refreshToken: "", accessToken: "" , user:{email: "", name: ""}});
+      }
     } catch (error) {
       return rejectWithValue(
         toast.error(

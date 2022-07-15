@@ -4,8 +4,8 @@ import authOperations from './auth-operations';
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    isAuthorised: true,
-    user: { email: '', refreshToken: '' },
+    isAuthorised: false,
+    user: { name: '', email: '', id: '', refreshToken: '' },
     isLoading: false,
   },
   reducers: {},
@@ -14,6 +14,11 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     [authOperations.signUpUser.fulfilled]: (state, action) => {
+      // state.user.id = action.payload.data.user.id
+      state.user.name = action.payload.user.name;
+      state.user.email = action.payload.email;
+      state.user.refreshToken = action.payload.refreshToken;
+      state.isAuthorised = action.payload.isAuthorised;
       state.isLoading = false;
     },
     [authOperations.signUpUser.rejected]: (state, action) => {
@@ -32,6 +37,7 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     [authOperations.logIn.fulfilled]: (state, action) => {
+      state.user.name = action.payload.user.name;
       state.user.email = action.payload.user.email;
       state.user.refreshToken = action.payload.refreshToken;
       state.isAuthorised = true;
