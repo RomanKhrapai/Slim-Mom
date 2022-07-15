@@ -13,3 +13,17 @@
     line-height: 41px;
   }
 }
+
+.white_title {
+  font-family: 'VerdanaBold';
+  margin-bottom: 32px;
+  font-size: 18px;
+  line-height: 1.44;
+  color: #fff;
+
+  @media screen and(min-width: 768px) {
+    font-size: 34px;
+    margin-bottom: 68px;
+    line-height: 41px;
+  }
+}

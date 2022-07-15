@@ -22,6 +22,19 @@
   }
 }
 
+.title_light {
+  font-family: 'VerdanaBold';
+  margin-right: 20px;
+  font-size: 18px;
+  line-height: 22px;
+  color: $main-background-color;
+
+  @media (min-width: 768px) {
+    font-size: 34px;
+    line-height: 41px;
+  }
+}
+
 .dateButton {
   background: transparent;
   border: none;
