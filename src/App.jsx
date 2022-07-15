@@ -45,14 +45,17 @@ export const App = () => {
     setShowModal(!showModal);
   };
 
+  const token = localStorage.getItem('token');
+
   return (
     // <div className={showModal ? s.overflow_hidden : undefined} style={{backgroundColor: theme.backgroundColor, color: theme.color}}>
+
     <div className={showModal ? s.overflow_hidden : undefined}>
       <BrowserRouter>
         <Header />
         {/* <div onClick={toggleTheme}>{icon}</div> */}
         <Suspense fallback={<div>LOADER</div>}>
-          {isAuthorised ? (
+          {isAuthorised && token !== null ? (
             <Routes>
               <Route
                 path={'/'}
@@ -80,6 +83,7 @@ export const App = () => {
               />
               <Route path={'/registration'} element={<RegisterView />} />
               <Route path={'/login'} element={<LoginView />} />
+
 
               <Route
                 path={'*'}
