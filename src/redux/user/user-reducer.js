@@ -19,6 +19,7 @@ const userSlice = createSlice({
       state.isLoading = true;
     },
     [userOperations.addUserInfo.fulfilled]: (state, action) => {
+      state.params = action.payload.data.user
       state.userId = action.payload.data.id;
       state.dailyCalorieIntake = action.payload.data.dailyCalorieIntake;
       state.productsNotRecommended = action.payload.data.productsNotRecommended
