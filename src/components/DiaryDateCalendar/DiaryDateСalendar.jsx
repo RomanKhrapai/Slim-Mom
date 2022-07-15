@@ -11,13 +11,12 @@ import Modal from '../Modal';
 
 export default function DiaryDateCalendar() {
 
-  const [formattedDate, setFormattedDate] = useState(moment().format('DD, MM, YYYY'));
+  const [formattedDate, setFormattedDate] = useState(moment().format('DD, MM, YYYY').split(', ').join('.'));
   const [parsedDate, setParsedDate] = useState(Date.now());
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-
   const getDateTime = (momentDate) => {
     const parsedDate = Date.parse(momentDate._d.toString())
-    const formattedDate = momentDate.format('DD, MM, YYYY')
+    const formattedDate = momentDate.format('DD, MM, YYYY').split(', ').join('.')
     console.log(parsedDate, formattedDate);
 
     setParsedDate(parsedDate)
