@@ -3,7 +3,12 @@ import userOperations from './user-operation';
 
 const userSlice = createSlice({
   name: 'user',
-  initialState: { userId: '', dailyCalorieIntake: '', productsNotRecommended: [], isLoading: false },
+  initialState: {
+    userId: '',
+    dailyCalorieIntake: '',
+    productsNotRecommended: [],
+    isLoading: false,
+  },
   reducers: {},
   extraReducers: {
     [userOperations.getUser.pending]: (state, action) => {
@@ -21,13 +26,13 @@ const userSlice = createSlice({
     [userOperations.addUserInfo.fulfilled]: (state, action) => {
       state.userId = action.payload.data.id;
       state.dailyCalorieIntake = action.payload.data.dailyCalorieIntake;
-      state.productsNotRecommended = action.payload.data.productsNotRecommended
+      state.productsNotRecommended = action.payload.data.productsNotRecommended;
       state.isLoading = false;
     },
     [userOperations.addUserInfo.rejected]: (state, action) => {
-      state.userId = "";
-      state.dailyCalorieIntake = "";
-      state.productsNotRecommended = "";
+      state.userId = '';
+      state.dailyCalorieIntake = '';
+      state.productsNotRecommended = '';
       state.isLoading = false;
     },
     [userOperations.addVisitorInfo.pending]: (state, action) => {
@@ -35,12 +40,12 @@ const userSlice = createSlice({
     },
     [userOperations.addVisitorInfo.fulfilled]: (state, action) => {
       state.dailyCalorieIntake = action.payload.user.dailyCalorieIntake;
-      state.productsNotRecommended = action.payload.user.productsNotRecommended
+      state.productsNotRecommended = action.payload.user.productsNotRecommended;
       state.isLoading = false;
     },
     [userOperations.addVisitorInfo.rejected]: (state, action) => {
-      state.dailyCalorieIntake = "";
-      state.productsNotRecommended = "";
+      state.dailyCalorieIntake = '';
+      state.productsNotRecommended = '';
       state.isLoading = false;
     },
     [userOperations.getDayProducts.pending]: (state, action) => {
@@ -73,4 +78,4 @@ const userSlice = createSlice({
   },
 });
 
-export default userSlice.reducer
+export default userSlice.reducer;
