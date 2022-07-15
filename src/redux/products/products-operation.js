@@ -7,13 +7,9 @@ const getRequestProducts = createAsyncThunk(
   'products/getAllRequest',
   // ожидает получить строку поиска: "любое ваше значене")
   async (userRequest, { rejectWithValue }) => {
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZDA5ODQ4YjE2MWYwOTU3OTM3ODQwNCIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE2NTc4Mzc2NzQsImV4cCI6MTY1Nzg3MzY3NH0.s_A6p_JuXT89f1QkjbKDg8YAy0lXTwJfzlPcspkOgQ0"
     try {
-      const { data } = await axios.get(`/products?title=${userRequest}`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
+      const { data } = await axios.get(`/products?title=${userRequest}`
+      );
 
       return data.data.result;
     } catch (error) {
