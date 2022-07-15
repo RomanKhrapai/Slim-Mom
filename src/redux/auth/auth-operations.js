@@ -23,9 +23,9 @@ const signUpUser = createAsyncThunk(
       //  console.log(signUpResponse.data);
        try{
          const loginResponse= await axios.post('/auth/login', {email: userData.email, password: userData.password});
+         console.log(loginResponse.data);
          token.set(loginResponse.data.accessToken);
          localStorage.setItem('token', loginResponse.data.accessToken);
-        //  console.log(loginResponse.data.user.params);
          return({...loginResponse.data, isAuthorised: true})
        }
        catch{
@@ -75,7 +75,7 @@ export const logOut = createAsyncThunk(
 );
 
 const fetchCurrentUser = createAsyncThunk(
-  'auth/refresh',
+  'users/current-user',
   async (_, thunkAPI) => {
     const persistedToken = thunkAPI.getState().auth.user.accessToken;
 
