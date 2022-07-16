@@ -134,6 +134,23 @@ const Navigation = () => {
             </NavLink>
           </div>
           <UserInfo />
+
+          <button
+            className={styles.languageBtn}
+            type="button"
+            onClick={e => i18n.changeLanguage(opositiveLanguage)}
+          >
+            <span className={styles.languageText}>
+              <span
+                className={
+                  isDark ? styles.currentLanguage_dark : styles.currentLanguage
+                }
+              >
+                {currentLanguage.toUpperCase()}
+              </span>
+              {/* /{opositiveLanguage} */}
+            </span>
+          </button>
           <button
             className={styles.menu__button}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -175,23 +192,6 @@ const Navigation = () => {
           </NavLink>
         </>
       )}
-
-      <button
-        className={styles.languageBtn}
-        type="button"
-        onClick={e => i18n.changeLanguage(opositiveLanguage)}
-      >
-        <span className={styles.languageText}>
-          <span
-            className={
-              isDark ? styles.currentLanguage_dark : styles.currentLanguage
-            }
-          >
-            {currentLanguage}
-          </span>
-          /{opositiveLanguage}
-        </span>
-      </button>
 
     </nav>
   );

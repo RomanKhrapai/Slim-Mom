@@ -24,7 +24,7 @@ const сalculatorСalorie = ({ onOpenModal }) => {
   if (!activeModerate) {
     return (
       <>
-        <h2 className={s.title}>{t('calculator.Your Parametrs')}:</h2>
+        <h2 className={s.title}>{t('calculator.Your Parameters')}:</h2>
         <div>
           <UserInfo userData={user} />
           <Button type="button" className={style.Button} onClick={changeActive}>

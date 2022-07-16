@@ -141,7 +141,7 @@ nav {
     }
   }
   .menu__button {
-    margin-left: 50px;
+    margin-left: 25px;
   }
 }
 @media screen and (max-width: 1280px) {
@@ -242,7 +242,7 @@ nav {
     height: calc(100% - 122px);
   }
   .menu__button {
-    margin-left: auto;
+    // margin-left: auto;
   }
 }
 
@@ -259,6 +259,11 @@ nav {
   border-radius: 30px;
   cursor: pointer;
   transition: 0.3s ease;
+
+  @media screen and (max-width: 768px) {
+    margin-left: auto;
+  }
+
   @media screen and (max-width: 1280px) {
     margin-bottom: 0px;
   }
