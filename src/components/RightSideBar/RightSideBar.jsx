@@ -15,7 +15,7 @@ function RightSideBar() {
 
   const language = i18n.language === 'uk' ? "ua" : "en";
   const userInfo = useSelector(productsSelectors.getUserInfo);
-  console.log(userInfo);
+  // console.log(userInfo);
 
   const userRequest = {
     age: userInfo.age,

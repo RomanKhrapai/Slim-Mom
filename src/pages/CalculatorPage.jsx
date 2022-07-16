@@ -15,7 +15,7 @@ import WrapperDisplayNone from 'components/WrapperDisplayNone/WrapperDisplayNone
 
 import PropTypes from 'prop-types';
 
-const CalculatorPage = () => {
+const CalculatorPage = ({toggleModal, showModal}) => {
   const { t } = useTranslation();
   const loading = useSelector(state => state.auth.isLoading);
 
