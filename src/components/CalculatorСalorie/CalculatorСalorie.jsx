@@ -10,12 +10,12 @@ import PropTypes from 'prop-types';
 
 const сalculatorСalorie = ({ onOpenModal }) => {
   // функція для перекладу
-  console.log(onOpenModal);
+  // console.log(onOpenModal);
   const { t } = useTranslation();
   const [activeModerate, setActiveModerate] = useState(false);
   // const [user, setUser] = useState({ height: '', age: '', currentWeight: '', desiredWeight: '', bloodType: '', language: "ua" })
   const user = useSelector(state => state.auth.user);
-  console.log(user);
+  // console.log(user);
 
   const changeActive = () => {
     setActiveModerate(!activeModerate);

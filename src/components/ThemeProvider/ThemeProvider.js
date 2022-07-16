@@ -30,7 +30,6 @@ export const ThemeProvider = ({ children }) => {
     if (localStorage.getItem('isDark') === true) {
       setIsDark(isDark);
     }
-    console.log(localStorage.getItem('isDark'));
   }, []);
 
   return (

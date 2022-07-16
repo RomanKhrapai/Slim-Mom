@@ -26,7 +26,6 @@ const DailyCaloriesForm = ({
   },
   onOpenModal,
 }) => {
-  console.log(onOpenModal);
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const isAuthorised = useSelector(state => state.auth.isAuthorised);
@@ -129,7 +128,7 @@ const DailyCaloriesForm = ({
         const language = i18n.language === 'uk' ? "ua" : "en";
 
           if (isAuthorised) {
-            const toNumberValues = chageType(values);
+            const toNumberValues = changeType(values);
             const newUserValues = {
               height: toNumberValues.height,
               age: toNumberValues.age,
@@ -138,7 +137,6 @@ const DailyCaloriesForm = ({
               bloodType: toNumberValues.bloodType,
               language
             };
-            console.log(newUserValues);
             dispatch(userOperations.addUserInfo(convertedType)).then(() => {
               onOpenModal();
               dispatch(apdateUserInfo(convertedType));
