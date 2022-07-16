@@ -45,14 +45,15 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen, addClas
   const formik = useFormik({
     initialValues: { productName: '', productAmount: '' },
     validate,
-    onSubmit: values => {
+    onSubmit: (values, { resetForm }) => {
       const data = {
         productId: chosenProduct,
         amount: values.productAmount,
         date: currentDate,
       }
       dispatch(userOperations.addProductToDiary(data))
-      formik.resetForm();
+      resetForm();
+      formik.values.gramsAmount = ''
     },
   });
 
