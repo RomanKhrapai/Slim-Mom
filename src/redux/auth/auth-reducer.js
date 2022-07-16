@@ -21,8 +21,9 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     [authOperations.signUpUser.fulfilled]: (state, action) => {
-      (state.user = action.payload.user.params),
-        (state.user.name = action.payload.user.name);
+      // console.log(action.payload);
+      state.user = action.payload.user.params,
+      state.user.name = action.payload.user.name,
       state.user.email = action.payload.email;
       state.token = action.payload.accessToken;
       state.isAuthorised = true;
@@ -49,7 +50,9 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     [authOperations.logIn.fulfilled](state, { payload }) {
+      // console.log(payload);
       state.user = payload.user.params;
+      state.user.name = payload.user.name;
       state.token = payload.accessToken;
       state.isAuthorised = true;
       state.isLoading = false;

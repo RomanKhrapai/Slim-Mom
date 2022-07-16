@@ -18,12 +18,12 @@ import PropTypes from 'prop-types';
 const CalculatorPage = ({toggleModal, showModal}) => {
   const { t } = useTranslation();
   const loading = useSelector(state => state.auth.isLoading);
-
-  // useEffect(() => {
   const currentDate = useSelector(productsSelectors.getTodayDate);
   const dispatch = useDispatch();
+
+  useEffect(() => {
   dispatch(changeData(currentDate));
-  // }, []);
+  }, [currentDate]);
 
   return (
     <div className={s.health_box}>
