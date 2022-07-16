@@ -8,6 +8,7 @@ import smallLogo from '../../images/logo1-mobile.svg';
 import menuSvg from '../../images/burger-menu1.svg';
 import closeSvg from '../../images/close-button1.svg';
 import UserInfo from '../UserInfo';
+import i18n from 'services/i18n/config';
 import {
   screenTypes,
   useGetTypeOfScreen,
@@ -47,6 +48,9 @@ const Navigation = () => {
 
   const token = localStorage.getItem('token');
 
+  const currentLanguage = i18n.language
+  const opositiveLanguage = ( currentLanguage === "uk"? "en": "uk")
+  
   return (
     <nav>
       <NavLink
@@ -101,6 +105,7 @@ const Navigation = () => {
           </NavLink>
         </>
       )}
+<button className={styles.languageBtn}type='button' onClick={(e)=> i18n.changeLanguage(opositiveLanguage)}><span className={styles.languageText}><span className={styles.currentLanguage}>{currentLanguage}</span>/{opositiveLanguage}</span></button>
     </nav>
   );
 };
