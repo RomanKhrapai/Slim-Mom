@@ -36,6 +36,7 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     [authOperations.fetchCurrentUser.fulfilled](state, { payload }) {
+      console.log(payload);
       state.user = payload;
       state.isAuthorised = true;
       state.isFetchingCurrentUser = false;
@@ -75,7 +76,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { apdateUserInfo } = authSlice.actions;
-console.log(authSlice);
-
+export const {apdateUserInfo} = authSlice.actions
 export default authSlice.reducer;
