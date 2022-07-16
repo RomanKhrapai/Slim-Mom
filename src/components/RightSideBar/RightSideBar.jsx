@@ -3,13 +3,7 @@ import s from './RightSideBar.module.scss';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
 import userOptions from '../../redux/user/user-operation';
-
-// импорт данных про каллории и вес блюда
-const kall = null;
-const porc = null;
-
-// const kall = 320;
-// const porc = 300;
+import productsSelectors from '../../redux/user/user-selector';
 
 function RightSideBar() {
   const [leftCkal, setLeftCkal] = useState(0);
@@ -18,24 +12,25 @@ function RightSideBar() {
   const [category, setCategory] = useState([]);
 
   const User = useSelector(state => state);
-  const arrey = User.user.productsNotRecommended;
-  let dailyRate = User.user.dailyCalorieIntake;
 
-  const dispatch = useDispatch();
+  let dailyRate = User.user.dailyCalorieIntake;
+  const currentDate = useSelector(productsSelectors.getTodayDate);
+  let chosenDate = useSelector(productsSelectors.getChosenDate);
+  const products = useSelector(productsSelectors.getDiaryProducts);
+
+  userOptions.getDayProducts(chosenDate);
+
+  let kall = 0;
+  let porc = 0;
+
+  for (const product of products) {
+    kall += product.productId.calories;
+    porc += product.amount;
+  }
 
   const { t } = useTranslation();
 
   useEffect(() => {
-    dispatch(
-      userOptions.addUserInfo({
-        height: '165',
-        age: '45',
-        currentWeight: '75',
-        desiredWeight: '54',
-        bloodType: '3',
-        language: 'ua',
-      })
-    );
     if (dailyRate === '') {
       return (dailyRate = 0);
     }
@@ -43,7 +38,7 @@ function RightSideBar() {
     setConsumed(Math.floor((porc * kall) / 100));
     setNormal(Math.floor((consuned / dailyRate) * 100));
     setCategory(User.user.productsNotRecommended);
-  }, [dailyRate, consuned, porc, kall, normal]);
+  }, [dailyRate, consuned, porc, kall, normal, chosenDate]);
 
   function addLeadingZeroKcal(value) {
     return String(value).padStart(3, '0');
@@ -67,7 +62,8 @@ function RightSideBar() {
         <h2 className={s.h2_title}>
           {' '}
           {t('Summary for')}{' '}
-          {dateUserToday ? `${dateUserToday}` : `${dateUser}`}
+          {chosenDate === currentDate ? `${currentDate}` : `${chosenDate}`}
+          {/* {chosenDate} */}
         </h2>
         <ul className={s.list}>
           <li className={s.title}>
@@ -121,18 +117,3 @@ function RightSideBar() {
 }
 
 export default RightSideBar;
-
-// dispatch(
-//   userOptions.addProductToDiary({
-//     date: '29299292',
-//     productId: '5d51694802b2373622ff553b',
-//     amount: 500,
-//   })
-// );
-// dispatch(
-//   userOptions.getDayProducts({
-//     date: '29299292',
-//     user: { user: '62d09b07b161f09579378429' },
-//   })
-// );
-// const dailyCall = User.user.dailyCalorieIntake;
