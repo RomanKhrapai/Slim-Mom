@@ -18,6 +18,7 @@ const signUpUser = createAsyncThunk(
   'auth/register',
   async (userData, { rejectWithValue }) => {
     try {
+
        const signUpResponse = await axios.post('/auth/register ', userData);
        try{
          const loginResponse= await axios.post('/auth/login', {email: userData.email, password: userData.password});
@@ -27,6 +28,7 @@ const signUpUser = createAsyncThunk(
        }
        catch{
        return (signUpResponse.data, {isAuthorised: false, refreshToken: "", accessToken: "" , user:{ email: "", name: ""}});
+
       }
     } catch (error) {
       return rejectWithValue(
@@ -35,7 +37,6 @@ const signUpUser = createAsyncThunk(
     }
   }
 );
-//
 
 const logIn = createAsyncThunk(
   'auth/login',

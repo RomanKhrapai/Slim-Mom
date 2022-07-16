@@ -68,14 +68,14 @@ p {
     display: flex;
     flex-direction: column;
     min-width: 517px;
-    height: 850px;
+    min-height: 100vh;
     padding-top: 292px;
     padding-left: 106px;
     padding-bottom: 0px;
     padding-right: 106px;
     background-image: url('../../images/LayerHealth.png');
     background-size: 740px 842px;
-    background-position: bottom -15px right -10px;
+    background-position: top 5px right -10px;
     background-repeat: no-repeat;
   }
 }

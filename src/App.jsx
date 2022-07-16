@@ -57,18 +57,18 @@ export const App = () => {
 
     <div
       className={showModal ? s.overflow_hidden : undefined}
-      style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
+      style={{ backgroundColor: theme.backgroundColor, color: theme.color, position: 'relative', minHeight:'100vh' }}
     >
       {/* <div className={showModal ? s.overflow_hidden : undefined}>  */}
       {isFetchingCurrentUser ? (
-        <h1>Loading....</h1>
+        <Loader />
       ) : (
       <BrowserRouter>
         <Header />
 
-        <div className={s.button_theme_swither} onClick={toggleTheme}>
+        {/* <div className={s.button_theme_swither} onClick={toggleTheme}>
           {icon}
-        </div>
+        </div> */}
         <Suspense fallback={<Loader />}>
           {isAuthorised ? (
             <Routes>

@@ -8,23 +8,40 @@ import smallLogo from '../../images/logo1-mobile.svg';
 import menuSvg from '../../images/burger-menu1.svg';
 import closeSvg from '../../images/close-button1.svg';
 import UserInfo from '../UserInfo';
+import i18n from 'services/i18n/config';
 import {
   screenTypes,
   useGetTypeOfScreen,
 } from '../../hooks/useGetTypeOfScreen';
 import { useSelector } from 'react-redux';
+import { useContext } from 'react';
+import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
 
 const Navigation = () => {
+  const [{isDark}] = useContext(ThemeContext)
   const { isAuthorised } = useSelector(state => state.auth);
 
   const getNavLinkClassName = ({ isActive }) =>
     isActive
       ? `${styles.nav__link_active} ${styles.nav__link}`
       : styles.nav__link;
+
+      const getNavLinkClassNameDark = ({ isActive }) =>
+      isActive
+        ? `${styles.nav__link_active_dark} ${styles.nav__link_dark}`
+        : styles.nav__link_dark;
+
   const getLoggedInLinkClassName = ({ isActive }) =>
     isActive
       ? `${styles.nav__link__loggedIn_active} ${styles.nav__link__loggedIn}`
       : styles.nav__link__loggedIn;
+
+      const getLoggedInLinkClassNameDark = ({ isActive }) =>
+      isActive
+        ? `${styles.nav__link__loggedIn_active_dark} ${styles.nav__link__loggedIn_dark}`
+        : styles.nav__link__loggedIn_dark;
+      
+      
   const getLogoClassName = ({ isActive }) =>
     isActive ? styles.active__logo : styles.logo;
 
@@ -47,6 +64,9 @@ const Navigation = () => {
 
   const token = localStorage.getItem('token');
 
+  const currentLanguage = i18n.language
+  const opositiveLanguage = ( currentLanguage === "uk"? "en": "uk")
+  
   return (
     <nav>
       <NavLink
@@ -62,14 +82,14 @@ const Navigation = () => {
           <div className={isMenuOpen ? styles.menu : styles.menu__isClosed}>
             <NavLink
               onClick={() => setIsMenuOpen(false)}
-              className={getLoggedInLinkClassName}
+              className={isDark? getLoggedInLinkClassNameDark :getLoggedInLinkClassName}
               to={'/diary'}
             >
               {t('navigation.Diary')}
             </NavLink>
             <NavLink
               onClick={() => setIsMenuOpen(false)}
-              className={getLoggedInLinkClassName}
+              className={isDark? getLoggedInLinkClassNameDark :getLoggedInLinkClassName}
               to={'/calculator'}
             >
               {t('navigation.Calculator')}
@@ -93,14 +113,15 @@ const Navigation = () => {
         </>
       ) : (
         <>
-          <NavLink className={getNavLinkClassName} to={'/login'}>
+          <NavLink className={isDark? getNavLinkClassNameDark : getNavLinkClassName} to={'/login'}>
             {t('navigation.Sign In')}
           </NavLink>
-          <NavLink className={getNavLinkClassName} to={'/registration'}>
+          <NavLink className={isDark? getNavLinkClassNameDark : getNavLinkClassName} to={'/registration'}>
             {t('navigation.Registration')}
           </NavLink>
         </>
       )}
+<button className={styles.languageBtn}type='button' onClick={(e)=> i18n.changeLanguage(opositiveLanguage)}><span className={styles.languageText}><span className={isDark ? styles.currentLanguage_dark : styles.currentLanguage}>{currentLanguage}</span>/{opositiveLanguage}</span></button>
     </nav>
   );
 };

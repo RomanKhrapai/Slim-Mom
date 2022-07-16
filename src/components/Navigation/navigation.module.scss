@@ -41,14 +41,46 @@ nav {
     &:focus {
       color: black;
     }
+  }
+  
+  .nav__link_dark{
+    margin-right: 16px;
+    margin-bottom: 5px;
+    color: $firstColor;
+    transition: 0.3s ease;
+    &:hover,
+    &:focus {
+      color: rgb(255, 255, 255);
+    }
+  }
+
+  .nav__link.nav__link_active_dark {
+    color: #fff;
 
   }
+
 
   .nav__link__loggedIn {
     margin-right: 16px;
     margin-bottom: 5px;
     color: $firstColor;
     transition: 0.3s ease;
+  }
+
+  .nav__link__loggedIn_dark {
+    margin-right: 16px;
+    margin-bottom: 5px;
+    color: $firstColor;
+    transition: 0.3s ease;
+
+    &:hover,
+    &:focus {
+      color: rgb(255, 255, 255);
+    }
+  }
+
+  .nav__link__loggedIn_dark.nav__link__loggedIn_active_dark{
+    color: #fff;
   }
 
   .logo {
@@ -85,8 +117,6 @@ nav {
   }
 }
 @media screen and (max-width: 1280px) and (min-width: 320px) {
-
-
   nav {
     align-items: center;
 
@@ -107,7 +137,6 @@ nav {
   nav {
     align-items: center;
 
-
     .nav__link {
       margin-bottom: 0px;
       &:last-child {
@@ -116,8 +145,6 @@ nav {
       &:nth-child(2) {
         margin-left: auto;
       }
-
-
     }
     .nav__link.nav__link_active {
       margin-bottom: 0px;
@@ -183,7 +210,6 @@ nav {
       &:focus {
         color: $mobileActiveColor;
       }
-
     }
     .nav__link__loggedIn_active.nav__link__loggedIn {
       color: $mobileActiveColor;
@@ -200,4 +226,33 @@ nav {
   }
 }
 
+.languageBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0px;
+  margin-bottom: -7px;
+  background-color: transparent;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  @media screen and (max-width: 1280px) {
+    margin-bottom: 0px;
+  }
+  &:hover {
+    background-color: #2121210c;
+  }
+}
 
+.languageText {
+  color: $firstColor;
+}
+.currentLanguage {
+  color: $activeColor;
+}
+.currentLanguage_dark {
+  color:$firstColor;
+}

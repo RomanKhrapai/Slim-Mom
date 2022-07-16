@@ -1,11 +1,9 @@
 import { Formik } from 'formik';
 import React, { useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import authOperations from 'redux/auth/auth-operations.js';
-import { useSelector } from 'react-redux';
-import Loader from '../Loader'
-
+import Loader from '../Loader';
 import s from './LoginForm.module.scss';
 
 const getActiveClass = condition => {

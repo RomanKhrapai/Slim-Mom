@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 // import Datetime from 'react-datetime';
+import { useSelector, useDispatch } from 'react-redux';
 import "react-datetime/css/react-datetime.css";
 import style from'./DiaryDateСalendar.module.scss';
 import calendarIcon from '../../images/icon-calendar.svg';
 import Datetime from 'react-datetime';
 import "react-datetime/css/react-datetime.css";
+import {changeData} from '../../redux/user/user-action';
 import moment from 'moment';
 import Modal from '../Modal';
 import { useContext } from 'react';
@@ -13,6 +15,7 @@ import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
 export default function DiaryDateCalendar() {
 
   const [{isDark}] = useContext(ThemeContext)
+  const dispatch = useDispatch();
 
   const [formattedDate, setFormattedDate] = useState(moment().format('DD, MM, YYYY').split(', ').join('.'));
   const [parsedDate, setParsedDate] = useState(Date.now());
@@ -20,7 +23,8 @@ export default function DiaryDateCalendar() {
 
   const getDateTime = (momentDate) => {
     const parsedDate = Date.parse(momentDate._d.toString())
-    const formattedDate = momentDate.format('DD, MM, YYYY').split(', ').join('.')
+    const formattedDate = momentDate.format('DD, MM, YYYY').split(', ').join('.');
+    dispatch(changeData(formattedDate));
     console.log(parsedDate, formattedDate);
 
     setParsedDate(parsedDate)
@@ -40,7 +44,13 @@ export default function DiaryDateCalendar() {
           <Datetime isValidDate={(current) => {
             let today = new Date()
             return current.isBefore(today)
-          }} value={parsedDate} input={false} timeFormat={false} dateFormat={'DD, MM, YYYY'}  onChange={getDateTime}/>
+          }} value={parsedDate} input={false} timeFormat={false} dateFormat={'DD, MM, YYYY'} 
+          onChange={getDateTime} closeOnClickOutside={true}
+          closeOnSelect={true}
+          // renderView={(mode, renderDefault) =>
+          //   this.renderView(mode, renderDefault)
+          // }
+          className={style.calendar}/>
         </div>
 
       </Modal>}

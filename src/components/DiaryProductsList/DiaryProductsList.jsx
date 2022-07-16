@@ -1,76 +1,35 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import DiaryProductsListItem from '../DiaryProductsListItem';
+import { useSelector, useDispatch } from 'react-redux';
+import userOperations from '../../redux/user/user-operation';
+import productsSelectors from '../../redux/user/user-selector';
+import i18n from '../../services/i18n/config';
 import { useTable } from 'react-table';
 import EllipsisText from "react-ellipsis-text";
 import { t } from 'i18next';
 import style from './DiaryProductsList.module.scss';
 
 export default function DiaryProductsList() {
+
+  const dispatch = useDispatch();
+  const chosenDate = useSelector(productsSelectors.getChosenDate);
+
+  useEffect(() => {
+    dispatch(userOperations.getDayProducts(chosenDate))
+  }, [chosenDate]);
+
+  const products = useSelector(productsSelectors.getDiaryProducts);
+
+  const productName = i18n.language === 'uk' ? "ua" : "en";
+
+  const data = products.map((product) => ({
+    id: product._id,
+    name: product.productId.title[productName],
+    grams: product.amount,
+    calories: product.productId.calories
+  }))
   
-  const data = React.useMemo(() => 
-  [
-    {
-      id: '5d51694802b2373622ff553b',
-      name: 'Яйце куряче (жовток сухий)',
-      calories: 623,
-      grams: 100
-    },
-    {
-      id: '5d51694802b2373622ff554d',
-      name: 'Горох маш Ярмарка Платинум',
-      calories: 312,
-      grams: 100
-    },
-    {
-      id: '5d51694802b2373622ff554k',
-      name: 'Горох маш Ярмарка Платинум',
-      calories: 312,
-      grams: 100
-    },
-    {
-      id: '5d51694802b2373622ff554j',
-      name: 'Горох маш Ярмарка Платинум',
-      calories: 312,
-      grams: 100
-    },
-    {
-      id: '5d51694802b2373622ff554h',
-      name: 'Горох маш Ярмарка Платинум',
-      calories: 312,
-      grams: 100
-    },
-    {
-      id: '5d51694802b2373622ff554g',
-      name: 'Горох маш Ярмарка Платинум',
-      calories: 312,
-      grams: 100
-    },
-    {
-      id: '5d51694802b2373622ff554f',
-      name: 'Горох маш Ярмарка Платинум',
-      calories: 312,
-      grams: 100
-    },
-    {
-      id: '5d51694802b2373622ff554s',
-      name: 'Горох маш Ярмарка Платинум',
-      calories: 316,
-      grams: 100
-    },
-    {
-      id: '5d51694802b2373622ff554a',
-      name: 'Горох маш Ярмарка Платинум',
-      calories: 312,
-      grams: 100
-    },
-    {
-      id: '5d51694802b2373622ff554q',
-      name: 'Горох маш Ярмарка Платинум',
-      calories: 316,
-      grams: 200
-    }
-  ], [])
 
 const columns = React.useMemo(() =>
   [
@@ -128,7 +87,7 @@ const columns = React.useMemo(() =>
 
   return (
     <div className={style.tableContainer}>
-      {data ? (
+      {data.length > 0 ? (
         <table {...getTableProps()} className={style.table}>
         <thead>
           {headerGroups.map((headerGroup, i) => (
@@ -153,13 +112,14 @@ const columns = React.useMemo(() =>
           
       </table>
   )
-  : null}
+  : <p>{t("diary.The list is empty")}</p>}
   </div>
   )
 }
 
 DiaryProductsList.propTypes = {
-  cell: PropTypes.object
+  cell: PropTypes.object,
+  chosenDate: PropTypes.string
 };
 
 EllipsisText.propTypes = {

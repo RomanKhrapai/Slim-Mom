@@ -2,6 +2,11 @@
 
 .tableRow {
   height: 40px;
+  cursor: pointer;
+}
+
+.tableRow:hover {
+  background-color: $button-back-color;
 }
 
 .tableCell {
@@ -33,6 +38,7 @@
 .closeButton {
   background: transparent;
   border: none;
+  cursor: pointer;
 }
 
 .closeIcon {

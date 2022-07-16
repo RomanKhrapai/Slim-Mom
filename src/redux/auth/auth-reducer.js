@@ -2,23 +2,25 @@ import { createSlice } from '@reduxjs/toolkit';
 import authOperations from './auth-operations';
 
   const initialState = {
-    user: { name: '', email: '', id: '', refreshToken: '', params:{} },
+    user: { name: '', email: '', refreshToken: '',  },
     isAuthorised: false,
     isLoading: false,
     token: null,
     isFetchingCurrentUser: false,
   }
-
   const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    apdateUserInfo(state, action) {
+    state.user = {...state.user, ...action.payload}
+  }},
   extraReducers: {
     [authOperations.signUpUser.pending]: (state, action) => {
       state.isLoading = true;
     },
     [authOperations.signUpUser.fulfilled]: (state, action) => {
-      state.user.params = action.payload.user.params,
+      state.user = action.payload.user.params,
       state.user.name = action.payload.user.name;
       state.user.email = action.payload.email;
       state.token = action.payload.accessToken;
@@ -71,5 +73,8 @@ import authOperations from './auth-operations';
     },
   },
 });
+
+export const {apdateUserInfo} = authSlice.actions
+console.log(authSlice);
 
 export default authSlice.reducer;
