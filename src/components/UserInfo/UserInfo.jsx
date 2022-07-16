@@ -1,15 +1,12 @@
 import React, {useState, useEffect} from "react"
 import { useTranslation } from 'react-i18next';
 import styles from './userinfo.module.scss'
-import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-//import * as logOut from '../../redux/auth/auth-operations';
-//import {logOut} from '../../redux/auth/auth-operations'
 import authOperations from 'redux/auth/auth-operations.js';
 
 const UserInfo = () => {
 
-  const { user } = useSelector(state => state)
+  const { user } = useSelector(state => state.auth)
   const dispatch = useDispatch()
   const { t } = useTranslation();
 
