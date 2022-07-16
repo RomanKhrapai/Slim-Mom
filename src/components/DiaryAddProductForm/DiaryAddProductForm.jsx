@@ -34,7 +34,8 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen }) {
       errors.productAmount = t('diary.Must be a number');
     } else if (values.productAmount.length > 10) {
       errors.productAmount = t('diary.Your amount is too long. Please, enter your amount in grams');
-    }
+    } else if (!Number.isInteger(values.productAmount))
+      errors.productAmount = t('diary.Must be an integer number');
 
     return errors;
   };
@@ -77,6 +78,7 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen }) {
 
   const closeButton = () => {
     setIsFormOpen(false);
+    formik.resetForm();
   };
 
   const openFormClasses = classNames(style.form, style.form__isOpen);
