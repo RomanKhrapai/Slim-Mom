@@ -57,7 +57,7 @@ const getDayProducts = createAsyncThunk(
   // получает дату и id пользователя {date: "29299292", user: { user: "62d09b07b161f09579378429",}}
   async (diaryData, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`/diary/${diaryData.date}`, diaryData);
+      const { data } = await axios.get(`/diary/${diaryData}`, diaryData);
 
       return data.data;
     } catch (error) {
