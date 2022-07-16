@@ -35,6 +35,7 @@ import authOperations from './auth-operations';
       state.isLoading = true;
     },
     [authOperations.fetchCurrentUser.fulfilled](state, { payload }) {
+      console.log(payload);
       state.user = payload;
       state.isAuthorised = true;
       state.isFetchingCurrentUser = false;
@@ -75,6 +76,5 @@ import authOperations from './auth-operations';
 });
 
 export const {apdateUserInfo} = authSlice.actions
-console.log(authSlice);
 
 export default authSlice.reducer;

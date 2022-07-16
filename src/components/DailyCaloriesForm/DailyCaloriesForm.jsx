@@ -1,6 +1,7 @@
 import { Formik } from 'formik';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import i18n from '../../services/i18n/config';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -120,6 +121,8 @@ const DailyCaloriesForm = ({
           return errors;
         }}
         onSubmit={(values, { resetForm }) => {
+          
+        const language = i18n.language === 'uk' ? "ua" : "en";
 
           if (isAuthorised) {
             const toNumberValues = chageType(values);
@@ -129,7 +132,9 @@ const DailyCaloriesForm = ({
               currentWeight: toNumberValues.currentWeight,
               desiredWeight: toNumberValues.desiredWeight,
               bloodType: toNumberValues.bloodType,
+              language
             };
+            console.log(newUserValues);
             dispatch(userOperations.addUserInfo(chageType(values))).then(() => {
               dispatch(apdateUserInfo(newUserValues));
               if (dailyCalories) {

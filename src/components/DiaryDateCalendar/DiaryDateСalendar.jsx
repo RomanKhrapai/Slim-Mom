@@ -1,59 +1,77 @@
-import React, { useState } from 'react';
-// import Datetime from 'react-datetime';
+import React, { useState, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import "react-datetime/css/react-datetime.css";
-import style from'./DiaryDateСalendar.module.scss';
+import PropTypes from 'prop-types';
+import 'react-datetime/css/react-datetime.css';
+import style from './DiaryDateСalendar.module.scss';
 import calendarIcon from '../../images/icon-calendar.svg';
 import Datetime from 'react-datetime';
-import "react-datetime/css/react-datetime.css";
-import {changeData} from '../../redux/user/user-action';
+import 'react-datetime/css/react-datetime.css';
+import { changeData } from '../../redux/user/user-action';
 import moment from 'moment';
 import Modal from '../Modal';
-import { useContext } from 'react';
 import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
 
-export default function DiaryDateCalendar() {
-
-  const [{isDark}] = useContext(ThemeContext)
+export default function DiaryDateCalendar({ chosenDate, setChosenDate }) {
+  const [{ isDark }] = useContext(ThemeContext);
   const dispatch = useDispatch();
 
-  const [formattedDate, setFormattedDate] = useState(moment().format('DD, MM, YYYY').split(', ').join('.'));
+  // const [formattedDate, setFormattedDate] = useState(moment().format('DD, MM, YYYY').split(', ').join('.'));
+  const [formattedDate, setFormattedDate] = useState(chosenDate);
+
   const [parsedDate, setParsedDate] = useState(Date.now());
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
-  const getDateTime = (momentDate) => {
-    const parsedDate = Date.parse(momentDate._d.toString())
-    const formattedDate = momentDate.format('DD, MM, YYYY').split(', ').join('.');
+  const getDateTime = momentDate => {
+    const parsedDate = Date.parse(momentDate._d.toString());
+    const formattedDate = momentDate
+      .format('DD, MM, YYYY')
+      .split(', ')
+      .join('.');
+    setChosenDate(formattedDate);
     dispatch(changeData(formattedDate));
-    console.log(parsedDate, formattedDate);
 
-    setParsedDate(parsedDate)
-    setFormattedDate(formattedDate)
-  }
+    setParsedDate(parsedDate);
+    setFormattedDate(formattedDate);
+  };
 
   return (
     <div className={style.datepicker}>
-      <h2 className={isDark ? style.title_light : style.title}>{formattedDate}</h2>
-      <button onClick={() => setIsCalendarOpen(!isCalendarOpen)} type="button" className={style.dateButton}>
+      <h2 className={isDark ? style.title_light : style.title}>
+        {formattedDate}
+      </h2>
+      <button
+        onClick={() => setIsCalendarOpen(!isCalendarOpen)}
+        type="button"
+        className={style.dateButton}
+      >
         <img src={calendarIcon} alt={`calendar icon`} />
       </button>
 
-      {isCalendarOpen && <Modal onClose={() => setIsCalendarOpen(false)}>
-        <div className={style.calendarWrapper}>
-
-          <Datetime isValidDate={(current) => {
-            let today = new Date()
-            return current.isBefore(today)
-          }} value={parsedDate} input={false} timeFormat={false} dateFormat={'DD, MM, YYYY'} 
-          onChange={getDateTime} closeOnClickOutside={true}
-          closeOnSelect={true}
-          // renderView={(mode, renderDefault) =>
-          //   this.renderView(mode, renderDefault)
-          // }
-          className={style.calendar}/>
-        </div>
-
-      </Modal>}
-     </div>
+      {isCalendarOpen && (
+        <Modal onClose={() => setIsCalendarOpen(false)}>
+          <div className={style.calendarWrapper}>
+            <Datetime
+              isValidDate={current => {
+                let today = new Date();
+                return current.isBefore(today);
+              }}
+              value={parsedDate}
+              input={false}
+              timeFormat={false}
+              dateFormat={'DD, MM, YYYY'}
+              onChange={getDateTime}
+              closeOnClickOutside={true}
+              closeOnSelect={true}
+              className={style.calendar}
+            />
+          </div>
+        </Modal>
+      )}
+    </div>
   );
 }
+
+DiaryDateCalendar.propTypes = {
+  chosenDate: PropTypes.string,
+  setChosenDate: PropTypes.func,
+};

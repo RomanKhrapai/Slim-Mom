@@ -1,15 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import s from './RightSideBar.module.scss';
 import { useTranslation } from 'react-i18next';
+import i18n from '../../services/i18n/config';
 import { useSelector, useDispatch } from 'react-redux';
-import userOptions from '../../redux/user/user-operation';
-import productsSelectors from '../../redux/user/user-selector';
+// import userOperations from '../../redux/user/user-operation';
+// import productsSelectors from '../../redux/user/user-selector';
+import { productsSelectors, userOperations } from '../../redux/user';
 
 function RightSideBar() {
   const [leftCkal, setLeftCkal] = useState(0);
   const [consuned, setConsumed] = useState(0);
   const [normal, setNormal] = useState(0);
   const [category, setCategory] = useState([]);
+
+  const language = i18n.language === 'uk' ? "ua" : "en";
+  const userInfo = useSelector(productsSelectors.getUserInfo);
+  console.log(userInfo);
+
+  const userRequest = {
+    age: userInfo.age,
+    bloodType: userInfo.bloodType,
+    currentWeight: userInfo.currentWeight,
+    desiredWeight: userInfo.desiredWeight,
+    height: userInfo.height,
+    language
+  }
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(userOperations.addUserInfo(userRequest));
+  }, [language]);
 
   const User = useSelector(state => state);
 
@@ -18,7 +38,7 @@ function RightSideBar() {
   let chosenDate = useSelector(productsSelectors.getChosenDate);
   const products = useSelector(productsSelectors.getDiaryProducts);
 
-  userOptions.getDayProducts(chosenDate);
+  userOperations.getDayProducts(chosenDate);
 
   let kall = 0;
   let porc = 0;
