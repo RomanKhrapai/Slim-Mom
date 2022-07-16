@@ -42,12 +42,45 @@ nav {
       color: black;
     }
   }
+  
+  .nav__link_dark{
+    margin-right: 16px;
+    margin-bottom: 5px;
+    color: $firstColor;
+    transition: 0.3s ease;
+    &:hover,
+    &:focus {
+      color: rgb(255, 255, 255);
+    }
+  }
+
+  .nav__link.nav__link_active_dark {
+    color: #fff;
+
+  }
+
 
   .nav__link__loggedIn {
     margin-right: 16px;
     margin-bottom: 5px;
     color: $firstColor;
     transition: 0.3s ease;
+  }
+
+  .nav__link__loggedIn_dark {
+    margin-right: 16px;
+    margin-bottom: 5px;
+    color: $firstColor;
+    transition: 0.3s ease;
+
+    &:hover,
+    &:focus {
+      color: rgb(255, 255, 255);
+    }
+  }
+
+  .nav__link__loggedIn_dark.nav__link__loggedIn_active_dark{
+    color: #fff;
   }
 
   .logo {
@@ -93,6 +126,8 @@ nav {
     .nav__link.nav__link_active {
       color: $activeColor;
     }
+
+
   }
   .menu__button {
     margin-left: 50px;
@@ -217,4 +252,7 @@ nav {
 }
 .currentLanguage {
   color: $activeColor;
+}
+.currentLanguage_dark {
+  color:$firstColor;
 }
