@@ -1,9 +1,7 @@
 import { Formik } from 'formik';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import i18n from '../../services/i18n/config';
 
 import PropTypes from 'prop-types';
 
@@ -30,6 +28,7 @@ const DailyCaloriesForm = ({
   const dispatch = useDispatch();
   const isAuthorised = useSelector(authSelectors.getIsAuthorised);
   const loading = useSelector(state => state.user.isLoading);
+  const language = i18n.language === 'uk' ? "ua" : "en";
 
   const changeType = values => ({
     height: Number(values.height),
@@ -125,14 +124,26 @@ const DailyCaloriesForm = ({
         }}
         onSubmit={(values, { resetForm }) => {
           const convertedType = changeType(values);
+          const valuesWithLanguage = { ...convertedType, language };
 
           if (isAuthorised) {
+
+            const toNumberValues = changeType(values);
+            const newUserValues = {
+              height: toNumberValues.height,
+              age: toNumberValues.age,
+              currentWeight: toNumberValues.currentWeight,
+              desiredWeight: toNumberValues.desiredWeight,
+              bloodType: toNumberValues.bloodType,
+              language
+            };
             dispatch(userOperations.addUserInfo(convertedType)).then(() => {
+
               onOpenModal();
-              dispatch(apdateUserInfo(convertedType));
+              dispatch(apdateUserInfo(valuesWithLanguage));
             });
           } else {
-            dispatch(userOperations.addVisitorInfo(convertedType)).then(() => {
+            dispatch(userOperations.addVisitorInfo(valuesWithLanguage)).then(() => {
               onOpenModal();
               resetForm();
             });

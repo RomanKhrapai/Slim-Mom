@@ -12,7 +12,7 @@ import style from './DiaryAddProductForm.module.scss';
 import addIcon from '../../images/plus-icon.svg';
 import arrow from '../../images/arrow1.svg';
 
-export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen }) {
+export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen, addClass }) {
   const [productList, setProductList] = useState([]);
   const [chosenProduct, setChosenProduct] = useState('');
   const currentDate = useSelector(productsSelectors.getTodayDate);
@@ -24,20 +24,19 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen }) {
     const errors = {};
     if (!values.productName) {
       errors.productName = t('diary.Required');
+    // } else if (!(/^[A-Za-zА-Яа-я0-9]+$/).test(values.productName)) {
+    } else if (typeof values.productName !== 'string') {
+      errors.productName = t('diary.Your request should not have a specific symbols');
     } else if (values.productName.length > 50) {
       errors.productName = t('diary.Your request is too long');
     }
 
     if (!values.productAmount) {
       errors.productAmount = t('diary.Required');
-    } else if (!+values.productAmount) {
+    } else if (!(/^[0-9]+$/).test(values.productAmount)) {
       errors.productAmount = t('diary.Must be a number');
     } else if (values.productAmount.length > 10) {
-      errors.productAmount = t(
-        'diary.Your amount is too long. Please, enter your amount in grams'
-      );
-    } else if (!Number.isInteger(Number(values.productAmount))) {
-      errors.productAmount = t('diary.Must be an integer number');
+      errors.productAmount = t('diary.Your amount is too long. Please, enter your amount in grams');
     }
 
     return errors;
@@ -57,15 +56,6 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen }) {
     },
   });
 
-  const getProducts = async userRequest => {
-    try {
-      const { data } = await axios.get(`/products?title="${userRequest}"`);
-      console.log(data);
-      return data.data.result;
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   useEffect(async () => {
     const request = formik.values.productName.trim();
@@ -80,13 +70,22 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen }) {
     }
   }, [chosenProduct, productList]);
 
+  const getProducts = async userRequest => {
+    try {
+      const { data } = await axios.get(`/products?title=${userRequest}`);
+      return data.data.result;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const closeButton = () => {
     setIsFormOpen(false);
     formik.resetForm();
   };
 
-  const openFormClasses = classNames(style.form, style.form__isOpen);
-  const closeFormClasses = classNames(style.form, style.form__isClosed);
+  const openFormClasses = classNames(style.form, style.form__isOpen, addClass);
+  const closeFormClasses = classNames(style.form, style.form__isClosed, addClass);
 
   return (
     <form
@@ -111,6 +110,7 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen }) {
         </div>
 
         <div className={style.productListContainer}>
+          {productList &&
           <ul>
             {productList.map(product => {
               const productName =
@@ -122,7 +122,7 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen }) {
                   onClick={() => {
                     setChosenProduct(product._id);
                     formik.values.productName = productName;
-                    console.log(productName);
+
                   }}
                 >
                   {productName}
@@ -130,6 +130,7 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen }) {
               );
             })}
           </ul>
+          }
         </div>
       </div>
 
@@ -173,5 +174,6 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen }) {
 DiaryAddProductForm.propTypes = {
   isFormOpen: PropTypes.bool,
   setIsFormOpen: PropTypes.func,
-  currentDate: PropTypes.string,
+  addClass: PropTypes.string,
+
 };

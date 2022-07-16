@@ -5,12 +5,6 @@ import style from '../DailyCaloriesForm/DailyCaloriesForm.module.scss';
 import s from './CalculatorCalorie.module.scss';
 const UserInfo = ({ userData }) => {
   const { t } = useTranslation();
-  // Поля формы дневных калорий
-  // const [height, setHeight] = useState("");
-  // const [age, setAge] = useState("");
-  // const [current, setCurrent] = useState("");
-  // const [desired, setDesired] = useState("");
-  // const [blood, setBlood] = useStap1");
 
   return (
     <div className={`${s.inputBox} ${s.userBox}`}>
@@ -32,7 +26,7 @@ const UserInfo = ({ userData }) => {
       </div>
       <div className={s.input}>
         <h3 className={s.label}>{t('calculator.Blood type')}</h3>{' '}
-        <p className={s.text}> {userData.bloodType}</p>
+        <p className={s.text}> {userData.height ? userData.bloodType : ''}</p>
       </div>
     </div>
   );

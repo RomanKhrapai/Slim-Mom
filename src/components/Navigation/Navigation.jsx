@@ -16,11 +16,18 @@ import {
 import { useSelector } from 'react-redux';
 import { useContext } from 'react';
 import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
+
 import authSelectors from 'redux/auth/auth-selectors';
+import { ReactComponent as LogoNew } from '../../images/logo-new.svg';
+import { ReactComponent as Slim } from '../../images/slim.svg';
+import { ReactComponent as Mom } from '../../images/mom.svg';
+import { ReactComponent as Cross } from '../../images/white-cross.svg';
+import { ReactComponent as Burger } from '../../images/white-burger.svg';
 
 const Navigation = () => {
   const [{ isDark }] = useContext(ThemeContext);
   const isAuthorised = useSelector(authSelectors.getIsAuthorised);
+
 
   // const languageClassToggle = (e) =>{
   //   const firstChildClass = e.currentTarget.firstChild.firstChild;
@@ -72,7 +79,8 @@ const Navigation = () => {
   const token = localStorage.getItem('token');
 
   const currentLanguage = i18n.language;
-  const secondaryLanguage = currentLanguage === 'uk' ? 'en' : 'uk';
+
+  const opositiveLanguage = currentLanguage === 'uk' ? 'en' : 'uk';
 
   return (
     <nav>
@@ -81,8 +89,30 @@ const Navigation = () => {
         className={getLogoClassName}
         to={'/'}
       >
-        <img src={getLogo()} alt={'logo'} />
-        <div className={styles.vector1} />
+        {isDark ? (
+          <div
+            className={
+              !isAuthorised
+                ? styles.logo_wrapper_unauthorised
+                : styles.logo_wrapper
+            }
+          >
+            <LogoNew className={styles.logo_new} />
+            <div
+              className={
+                !isAuthorised
+                  ? styles.words_wrapper_unauthorised
+                  : styles.words_wrapper
+              }
+            >
+              <Slim className={styles.slim} />
+              <Mom className={styles.mom} />
+            </div>
+          </div>
+        ) : (
+          <img src={getLogo()} alt={'logo'} />
+        )}
+        <div className={isDark ? styles.vector1_dark : styles.vector1} />
       </NavLink>
       {isAuthorised ? (
         <>
@@ -111,15 +141,25 @@ const Navigation = () => {
             className={styles.menu__button}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            <img
-              className={
-                isMenuOpen
-                  ? styles.menu__button__isOpen
-                  : styles.menu__button__isClosed
-              }
-              src={isMenuOpen ? closeSvg : menuSvg}
-              alt={'menu'}
-            />
+            {/* <Cross className={styles.icons_dark}/> */}
+            {/* <Burger className={styles.icons_dark}/> */}
+            {isDark ? (
+              isMenuOpen ? (
+                <Cross className={styles.icons_dark} />
+              ) : (
+                <Burger className={styles.icons_dark} />
+              )
+            ) : (
+              <img
+                className={
+                  isMenuOpen
+                    ? styles.menu__button__isOpen
+                    : styles.menu__button__isClosed
+                }
+                src={isMenuOpen ? closeSvg : menuSvg}
+                alt={'menu'}
+              />
+            )}
           </button>
         </>
       ) : (
@@ -138,13 +178,12 @@ const Navigation = () => {
           </NavLink>
         </>
       )}
+
       <button
         className={styles.languageBtn}
         type="button"
-        onClick={e => {
-          i18n.changeLanguage(secondaryLanguage);
-          // languageClassToggle(e)
-        }}
+        onClick={e => i18n.changeLanguage(opositiveLanguage)}
+
       >
         <span className={styles.languageText}>
           <span
@@ -152,14 +191,13 @@ const Navigation = () => {
               isDark ? styles.currentLanguage_dark : styles.currentLanguage
             }
           >
-            {currentLanguage === 'uk' ? 'Ukr' : 'Eng'}
+
+            {currentLanguage}
           </span>
-          /{' '}
-          <span className={styles.secondaryLanguage}>
-            {currentLanguage !== 'uk' ? 'Ukr' : 'Eng'}
-          </span>
+          /{opositiveLanguage}
         </span>
       </button>
+
     </nav>
   );
 };

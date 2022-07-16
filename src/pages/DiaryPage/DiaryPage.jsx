@@ -1,50 +1,44 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import userOperations from '../../redux/user/user-operation';
-import productsSelectors from '../../redux/user/user-selector';
+import { useSelector } from 'react-redux';
+import { userOperations, productsSelectors } from '../../redux/user';
 import { useTranslation } from 'react-i18next';
 import DiaryDateСalendar from '../../components/DiaryDateCalendar';
 import DiaryAddProductForm from '../../components/DiaryAddProductForm';
 import DiaryProductsList from '../../components/DiaryProductsList';
 import Container from 'components/Container/Container';
-import Button from 'components/Button/Button';
-import style from './DiaryPage.module.scss';
 import addIcon from '../../images/plus-icon.svg';
 import RightSideBar from '../../components/RightSideBar';
+import style from './DiaryPage.module.scss';
 import s from '../../components/RightSideBar/RightSideBar.module.scss';
+import globalStyles from '../../App.module.scss';
 
 export default function DiaryPage() {
-  const [isFormOpen, setIsFormOpen] = useState(false);
   const currentDate = useSelector(productsSelectors.getTodayDate);
-  let chosenDate = useSelector(productsSelectors.getChosenDate);
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [chosenDate, setChosenDate] = useState(currentDate)
 
-  chosenDate = currentDate;
   userOperations.getDayProducts(chosenDate);
   const { t } = useTranslation();
-  
-  console.log(chosenDate);
-  console.log(currentDate);
+
+  const addClass = (chosenDate === currentDate) ? globalStyles.visibleElement : globalStyles.hiddenElement;
+  const classesForButton = `${style.buttonShowAddProductForm} ${addClass}`;
 
   return (
     <div className={s.health_box}>
-      <Container className={style.container}>
+      <Container className={style.diaryContainer}>
         <h1 className={style.hidden}>{t('diary.Diary')}</h1>
 
-        <DiaryDateСalendar />
-        {chosenDate === currentDate ? (
+        <DiaryDateСalendar chosenDate={chosenDate} setChosenDate={setChosenDate} />
           <DiaryAddProductForm
             isFormOpen={isFormOpen}
             setIsFormOpen={() => setIsFormOpen(false)}
+            addClass={addClass}
           />
-        ) : null}
-        <DiaryProductsList
-        //  chosenDate={chosenDate}
-        />
+        <DiaryProductsList />
 
-        {chosenDate === currentDate ? (
-          <Button
+          <button
             type="button"
-            className={style.buttonShowAddProductForm}
+            className={classesForButton}
             onClick={() => setIsFormOpen(true)}
           >
             <img
@@ -52,8 +46,7 @@ export default function DiaryPage() {
               alt={`add product icon`}
               className={style.addIcon}
             />
-          </Button>
-        ) : null}
+          </button>
       </Container>
       <RightSideBar />
     </div>

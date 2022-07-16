@@ -61,9 +61,9 @@ export const App = () => {
       ) : (
         <>
           <Header />
-          {/* <div className={s.button_theme_swither} onClick={toggleTheme}>
+         <div className={s.button_theme_swither} onClick={toggleTheme}>
           {icon}
-      </div> */}
+        </div>
           <Suspense fallback={<Loader />}>
             <Routes>
               <Route path="/" element={<Outlet />}>
