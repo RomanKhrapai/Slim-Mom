@@ -14,7 +14,7 @@ const сalculatorСalorie = () => {
   const { t } = useTranslation();
   const [activeModerate, setActiveModerate] = useState(false);
   // const [user, setUser] = useState({ height: '', age: '', currentWeight: '', desiredWeight: '', bloodType: '', language: "ua" })
-  const user = useSelector(state=> state.auth.user)
+  const user = useSelector(state => state.auth.user);
   console.log(user);
 
 
@@ -46,7 +46,7 @@ const сalculatorСalorie = () => {
     <div className={s.box}>
       <div>
         
-      <DailyCaloriesForm userData={{height: user.height, age: user.age, current: user.currentWeight, desired: user.desiredWeight, blood: user.bloodType }} />
+      <DailyCaloriesForm userData={user} />
       <Button type="button" onClick={changeActive} className={s.button}>
         {t('calculator.Revoke Changes')}
       </Button>
