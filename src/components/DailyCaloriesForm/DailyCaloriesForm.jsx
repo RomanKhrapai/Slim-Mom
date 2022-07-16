@@ -3,9 +3,6 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../services/i18n/config';
 
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 import PropTypes from 'prop-types';
 
 import s from './DailyCaloriesForm.module.scss';
@@ -26,11 +23,11 @@ const DailyCaloriesForm = ({
   },
   onOpenModal,
 }) => {
-  console.log(onOpenModal);
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const isAuthorised = useSelector(state => state.auth.isAuthorised);
   const loading = useSelector(state => state.user.isLoading);
+  const language = i18n.language === 'uk' ? "ua" : "en";
 
   const changeType = values => ({
     height: Number(values.height),
@@ -125,26 +122,16 @@ const DailyCaloriesForm = ({
           return errors;
         }}
         onSubmit={(values, { resetForm }) => {
-        const convertedType = changeType(values);
-        const language = i18n.language === 'uk' ? "ua" : "en";
+          const convertedType = changeType(values);
+          const valuesWithLanguage = { ...convertedType, language };
 
           if (isAuthorised) {
-            const toNumberValues = chageType(values);
-            const newUserValues = {
-              height: toNumberValues.height,
-              age: toNumberValues.age,
-              currentWeight: toNumberValues.currentWeight,
-              desiredWeight: toNumberValues.desiredWeight,
-              bloodType: toNumberValues.bloodType,
-              language
-            };
-            console.log(newUserValues);
-            dispatch(userOperations.addUserInfo(convertedType)).then(() => {
+            dispatch(userOperations.addUserInfo(valuesWithLanguage)).then(() => {
               onOpenModal();
-              dispatch(apdateUserInfo(convertedType));
+              dispatch(apdateUserInfo(valuesWithLanguage));
             });
           } else {
-            dispatch(userOperations.addVisitorInfo(convertedType)).then(() => {
+            dispatch(userOperations.addVisitorInfo(valuesWithLanguage)).then(() => {
               onOpenModal();
               resetForm();
             });
