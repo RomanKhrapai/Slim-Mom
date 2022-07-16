@@ -7,6 +7,6 @@ const getTodayDate = state => state.user.currentDate;
 const productsSelectors = {
   getDiaryProducts,
   getChosenDate,
-  getTodayDate
+  getTodayDate,
 };
 export default productsSelectors;
