@@ -3,9 +3,6 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../services/i18n/config';
 
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 import PropTypes from 'prop-types';
 
 import s from './DailyCaloriesForm.module.scss';
@@ -30,6 +27,7 @@ const DailyCaloriesForm = ({
   const dispatch = useDispatch();
   const isAuthorised = useSelector(state => state.auth.isAuthorised);
   const loading = useSelector(state => state.user.isLoading);
+  const language = i18n.language === 'uk' ? "ua" : "en";
 
   const changeType = values => ({
     height: Number(values.height),
@@ -124,8 +122,8 @@ const DailyCaloriesForm = ({
           return errors;
         }}
         onSubmit={(values, { resetForm }) => {
-        const convertedType = changeType(values);
-        const language = i18n.language === 'uk' ? "ua" : "en";
+          const convertedType = changeType(values);
+          const valuesWithLanguage = { ...convertedType, language };
 
           if (isAuthorised) {
             const toNumberValues = changeType(values);
@@ -138,11 +136,12 @@ const DailyCaloriesForm = ({
               language
             };
             dispatch(userOperations.addUserInfo(convertedType)).then(() => {
+
               onOpenModal();
-              dispatch(apdateUserInfo(convertedType));
+              dispatch(apdateUserInfo(valuesWithLanguage));
             });
           } else {
-            dispatch(userOperations.addVisitorInfo(convertedType)).then(() => {
+            dispatch(userOperations.addVisitorInfo(valuesWithLanguage)).then(() => {
               onOpenModal();
               resetForm();
             });
