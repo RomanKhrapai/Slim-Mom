@@ -87,7 +87,7 @@ const columns = React.useMemo(() =>
 
   return (
     <div className={style.tableContainer}>
-      {data ? (
+      {data.length > 0 ? (
         <table {...getTableProps()} className={style.table}>
         <thead>
           {headerGroups.map((headerGroup, i) => (
@@ -112,7 +112,7 @@ const columns = React.useMemo(() =>
           
       </table>
   )
-  : null}
+  : <p>{t("diary.The list is empty")}</p>}
   </div>
   )
 }

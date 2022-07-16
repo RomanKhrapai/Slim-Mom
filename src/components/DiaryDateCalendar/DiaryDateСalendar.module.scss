@@ -43,6 +43,7 @@
 
 .calendarWrapper {
   //position: absolute;
+  z-index: 30;
   margin-top: 60px;
   div {
     height: 500px;
@@ -56,4 +57,6 @@
   }
 }
 
-
+.calendar {
+  width: 100%;
+}

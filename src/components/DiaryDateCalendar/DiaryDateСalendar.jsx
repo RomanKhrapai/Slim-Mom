@@ -44,7 +44,13 @@ export default function DiaryDateCalendar() {
           <Datetime isValidDate={(current) => {
             let today = new Date()
             return current.isBefore(today)
-          }} value={parsedDate} input={false} timeFormat={false} dateFormat={'DD, MM, YYYY'}  onChange={getDateTime}/>
+          }} value={parsedDate} input={false} timeFormat={false} dateFormat={'DD, MM, YYYY'} 
+          onChange={getDateTime} closeOnClickOutside={true}
+          closeOnSelect={true}
+          // renderView={(mode, renderDefault) =>
+          //   this.renderView(mode, renderDefault)
+          // }
+          className={style.calendar}/>
         </div>
 
       </Modal>}
