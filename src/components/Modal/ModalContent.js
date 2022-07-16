@@ -6,19 +6,19 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-
-export default function ModalContent({onClose}) {
+export default function ModalContent({ onClose }) {
   const { t, i18n } = useTranslation();
   const dailyCalories = useSelector(state => state.user.dailyCalorieIntake);
   const productsNotRecommended = useSelector(
     state => state.user.productsNotRecommended
   );
+  console.log(productsNotRecommended);
   const navigate = useNavigate();
   const navigateToRegister = () => {
     navigate('/registration');
-    onClose()
+    onClose();
   };
-  
+
   return (
     <>
       <h2 className={styles.modal__title}>
@@ -52,5 +52,4 @@ export default function ModalContent({onClose}) {
 
 ModalContent.propTypes = {
   onClose: PropTypes.func,
-
 };
