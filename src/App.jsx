@@ -79,7 +79,7 @@ export const App = () => {
                 }
               />
               <Route path={'/diary'} element={<DiaryPage />} />
-              <Route path={'/calculator'} element={<CalculatorPage />} />
+              <Route path={'/calculator'} element={<CalculatorPage toggleModal={toggleModal} showModal={showModal} />} />
               <Route
                 path={'*'}
                 replace={true}
