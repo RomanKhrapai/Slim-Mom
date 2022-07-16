@@ -126,16 +126,8 @@ const DailyCaloriesForm = ({
           const valuesWithLanguage = { ...convertedType, language };
 
           if (isAuthorised) {
-            const toNumberValues = changeType(values);
-            const newUserValues = {
-              height: toNumberValues.height,
-              age: toNumberValues.age,
-              currentWeight: toNumberValues.currentWeight,
-              desiredWeight: toNumberValues.desiredWeight,
-              bloodType: toNumberValues.bloodType,
-              language
-            };
-            dispatch(userOperations.addUserInfo(convertedType)).then(() => {
+            
+            dispatch(userOperations.addUserInfo(valuesWithLanguage)).then(() => {
 
               onOpenModal();
               dispatch(apdateUserInfo(valuesWithLanguage));
