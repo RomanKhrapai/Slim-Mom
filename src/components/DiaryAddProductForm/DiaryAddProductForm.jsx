@@ -53,7 +53,7 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen, addClas
       }
       dispatch(userOperations.addProductToDiary(data))
       resetForm();
-      formik.values.gramsAmount = ''
+      formik.values.productAmount = ''
     },
   });
 
@@ -143,7 +143,7 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen, addClas
           name="productAmount"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.gramsAmount}
+          value={formik.values.productAmount}
           className={style.input}
           placeholder={t('diary.Grams')}
         />
