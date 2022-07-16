@@ -17,9 +17,17 @@ import { useSelector } from 'react-redux';
 import { useContext } from 'react';
 import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
 
+
 const Navigation = () => {
   const [{isDark}] = useContext(ThemeContext)
   const { isAuthorised } = useSelector(state => state.auth);
+
+  // const languageClassToggle = (e) =>{
+  //   const firstChildClass = e.currentTarget.firstChild.firstChild;
+  //   const secondChildClass = e.currentTarget.firstChild.lastChild
+  //   firstChildClass.className.includes(styles.currentLanguage)? firstChildClass.className = styles.secondaryLanguage:  firstChildClass.className = styles.currentLanguage;
+  //   secondChildClass.className.includes(styles.currentLanguage)? secondChildClass.className = styles.secondaryLanguage:  secondChildClass.className = styles.currentLanguage
+  // }
 
   const getNavLinkClassName = ({ isActive }) =>
     isActive
@@ -65,7 +73,7 @@ const Navigation = () => {
   const token = localStorage.getItem('token');
 
   const currentLanguage = i18n.language
-  const opositiveLanguage = ( currentLanguage === "uk"? "en": "uk")
+  const secondaryLanguage = ( currentLanguage === "uk"? "en": "uk")
   
   return (
     <nav>
@@ -121,7 +129,9 @@ const Navigation = () => {
           </NavLink>
         </>
       )}
-<button className={styles.languageBtn}type='button' onClick={(e)=> i18n.changeLanguage(opositiveLanguage)}><span className={styles.languageText}><span className={isDark ? styles.currentLanguage_dark : styles.currentLanguage}>{currentLanguage}</span>/{opositiveLanguage}</span></button>
+<button className={styles.languageBtn}type='button' onClick={(e)=> {i18n.changeLanguage(secondaryLanguage); 
+  // languageClassToggle(e)
+  }}><span className={styles.languageText}><span className={isDark ? styles.currentLanguage_dark : styles.currentLanguage}>{currentLanguage==="uk"? "Ukr": "Eng"}</span>/ <span className={styles.secondaryLanguage}>{currentLanguage!=="uk"? "Ukr": "Eng"}</span></span></button>
     </nav>
   );
 };
