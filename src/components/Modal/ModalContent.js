@@ -12,7 +12,7 @@ export default function ModalContent({ onClose }) {
   const productsNotRecommended = useSelector(
     state => state.user.productsNotRecommended
   );
-  console.log(productsNotRecommended);
+  // console.log(productsNotRecommended);
   const navigate = useNavigate();
   const navigateToRegister = () => {
     navigate('/registration');
