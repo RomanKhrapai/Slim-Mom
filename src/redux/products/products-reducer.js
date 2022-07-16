@@ -11,7 +11,6 @@ const productSlice = createSlice({
       state.error = null;
     },
     [productsOperations.getRequestProducts.fulfilled]: (state, {payload}) => {
-      console.log(state);
       state.items = payload;
       state.isLoading = false;
     },

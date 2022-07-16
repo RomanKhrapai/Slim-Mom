@@ -1,9 +1,7 @@
 import { Formik } from 'formik';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import i18n from '../../services/i18n/config';
 
 import PropTypes from 'prop-types';
 
@@ -16,22 +14,28 @@ import userOperations from '../../redux/user/user-operation';
 import Loader from '../Loader';
 
 const DailyCaloriesForm = ({
-  userData = { height: '', age: '', currentWeight: '', desiredWeight: '', bloodType: '1' },
+  userData = {
+    height: '',
+    age: '',
+    currentWeight: '',
+    desiredWeight: '',
+    bloodType: '1',
+  },
   onOpenModal,
 }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const isAuthorised = useSelector(state => state.auth.isAuthorised);
   const loading = useSelector(state => state.user.isLoading);
+  const language = i18n.language === 'uk' ? "ua" : "en";
 
   const changeType = values => ({
-      height: Number(values.height),
-      age: Number(values.age),
-      currentWeight: Number(values.currentWeight),
-      desiredWeight: Number(values.desiredWeight),
-      bloodType: Number(values.bloodType)
-    });
-  
+    height: Number(values.height),
+    age: Number(values.age),
+    currentWeight: Number(values.currentWeight),
+    desiredWeight: Number(values.desiredWeight),
+    bloodType: Number(values.bloodType),
+  });
 
   const getActiveClass = condition => {
     if (condition) return `${s.label} ${s.labelAbsolute} ${s.labelFocus}`;
@@ -119,22 +123,31 @@ const DailyCaloriesForm = ({
         }}
         onSubmit={(values, { resetForm }) => {
           const convertedType = changeType(values);
+          const valuesWithLanguage = { ...convertedType, language };
 
           if (isAuthorised) {
-             dispatch(userOperations.addUserInfo(convertedType)).then(() => {
+            const toNumberValues = changeType(values);
+            const newUserValues = {
+              height: toNumberValues.height,
+              age: toNumberValues.age,
+              currentWeight: toNumberValues.currentWeight,
+              desiredWeight: toNumberValues.desiredWeight,
+              bloodType: toNumberValues.bloodType,
+              language
+            };
+            dispatch(userOperations.addUserInfo(convertedType)).then(() => {
+
               onOpenModal();
-              dispatch(apdateUserInfo(convertedType));
+              dispatch(apdateUserInfo(valuesWithLanguage));
             });
-  
           } else {
-            dispatch(userOperations.addVisitorInfo(convertedType)).then(() => {
+            dispatch(userOperations.addVisitorInfo(valuesWithLanguage)).then(() => {
               onOpenModal();
               resetForm();
             });
           }
         }}
       >
-
         {({
           values,
           errors,
@@ -306,8 +319,9 @@ const DailyCaloriesForm = ({
                 </div>
               </div>
 
-              <Button className={s.Btn} type="submit">{t('calculator.Calculate')}</Button>
-
+              <Button className={s.Btn} type="submit">
+                {t('calculator.Calculate')}
+              </Button>
             </form>
           );
         }}

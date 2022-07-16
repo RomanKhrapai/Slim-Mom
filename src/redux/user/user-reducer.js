@@ -88,7 +88,6 @@ const userSlice = createSlice({
       state.isLoading = false;
     },
     [changeData]: (state, action) => {
-      console.log(action.payload);
       state.chosenDate = action.payload;
     },
   },

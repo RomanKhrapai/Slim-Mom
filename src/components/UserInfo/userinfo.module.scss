@@ -47,6 +47,14 @@ $firstColor: #9b9faa;
       color: $activeColor;
     }
   }
+
+.button_dark{
+  &:hover,
+  &:focus {
+    color: #fff;
+  }
+}
+
 }
 @media screen and (min-width: 1280px) {
     .userinfo {
