@@ -16,10 +16,15 @@ import {
 import { useSelector } from 'react-redux';
 import { useContext } from 'react';
 import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
+import { ReactComponent as LogoNew } from '../../images/logo-new.svg';
+import { ReactComponent as Slim } from '../../images/slim.svg';
+import { ReactComponent as Mom } from '../../images/mom.svg';
+import { ReactComponent as Cross } from '../../images/white-cross.svg';
+import { ReactComponent as Burger } from '../../images/white-burger.svg';
 
 
 const Navigation = () => {
-  const [{isDark}] = useContext(ThemeContext)
+  const [{ isDark }] = useContext(ThemeContext);
   const { isAuthorised } = useSelector(state => state.auth);
 
   // const languageClassToggle = (e) =>{
@@ -34,22 +39,21 @@ const Navigation = () => {
       ? `${styles.nav__link_active} ${styles.nav__link}`
       : styles.nav__link;
 
-      const getNavLinkClassNameDark = ({ isActive }) =>
-      isActive
-        ? `${styles.nav__link_active_dark} ${styles.nav__link_dark}`
-        : styles.nav__link_dark;
+  const getNavLinkClassNameDark = ({ isActive }) =>
+    isActive
+      ? `${styles.nav__link_active_dark} ${styles.nav__link_dark}`
+      : styles.nav__link_dark;
 
   const getLoggedInLinkClassName = ({ isActive }) =>
     isActive
       ? `${styles.nav__link__loggedIn_active} ${styles.nav__link__loggedIn}`
       : styles.nav__link__loggedIn;
 
-      const getLoggedInLinkClassNameDark = ({ isActive }) =>
-      isActive
-        ? `${styles.nav__link__loggedIn_active_dark} ${styles.nav__link__loggedIn_dark}`
-        : styles.nav__link__loggedIn_dark;
-      
-      
+  const getLoggedInLinkClassNameDark = ({ isActive }) =>
+    isActive
+      ? `${styles.nav__link__loggedIn_active_dark} ${styles.nav__link__loggedIn_dark}`
+      : styles.nav__link__loggedIn_dark;
+
   const getLogoClassName = ({ isActive }) =>
     isActive ? styles.active__logo : styles.logo;
 
@@ -72,9 +76,9 @@ const Navigation = () => {
 
   const token = localStorage.getItem('token');
 
-  const currentLanguage = i18n.language
-  const secondaryLanguage = ( currentLanguage === "uk"? "en": "uk")
-  
+  const currentLanguage = i18n.language;
+  const opositiveLanguage = currentLanguage === 'uk' ? 'en' : 'uk';
+
   return (
     <nav>
       <NavLink
@@ -82,22 +86,48 @@ const Navigation = () => {
         className={getLogoClassName}
         to={'/'}
       >
-        <img src={getLogo()} alt={'logo'} />
-        <div className={styles.vector1} />
+        {isDark ? (
+          <div
+            className={
+              !isAuthorised
+                ? styles.logo_wrapper_unauthorised
+                : styles.logo_wrapper
+            }
+          >
+            <LogoNew className={styles.logo_new} />
+            <div
+              className={
+                !isAuthorised
+                  ? styles.words_wrapper_unauthorised
+                  : styles.words_wrapper
+              }
+            >
+              <Slim className={styles.slim} />
+              <Mom className={styles.mom} />
+            </div>
+          </div>
+        ) : (
+          <img src={getLogo()} alt={'logo'} />
+        )}
+        <div className={isDark ? styles.vector1_dark : styles.vector1} />
       </NavLink>
       {isAuthorised ? (
         <>
           <div className={isMenuOpen ? styles.menu : styles.menu__isClosed}>
             <NavLink
               onClick={() => setIsMenuOpen(false)}
-              className={isDark? getLoggedInLinkClassNameDark :getLoggedInLinkClassName}
+              className={
+                isDark ? getLoggedInLinkClassNameDark : getLoggedInLinkClassName
+              }
               to={'/diary'}
             >
               {t('navigation.Diary')}
             </NavLink>
             <NavLink
               onClick={() => setIsMenuOpen(false)}
-              className={isDark? getLoggedInLinkClassNameDark :getLoggedInLinkClassName}
+              className={
+                isDark ? getLoggedInLinkClassNameDark : getLoggedInLinkClassName
+              }
               to={'/calculator'}
             >
               {t('navigation.Calculator')}
@@ -108,30 +138,61 @@ const Navigation = () => {
             className={styles.menu__button}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            <img
-              className={
-                isMenuOpen
-                  ? styles.menu__button__isOpen
-                  : styles.menu__button__isClosed
-              }
-              src={isMenuOpen ? closeSvg : menuSvg}
-              alt={'menu'}
-            />
+            {/* <Cross className={styles.icons_dark}/> */}
+            {/* <Burger className={styles.icons_dark}/> */}
+            {isDark ? (
+              isMenuOpen ? (
+                <Cross className={styles.icons_dark} />
+              ) : (
+                <Burger className={styles.icons_dark} />
+              )
+            ) : (
+              <img
+                className={
+                  isMenuOpen
+                    ? styles.menu__button__isOpen
+                    : styles.menu__button__isClosed
+                }
+                src={isMenuOpen ? closeSvg : menuSvg}
+                alt={'menu'}
+              />
+            )}
           </button>
         </>
       ) : (
         <>
-          <NavLink className={isDark? getNavLinkClassNameDark : getNavLinkClassName} to={'/login'}>
+          <NavLink
+            className={isDark ? getNavLinkClassNameDark : getNavLinkClassName}
+            to={'/login'}
+          >
             {t('navigation.Sign In')}
           </NavLink>
-          <NavLink className={isDark? getNavLinkClassNameDark : getNavLinkClassName} to={'/registration'}>
+          <NavLink
+            className={isDark ? getNavLinkClassNameDark : getNavLinkClassName}
+            to={'/registration'}
+          >
             {t('navigation.Registration')}
           </NavLink>
         </>
       )}
-<button className={styles.languageBtn}type='button' onClick={(e)=> {i18n.changeLanguage(secondaryLanguage); 
-  // languageClassToggle(e)
-  }}><span className={styles.languageText}><span className={isDark ? styles.currentLanguage_dark : styles.currentLanguage}>{currentLanguage==="uk"? "Ukr": "Eng"}</span>/ <span className={styles.secondaryLanguage}>{currentLanguage!=="uk"? "Ukr": "Eng"}</span></span></button>
+
+      <button
+        className={styles.languageBtn}
+        type="button"
+        onClick={e => i18n.changeLanguage(opositiveLanguage)}
+      >
+        <span className={styles.languageText}>
+          <span
+            className={
+              isDark ? styles.currentLanguage_dark : styles.currentLanguage
+            }
+          >
+            {currentLanguage}
+          </span>
+          /{opositiveLanguage}
+        </span>
+      </button>
+
     </nav>
   );
 };
