@@ -52,7 +52,7 @@ export const App = () => {
   return (
     <div
       className={showModal ? s.overflow_hidden : undefined}
-      style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
+      style={{ backgroundColor: theme.backgroundColor, color: theme.color, position: 'relative', minHeight:'100vh' }}
     >
       {/* <div className={showModal ? s.overflow_hidden : undefined}>  */}
       <BrowserRouter>

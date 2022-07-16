@@ -29,7 +29,7 @@ const MainPage = ({showModal, toggleModal}) => {
       { loading && <Loader /> }
       {showModal && (
         <Modal onClose={toggleModal}>
-          <ModalContent/>
+          <ModalContent onClose={toggleModal}/>
         </Modal>
       )}
     </Container>

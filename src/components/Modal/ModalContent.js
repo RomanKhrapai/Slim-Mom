@@ -4,8 +4,10 @@ import { useTranslation } from 'react-i18next';
 import Button from 'components/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
-export default function ModalContent() {
+
+export default function ModalContent({onClose}) {
   const { t, i18n } = useTranslation();
   const dailyCalories = useSelector(state => state.user.dailyCalorieIntake);
   const productsNotRecommended = useSelector(
@@ -14,7 +16,9 @@ export default function ModalContent() {
   const navigate = useNavigate();
   const navigateToRegister = () => {
     navigate('/registration');
+    onClose()
   };
+  
   return (
     <>
       <h2 className={styles.modal__title}>
@@ -45,3 +49,8 @@ export default function ModalContent() {
     </>
   );
 }
+
+ModalContent.propTypes = {
+  onClose: PropTypes.func,
+
+};
