@@ -6,7 +6,7 @@ const initialState = {
   isAuthorised: false,
   isLoading: false,
   token: null,
-  isFetchingCurrentUser: false,
+  isFetchingCurrentUser: true,
 };
 const authSlice = createSlice({
   name: 'auth',
@@ -78,5 +78,5 @@ const authSlice = createSlice({
   },
 });
 
-export const {apdateUserInfo} = authSlice.actions
+export const { apdateUserInfo } = authSlice.actions;
 export default authSlice.reducer;

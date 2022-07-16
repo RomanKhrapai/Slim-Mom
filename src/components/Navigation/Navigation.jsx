@@ -16,16 +16,18 @@ import {
 import { useSelector } from 'react-redux';
 import { useContext } from 'react';
 import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
+
+import authSelectors from 'redux/auth/auth-selectors';
 import { ReactComponent as LogoNew } from '../../images/logo-new.svg';
 import { ReactComponent as Slim } from '../../images/slim.svg';
 import { ReactComponent as Mom } from '../../images/mom.svg';
 import { ReactComponent as Cross } from '../../images/white-cross.svg';
 import { ReactComponent as Burger } from '../../images/white-burger.svg';
 
-
 const Navigation = () => {
   const [{ isDark }] = useContext(ThemeContext);
-  const { isAuthorised } = useSelector(state => state.auth);
+  const isAuthorised = useSelector(authSelectors.getIsAuthorised);
+
 
   // const languageClassToggle = (e) =>{
   //   const firstChildClass = e.currentTarget.firstChild.firstChild;
@@ -77,6 +79,7 @@ const Navigation = () => {
   const token = localStorage.getItem('token');
 
   const currentLanguage = i18n.language;
+
   const opositiveLanguage = currentLanguage === 'uk' ? 'en' : 'uk';
 
   return (
@@ -192,7 +195,6 @@ const Navigation = () => {
           </NavLink>
         </>
       )}
-
     </nav>
   );
 };

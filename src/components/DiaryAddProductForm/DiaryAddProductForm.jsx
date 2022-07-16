@@ -14,7 +14,7 @@ import arrow from '../../images/arrow1.svg';
 
 export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen, addClass }) {
   const [productList, setProductList] = useState([]);
-  const [chosenProduct, setChosenProduct] = useState("");
+  const [chosenProduct, setChosenProduct] = useState('');
   const currentDate = useSelector(productsSelectors.getTodayDate);
 
   const { t } = useTranslation();
@@ -57,6 +57,7 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen, addClas
     },
   });
 
+
   useEffect(async () => {
     const request = formik.values.productName.trim();
     if (request.length > 2) {
@@ -66,7 +67,7 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen, addClas
 
   useEffect(() => {
     if (chosenProduct === productList[0]?._id && productList?.length === 1) {
-      setProductList([])
+      setProductList([]);
     }
   }, [chosenProduct, productList]);
 
@@ -123,6 +124,7 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen, addClas
                   onClick={() => {
                     setChosenProduct(product._id);
                     formik.values.productName = productName;
+
                   }}
                 >
                   {productName}
@@ -153,7 +155,11 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen, addClas
         </div>
       </div>
 
-      <button onClick={() => closeButton()} type="button" className={style.closeButton}>
+      <button
+        onClick={() => closeButton()}
+        type="button"
+        className={style.closeButton}
+      >
         <img src={arrow} alt={`arrow close icon`} />
       </button>
 
@@ -172,4 +178,5 @@ DiaryAddProductForm.propTypes = {
   isFormOpen: PropTypes.bool,
   setIsFormOpen: PropTypes.func,
   addClass: PropTypes.string,
+
 };
