@@ -2,7 +2,7 @@ import { Formik } from 'formik';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
- import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import PropTypes from 'prop-types';
@@ -11,29 +11,28 @@ import s from './DailyCaloriesForm.module.scss';
 import Button from 'components/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { apdateUserInfo } from 'redux/auth/auth-reducer';
 import userOperations from '../../redux/user/user-operation';
 import Loader from '../Loader';
 
 const DailyCaloriesForm = ({
-  userData = { height: '', age: '', current: '', desired: '', blood: '1' },
+  userData = { height: '', age: '', currentWeight: '', desiredWeight: '', bloodType: '1' },
   onOpenModal,
 }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const isAuthorised = useSelector(state => state.auth.isAuthorised);
-  const dailyCalories = useSelector(state => state.user.dailyCalorieIntake);
   const loading = useSelector(state => state.user.isLoading);
-
 
   const chageType = values => {
     return {
       height: Number(values.height),
       age: Number(values.age),
-      currentWeight: Number(values.current),
-      desiredWeight: Number(values.desired),
-      bloodType: Number(values.blood)
+      currentWeight: Number(values.currentWeight),
+      desiredWeight: Number(values.desiredWeight),
+      bloodType: Number(values.bloodType)
+
     };
-    
   };
 
   const getActiveClass = condition => {
@@ -83,20 +82,20 @@ const DailyCaloriesForm = ({
           }
 
           if (
-            values.current < valueRequire.weight.min ||
-            values.current > valueRequire.weight.max
+            values.currentWeight < valueRequire.weight.min ||
+            values.currentWeight > valueRequire.weight.max
           ) {
-            errors.current = t('calculator.currentError', {
+            errors.currentWeight = t('calculator.currentError', {
               min: valueRequire.weight.min,
               max: valueRequire.weight.max,
             });
           }
 
           if (
-            values.desired < valueRequire.weight.min ||
-            values.desired > valueRequire.weight.max
+            values.desiredWeight < valueRequire.weight.min ||
+            values.desiredWeight > valueRequire.weight.max
           ) {
-            errors.desired = t('calculator.desiredError', {
+            errors.desiredWeight = t('calculator.desiredError', {
               min: valueRequire.weight.min,
               max: valueRequire.weight.max,
             });
@@ -110,32 +109,41 @@ const DailyCaloriesForm = ({
             errors.age = t('calculator.Only numerics');
           }
 
-          if (!+values.current) {
-            errors.current = t('calculator.Only numerics');
+          if (!+values.currentWeight) {
+            errors.currentWeight = t('calculator.Only numerics');
           }
 
-          if (!+values.desired) {
-            errors.desired = t('calculator.Only numerics');
+          if (!+values.desiredWeight) {
+            errors.desiredWeight = t('calculator.Only numerics');
           }
 
           return errors;
         }}
         onSubmit={(values, { resetForm }) => {
-          
+
           if (isAuthorised) {
+           
             dispatch(userOperations.addUserInfo(chageType(values))).then(() => {
+
               onOpenModal();
-              resetForm();
+
+              dispatch(apdateUserInfo(chageType(values));
               
+
             });
           } else {
-            dispatch(userOperations.addVisitorInfo(chageType(values))).then(() => {
-              onOpenModal();
-              resetForm();
-              
-            });
+            dispatch(userOperations.addVisitorInfo(chageType(values))).then(
+              () => {
+                
+                  onOpenModal();
+                  resetForm();
+                
+              }
+            );
           }
-        }}>
+        }}
+      >
+
         {({
           values,
           errors,
@@ -190,18 +198,18 @@ const DailyCaloriesForm = ({
                   <input
                     className={s.input}
                     id="current"
-                    name="current"
+                    name="currentWeight"
                     type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    value={values.current}
+                    value={values.currentWeight}
                     required
                   />
-                  {errors.current && touched.current && (
-                    <div className={s.errorMessage}>{errors.current}</div>
+                  {errors.currentWeight && touched.currentWeight && (
+                    <div className={s.errorMessage}>{errors.currentWeight}</div>
                   )}
                   <label
-                    className={getActiveClass(values.current)}
+                    className={getActiveClass(values.currentWeight)}
                     htmlFor="current"
                   >
                     {t('calculator.Current weight')}, {t('calculator.kg')} *
@@ -211,18 +219,18 @@ const DailyCaloriesForm = ({
                   <input
                     className={s.input}
                     id="desired"
-                    name="desired"
+                    name="desiredWeight"
                     type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    value={values.desired}
+                    value={values.desiredWeight}
                     required
                   />
-                  {errors.desired && touched.desired && (
-                    <div className={s.errorMessage}>{errors.desired}</div>
+                  {errors.desiredWeight && touched.desiredWeight && (
+                    <div className={s.errorMessage}>{errors.desiredWeight}</div>
                   )}
                   <label
-                    className={getActiveClass(values.desired)}
+                    className={getActiveClass(values.desiredWeight)}
                     htmlFor="desired"
                   >
                     {t('calculator.Desired weight')}, {t('calculator.kg')} *
@@ -238,9 +246,9 @@ const DailyCaloriesForm = ({
                     <input
                       className={s.radioInput}
                       type="radio"
-                      name="blood"
+                      name="bloodType"
                       value="1"
-                      checked={values.blood == '1'}
+                      checked={values.bloodType == '1'}
                       required
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -256,9 +264,9 @@ const DailyCaloriesForm = ({
                     <input
                       className={s.radioInput}
                       type="radio"
-                      name="blood"
+                      name="bloodType"
                       value="2"
-                      checked={values.blood == '2'}
+                      checked={values.bloodType == '2'}
                       required
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -274,9 +282,9 @@ const DailyCaloriesForm = ({
                     <input
                       className={s.radioInput}
                       type="radio"
-                      name="blood"
+                      name="bloodType"
                       value="3"
-                      checked={values.blood == '3'}
+                      checked={values.bloodType == '3'}
                       required
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -292,9 +300,9 @@ const DailyCaloriesForm = ({
                     <input
                       className={s.radioInput}
                       type="radio"
-                      name="blood"
+                      name="bloodType"
                       value="4"
-                      checked={values.blood == '4'}
+                      checked={values.bloodType == '4'}
                       required
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -306,12 +314,14 @@ const DailyCaloriesForm = ({
                   </label>
                 </div>
               </div>
-              <Button className={s.Btn} type="submit">{t('calculator.Start losing weight')}</Button>
+
+              <Button className={s.Btn} type="submit">{t('calculator.Calculate')}</Button>
+
             </form>
           );
         }}
       </Formik>
-       { loading && <Loader /> }
+      {loading && <Loader />}
     </>
   );
 };
