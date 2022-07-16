@@ -5,7 +5,6 @@ import 'react-datetime/css/react-datetime.css';
 import style from './DiaryDateСalendar.module.scss';
 import calendarIcon from '../../images/icon-calendar.svg';
 import Datetime from 'react-datetime';
-import 'react-datetime/css/react-datetime.css';
 import { changeData } from '../../redux/user/user-action';
 import moment from 'moment';
 import Modal from '../Modal';

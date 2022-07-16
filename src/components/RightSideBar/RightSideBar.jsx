@@ -23,11 +23,6 @@ function RightSideBar() {
     language
   }
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(userOperations.addUserInfo(userRequest));
-  }, [language]);
-
   const User = useSelector(state => state);
 
   let dailyRate = User.user.dailyCalorieIntake;
@@ -35,7 +30,14 @@ function RightSideBar() {
   let chosenDate = useSelector(productsSelectors.getChosenDate);
   const products = useSelector(productsSelectors.getDiaryProducts);
 
-  userOperations.getDayProducts(chosenDate);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(userOperations.addUserInfo(userRequest));
+  }, [language]);
+
+  useEffect(() => {
+    dispatch(userOperations.getDayProducts(chosenDate));
+  }, [chosenDate]);
 
   let kall = 0;
   let porc = 0;
