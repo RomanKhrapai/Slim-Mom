@@ -2,7 +2,7 @@ import { Formik } from 'formik';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
- import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import PropTypes from 'prop-types';
@@ -11,6 +11,7 @@ import s from './DailyCaloriesForm.module.scss';
 import Button from 'components/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { apdateUserInfo } from 'redux/auth/auth-reducer';
 import userOperations from '../../redux/user/user-operation';
 import Loader from '../Loader';
 
@@ -23,7 +24,6 @@ const DailyCaloriesForm = ({
   const isAuthorised = useSelector(state => state.auth.isAuthorised);
   const loading = useSelector(state => state.user.isLoading);
 
-
   const chageType = values => {
     return {
       height: Number(values.height),
@@ -31,8 +31,8 @@ const DailyCaloriesForm = ({
       currentWeight: Number(values.currentWeight),
       desiredWeight: Number(values.desiredWeight),
       bloodType: Number(values.bloodType)
+
     };
-    
   };
 
   const getActiveClass = condition => {
@@ -120,19 +120,30 @@ const DailyCaloriesForm = ({
           return errors;
         }}
         onSubmit={(values, { resetForm }) => {
-          
+
           if (isAuthorised) {
+           
             dispatch(userOperations.addUserInfo(chageType(values))).then(() => {
+
               onOpenModal();
+
+              dispatch(apdateUserInfo(chageType(values));
+              
+
             });
           } else {
-            dispatch(userOperations.addVisitorInfo(chageType(values))).then(() => {
-              onOpenModal();
-              resetForm();
-              
-            });
+            dispatch(userOperations.addVisitorInfo(chageType(values))).then(
+              () => {
+                
+                  onOpenModal();
+                  resetForm();
+                
+              }
+            );
           }
-        }}>
+        }}
+      >
+
         {({
           values,
           errors,
@@ -303,12 +314,14 @@ const DailyCaloriesForm = ({
                   </label>
                 </div>
               </div>
+
               <Button className={s.Btn} type="submit">{t('calculator.Calculate')}</Button>
+
             </form>
           );
         }}
       </Formik>
-       { loading && <Loader /> }
+      {loading && <Loader />}
     </>
   );
 };

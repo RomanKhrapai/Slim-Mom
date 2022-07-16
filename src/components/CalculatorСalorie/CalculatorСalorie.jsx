@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import DailyCaloriesForm from '../DailyCaloriesForm';
 import UserInfo from './UserInfo';
 import Button from 'components/Button/Button';
@@ -6,8 +6,6 @@ import s from './CalculatorCalorie.module.scss';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import style from '../DailyCaloriesForm//DailyCaloriesForm.module.scss';
-
-
 
 const сalculatorСalorie = () => {
   // функція для перекладу
@@ -22,22 +20,16 @@ const сalculatorСalorie = () => {
     setActiveModerate(!activeModerate);
   };
 
-
   if (!activeModerate) {
     return (
       <>
         <h2 className={s.title}>{t('calculator.Your Parametrs')}:</h2>
         <div>
-        <UserInfo userData={user} />
-        <Button type="button" className={style.Button} onClick={changeActive}>
-          {user.height
-            ? t('calculator.Change information')
-            : t('calculator.Add information')}
-        </Button>
-            </div>
-        {/* <Button  type="button" disabled={fetchUser? false: true} >
-          {t("calculator.View your losing weight plan")}
-          </Button > */}
+          <UserInfo userData={user} />
+          <Button type="button" className={style.Button} onClick={changeActive}>
+            {t('calculator.Add information')}
+          </Button>
+        </div>
       </>
     );
   }
@@ -45,6 +37,7 @@ const сalculatorСalorie = () => {
   return (
     <div className={s.box}>
       <div>
+
         
       <DailyCaloriesForm userData={user} />
       <Button type="button" onClick={changeActive} className={s.button}>
