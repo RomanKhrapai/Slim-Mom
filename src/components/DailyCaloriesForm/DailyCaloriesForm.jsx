@@ -2,7 +2,7 @@ import { Formik } from 'formik';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
- import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import PropTypes from 'prop-types';
@@ -11,6 +11,7 @@ import s from './DailyCaloriesForm.module.scss';
 import Button from 'components/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { apdateUserInfo } from 'redux/auth/auth-reducer';
 import userOperations from '../../redux/user/user-operation';
 import Loader from '../Loader';
 
@@ -24,16 +25,14 @@ const DailyCaloriesForm = ({
   const dailyCalories = useSelector(state => state.user.dailyCalorieIntake);
   const loading = useSelector(state => state.user.isLoading);
 
-
   const chageType = values => {
     return {
       height: Number(values.height),
       age: Number(values.age),
       currentWeight: Number(values.current),
       desiredWeight: Number(values.desired),
-      bloodType: Number(values.blood)
+      bloodType: Number(values.blood),
     };
-    
   };
 
   const getActiveClass = condition => {
@@ -121,21 +120,48 @@ const DailyCaloriesForm = ({
           return errors;
         }}
         onSubmit={(values, { resetForm }) => {
-          
+
           if (isAuthorised) {
+            const toNumberValues = chageType(values);
+            const newUserValues = {
+              height: toNumberValues.height,
+              age: toNumberValues.age,
+              currentWeight: toNumberValues.currentWeight,
+              desiredWeight: toNumberValues.desiredWeight,
+              bloodType: toNumberValues.bloodType,
+            };
             dispatch(userOperations.addUserInfo(chageType(values))).then(() => {
-              onOpenModal();
-              resetForm();
-              
+              dispatch(apdateUserInfo(newUserValues));
+              if (dailyCalories) {
+                onOpenModal();
+                resetForm();
+              }
             });
           } else {
-            dispatch(userOperations.addVisitorInfo(chageType(values))).then(() => {
-              onOpenModal();
-              resetForm();
-              
-            });
+            dispatch(userOperations.addVisitorInfo(chageType(values))).then(
+              () => {
+                if (dailyCalories) {
+                  onOpenModal();
+                  resetForm();
+                }
+              }
+            );
           }
-        }}>
+          //=======
+          //         getCaloriesInfoPublic(chageType(values)).then(({ user }) => {
+          //          setDailyCalories(user.dailyCalorieIntake);
+          //           setForbiddenProducts(user.productsNotRecommended);
+          //        }).then(() => {
+          //          onOpenModal();
+          //         resetForm();
+          //        }).catch(e => {
+          //          console.log(e);
+          //          toast.error("Ooops, something went wrong. Try again.");
+          //         });
+          //>>>>>>> dev
+        }}
+      >
+
         {({
           values,
           errors,
@@ -306,12 +332,14 @@ const DailyCaloriesForm = ({
                   </label>
                 </div>
               </div>
-              <Button className={s.Btn} type="submit">{t('calculator.Start losing weight')}</Button>
+              <Button className={s.Btn} type="submit">
+                {t('calculator.Start losing weight')}
+              </Button>
             </form>
           );
         }}
       </Formik>
-       { loading && <Loader /> }
+      {loading && <Loader />}
     </>
   );
 };
