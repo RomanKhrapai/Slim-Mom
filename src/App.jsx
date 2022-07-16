@@ -61,7 +61,7 @@ export const App = () => {
     >
       {/* <div className={showModal ? s.overflow_hidden : undefined}>  */}
       {isFetchingCurrentUser ? (
-        <h1>Loading....</h1>
+        <Loader />
       ) : (
       <BrowserRouter>
         <Header />
@@ -79,7 +79,7 @@ export const App = () => {
                 }
               />
               <Route path={'/diary'} element={<DiaryPage />} />
-              <Route path={'/calculator'} element={<CalculatorPage />} />
+              <Route path={'/calculator'} element={<CalculatorPage toggleModal={toggleModal} showModal={showModal} />} />
               <Route
                 path={'*'}
                 replace={true}

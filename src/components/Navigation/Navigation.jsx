@@ -22,9 +22,17 @@ import { ReactComponent as Mom } from '../../images/mom.svg';
 import { ReactComponent as Cross } from '../../images/white-cross.svg';
 import { ReactComponent as Burger } from '../../images/white-burger.svg';
 
+
 const Navigation = () => {
   const [{ isDark }] = useContext(ThemeContext);
   const { isAuthorised } = useSelector(state => state.auth);
+
+  // const languageClassToggle = (e) =>{
+  //   const firstChildClass = e.currentTarget.firstChild.firstChild;
+  //   const secondChildClass = e.currentTarget.firstChild.lastChild
+  //   firstChildClass.className.includes(styles.currentLanguage)? firstChildClass.className = styles.secondaryLanguage:  firstChildClass.className = styles.currentLanguage;
+  //   secondChildClass.className.includes(styles.currentLanguage)? secondChildClass.className = styles.secondaryLanguage:  secondChildClass.className = styles.currentLanguage
+  // }
 
   const getNavLinkClassName = ({ isActive }) =>
     isActive
@@ -167,6 +175,7 @@ const Navigation = () => {
           </NavLink>
         </>
       )}
+
       <button
         className={styles.languageBtn}
         type="button"
@@ -183,6 +192,7 @@ const Navigation = () => {
           /{opositiveLanguage}
         </span>
       </button>
+
     </nav>
   );
 };

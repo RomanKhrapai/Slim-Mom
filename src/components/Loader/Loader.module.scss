@@ -6,18 +6,16 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    // width: 350px;
-    // height: 150px;
-    // margin: auto;
+    text-align: center;   
     width: 350px;
     color: $main-background-color;
     font: Verdana;
     font-weight: 700;
     font-size: 250%;
-    background: linear-gradient(180deg, $buttons-color 0, $buttons-color 100%);
+    background: linear-gradient(180deg, $buttons-color 50%, $buttons-color 100%);
     box-shadow: inset 0 5px 20px $main-background-color;
     text-shadow: 5px 5px 5px rgba(255, 255, 255, 0.3);
-    border: none;
+    opacity: 0.8;
     border-radius: 4px;
 }
 
@@ -47,8 +45,7 @@
     line-height: 120px;
     width: 50px;
     background: linear-gradient(180deg, $main-background-color 50%, $buttons-color 100%);
-    animation: up 2s infinite;
-    border: none;
+    animation: up 2s infinite;       
 }
 
 @keyframes up {
@@ -93,12 +90,3 @@
 .covers span:nth-child(7) {
     animation-delay: .857142s;
 }
-
-
-// import { store} from '../redux/store';
-// import Loader from 'components/Loader';
-
-
-//   const loading=store.getState().product.isLoading const loading1=store.getState().auth.isLoading const loading2=store.getState().user.isLoading console.log(`product ${loading}`);
-//   console.log(`auth ${loading1}`);
-//   console.log(`user ${loading2}`);
