@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { useSelector } from 'react-redux';
 import moment from 'moment';
 import { useTranslation } from 'react-i18next';
 import RightSideBar from 'components/RightSideBar';
@@ -8,7 +8,6 @@ import PageTitle from '../components/PageTitle/PageTitle';
 import Container from 'components/Container/Container';
 import s from '../components/RightSideBar/RightSideBar.module.scss';
 import style from './CalculatorPage.module.scss';
-import { useSelector } from 'react-redux';
 import Loader from '../components/Loader';
 
 const CalculatorPage = () => {

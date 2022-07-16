@@ -61,7 +61,7 @@ export const App = () => {
     >
       {/* <div className={showModal ? s.overflow_hidden : undefined}>  */}
       {isFetchingCurrentUser ? (
-        <h1>Loading....</h1>
+        <Loader />
       ) : (
       <BrowserRouter>
         <Header />
