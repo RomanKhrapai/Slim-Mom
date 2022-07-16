@@ -8,11 +8,13 @@ import authOperations from './auth-operations';
     token: null,
     isFetchingCurrentUser: false,
   }
-
   const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    apdateUserInfo(state, action) {
+    state.user = {...state.user, ...action.payload}
+  }},
   extraReducers: {
     [authOperations.signUpUser.pending]: (state, action) => {
       state.isLoading = true;
@@ -71,5 +73,8 @@ import authOperations from './auth-operations';
     },
   },
 });
+
+export const {apdateUserInfo} = authSlice.actions
+console.log(authSlice);
 
 export default authSlice.reducer;
