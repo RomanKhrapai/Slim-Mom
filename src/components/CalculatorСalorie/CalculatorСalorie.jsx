@@ -10,9 +10,11 @@ import style from '../DailyCaloriesForm//DailyCaloriesForm.module.scss';
 const сalculatorСalorie = () => {
   // функція для перекладу
   const { t } = useTranslation();
-
   const [activeModerate, setActiveModerate] = useState(false);
+  // const [user, setUser] = useState({ height: '', age: '', currentWeight: '', desiredWeight: '', bloodType: '', language: "ua" })
   const user = useSelector(state => state.auth.user);
+  console.log(user);
+
 
   const changeActive = () => {
     setActiveModerate(!activeModerate);
@@ -35,18 +37,12 @@ const сalculatorСalorie = () => {
   return (
     <div className={s.box}>
       <div>
-        <DailyCaloriesForm
-          userData={{
-            height: user.height,
-            age: user.age,
-            current: user.currentWeight,
-            desired: user.desiredWeight,
-            blood: user.bloodType,
-          }}
-        />
-        <Button type="button" onClick={changeActive} className={s.button}>
-          {t('calculator.Revoke Changes')}
-        </Button>
+
+        
+      <DailyCaloriesForm userData={user} />
+      <Button type="button" onClick={changeActive} className={s.button}>
+        {t('calculator.Revoke Changes')}
+      </Button>
       </div>
     </div>
   );
