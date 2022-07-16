@@ -16,22 +16,28 @@ import userOperations from '../../redux/user/user-operation';
 import Loader from '../Loader';
 
 const DailyCaloriesForm = ({
-  userData = { height: '', age: '', currentWeight: '', desiredWeight: '', bloodType: '1' },
+  userData = {
+    height: '',
+    age: '',
+    currentWeight: '',
+    desiredWeight: '',
+    bloodType: '1',
+  },
   onOpenModal,
 }) => {
+  console.log(onOpenModal);
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const isAuthorised = useSelector(state => state.auth.isAuthorised);
   const loading = useSelector(state => state.user.isLoading);
 
   const changeType = values => ({
-      height: Number(values.height),
-      age: Number(values.age),
-      currentWeight: Number(values.currentWeight),
-      desiredWeight: Number(values.desiredWeight),
-      bloodType: Number(values.bloodType)
-    });
-  
+    height: Number(values.height),
+    age: Number(values.age),
+    currentWeight: Number(values.currentWeight),
+    desiredWeight: Number(values.desiredWeight),
+    bloodType: Number(values.bloodType),
+  });
 
   const getActiveClass = condition => {
     if (condition) return `${s.label} ${s.labelAbsolute} ${s.labelFocus}`;
@@ -121,11 +127,10 @@ const DailyCaloriesForm = ({
           const convertedType = changeType(values);
 
           if (isAuthorised) {
-             dispatch(userOperations.addUserInfo(convertedType)).then(() => {
+            dispatch(userOperations.addUserInfo(convertedType)).then(() => {
               onOpenModal();
               dispatch(apdateUserInfo(convertedType));
             });
-  
           } else {
             dispatch(userOperations.addVisitorInfo(convertedType)).then(() => {
               onOpenModal();
@@ -134,7 +139,6 @@ const DailyCaloriesForm = ({
           }
         }}
       >
-
         {({
           values,
           errors,
@@ -306,8 +310,9 @@ const DailyCaloriesForm = ({
                 </div>
               </div>
 
-              <Button className={s.Btn} type="submit">{t('calculator.Calculate')}</Button>
-
+              <Button className={s.Btn} type="submit">
+                {t('calculator.Calculate')}
+              </Button>
             </form>
           );
         }}
