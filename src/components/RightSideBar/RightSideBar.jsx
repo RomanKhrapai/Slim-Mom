@@ -3,8 +3,6 @@ import s from './RightSideBar.module.scss';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../services/i18n/config';
 import { useSelector, useDispatch } from 'react-redux';
-// import userOperations from '../../redux/user/user-operation';
-// import productsSelectors from '../../redux/user/user-selector';
 import { productsSelectors, userOperations } from '../../redux/user';
 
 function RightSideBar() {
@@ -15,7 +13,6 @@ function RightSideBar() {
 
   const language = i18n.language === 'uk' ? "ua" : "en";
   const userInfo = useSelector(productsSelectors.getUserInfo);
-  // console.log(userInfo);
 
   const userRequest = {
     age: userInfo.age,
@@ -83,12 +80,11 @@ function RightSideBar() {
           {' '}
           {t('Summary for')}{' '}
           {chosenDate === currentDate ? `${currentDate}` : `${chosenDate}`}
-          {/* {chosenDate} */}
         </h2>
         <ul className={s.list}>
           <li className={s.title}>
             <span>{t('Left')}</span>{' '}
-            <span>
+            <span className={leftCkal < 0 ? s.error : s.good}>
               {addLeadingZeroKcal(leftCkal)}
               <span className={s.span_kcal}>{t('kcal')}</span>
             </span>{' '}
