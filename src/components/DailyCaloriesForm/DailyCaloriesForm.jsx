@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { apdateUserInfo } from 'redux/auth/auth-reducer';
 import userOperations from '../../redux/user/user-operation';
 import Loader from '../Loader';
+import authSelectors from 'redux/auth/auth-selectors';
 
 const DailyCaloriesForm = ({
   userData = {
@@ -25,7 +26,7 @@ const DailyCaloriesForm = ({
 }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const isAuthorised = useSelector(state => state.auth.isAuthorised);
+  const isAuthorised = useSelector(authSelectors.getIsAuthorised);
   const loading = useSelector(state => state.user.isLoading);
   const language = i18n.language === 'uk' ? "ua" : "en";
 
@@ -126,8 +127,10 @@ const DailyCaloriesForm = ({
           const valuesWithLanguage = { ...convertedType, language };
 
           if (isAuthorised) {
+
             
             dispatch(userOperations.addUserInfo(valuesWithLanguage)).then(() => {
+
 
               onOpenModal();
               dispatch(apdateUserInfo(valuesWithLanguage));
