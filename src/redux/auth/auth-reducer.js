@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import authOperations from './auth-operations';
 
   const initialState = {
-    user: { name: '', email: '', id: '', refreshToken: '', params:{} },
+    user: { name: '', email: '', refreshToken: '',  },
     isAuthorised: false,
     isLoading: false,
     token: null,
@@ -18,7 +18,7 @@ import authOperations from './auth-operations';
       state.isLoading = true;
     },
     [authOperations.signUpUser.fulfilled]: (state, action) => {
-      state.user.params = action.payload.user.params,
+      state.user = action.payload.user.params,
       state.user.name = action.payload.user.name;
       state.user.email = action.payload.email;
       state.token = action.payload.accessToken;
