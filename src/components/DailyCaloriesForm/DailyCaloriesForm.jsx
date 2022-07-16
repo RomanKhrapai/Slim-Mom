@@ -121,35 +121,20 @@ const DailyCaloriesForm = ({
           return errors;
         }}
         onSubmit={(values, { resetForm }) => {
-//<<<<<<< feature/dailyCaloriesForm
           
           if (isAuthorised) {
             dispatch(userOperations.addUserInfo(chageType(values))).then(() => {
-              if (dailyCalories) {
-                onOpenModal();
-                resetForm();
-              }
-          });
+              onOpenModal();
+              resetForm();
+              
+            });
           } else {
             dispatch(userOperations.addVisitorInfo(chageType(values))).then(() => {
-               if (dailyCalories) {
-                onOpenModal();
-                resetForm();
-              }
-          });
+              onOpenModal();
+              resetForm();
+              
+            });
           }
-//=======
- //         getCaloriesInfoPublic(chageType(values)).then(({ user }) => {
-  //          setDailyCalories(user.dailyCalorieIntake);
- //           setForbiddenProducts(user.productsNotRecommended);
-  //        }).then(() => {
-  //          onOpenModal();
-   //         resetForm();
-  //        }).catch(e => {
-  //          console.log(e);
-  //          toast.error("Ooops, something went wrong. Try again.");
- //         });
-//>>>>>>> dev
         }}>
         {({
           values,
