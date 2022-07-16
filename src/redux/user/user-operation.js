@@ -7,10 +7,7 @@ const getUser = createAsyncThunk(
   'user/getUser',
   async (userData, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(
-        '/users/&{userData.id}',
-        userData
-      );
+      const { data } = await axios.get('/users/&{userData.id}', userData);
       return data;
     } catch (error) {
       return rejectWithValue(
@@ -27,7 +24,10 @@ const addUserInfo = createAsyncThunk(
   // ожидает получить информацию из формы и язык: { height: '165', age: '45', currentWeight: '75', desiredWeight: '54', bloodType: '3', language: "ua" }
   async (userData, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/users/private/daily-calorie-intake', userData);
+      const { data } = await axios.post(
+        '/users/private/daily-calorie-intake',
+        userData
+      );
 
       return data;
     } catch (error) {
@@ -36,13 +36,15 @@ const addUserInfo = createAsyncThunk(
   }
 );
 
-
 const addVisitorInfo = createAsyncThunk(
   'user/addVisitorInfo',
-    // ожидает получить информацию из формы и язык: { height: '165', age: '45', currentWeight: '75', desiredWeight: '54', bloodType: '3', language: "ua" }
+  // ожидает получить информацию из формы и язык: { height: '165', age: '45', currentWeight: '75', desiredWeight: '54', bloodType: '3', language: "ua" }
   async (userData, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/users/public/daily-calorie-intake', userData);
+      const { data } = await axios.post(
+        '/users/public/daily-calorie-intake',
+        userData
+      );
       return data;
     } catch (error) {
       return rejectWithValue(toast.error('Somsing wrong'));
@@ -52,7 +54,7 @@ const addVisitorInfo = createAsyncThunk(
 
 const getDayProducts = createAsyncThunk(
   'user/getDiaryProducts',
-  // получает дату и id пользователя {date: "29299292", user: { user: "62d09b07b161f09579378429",}
+  // получает дату и id пользователя {date: "29299292", user: { user: "62d09b07b161f09579378429",}}
   async (diaryData, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(`/diary/${diaryData}`, diaryData);
@@ -98,6 +100,6 @@ const userOperations = {
   addProductToDiary,
   removeProductFromDiary,
   getDayProducts,
-  addVisitorInfo
+  addVisitorInfo,
 };
 export default userOperations;
