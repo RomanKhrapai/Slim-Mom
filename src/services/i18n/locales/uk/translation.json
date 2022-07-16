@@ -29,7 +29,7 @@
     "Change information": "Редагувати інформацію",
     "Add information": "Додати інформацію",
     "View your losing weight plan": "Переглянути свій план схуднення",
-    "Close Changes": "Закрити зміни",
+    "Revoke Changes": "Відмінити зміни",
     "Your Parametrs": "Ваші параметри",
 
     "heightError": "Ваш зріст має бути в діапазоні {{min}} - {{max}} см",
@@ -61,8 +61,10 @@
   "n% of normal": "% від норми",
   "Foods you should not eat": "Продукти, які вам не слід їсти",
   "Summary for": "Підсумок на",
+  "Your diet will be displayed here": "Тут буде відображено вашу дієту",
 
   "diary": {
+
       "Diary": "Щоденник",
       "Add": "Додати",
       "Enter product name": "Введіть назву продукту",
@@ -71,6 +73,8 @@
       "Your request is too long": "Скоротіть назву запиту",
       "Must be a number": "Значення має бути числом",
       "g": "г",
-      "kcal": "ккал"
+      "kcal": "ккал",
+      "Your amount is too long. Please, enter your amount in grams": "Завелике число. Будь ласка, введіть кількість у грамах"
+
   }
 }

@@ -29,7 +29,7 @@
     "Change information": "Change information",
     "Add information": "Add information",
     "View your losing weight plan": "View your losing weight plan",
-    "Close Changes": "Close Changes",
+    "Revoke Changes": "Revoke Changes",
     "Your Parameters": "Your Parameters",
 
     "heightError": "Enter your height within {{min}} - {{max}} cm",
@@ -61,16 +61,18 @@
   "n% of normal": "n% of normal",
   "Foods you should not eat": "Foods you should not eat",
   "Summary for": "Summary for",
+  "Your diet will be displayed here": "Your diet will be displayed here",
 
   "diary": {
-      "Diary": "Diary",
-      "Add": "Add",
-      "Enter product name": "Enter product name",
-      "Grams": "Grams",
-      "Required": "Required",
-      "Your request is too long": "Your request is too long",
-      "Must be a number": "Must be a number",
-      "g": "g",
-      "kcal": "kcal"
+    "Diary": "Diary",
+    "Add": "Add",
+    "Enter product name": "Enter product name",
+    "Grams": "Grams",
+    "Required": "Required",
+    "Your request. is too long": "Your request is too long",
+    "Must be a number": "Must be a number",
+    "g": "g",
+    "kcal": "kcal",
+    "Your amount is too long. Please, enter your amount in grams": "Your amount is too long. Please, enter your amount in grams"
   }
 }

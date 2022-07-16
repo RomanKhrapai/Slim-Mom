@@ -12,8 +12,7 @@ import WrapperDisplayNone from 'components/WrapperDisplayNone/WrapperDisplayNone
 import Container from 'components/Container/Container';
 import Loader from '../components/Loader';
 
-
-const MainPage = ({showModal, toggleModal}) => {
+const MainPage = ({ showModal, toggleModal }) => {
   const { t, i18n } = useTranslation();
   const loading = useSelector(state => state.auth.isLoading);
 
@@ -40,8 +39,6 @@ const MainPage = ({showModal, toggleModal}) => {
 MainPage.propTypes = {
   showModal: PropTypes.bool,
   toggleModal: PropTypes.func,
-
 };
 
 export default MainPage;
-

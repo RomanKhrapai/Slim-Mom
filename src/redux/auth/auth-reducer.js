@@ -1,51 +1,53 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { act } from 'react-dom/test-utils';
 import authOperations from './auth-operations';
 
-const authSlice = createSlice({
-  name: 'auth',
-  initialState: {
+  const initialState = {
+    user: { name: '', email: '', refreshToken: '',  },
     isAuthorised: false,
-    user: { name: '', email: '', id: '', refreshToken: '', params:{} },
     isLoading: false,
-    accessToken: ''
-  },
+    token: null,
+    isFetchingCurrentUser: false,
+  }
+
+  const authSlice = createSlice({
+  name: 'auth',
+  initialState,
   reducers: {},
   extraReducers: {
     [authOperations.signUpUser.pending]: (state, action) => {
       state.isLoading = true;
     },
     [authOperations.signUpUser.fulfilled]: (state, action) => {
-      state.user.params = action.payload.user.params
+      state.user = action.payload.user.params,
       state.user.name = action.payload.user.name;
       state.user.email = action.payload.email;
-      state.user.refreshToken = action.payload.refreshToken;
-      state.isAuthorised = action.payload.isAuthorised;
+      state.token = action.payload.accessToken;
+      state.isAuthorised = true;
       state.isLoading = false;
     },
     [authOperations.signUpUser.rejected]: (state, action) => {
       state.isLoading = false;
     },
-    [authOperations.fetchCurrentUser.pending]: (state, action) => {
-      state.isLoading = true;
+    [authOperations.fetchCurrentUser.pending](state) {
       state.isFetchingCurrentUser = true;
+      state.isLoading = true;
     },
-    [authOperations.fetchCurrentUser.fulfilled]: (state, action) => {
-      state.isLoading = false;
-    },
-    [authOperations.fetchCurrentUser.rejected]: (state, action) => {
-      state.isLoading = false;
+    [authOperations.fetchCurrentUser.fulfilled](state, { payload }) {
+      state.user = payload;
+      state.isAuthorised = true;
       state.isFetchingCurrentUser = false;
+      state.isLoading = false;
+    },
+    [authOperations.fetchCurrentUser.rejected](state) {
+      state.isFetchingCurrentUser = false;
+      state.isLoading = false;
     },
     [authOperations.logIn.pending]: (state, action) => {
       state.isLoading = true;
     },
-    [authOperations.logIn.fulfilled]: (state, action) => {
-      state.user.params = action.payload.user.params,
-      state.user.name = action.payload.user.name;
-      state.user.email = action.payload.user.email;
-      state.user.refreshToken = action.payload.refreshToken;
-      state.accessToken = action.payload.accessToken;
+    [authOperations.logIn.fulfilled](state, { payload }) {
+      state.user = payload.user;
+      state.token = payload.accessToken;
       state.isAuthorised = true;
       state.isLoading = false;
     },
@@ -60,7 +62,7 @@ const authSlice = createSlice({
     [authOperations.logOut.fulfilled]: (state, action) => {
       state.user.email = '';
       state.user.refreshToken = '';
-      state.accessToken = null;
+      state.token = null;
       state.isAuthorised = false;
       state.isLoading = false;
     },

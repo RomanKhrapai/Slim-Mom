@@ -9,14 +9,17 @@ import './fonts/Verdana/Verdana.ttf';
 import './fonts/Verdana/Verdana-Bold.ttf';
 import './fonts/Gotham-Pro/GothamPro-Bold.ttf';
 import { Provider } from 'react-redux';
-import { store } from './redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from 'redux/store';
 
 ReactDOM.render(
   <React.StrictMode>
      <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
     <ThemeProvider>
     <App />
     </ThemeProvider>
+    </PersistGate>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
