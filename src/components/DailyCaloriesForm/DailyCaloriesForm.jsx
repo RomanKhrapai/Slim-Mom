@@ -24,16 +24,14 @@ const DailyCaloriesForm = ({
   const isAuthorised = useSelector(state => state.auth.isAuthorised);
   const loading = useSelector(state => state.user.isLoading);
 
-  const chageType = values => {
-    return {
+  const changeType = values => ({
       height: Number(values.height),
       age: Number(values.age),
       currentWeight: Number(values.currentWeight),
       desiredWeight: Number(values.desiredWeight),
       bloodType: Number(values.bloodType)
-
-    };
-  };
+    });
+  
 
   const getActiveClass = condition => {
     if (condition) return `${s.label} ${s.labelAbsolute} ${s.labelFocus}`;
@@ -120,26 +118,19 @@ const DailyCaloriesForm = ({
           return errors;
         }}
         onSubmit={(values, { resetForm }) => {
+          const convertedType = changeType(values);
 
           if (isAuthorised) {
-           
-            dispatch(userOperations.addUserInfo(chageType(values))).then(() => {
-
+             dispatch(userOperations.addUserInfo(convertedType)).then(() => {
               onOpenModal();
-
-              dispatch(apdateUserInfo(chageType(values));
-              
-
+              dispatch(apdateUserInfo(convertedType));
             });
+  
           } else {
-            dispatch(userOperations.addVisitorInfo(chageType(values))).then(
-              () => {
-                
-                  onOpenModal();
-                  resetForm();
-                
-              }
-            );
+            dispatch(userOperations.addVisitorInfo(convertedType)).then(() => {
+              onOpenModal();
+              resetForm();
+            });
           }
         }}
       >
