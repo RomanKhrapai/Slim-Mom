@@ -14,7 +14,7 @@ import arrow from '../../images/arrow1.svg';
 
 export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen }) {
   const [productList, setProductList] = useState([]);
-  const [chosenProduct, setChosenProduct] = useState("");
+  const [chosenProduct, setChosenProduct] = useState('');
   const currentDate = useSelector(productsSelectors.getTodayDate);
 
   const { t } = useTranslation();
@@ -33,9 +33,12 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen }) {
     } else if (!+values.productAmount) {
       errors.productAmount = t('diary.Must be a number');
     } else if (values.productAmount.length > 10) {
-      errors.productAmount = t('diary.Your amount is too long. Please, enter your amount in grams');
-    } else if (!Number.isInteger(values.productAmount))
+      errors.productAmount = t(
+        'diary.Your amount is too long. Please, enter your amount in grams'
+      );
+    } else if (!Number.isInteger(Number(values.productAmount))) {
       errors.productAmount = t('diary.Must be an integer number');
+    }
 
     return errors;
   };
@@ -48,15 +51,16 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen }) {
         productId: chosenProduct,
         amount: values.productAmount,
         date: currentDate,
-      }
-      dispatch(userOperations.addProductToDiary(data))
+      };
+      dispatch(userOperations.addProductToDiary(data));
       formik.resetForm();
     },
   });
 
   const getProducts = async userRequest => {
     try {
-      const { data } = await axios.get(`/products?title=${userRequest}`);
+      const { data } = await axios.get(`/products?title="${userRequest}"`);
+      console.log(data);
       return data.data.result;
     } catch (error) {
       console.log(error);
@@ -72,9 +76,9 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen }) {
 
   useEffect(() => {
     if (chosenProduct === productList[0]?._id && productList?.length === 1) {
-      setProductList([])
+      setProductList([]);
     }
-  }, [chosenProduct, productList])
+  }, [chosenProduct, productList]);
 
   const closeButton = () => {
     setIsFormOpen(false);
@@ -117,7 +121,7 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen }) {
                   className={style.productListItem}
                   onClick={() => {
                     setChosenProduct(product._id);
-                    formik.values.productName = productName
+                    formik.values.productName = productName;
                     console.log(productName);
                   }}
                 >
@@ -147,7 +151,11 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen }) {
         </div>
       </div>
 
-      <button onClick={() => closeButton()} type="button" className={style.closeButton}>
+      <button
+        onClick={() => closeButton()}
+        type="button"
+        className={style.closeButton}
+      >
         <img src={arrow} alt={`arrow close icon`} />
       </button>
 
@@ -165,5 +173,5 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen }) {
 DiaryAddProductForm.propTypes = {
   isFormOpen: PropTypes.bool,
   setIsFormOpen: PropTypes.func,
-  currentDate: PropTypes.string
+  currentDate: PropTypes.string,
 };

@@ -11,15 +11,18 @@ import './fonts/Gotham-Pro/GothamPro-Bold.ttf';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from 'redux/store';
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
-     <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-    <ThemeProvider>
-    <App />
-    </ThemeProvider>
-    </PersistGate>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <ThemeProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ThemeProvider>
+      </PersistGate>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
