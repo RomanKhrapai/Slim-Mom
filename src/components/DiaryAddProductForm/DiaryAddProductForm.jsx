@@ -110,7 +110,8 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen, addClas
         </div>
 
         <div className={style.productListContainer}>
-          {productList &&
+          {/* {formik.values.productName.length > 0 ? */}
+          {productList.length > 0 ?
           <ul>
             {productList.map(product => {
               const productName =
@@ -130,6 +131,7 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen, addClas
               );
             })}
           </ul>
+          : <p>{(formik.values.productName.length > 3 && productList === []) && t("diary.The product is not founded")}</p>
           }
         </div>
       </div>

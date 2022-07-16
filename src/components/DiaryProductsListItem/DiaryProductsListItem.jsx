@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import userOperations from '../../redux/user/user-operation';
+import { userOperations, productsSelectors } from '../../redux/user';
 import PropTypes from 'prop-types';
 import style from './DiaryProductsListItem.module.scss';
 import closeGreySvg from '../../images/close-button-grey.svg';
 
 export default function DiaryProductsListItem(rowItem) {
   const dispatch = useDispatch();
+  const currentDate = useSelector(productsSelectors.getTodayDate);
+  let chosenDate = useSelector(productsSelectors.getChosenDate);
 
   const { row } = rowItem;
   return (
@@ -19,7 +21,7 @@ export default function DiaryProductsListItem(rowItem) {
           </td>
         );
       })}
-      <td className={style.tableCell}>
+      {currentDate === chosenDate && <td className={style.tableCell}>
         <button
           data-id={row.id}
           className={style.closeButton}
@@ -33,7 +35,7 @@ export default function DiaryProductsListItem(rowItem) {
             className={style.closeIcon}
           />
         </button>
-      </td>
+      </td>}
     </tr>
   );
 }
