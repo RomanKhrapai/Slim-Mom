@@ -45,14 +45,15 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen, addClas
   const formik = useFormik({
     initialValues: { productName: '', productAmount: '' },
     validate,
-    onSubmit: values => {
+    onSubmit: (values, { resetForm }) => {
       const data = {
         productId: chosenProduct,
         amount: values.productAmount,
         date: currentDate,
-      };
-      dispatch(userOperations.addProductToDiary(data));
-      formik.resetForm();
+      }
+      dispatch(userOperations.addProductToDiary(data))
+      resetForm();
+      formik.values.productAmount = ''
     },
   });
 
@@ -142,7 +143,7 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen, addClas
           name="productAmount"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.gramsAmount}
+          value={formik.values.productAmount}
           className={style.input}
           placeholder={t('diary.Grams')}
         />
