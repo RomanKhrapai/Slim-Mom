@@ -1,9 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { changeData } from './user-action';
 import userOperations from './user-operation';
+import moment from 'moment';
+
+const todayDate = moment().format('DD, MM, YYYY').split(', ').join('.')
 
 const userSlice = createSlice({
   name: 'user',
-  initialState: { userId: '', dailyCalorieIntake: '', productsNotRecommended: [], isLoading: false, diary:[]},
+  initialState: { userId: '', dailyCalorieIntake: '', productsNotRecommended: [], isLoading: false, diary:[], currentDate: todayDate, chosenDate: todayDate},
   reducers: {},
   extraReducers: {
     [userOperations.getUser.pending]: (state, action) => {
@@ -49,8 +53,7 @@ const userSlice = createSlice({
     },
     [userOperations.getDayProducts.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.diary = action.payload.data
-
+      state.diary = action.payload;
     },
     [userOperations.getDayProducts.rejected]: (state, action) => {
       state.isLoading = false;
@@ -75,6 +78,10 @@ const userSlice = createSlice({
     },
     [userOperations.removeProductFromDiary.rejected]: (state, action) => {
       state.isLoading = false;
+    },
+    [changeData]: (state, action) => {
+      console.log(action.payload);
+      state.chosenDate = action.payload;
     },
   },
 });
