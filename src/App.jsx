@@ -1,6 +1,6 @@
 import { React, lazy, Suspense, useState, useContext, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { Outlet, Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import i18n from './services/i18n/config';
 import { useTranslation } from 'react-i18next';
@@ -12,6 +12,8 @@ import authOperations from 'redux/auth/auth-operations';
 import Loader from 'components/Loader';
 import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
 import { BsSun, BsMoon } from 'react-icons/bs';
+import authSelectors from 'redux/auth/auth-selectors';
+import { PrivateRoute, PublicRoute } from 'components/Routers';
 
 const LoginView = lazy(() => import('./pages/LoginPage/LoginPage'));
 const RegisterView = lazy(() => import('./pages/RegisterPage/RegisterPage'));
@@ -20,11 +22,16 @@ const DiaryPage = lazy(() => import('./pages/DiaryPage/DiaryPage'));
 const CalculatorPage = lazy(() => import('./pages/CalculatorPage'));
 
 export const App = () => {
-
   const [{ theme, isDark }, toggleTheme] = useContext(ThemeContext);
   const [icon, setIcon] = useState(<BsSun size={40} />);
+  const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurent);
+  const isAuthorised = useSelector(authSelectors.getIsAuthorised);
 
-  const isAuthorised = useSelector(state => state.auth.isAuthorised);
+  const { t } = useTranslation();
+  const changeLanguage = lng => i18n.changeLanguage(lng);
+  const [showModal, setShowModal] = useState(false);
+  const toggleModal = () => setShowModal(!showModal);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isDark) {
@@ -34,79 +41,87 @@ export const App = () => {
     }
   }, [isDark]);
 
-  const { t } = useTranslation();
-
-  const changeLanguage = lng => {
-    i18n.changeLanguage(lng);
-  };
-
-  const [showModal, setShowModal] = useState(false);
-
-  const toggleModal = () => {
-    setShowModal(!showModal);
-  };
-
-  const dispatch = useDispatch();
-  const isFetchingCurrentUser = useSelector(state => state.auth.isFetchingCurrentUser);
-
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
 
   return (
-
     <div
       className={showModal ? s.overflow_hidden : undefined}
-      style={{ backgroundColor: theme.backgroundColor, color: theme.color, position: 'relative', minHeight:'100vh' }}
+      style={{
+        backgroundColor: theme.backgroundColor,
+        color: theme.color,
+        position: 'relative',
+        minHeight: '100vh',
+      }}
     >
       {/* <div className={showModal ? s.overflow_hidden : undefined}>  */}
       {isFetchingCurrentUser ? (
         <Loader />
       ) : (
-      <BrowserRouter>
-        <Header />
-
-        <div className={s.button_theme_swither} onClick={toggleTheme}>
+        <>
+          <Header />
+         <div className={s.button_theme_swither} onClick={toggleTheme}>
           {icon}
         </div>
-        <Suspense fallback={<Loader />}>
-          {isAuthorised ? (
+          <Suspense fallback={<Loader />}>
             <Routes>
-              <Route
-                path={'/'}
-                element={
-                  <MainPage toggleModal={toggleModal} showModal={showModal} />
-                }
-              />
-              <Route path={'/diary'} element={<DiaryPage />} />
-              <Route path={'/calculator'} element={<CalculatorPage toggleModal={toggleModal} showModal={showModal} />} />
-              <Route
-                path={'*'}
-                replace={true}
-                element={<Navigate to={'/'} />}
-              />
+              <Route path="/" element={<Outlet />}>
+                <Route
+                  index
+                  element={
+                    <PublicRoute>
+                      <MainPage
+                        toggleModal={toggleModal}
+                        showModal={showModal}
+                      />
+                    </PublicRoute>
+                  }
+                />
+                <Route
+                  path={'/diary'}
+                  element={
+                    <PrivateRoute>
+                      <DiaryPage />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path={'/calculator'}
+                  element={
+                    <PrivateRoute>
+                      <CalculatorPage />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path={'/registration'}
+                  element={
+                    <PublicRoute>
+                      <RegisterView />
+                    </PublicRoute>
+                  }
+                />
+                <Route
+                  path={'/login'}
+                  element={
+                    <PublicRoute>
+                      <LoginView />
+                    </PublicRoute>
+                  }
+                />
+                <Route
+                  path="*"
+                  element={
+                    <MainPage toggleModal={toggleModal} showModal={showModal} />
+                  }
+                />
+              </Route>
             </Routes>
-          ) : (
-            <Routes>
-              <Route
-                path={'/'}
-                element={
-                  <MainPage toggleModal={toggleModal} showModal={showModal} />
-                }
-              />
-              <Route path={'/registration'} element={<RegisterView />} />
-              <Route path={'/login'} element={<LoginView />} />
+          </Suspense>
+        </>
+      )}
 
-              <Route
-                path={'*'}
-                replace={true}
-                element={<Navigate to={'/registration'} />}
-              />
-            </Routes>
-          )}
-        </Suspense>
-      </BrowserRouter>
-      )}      
       <ToastContainer autoClose={3000} />
     </div>
   );
