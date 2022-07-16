@@ -3,7 +3,9 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { productsOperations } from 'redux/products';
+import { useSelector, useDispatch } from 'react-redux';
+import productsSelectors from '../../redux/user/user-selector';
+import userOperations from '../../redux/user/user-operation';
 import i18n from '../../services/i18n/config';
 import classNames from 'classnames';
 import style from './DiaryAddProductForm.module.scss';
@@ -13,14 +15,16 @@ import arrow from '../../images/arrow1.svg';
 export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen }) {
   const [productList, setProductList] = useState([]);
   const [chosenProduct, setChosenProduct] = useState("");
-  
+  const currentDate = useSelector(productsSelectors.getTodayDate);
+
   const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   const validate = values => {
     const errors = {};
     if (!values.productName) {
       errors.productName = t('diary.Required');
-    } else if (values.productName.length > 20) {
+    } else if (values.productName.length > 50) {
       errors.productName = t('diary.Your request is too long');
     }
 
@@ -40,11 +44,12 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen }) {
     validate,
     onSubmit: values => {
       const data = {
-        id: chosenProduct,
+        productId: chosenProduct,
         amount: values.productAmount,
-        date: Date.now()
+        date: currentDate,
       }
-      alert(JSON.stringify(values, null, 2));
+      dispatch(userOperations.addProductToDiary(data))
+      formik.resetForm();
     },
   });
 
@@ -158,4 +163,5 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen }) {
 DiaryAddProductForm.propTypes = {
   isFormOpen: PropTypes.bool,
   setIsFormOpen: PropTypes.func,
+  currentDate: PropTypes.string
 };

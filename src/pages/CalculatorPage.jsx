@@ -1,5 +1,6 @@
 import React from 'react';
 
+import moment from 'moment';
 import { useTranslation } from 'react-i18next';
 import RightSideBar from 'components/RightSideBar';
 import CalculatorСalorie from '../components/CalculatorСalorie';
@@ -11,8 +12,10 @@ import { useSelector } from 'react-redux';
 import Loader from '../components/Loader';
 
 const CalculatorPage = () => {
+  
   const { t } = useTranslation();
   const loading = useSelector(state => state.auth.isLoading);
+  const currentDate = moment().format('DD, MM, YYYY').split(', ').join('.')
 
   return (
     <div className={s.health_box}>
