@@ -1,12 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import optionsOperations from '../options/options-operations';
-import  userOperations  from '../user/user-operation';
+import  userOperations  from '../userParams/user-operation';
 import  productsOperations  from './products-operation';
 
 const initialState = {
   dailyCalorieIntake: '',
   productsNotRecommended: [],
   diary: [],
+  isLoading: false,
+  errorProducts: null,
 }
 
 const productSlice = createSlice({

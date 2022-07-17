@@ -8,21 +8,18 @@ import moment from 'moment';
 const todayDate = moment().format('DD, MM, YYYY').split(', ').join('.')
 
 const initialState = {
-  name: '',
-  picture: '',
-  params: {
-    height: "",
+  height:'',
     age: "",
-    currentWeight: "",
-    desiredWeight: "",
-    bloodType: "",
-    dailyCalorieIntake: "",
-  },
-  registerDate: '',
+  currentWeight:'',
+  desiredWeight:'',
+  bloodType:'',
+  registerDate:"",     
+    isLoadingUser: false,
+  errorUser: null,
 }
 
 const userSlice = createSlice({
-  name: 'user',
+  name: 'userParams',
   initialState,
   reducers: {},
   extraReducers: {
