@@ -158,8 +158,6 @@ const Navigation = () => {
             className={styles.menu__button}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {/* <Cross className={styles.icons_dark}/> */}
-            {/* <Burger className={styles.icons_dark}/> */}
             {isDark ? (
               isMenuOpen ? (
                 <Cross className={styles.icons_dark} />

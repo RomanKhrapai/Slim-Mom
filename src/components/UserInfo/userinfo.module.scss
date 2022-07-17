@@ -103,3 +103,21 @@ $firstColor: #9b9faa;
 
   }
 }
+
+.dark{
+color:#fff
+}
+
+.light{
+  @media screen and (max-width: 768px){
+
+    color: #212121;
+  }
+
+  @media screen and (min-width: 1280px){
+
+    color: #212121;
+  }
+  
+
+}

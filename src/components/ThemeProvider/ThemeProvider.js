@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from 'react';
 import React from 'react';
 export const ThemeContext = createContext();
 import PropTypes from 'prop-types';
+import useLocalStorage from "use-local-storage";
 
 const themes = {
   dark: {
@@ -18,18 +19,17 @@ const themes = {
 };
 
 export const ThemeProvider = ({ children }) => {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useLocalStorage(false);
   const theme = isDark ? themes.dark : themes.light;
 
   const toggleTheme = () => {
-    localStorage.setItem('isDark', JSON.stringify(!isDark));
+    // localStorage.setItem('isDark', JSON.stringify(!isDark));
     setIsDark(!isDark);
   };
 
   useEffect(() => {
-    if (localStorage.getItem('isDark') === true) {
-      setIsDark(isDark);
-    }
+    // localStorage.getItem('isDark') === true ? setIsDark(!isDark) : setIsDark(isDark) 
+
   }, []);
 
   return (
