@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from 'react';
 import React from 'react';
 export const ThemeContext = createContext();
 import PropTypes from 'prop-types';
-import useLocalStorage from "use-local-storage";
+
 
 const themes = {
   dark: {
@@ -19,7 +19,7 @@ const themes = {
 };
 
 export const ThemeProvider = ({ children }) => {
-  const [isDark, setIsDark] = useLocalStorage(false);
+  const [isDark, setIsDark] = useState(false);
   const theme = isDark ? themes.dark : themes.light;
 
   const toggleTheme = () => {
