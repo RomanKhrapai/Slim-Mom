@@ -5,17 +5,23 @@ import moment from 'moment';
 
 const todayDate = moment().format('DD, MM, YYYY').split(', ').join('.')
 
+const initialState = {
+  name: '',
+  picture: '',
+  params: {
+    height: 120,
+    age: 30,
+    currentWeight: 120,
+    desiredWeight: 50,
+    bloodType: 1,
+    dailyCalorieIntake: 939,
+  },
+  registerDate: '',
+}
+
 const userSlice = createSlice({
   name: 'user',
-  initialState: {
-    userId: '',
-    dailyCalorieIntake: '',
-    productsNotRecommended: [],
-    isLoading: false,
-    diary:[],
-    currentDate: todayDate,
-    chosenDate: todayDate
-  },
+  initialState,
   reducers: {},
   extraReducers: {
     [userOperations.getUser.pending]: (state, action) => {

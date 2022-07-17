@@ -2,7 +2,7 @@ import { Formik } from 'formik';
 import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import authOperations from 'redux/auth/auth-operations.js';
+import authOperations from 'redux/options/options-operations.js';
 import Loader from '../Loader';
 import s from './RegisterForm.module.scss';
 
@@ -15,7 +15,7 @@ const getActiveClass = condition => {
 const RegisterForm = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const loading = useSelector(state => state.auth.isLoading); 
+  const loading = useSelector(state => state.options.isLoading); 
   
   return (
   <>

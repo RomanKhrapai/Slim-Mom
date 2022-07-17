@@ -14,7 +14,7 @@ import Loader from '../components/Loader';
 
 const MainPage = ({ showModal, toggleModal }) => {
   const { t, i18n } = useTranslation();
-  const loading = useSelector(state => state.auth.isLoading);
+  const loading = useSelector(state => state.options.isLoading);
 
   return (
     <div className={s.images_container}>

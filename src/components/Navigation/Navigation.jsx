@@ -17,7 +17,7 @@ import { useSelector } from 'react-redux';
 import { useContext } from 'react';
 import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
 
-import authSelectors from 'redux/auth/auth-selectors';
+import authSelectors from 'redux/options/options-selectors';
 import { ReactComponent as LogoNew } from '../../images/logo-new.svg';
 import { ReactComponent as Slim } from '../../images/slim.svg';
 import { ReactComponent as Mom } from '../../images/mom.svg';

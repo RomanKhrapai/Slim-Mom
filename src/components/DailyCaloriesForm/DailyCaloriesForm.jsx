@@ -9,10 +9,10 @@ import s from './DailyCaloriesForm.module.scss';
 import Button from 'components/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { apdateUserInfo } from 'redux/auth/auth-reducer';
+import { apdateUserInfo } from 'redux/options/options-reducer';
 import userOperations from '../../redux/user/user-operation';
 import Loader from '../Loader';
-import authSelectors from 'redux/auth/auth-selectors';
+import authSelectors from 'redux/options/options-selectors';
 
 const DailyCaloriesForm = ({
   userData = {

@@ -1,9 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 import productsOperations from './products-operation';
 
+const initialState = {
+  dailyCalorieIntake: '',
+  productsNotRecommended: [],
+  diary: [],
+}
+
 const productSlice = createSlice({
   name: 'products',
-  initialState: { pending: false },
+  initialState,
   reducers: {},
   extraReducers: {
     [productsOperations.getRequestProducts.pending]: (state, action) => {

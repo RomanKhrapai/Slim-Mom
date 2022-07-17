@@ -17,7 +17,7 @@ import PropTypes from 'prop-types';
 
 const CalculatorPage = ({toggleModal, showModal}) => {
   const { t } = useTranslation();
-  const loading = useSelector(state => state.auth.isLoading);
+  const loading = useSelector(state => state.options.isLoading);
   const currentDate = useSelector(productsSelectors.getTodayDate);
   const dispatch = useDispatch();
 

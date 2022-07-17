@@ -8,11 +8,11 @@ import Header from 'components/Header';
 import s from 'App.module.scss';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
-import authOperations from 'redux/auth/auth-operations';
+import authOperations from 'redux/options/options-operations';
 import Loader from 'components/Loader';
 import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
 import { BsSun, BsMoon } from 'react-icons/bs';
-import authSelectors from 'redux/auth/auth-selectors';
+import authSelectors from 'redux/options/options-selectors';
 import { PrivateRoute, PublicRoute } from 'components/Routers';
 
 const LoginView = lazy(() => import('./pages/LoginPage/LoginPage'));

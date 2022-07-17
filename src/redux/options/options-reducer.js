@@ -1,15 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
-import authOperations from './auth-operations';
+import authOperations from './options-operations';
 
 const initialState = {
-  user: { name: '', email: '', refreshToken: '' },
   isAuthorised: false,
   isLoading: false,
-  token: null,
-  isFetchingCurrentUser: true,
+  isFetchingCurrentUser: false,
+  isModal:false,
+  isDark:false,
+  toDay:"",
+  token: "",
+  refreshToken: '',
+ lenguage:"",
 };
-const authSlice = createSlice({
-  name: 'auth',
+
+const optionsSlice = createSlice({
+  name: 'options',
   initialState,
   reducers: {
     apdateUserInfo(state, action) {
@@ -78,5 +83,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { apdateUserInfo } = authSlice.actions;
-export default authSlice.reducer;
+export const { apdateUserInfo } = optionsSlice.actions;
+export default optionsSlice.reducer;

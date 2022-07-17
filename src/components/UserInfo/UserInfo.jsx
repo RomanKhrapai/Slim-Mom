@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react"
 import { useTranslation } from 'react-i18next';
 import styles from './userinfo.module.scss'
 import { useDispatch, useSelector } from 'react-redux';
-import authOperations from 'redux/auth/auth-operations.js';
+import authOperations from 'redux/options/options-operations.js';
 import { useContext } from 'react';
 import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
 

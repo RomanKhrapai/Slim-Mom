@@ -10,7 +10,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import authSlice from './auth/auth-reducer';
+import optionsSlice from './options/options-reducer';
 import userSlice from './user/user-reducer';
 import productSlice from './products/products-reducer';
 
@@ -22,8 +22,8 @@ const middleware = [
   }),
 ];
 
-const authPersistConfig = {
-  key: 'auth',
+const optionsPersistConfig = {
+  key: 'options',
   storage,
   whitelist: ['token'],
 };
@@ -32,9 +32,9 @@ const initialState = { user: '' };
 
 export const store = configureStore({
   reducer: {
-    auth: persistReducer(authPersistConfig, authSlice),
     user: userSlice,
-    product: productSlice,
+    options: persistReducer(optionsPersistConfig, optionsSlice),
+    products: productSlice,
   },
   initialState: initialState,
   middleware,

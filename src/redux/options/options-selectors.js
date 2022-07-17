@@ -1,8 +1,8 @@
 
 import { createSelector } from '@reduxjs/toolkit';
-const getIsFetchingCurent = state => state.auth.isFetchingCurrentUser;
-const getIsLoading = state => state.auth.isLoading;
-const getIsAuthorised = state => state.auth.isAuthorised;
+const getIsFetchingCurent = state => state.options.isFetchingCurrentUser;
+const getIsLoading = state => state.options.isLoading;
+const getIsAuthorised = state => state.options.isAuthorised;
 const getUserInfo = state => state.user;
 const getBloodType = state => state.user.bloodType;
 

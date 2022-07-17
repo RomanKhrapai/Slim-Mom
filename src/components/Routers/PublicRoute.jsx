@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import authSelectors from '../../redux/auth/auth-selectors';
+import authSelectors from '../../redux/options/options-selectors';
 import PropTypes from 'prop-types';
 
 function PublicRoute({ children }) {
