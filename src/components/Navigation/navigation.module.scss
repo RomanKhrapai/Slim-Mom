@@ -272,6 +272,23 @@ nav {
   }
 }
 
+.languageBtnAuthorise{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0px;
+  background-color: transparent;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s ease;
+
+  @media screen and (min-width: 1281px) {
+    margin-left: auto;
+   }}
+
 .languageText {
   color: $firstColor;
 }

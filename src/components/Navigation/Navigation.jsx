@@ -79,7 +79,6 @@ const Navigation = () => {
   const token = localStorage.getItem('token');
 
   const currentLanguage = i18n.language;
-
   const opositiveLanguage = currentLanguage === 'uk' ? 'en' : 'uk';
 
   return (
@@ -149,7 +148,7 @@ const Navigation = () => {
                   isDark ? styles.currentLanguage_dark : styles.currentLanguage
                 }
               >
-                {currentLanguage.toUpperCase()}
+                {currentLanguage === 'uk' ? 'UK' : 'EN'}
               </span>
               {/* /{opositiveLanguage} */}
             </span>
@@ -193,6 +192,22 @@ const Navigation = () => {
           >
             {t('navigation.Registration')}
           </NavLink>
+          <button
+            className={styles.languageBtnAuthorise}
+            type="button"
+            onClick={e => i18n.changeLanguage(opositiveLanguage)}
+          >
+            <span className={styles.languageText}>
+              <span
+                className={
+                  isDark ? styles.currentLanguage_dark : styles.currentLanguage
+                }
+              >
+                {currentLanguage === 'uk' ? 'UK' : 'EN'}
+              </span>
+              {/* /{opositiveLanguage} */}
+            </span>
+          </button>
         </>
       )}
     </nav>
