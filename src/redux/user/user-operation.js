@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import i18n from 'services/i18n/config';
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
+//----------------------
 const getUser = createAsyncThunk(
   'user/getUser',
   async (userData, { rejectWithValue }) => {
@@ -18,7 +18,7 @@ const getUser = createAsyncThunk(
       );
     }
   }
-);
+);//------------------------
 
 const addUserInfo = createAsyncThunk(
   'user/addUserInfo',

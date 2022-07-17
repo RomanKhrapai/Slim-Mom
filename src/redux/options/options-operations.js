@@ -18,21 +18,37 @@ const signUpUser = createAsyncThunk(
   'auth/register',
   async (userData, { rejectWithValue }) => {
     try {
-
-       const signUpResponse = await axios.post('/auth/register ', userData);
-       try{
-         const loginResponse= await axios.post('/auth/login', {email: userData.email, password: userData.password});
-         token.set(loginResponse.data.accessToken);
-         toast.success(i18n.t('authentification.You have сreated your personal account sucsessfully!'));
-         return({...loginResponse.data, isAuthorised: true});
-       }
-       catch{
-       return (signUpResponse.data, {isAuthorised: false, refreshToken: "", accessToken: "" , user:{ email: "", name: ""}});
-
+      const signUpResponse = await axios.post('/auth/register ', userData);
+      try {
+        const loginResponse = await axios.post('/auth/login', {
+          email: userData.email,
+          password: userData.password,
+        });
+        token.set(loginResponse.data.accessToken);
+        toast.success(
+          i18n.t(
+            'authentification.You have сreated your personal account sucsessfully!'
+          )
+        );
+        return { ...loginResponse.data, isAuthorised: true };
+      } catch {
+        return (
+          signUpResponse.data,
+          {
+            isAuthorised: false,
+            refreshToken: '',
+            accessToken: '',
+            user: { email: '', name: '' },
+          }
+        );
       }
     } catch (error) {
       return rejectWithValue(
-        toast.error(i18n.t('authentification.Ooops, something went wrong. Please, try again'))
+        toast.error(
+          i18n.t(
+            'authentification.Ooops, something went wrong. Please, try again'
+          )
+        )
       );
     }
   }
@@ -44,11 +60,15 @@ const logIn = createAsyncThunk(
     try {
       const { data } = await axios.post('/auth/login', userData);
       token.set(data.accessToken);
-      toast.success(i18n.t('authentification.You have logged in successfully. Welcome back'));
+      toast.success(
+        i18n.t('authentification.You have logged in successfully. Welcome back')
+      );
       return data;
     } catch (error) {
       return rejectWithValue(
-        toast.error(i18n.t('authentification.You entered wrong email or password'))
+        toast.error(
+          i18n.t('authentification.You entered wrong email or password')
+        )
       );
     }
   }
@@ -60,10 +80,16 @@ export const logOut = createAsyncThunk(
     try {
       await axios.get('/auth/logout');
       token.unset();
-      toast.success(i18n.t('authentification.You have logged out. Will be waiting fo you!'));
+      toast.success(
+        i18n.t('authentification.You have logged out. Will be waiting fo you!')
+      );
     } catch (error) {
       return rejectWithValue(
-        toast.error(i18n.t('authentification.You havent logged out. We dont want to let you go'))
+        toast.error(
+          i18n.t(
+            'authentification.You havent logged out. We dont want to let you go'
+          )
+        )
       );
     }
   }
@@ -82,9 +108,10 @@ const fetchCurrentUser = createAsyncThunk(
       const { data } = await axios.get('users/current-user');
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(
+      return thunkAPI
+        .rejectWithValue
         // toast.error(i18n.t('authentification.We havent received your profile info. Please, try later'))
-      );
+        ();
     }
   }
 );
