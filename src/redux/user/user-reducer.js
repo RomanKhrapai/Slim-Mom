@@ -9,12 +9,12 @@ const initialState = {
   name: '',
   picture: '',
   params: {
-    height: 120,
-    age: 30,
-    currentWeight: 120,
-    desiredWeight: 50,
-    bloodType: 1,
-    dailyCalorieIntake: 939,
+    height: "",
+    age: "",
+    currentWeight: "",
+    desiredWeight: "",
+    bloodType: "",
+    dailyCalorieIntake: "",
   },
   registerDate: '',
 }
