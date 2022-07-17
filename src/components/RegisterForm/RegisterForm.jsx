@@ -2,7 +2,7 @@ import { Formik } from 'formik';
 import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import authOperations from 'redux/options/options-operations.js';
+import optionsOperations from 'redux/options/options-operations.js';
 import Loader from '../Loader';
 import s from './RegisterForm.module.scss';
 
@@ -49,7 +49,7 @@ const RegisterForm = () => {
         return errors;
       }}
       onSubmit={({name, email, password}, { resetForm }) => {
-        dispatch(authOperations.signUpUser({name, email, password}))
+        dispatch(optionsOperations.signUpUser({name, email, password}))
         resetForm();
       }}
     >

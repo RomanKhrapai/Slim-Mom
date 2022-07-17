@@ -8,7 +8,7 @@ import Header from 'components/Header';
 import s from 'App.module.scss';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
-import authOperations from 'redux/options/options-operations';
+import optionsOperations from 'redux/options/options-operations';
 import Loader from 'components/Loader';
 import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
 import { BsSun, BsMoon } from 'react-icons/bs';
@@ -42,7 +42,7 @@ export const App = () => {
   }, [isDark]);
 
   useEffect(() => {
-    dispatch(authOperations.fetchCurrentUser());
+    dispatch(optionsOperations.fetchCurrentUser());
   }, [dispatch]);
 
   return (

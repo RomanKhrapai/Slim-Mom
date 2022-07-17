@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import productsOperations from './products-operation';
+import optionsOperations from '../options/options-operations';
+import  userOperations  from '../user/user-operation';
+import  productsOperations  from './products-operation';
 
 const initialState = {
   dailyCalorieIntake: '',

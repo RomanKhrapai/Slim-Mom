@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { changeData } from './user-action';
-import userOperations from './user-operation';
+import optionsOperations from '../options/options-operations';
+import  userOperations  from './user-operation';
+import  productsOperations  from '../products/products-operation';
 import moment from 'moment';
 
 const todayDate = moment().format('DD, MM, YYYY').split(', ').join('.')
