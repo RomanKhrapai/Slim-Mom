@@ -11,7 +11,7 @@ function RightSideBar() {
   const [normal, setNormal] = useState(0);
   const [category, setCategory] = useState([]);
 
-  const language = i18n.language === 'uk' ? "ua" : "en";
+  const language = i18n.language === 'uk' ? 'ua' : 'en';
   const userInfo = useSelector(productsSelectors.getUserInfo);
 
   const userRequest = {
@@ -20,10 +20,11 @@ function RightSideBar() {
     currentWeight: userInfo.currentWeight,
     desiredWeight: userInfo.desiredWeight,
     height: userInfo.height,
-    language
-  }
+    language,
+  };
 
   const User = useSelector(state => state);
+  const { t } = useTranslation();
 
   let dailyRate = User.user.dailyCalorieIntake;
   const currentDate = useSelector(productsSelectors.getTodayDate);
@@ -41,39 +42,29 @@ function RightSideBar() {
 
   let kall = 0;
   let porc = 0;
+  let consum = 0;
+  let cons = 0;
 
   for (const product of products) {
-    kall += product.productId.calories;
-    porc += product.amount;
+    kall = product.productId.calories;
+    porc = product.amount;
+    cons = Math.floor((porc * kall) / 100);
+    consum += cons;
   }
-
-  const { t } = useTranslation();
 
   useEffect(() => {
     if (dailyRate === '') {
       return (dailyRate = 0);
     }
-    setLeftCkal(Number(dailyRate) - Number(consuned));
-    setConsumed(Math.floor((porc * kall) / 100));
-    setNormal(Math.floor((consuned / dailyRate) * 100));
+    setLeftCkal(Number(dailyRate) - Number(consum));
+    setConsumed(consum);
+    setNormal(Math.floor((consum / dailyRate) * 100));
     setCategory(User.user.productsNotRecommended);
   }, [dailyRate, consuned, porc, kall, normal, chosenDate]);
 
   function addLeadingZeroKcal(value) {
     return String(value).padStart(3, '0');
   }
-
-  const date2 = new Date().getTime();
-  const dateToday = new Date(Number(`${date2}`));
-
-  let options = {
-    day: 'numeric',
-    month: 'numeric',
-    year: 'numeric',
-  };
-
-  const dateUser = '12.12.12';
-  const dateUserToday = dateToday.toLocaleDateString('en-US', options);
 
   return (
     <div className={s.container}>
