@@ -60,7 +60,7 @@ function RightSideBar() {
     setConsumed(consum);
     setNormal(Math.floor((consum / dailyRate) * 100));
     setCategory(User.user.productsNotRecommended);
-  }, [dailyRate, consuned, porc, kall, normal, chosenDate]);
+  }, [dailyRate, consuned, porc, kall, normal, chosenDate, consum]);
 
   function addLeadingZeroKcal(value) {
     return String(value).padStart(3, '0');
