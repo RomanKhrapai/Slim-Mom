@@ -11,8 +11,9 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import optionsSlice from './options/options-reducer';
-import userSlice from './user/user-reducer';
+import userSlice from './userParams/user-reducer';
 import productSlice from './products/products-reducer';
+import authSlice from './auth/auth';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -23,7 +24,7 @@ const middleware = [
 ];
 
 const optionsPersistConfig = {
-  key: 'options',
+  key: 'auth',
   storage,
   whitelist: ['token'],
 };
@@ -35,6 +36,7 @@ export const store = configureStore({
     user: userSlice,
     options: persistReducer(optionsPersistConfig, optionsSlice),
     products: productSlice,
+    auth: authSlice,
   },
   initialState: initialState,
   middleware,

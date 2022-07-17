@@ -1,19 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import optionsOperations from './options-operations';
-import  userOperations  from '../user/user-operation';
+import  userOperations  from '../userParams/user-operation';
 import  productsOperations  from '../products/products-operation';
 
-const initialState = {
-  isAuthorised: false,
-  isLoading: false,
-  isFetchingCurrentUser: false,
+const initialState = {    
   isModal:false,
-  isDark:false,
   toDay:"",
-  token: "",
-  refreshToken: '',
- lenguage:"",
-};
+}
 
 const optionsSlice = createSlice({
   name: 'options',

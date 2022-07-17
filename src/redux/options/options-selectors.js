@@ -6,11 +6,11 @@ const getIsAuthorised = state => state.options.isAuthorised;
 const getUserInfo = state => state.user;
 const getBloodType = state => state.user.bloodType;
 
-const authSelectors = {
+const optionsSelectors = {
   getIsFetchingCurent,
   getIsAuthorised,
   getIsLoading,
   getBloodType,
   getUserInfo
 };
-export default authSelectors;
+export default optionsSelectors;
