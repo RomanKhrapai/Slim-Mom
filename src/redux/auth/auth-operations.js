@@ -83,7 +83,7 @@ const fetchCurrentUser = createAsyncThunk(
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
-        toast.error(i18n.t('authentification.We havent received your profile info. Please, try later'))
+        // toast.error(i18n.t('authentification.We havent received your profile info. Please, try later'))
       );
     }
   }
