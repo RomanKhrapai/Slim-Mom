@@ -69,7 +69,7 @@ nav {
     }
   }
 
-  .nav__link.nav__link_active_dark {
+  .nav__link_active_dark {
     color: #fff;
   }
 
@@ -128,6 +128,7 @@ nav {
       color: black;
     }
   }
+
 }
 @media screen and (max-width: 1280px) and (min-width: 320px) {
   nav {
@@ -299,6 +300,12 @@ nav {
 
 .currentLanguage_dark {
   color: #fff;
+  font-weight: 700;
+
+
+  @media screen and (min-width: 1280px){
+    color: #212121;
+  }
 }
 
 .logo_wrapper {
