@@ -1,0 +1,69 @@
+$activeColor: #212121;
+$firstColor: #9b9faa;
+$mobileBackgoundColor: #264061;
+$mobileActiveColor: #ffffff;
+
+.languageBtn {
+  margin-left: 0px;
+  margin-bottom: 0px;
+   @media screen and (min-width: 1280px) {
+    margin-left: auto;
+    margin-bottom: -9px;
+ }
+}
+
+.languageBtnAuthorise{
+  margin-left: auto;
+  margin-bottom: 0px;
+  @media screen and (min-width: 768px) {
+    margin-left: 0px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin-left: 5px;
+    margin-bottom: -8px;
+   }}
+
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0px;
+  background-color: transparent;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  &:hover {
+    background-color: #2121210c;
+  }
+}
+
+.languageText {
+  color: $firstColor;
+}
+.currentLanguage {
+  color: $activeColor;
+  font-weight: 700;
+  transition: 0.3s ease;
+}
+
+.currentLanguage_dark {
+  color: #fff;
+  font-weight: 700;
+
+
+  @media screen and (min-width: 1280px) {
+    color: #212121;
+  }
+  transition: 0.7s ease;
+}
+
+.currentLanguage_dark_authorised {
+  color: #fff;
+  font-weight: 700;
+  transition: 0.3s ease;
+}

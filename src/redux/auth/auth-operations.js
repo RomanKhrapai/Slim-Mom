@@ -142,7 +142,7 @@ const fetchCurrentUser = createAsyncThunk(
     if (persistedToken === null && !tokens) {
       return thunkAPI.rejectWithValue();
     }
-    if (!tokens.accessToken) {
+    if (!tokens?.accessToken) {
       token.set(persistedToken);
     } else {
       token.set(tokens.accessToken);
