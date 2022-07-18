@@ -135,7 +135,7 @@ const fetchCurrentUser = createAsyncThunk(
   async (tokens, thunkAPI) => {
 
     const persistedToken = thunkAPI.getState().auth.token;
-    if (persistedToken === null || !tokens) {
+    if (persistedToken === null && !tokens) {
       return thunkAPI.rejectWithValue();
     }
     if(persistedToken){
