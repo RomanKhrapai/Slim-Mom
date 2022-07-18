@@ -157,8 +157,6 @@ const Navigation = () => {
             className={styles.menu__button}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {/* <Cross className={styles.icons_dark}/> */}
-            {/* <Burger className={styles.icons_dark}/> */}
             {isDark ? (
               isMenuOpen ? (
                 <Cross className={styles.icons_dark} />
@@ -200,7 +198,8 @@ const Navigation = () => {
             <span className={styles.languageText}>
               <span
                 className={
-                  isDark ? styles.currentLanguage_dark : styles.currentLanguage
+                  isAuthorised? (isDark ? styles.currentLanguage_dark : styles.currentLanguage):
+                  (isDark ? styles.currentLanguage_dark_authorised : styles.currentLanguage)
                 }
               >
                 {currentLanguage === 'uk' ? 'UK' : 'EN'}

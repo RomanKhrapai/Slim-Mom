@@ -27,10 +27,10 @@ const RegisterForm = () => {
           errors.name = t('authentification.This fied is required');
         } else if (
           values.name.length < 3) {
-          errors.name = t('authentification.This filed must contain more than 3 symbols');
+          errors.name = t('authentification.This field must contain more than 3 symbols');
         } else if (
           !/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/i.test(values.name)) {
-          errors.name = t('authentification.This filed must contain only letters');
+          errors.name = t('authentification.This field must contain only letters');
         } 
         
         if (!values.email) {
@@ -44,7 +44,7 @@ const RegisterForm = () => {
           errors.password = t('authentification.This fied is required');
         } else if (
           values.password.length < 8) {
-          errors.password = t("authentification.This filed must contain more than 8 symbols");
+          errors.password = t("authentification.This field must contain more than 8 symbols");
         }
         return errors;
       }}

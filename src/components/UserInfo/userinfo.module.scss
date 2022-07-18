@@ -48,13 +48,24 @@ $firstColor: #9b9faa;
     }
   }
 
-.button_dark{
-  &:hover,
-  &:focus {
-    color: #fff;
+  .button_dark {
+    &:hover,
+    &:focus {
+      color: #fff;
+    }
+    @media screen and (max-width: 767px) {
+      &:hover,
+      &:focus {
+        color: $activeColor;
+      }
+    }
+    @media screen and (min-width: 1280px) {
+      &:hover,
+      &:focus {
+        color: $activeColor;
+      }
+    }
   }
-}
-
 }
 @media screen and (min-width: 1280px) {
     .userinfo {
@@ -102,4 +113,22 @@ $firstColor: #9b9faa;
 
 
   }
+}
+
+.dark{
+color:#fff
+}
+
+.light{
+  @media screen and (max-width: 768px){
+
+    color: #212121;
+  }
+
+  @media screen and (min-width: 1280px){
+
+    color: #212121;
+  }
+  
+
 }

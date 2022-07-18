@@ -2,6 +2,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import i18n from 'services/i18n/config';
+import { setDefaultNamespace } from 'i18next';
 
 axios.defaults.baseURL = 'https://slim-mom-server.herokuapp.com/api/';
 
@@ -14,25 +15,75 @@ const token = {
   },
 };
 
+axios.interceptors.response.use(
+  config => {
+    return config;
+  },
+  async error => {
+    const originalRequest = error.config;
+    if (
+      error.response.status === 400 &&
+      error.config &&
+      !error.config._isRetry &&
+      error.response.data.message === 'Expired token'
+    ) {
+      originalRequest._isRetry = true;
+      try {
+        const refreshToken = localStorage.getItem('refreshToken');
+        const { data } = await axios.post('/auth/refresh-token', {
+          refreshToken,
+        });
+        token.set(data.accessToken);
+        localStorage.setItem('refreshToken', data.refreshToken);
+        originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
+        return axios.request(originalRequest);
+      } catch (error) {
+        console.log(error);
+        toast.error('You need to login');
+      }
+    }
+    throw error;
+  }
+);
+
 const signUpUser = createAsyncThunk(
   'auth/register',
   async (userData, { rejectWithValue }) => {
     try {
+      const signUpResponse = await axios.post('/auth/register ', userData);
+      try {
+        const loginResponse = await axios.post('/auth/login', {
+          email: userData.email,
+          password: userData.password,
+        });
+        token.set(loginResponse.data.accessToken);
 
-       const signUpResponse = await axios.post('/auth/register ', userData);
-       try{
-         const loginResponse= await axios.post('/auth/login', {email: userData.email, password: userData.password});
-         token.set(loginResponse.data.accessToken);
-         toast.success(i18n.t('authentification.You have сreated your personal account sucsessfully!'));
-         return({...loginResponse.data, isAuthorised: true});
-       }
-       catch{
-       return (signUpResponse.data, {isAuthorised: false, refreshToken: "", accessToken: "" , user:{ email: "", name: ""}});
+        localStorage.setItem('refreshToken', loginResponse.data.refreshToken);
 
+        toast.success(
+          i18n.t(
+            'authentification.You have сreated your personal account sucsessfully!'
+          )
+        );
+        return { ...loginResponse.data, isAuthorised: true };
+      } catch {
+        return (
+          signUpResponse.data,
+          {
+            isAuthorised: false,
+            refreshToken: '',
+            accessToken: '',
+            user: { email: '', name: '' },
+          }
+        );
       }
     } catch (error) {
       return rejectWithValue(
-        toast.error(i18n.t('authentification.Ooops, something went wrong. Please, try again'))
+        toast.error(
+          i18n.t(
+            'authentification.Ooops, something went wrong. Please, try again'
+          )
+        )
       );
     }
   }
@@ -44,11 +95,17 @@ const logIn = createAsyncThunk(
     try {
       const { data } = await axios.post('/auth/login', userData);
       token.set(data.accessToken);
-      toast.success(i18n.t('authentification.You have logged in successfully. Welcome back'));
+
+      localStorage.setItem('refreshToken', data.refreshToken);
+      toast.success(
+        i18n.t('authentification.You have logged in successfully. Welcome back')
+      );
       return data;
     } catch (error) {
       return rejectWithValue(
-        toast.error(i18n.t('authentification.You entered wrong email or password'))
+        toast.error(
+          i18n.t('authentification.You entered wrong email or password')
+        )
       );
     }
   }
@@ -60,10 +117,19 @@ export const logOut = createAsyncThunk(
     try {
       await axios.get('/auth/logout');
       token.unset();
-      toast.success(i18n.t('authentification.You have logged out. Will be waiting fo you!'));
+
+      localStorage.removeItem('refreshToken');
+
+      toast.success(
+        i18n.t('authentification.You have logged out. Will be waiting fo you!')
+      );
     } catch (error) {
       return rejectWithValue(
-        toast.error(i18n.t('authentification.You havent logged out. We dont want to let you go'))
+        toast.error(
+          i18n.t(
+            'authentification.You havent logged out. We dont want to let you go'
+          )
+        )
       );
     }
   }
@@ -71,23 +137,54 @@ export const logOut = createAsyncThunk(
 
 const fetchCurrentUser = createAsyncThunk(
   'auth/current',
-  async (_, thunkAPI) => {
+  async (tokens, thunkAPI) => {
     const persistedToken = thunkAPI.getState().auth.token;
-
-    if (persistedToken === null) {
+    if (persistedToken === null && !tokens) {
       return thunkAPI.rejectWithValue();
     }
-    token.set(persistedToken);
+    if (!tokens.accessToken) {
+      token.set(persistedToken);
+    } else {
+      token.set(tokens.accessToken);
+    }
+
     try {
       const { data } = await axios.get('users/current-user');
-      return data;
+      console.log(data);
+      if (tokens) {
+        return { data, ...tokens };
+      }
+
+      return { data, accessToken: persistedToken };
     } catch (error) {
-      return thunkAPI.rejectWithValue(
+      return thunkAPI
+        .rejectWithValue
         // toast.error(i18n.t('authentification.We havent received your profile info. Please, try later'))
-      );
+        ();
     }
   }
 );
+
+// const RefreshToken = createAsyncThunk(
+//   'auth/refreshToken',
+//   async (userData, { rejectWithValue }) => {
+//     try {
+//       const { data } = await axios.post('/auth/login', userData);
+//       token.set(data.accessToken);
+//       localStorage.setItem('refreshToken', data.refreshToken);
+//       toast.success(
+//         i18n.t('authentification.You have logged in successfully. Welcome back')
+//       );
+//       return data;
+//     } catch (error) {
+//       return rejectWithValue(
+//         toast.error(
+//           i18n.t('authentification.You entered wrong email or password')
+//         )
+//       );
+//     }
+//   }
+// );
 
 const authOperations = {
   signUpUser,

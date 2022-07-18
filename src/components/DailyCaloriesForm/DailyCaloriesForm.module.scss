@@ -7,7 +7,7 @@
 }
 
 .inputsContainer {
-  margin-bottom: 40px;
+  margin-bottom: 37px;
 
   @media screen and (min-width: 768px) {
     display: flex;
@@ -18,7 +18,7 @@
 
 .inputBox {
   position: relative;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 
   &:focus-within .labelAbsolute {
     transform: translateY(-100%);
@@ -54,7 +54,7 @@
   border: none;
   border-bottom: 1px solid #e0e0e0;
   outline: none;
-background-color: transparent;
+  background-color: transparent;
 }
 
 .label,
@@ -78,7 +78,7 @@ background-color: transparent;
 }
 
 .labelBlood {
-  margin-bottom: 8px;
+  // margin-bottom: 8px;
   @media screen and (min-width: 768px) {
     border-bottom: 1px solid #e0e0e0;
     padding-bottom: 8px;

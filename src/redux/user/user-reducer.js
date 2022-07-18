@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { changeData } from './user-action';
 import userOperations from './user-operation';
+import authOperations from '../auth/auth-operations';
 import moment from 'moment';
 
-const todayDate = moment().format('DD, MM, YYYY').split(', ').join('.')
+const todayDate = moment().format('DD, MM, YYYY').split(', ').join('.');
 
 const userSlice = createSlice({
   name: 'user',
@@ -12,12 +13,20 @@ const userSlice = createSlice({
     dailyCalorieIntake: '',
     productsNotRecommended: [],
     isLoading: false,
-    diary:[],
+    diary: [],
     currentDate: todayDate,
-    chosenDate: todayDate
+    chosenDate: todayDate,
   },
   reducers: {},
   extraReducers: {
+    [authOperations.logOut.fulfilled]: (state, action) => {
+      (state.userId = ''),
+        (state.dailyCalorieIntake = ''),
+        (state.productsNotRecommended = []),
+        (state.isLoading = false),
+        (state.diary = []);
+      state.chosenDate = '';
+    },
     [userOperations.getUser.pending]: (state, action) => {
       state.isLoading = true;
     },
@@ -31,7 +40,7 @@ const userSlice = createSlice({
       state.isLoading = true;
     },
     [userOperations.addUserInfo.fulfilled]: (state, action) => {
-      state.params = action.payload.data.user
+      state.params = action.payload.data.user;
       state.userId = action.payload.data.id;
       state.dailyCalorieIntake = action.payload.data.dailyCalorieIntake;
       state.productsNotRecommended = action.payload.data.productsNotRecommended;
@@ -64,6 +73,7 @@ const userSlice = createSlice({
       state.diary = action.payload;
     },
     [userOperations.getDayProducts.rejected]: (state, action) => {
+      console.log(action);
       state.isLoading = false;
     },
     [userOperations.addProductToDiary.pending]: (state, action) => {
@@ -71,8 +81,7 @@ const userSlice = createSlice({
     },
     [userOperations.addProductToDiary.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.diary = action.payload.data
-
+      state.diary = action.payload.data;
     },
     [userOperations.addProductToDiary.rejected]: (state, action) => {
       state.isLoading = false;
@@ -82,7 +91,7 @@ const userSlice = createSlice({
     },
     [userOperations.removeProductFromDiary.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.diary = action.payload.data
+      state.diary = action.payload.data;
     },
     [userOperations.removeProductFromDiary.rejected]: (state, action) => {
       state.isLoading = false;

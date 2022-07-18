@@ -21,7 +21,7 @@ import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
 
   return (
       <div className={styles.userinfo}>
-        <h3>{user.name === '' ? 'Name' : user.name}</h3>
+        <h3 className={user.name !== "" ? styles.light : undefined}>{user.name === '' ? 'Name' : user.name}</h3>
         <div className={styles.vector1} />
         <button className={isDark ? styles.button_dark : undefined} onClick={() => tryLogOut()}>{t("navigation.Sign Out")}</button>
       </div>
