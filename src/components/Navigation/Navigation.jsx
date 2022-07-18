@@ -198,7 +198,8 @@ const Navigation = () => {
             <span className={styles.languageText}>
               <span
                 className={
-                  isDark ? styles.currentLanguage_dark : styles.currentLanguage
+                  isAuthorised? (isDark ? styles.currentLanguage_dark : styles.currentLanguage):
+                  (isDark ? styles.currentLanguage_dark_authorised : styles.currentLanguage)
                 }
               >
                 {currentLanguage === 'uk' ? 'UK' : 'EN'}
