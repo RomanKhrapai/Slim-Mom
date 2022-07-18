@@ -49,6 +49,7 @@ function RightSideBar() {
     if (userInfo.dailyCalorieIntake === null || userInfo === null) {
       return;
     }
+
     dispatch(userOperations.addUserInfo(userRequest));
   }, [language]);
 
@@ -56,6 +57,7 @@ function RightSideBar() {
     if (products === []) {
       return;
     }
+
     dispatch(userOperations.getDayProducts(chosenDate));
   }, [chosenDate]);
 
@@ -63,6 +65,7 @@ function RightSideBar() {
     if (dailyRate === '') {
       return (dailyRate = 0);
     }
+
     setLeftCkal(Number(dailyRate) - Number(consum));
     setConsumed(consum);
     setNormal(((consum / dailyRate) * 100).toFixed(1));
