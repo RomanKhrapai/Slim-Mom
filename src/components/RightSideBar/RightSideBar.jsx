@@ -41,7 +41,7 @@ function RightSideBar() {
   for (const product of products) {
     kall = product.productId.calories;
     porc = product.amount;
-    cons = Math.ceil((porc * kall) / 100);
+    cons = Math.round((porc * kall) / 100);
     consum += cons;
   }
 
