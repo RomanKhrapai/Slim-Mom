@@ -35,7 +35,7 @@ export default function ModalContent({ onClose }) {
         <ol className={styles.modal__list}>
           {productsNotRecommended &&
             productsNotRecommended.map(product => (
-              <li key={product}>{product}</li>
+              <li className={styles.modal__list_item} key={product}>{product}</li>
             ))}
         </ol>
       </div>

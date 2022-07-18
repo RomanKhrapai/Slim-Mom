@@ -3,7 +3,7 @@
 .modal__title {
   font-family: 'VerdanaBold';
   padding-left: 20px;
-  padding-top: 60px;
+  padding-top: 40px;
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
@@ -11,17 +11,23 @@
   text-align: left;
   max-width: 320px;
   margin: 0 auto 40px auto;
+  margin-bottom: 40px;
 
 
   color: $title-color;
 
   @media screen and(min-width: 768px) {
+    padding-top: 69px;
+    padding-left: 0;
     min-width: 365px;
     font-size: 26px;
     line-height: 1.2;
-    padding-left: 0;
-    padding-right: 0;
-    margin: 0 auto 20px auto;
+    margin-left: 152px;
+    margin-right: 152px;
+    // margin-left: auto;
+    // margin-right: auto;
+    // margin: 0 auto 20px auto;
+    margin-bottom: 20px;
     text-align: center;
   }
 }
@@ -76,7 +82,7 @@
   display: block;
   padding: 0 0 0 20px;
   // text-align: center;
-  margin: 27px 0 0 0;
+  margin: 20px 0 0 0;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -88,7 +94,7 @@
 
 .modal__list_item {
   &:not(:last-child) {
-    margin-bottom: 21px;
+    margin-bottom: 14px;
   }
 }
 
@@ -107,6 +113,8 @@
 }
 
 .button_additional {
+  // margin-left: 231px;
+  // margin-right: 231px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 40px;
