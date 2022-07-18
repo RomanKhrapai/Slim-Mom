@@ -60,8 +60,19 @@ const getDayProducts = createAsyncThunk(
     try {
       const { data } = await axios.get(`/diary/${diaryData}`, diaryData);
 
-      return data.data;
+      if (data.code === 200) {
+        return data.data;
+      }
     } catch (error) {
+      if (error.response.data.message === "Expired token") {
+        return rejectWithValue(error.response.data.message)
+        // console.log(data);
+      }
+      // if (error.code === 401) {
+      //   console.log(data);
+      //   return
+      // }
+      console.log(error);
       return rejectWithValue(toast.error(i18n.t('authentification.Cannot find products for this data')));
     }
   }
