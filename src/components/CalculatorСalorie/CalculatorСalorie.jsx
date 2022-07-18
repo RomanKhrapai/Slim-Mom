@@ -15,7 +15,6 @@ const сalculatorСalorie = ({ onOpenModal }) => {
   const [activeModerate, setActiveModerate] = useState(false);
   // const [user, setUser] = useState({ height: '', age: '', currentWeight: '', desiredWeight: '', bloodType: '', language: "ua" })
   const user = useSelector(state => state.auth.user);
-  // console.log(user);
 
   const changeActive = () => {
     setActiveModerate(!activeModerate);
