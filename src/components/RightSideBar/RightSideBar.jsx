@@ -16,7 +16,7 @@ function RightSideBar() {
   const { t } = useTranslation();
 
   let dailyRate = useSelector(productsSelectors.getDailyCalorieIntake);
-  let chosenDate = useSelector(productsSelectors.getChosenDate);
+  const chosenDate = useSelector(productsSelectors.getChosenDate);
   const currentDate = useSelector(productsSelectors.getTodayDate);
   const products = useSelector(productsSelectors.getDiaryProducts);
   const userInfo = useSelector(productsSelectors.getUserInfo);
@@ -46,10 +46,16 @@ function RightSideBar() {
   }
 
   useEffect(() => {
+    if (userInfo.dailyCalorieIntake === null || userInfo === null) {
+      return;
+    }
     dispatch(userOperations.addUserInfo(userRequest));
   }, [language]);
 
   useEffect(() => {
+    if (products === []) {
+      return;
+    }
     dispatch(userOperations.getDayProducts(chosenDate));
   }, [chosenDate]);
 
@@ -91,7 +97,7 @@ function RightSideBar() {
             </span>{' '}
           </li>
           <li className={s.title}>
-            <span>{t('Daily rate')}</span>{' '}
+            <span>{t('Daily rate')}</span>
             <span>
               {addLeadingZeroKcal(dailyRate)}
               <span className={s.span_kcal}>{t('kcal')}</span>
