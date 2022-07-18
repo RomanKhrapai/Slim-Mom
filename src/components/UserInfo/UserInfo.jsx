@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import authOperations from 'redux/auth/auth-operations.js';
 import { useContext } from 'react';
 import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
+import UserConfig from "components/UserConfigs/UserConfigs";
 
 
   const UserInfo = () => {
@@ -22,6 +23,7 @@ import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
   return (
       <div className={styles.userinfo}>
         <h3 className={user.name !== "" ? styles.light : undefined}>{user.name === '' ? 'Name' : user.name}</h3>
+        {/* <UserConfig/> */}
         <div className={styles.vector1} />
         <button className={isDark ? styles.button_dark : undefined} onClick={() => tryLogOut()}>{t("navigation.Sign Out")}</button>
       </div>
