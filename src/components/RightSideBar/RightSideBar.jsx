@@ -59,7 +59,7 @@ function RightSideBar() {
     }
     setLeftCkal(Number(dailyRate) - Number(consum));
     setConsumed(consum);
-    setNormal(((consum / dailyRate) * 100).toFixed());
+    setNormal(((consum / dailyRate) * 100).toFixed(1));
     setCategory(productsNotRecommended);
   }, [dailyRate, consuned, porc, kall, normal, chosenDate, consum]);
 
@@ -100,7 +100,7 @@ function RightSideBar() {
           <li className={s.title}>
             <span>{t('n% of normal')}</span>{' '}
             <span>
-              {normal}
+              {normal == 0 ? 0 : normal}
               <span className={s.span_kcal}>%</span>
             </span>
           </li>
