@@ -59,7 +59,7 @@ function RightSideBar() {
     }
     setLeftCkal(Number(dailyRate) - Number(consum));
     setConsumed(consum);
-    setNormal(((consum / dailyRate) * 100).toFixed(2));
+    setNormal(((consum / dailyRate) * 100).toFixed(1));
     setCategory(productsNotRecommended);
   }, [dailyRate, consuned, porc, kall, normal, chosenDate, consum]);
 
