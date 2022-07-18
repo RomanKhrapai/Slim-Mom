@@ -2,6 +2,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import i18n from 'services/i18n/config';
+import { setDefaultNamespace } from 'i18next';
 
 axios.defaults.baseURL = 'https://slim-mom-server.herokuapp.com/api/';
 
@@ -141,7 +142,7 @@ const fetchCurrentUser = createAsyncThunk(
     if (persistedToken === null && !tokens) {
       return thunkAPI.rejectWithValue();
     }
-    if (persistedToken) {
+    if (!tokens.accessToken) {
       token.set(persistedToken);
     } else {
       token.set(tokens.accessToken);
@@ -149,10 +150,12 @@ const fetchCurrentUser = createAsyncThunk(
 
     try {
       const { data } = await axios.get('users/current-user');
+      console.log(data);
       if (tokens) {
-        return { ...data, ...tokens };
+        return { data, ...tokens };
       }
-      return data;
+
+      return { data, accessToken: persistedToken };
     } catch (error) {
       return thunkAPI
         .rejectWithValue

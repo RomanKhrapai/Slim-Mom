@@ -38,7 +38,8 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     [authOperations.fetchCurrentUser.fulfilled](state, { payload }) {
-      state.user = payload;
+      state.user = payload.data;
+      state.token = payload.accessToken;
       state.isAuthorised = true;
       state.isFetchingCurrentUser = false;
       state.isLoading = false;
@@ -61,26 +62,26 @@ const authSlice = createSlice({
       state.isAuthorised = false;
       state.isLoading = false;
     },
-    [userOperations.getDayProducts.rejected]: (state, action) => {
-      state.isAuthorised = false;
-      state.isLoading = false;
-    },
+    // [userOperations.getDayProducts.rejected]: (state, action) => {
+    //   state.isAuthorised = false;
+    //   state.isLoading = false;
+    // },
     [authOperations.logOut.pending]: (state, action) => {
       state.isPending = true;
       state.isLoading = true;
     },
     [authOperations.logOut.fulfilled]: (state, action) => {
-      state.userId = '',
-      state.dailyCalorieIntake= '',
-      state.productsNotRecommended= [],
-      state.isLoading = false,
-      state.diary = []
-      state.chosenDate = ''
+      (state.userId = ''),
+        (state.dailyCalorieIntake = ''),
+        (state.productsNotRecommended = []),
+        (state.isLoading = false),
+        (state.diary = []);
+      state.chosenDate = '';
     },
     [authOperations.logOut.fulfilled]: (state, action) => {
       state.user.email = '';
       state.user.refreshToken = '';
-      state.user = {}
+      state.user = {};
       state.token = null;
       state.isAuthorised = false;
       state.isLoading = false;
