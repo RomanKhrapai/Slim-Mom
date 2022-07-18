@@ -24,7 +24,7 @@ const RegisterForm = () => {
       validate={values => {
         const errors = {};
         if (!values.name) {
-          errors.name = t('authentification.This fied is required');
+          errors.name = t('authentification.This field is required');
         } else if (
           values.name.length < 3) {
           errors.name = t('authentification.This field must contain more than 3 symbols');
@@ -34,14 +34,14 @@ const RegisterForm = () => {
         } 
         
         if (!values.email) {
-          errors.email = t('authentification.This fied is required');
+          errors.email = t('authentification.This field is required');
         } else if (
           !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
           errors.email = t('authentification.Invalid email address');
         }
 
         if (!values.password) {
-          errors.password = t('authentification.This fied is required');
+          errors.password = t('authentification.This field is required');
         } else if (
           values.password.length < 8) {
           errors.password = t("authentification.This field must contain more than 8 symbols");
@@ -76,7 +76,7 @@ const RegisterForm = () => {
           {errors.name && touched.name && (
                   <div className={s.errorMessage}>{errors.name}</div>
                 )}
-          <label className={getActiveClass(values.name)} htmlFor="name">{t('authentification.Name')}</label>
+          <label className={getActiveClass(values.name)} htmlFor="name">{t('authentification.Name')} *</label>
           </div>
             <div className={s.inputBox}>
           <input
@@ -90,7 +90,7 @@ const RegisterForm = () => {
           {errors.email && touched.email && (
                   <div className={s.errorMessage}>{errors.email}</div>
                 )}
-          <label className={getActiveClass(values.email)} htmlFor="email">{t('authentification.Email')}</label>
+          <label className={getActiveClass(values.email)} htmlFor="email">{t('authentification.Email')} *</label>
           </div>
           <div className={s.inputBox_last}>
           <input
@@ -104,7 +104,7 @@ const RegisterForm = () => {
             {errors.password && touched.password && (
                   <div className={s.errorMessage}>{errors.password}</div>
                 )}
-          <label className={getActiveClass(values.password)} htmlFor="password">{t('authentification.Password')}</label>
+          <label className={getActiveClass(values.password)} htmlFor="password">{t('authentification.Password')} *</label>
           </div>
           <button className={s.registration_button} type="submit">
           {t('navigation.Registration')}
