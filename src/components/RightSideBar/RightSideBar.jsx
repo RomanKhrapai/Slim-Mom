@@ -86,7 +86,7 @@ function RightSideBar() {
           <li className={s.title}>
             <span>{t('Consumed')}</span>{' '}
             <span>
-              {addLeadingZeroKcal(consuned)}
+              {consuned === 0 ? addLeadingZeroKcal('0') : consuned}
               <span className={s.span_kcal}>{t('kcal')}</span>
             </span>{' '}
           </li>
@@ -100,7 +100,7 @@ function RightSideBar() {
           <li className={s.title}>
             <span>{t('n% of normal')}</span>{' '}
             <span>
-              {normal}
+              {normal == 0 ? 0 : normal}
               <span className={s.span_kcal}>%</span>
             </span>
           </li>
