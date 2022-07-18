@@ -14,6 +14,37 @@ const token = {
   },
 };
 
+axios.interceptors.response.use(
+  config => {
+    return config;
+  },
+  async error => {
+    const originalRequest = error.config;
+    if (
+      error.response.status === 400 &&
+      error.config &&
+      !error.config._isRetry &&
+      error.response.data.message === 'Expired token'
+    ) {
+      originalRequest._isRetry = true;
+      try {
+        const refreshToken = localStorage.getItem('refreshToken');
+        const { data } = await axios.post('/auth/refresh-token', {
+          refreshToken,
+        });
+        token.set(data.accessToken);
+        localStorage.setItem('refreshToken', data.refreshToken);
+        originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
+        return axios.request(originalRequest);
+      } catch (error) {
+        console.log(error);
+        toast.error('You need to login');
+      }
+    }
+    throw error;
+  }
+);
+
 const signUpUser = createAsyncThunk(
   'auth/register',
   async (userData, { rejectWithValue }) => {
@@ -25,6 +56,9 @@ const signUpUser = createAsyncThunk(
           password: userData.password,
         });
         token.set(loginResponse.data.accessToken);
+
+        localStorage.setItem('refreshToken', loginResponse.data.refreshToken);
+
         toast.success(
           i18n.t(
             'authentification.You have сreated your personal account sucsessfully!'
@@ -46,7 +80,7 @@ const signUpUser = createAsyncThunk(
       return rejectWithValue(
         toast.error(
           i18n.t(
-            'authentification.Ooops, something went wrong. Please, try again.'
+            'authentification.Ooops, something went wrong. Please, try again'
           )
         )
       );
@@ -60,10 +94,10 @@ const logIn = createAsyncThunk(
     try {
       const { data } = await axios.post('/auth/login', userData);
       token.set(data.accessToken);
+
+      localStorage.setItem('refreshToken', data.refreshToken);
       toast.success(
-        i18n.t(
-          'authentification.You have logged in successfully. Welcome back!'
-        )
+        i18n.t('authentification.You have logged in successfully. Welcome back')
       );
       return data;
     } catch (error) {
@@ -82,6 +116,9 @@ export const logOut = createAsyncThunk(
     try {
       await axios.get('/auth/logout');
       token.unset();
+
+      localStorage.removeItem('refreshToken');
+
       toast.success(
         i18n.t('authentification.You have logged out. Will be waiting fo you!')
       );
@@ -89,7 +126,7 @@ export const logOut = createAsyncThunk(
       return rejectWithValue(
         toast.error(
           i18n.t(
-            'authentification.You havent logged out. We dont want to let you go.'
+            'authentification.You havent logged out. We dont want to let you go'
           )
         )
       );
@@ -99,27 +136,52 @@ export const logOut = createAsyncThunk(
 
 const fetchCurrentUser = createAsyncThunk(
   'auth/current',
-  async (_, thunkAPI) => {
+  async (tokens, thunkAPI) => {
     const persistedToken = thunkAPI.getState().auth.token;
-
-    if (persistedToken === null) {
+    if (persistedToken === null && !tokens) {
       return thunkAPI.rejectWithValue();
     }
-    token.set(persistedToken);
+    if (persistedToken) {
+      token.set(persistedToken);
+    } else {
+      token.set(tokens.accessToken);
+    }
+
     try {
       const { data } = await axios.get('users/current-user');
+      if (tokens) {
+        return { ...data, ...tokens };
+      }
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(
-        toast.error(
-          i18n.t(
-            'authentification.We havent received your profile info. Please, try later.'
-          )
-        )
-      );
+      return thunkAPI
+        .rejectWithValue
+        // toast.error(i18n.t('authentification.We havent received your profile info. Please, try later'))
+        ();
     }
   }
 );
+
+// const RefreshToken = createAsyncThunk(
+//   'auth/refreshToken',
+//   async (userData, { rejectWithValue }) => {
+//     try {
+//       const { data } = await axios.post('/auth/login', userData);
+//       token.set(data.accessToken);
+//       localStorage.setItem('refreshToken', data.refreshToken);
+//       toast.success(
+//         i18n.t('authentification.You have logged in successfully. Welcome back')
+//       );
+//       return data;
+//     } catch (error) {
+//       return rejectWithValue(
+//         toast.error(
+//           i18n.t('authentification.You entered wrong email or password')
+//         )
+//       );
+//     }
+//   }
+// );
 
 const authOperations = {
   signUpUser,

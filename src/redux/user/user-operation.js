@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import i18n from 'services/i18n/config';
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
@@ -11,9 +12,9 @@ const getUser = createAsyncThunk(
       return data;
     } catch (error) {
       return rejectWithValue(
-        toast.error(
+        toast.error(i18n.t(
           'Something wrong. Please  check that the form is filled out correctly and try again. Or go to sign in.'
-        )
+        ))
       );
     }
   }
@@ -31,7 +32,7 @@ const addUserInfo = createAsyncThunk(
 
       return data;
     } catch (error) {
-      return rejectWithValue(toast.error('Somsing wrong'));
+      return rejectWithValue(toast.error(i18n.t('authentification.Ooops, something went wrong. Please, try again')));
     }
   }
 );
@@ -47,7 +48,7 @@ const addVisitorInfo = createAsyncThunk(
       );
       return data;
     } catch (error) {
-      return rejectWithValue(toast.error('Somsing wrong'));
+      return rejectWithValue(toast.error(i18n.t('authentification.Ooops, something went wrong. Please, try again')));
     }
   }
 );
@@ -59,9 +60,20 @@ const getDayProducts = createAsyncThunk(
     try {
       const { data } = await axios.get(`/diary/${diaryData}`, diaryData);
 
-      return data.data;
+      if (data.code === 200) {
+        return data.data;
+      }
     } catch (error) {
-      return rejectWithValue(toast.error('Cannot find products for this data'));
+      if (error.response.data.message === "Expired token") {
+        return rejectWithValue(error.response.data.message)
+        // console.log(data);
+      }
+      // if (error.code === 401) {
+      //   console.log(data);
+      //   return
+      // }
+      console.log(error);
+      return rejectWithValue(toast.error(i18n.t('authentification.Cannot find products for this data')));
     }
   }
 );
@@ -75,7 +87,7 @@ const addProductToDiary = createAsyncThunk(
 
       return data;
     } catch (error) {
-      return rejectWithValue(toast.error('Something wrong'));
+      return rejectWithValue(toast.error(i18n.t('authentification.Ooops, something went wrong. Please, try again')));
     }
   }
 );
@@ -89,7 +101,7 @@ const removeProductFromDiary = createAsyncThunk(
 
       return data;
     } catch (error) {
-      return rejectWithValue(toast.error('Something wrong'));
+      return rejectWithValue(toast.error(i18n.t('authentification.Ooops, something went wrong. Please, try again')));
     }
   }
 );

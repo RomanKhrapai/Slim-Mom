@@ -11,8 +11,18 @@ function RightSideBar() {
   const [normal, setNormal] = useState(0);
   const [category, setCategory] = useState([]);
 
-  const language = i18n.language === 'uk' ? "ua" : "en";
+  const language = i18n.language === 'uk' ? 'ua' : 'en';
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
+
+  let dailyRate = useSelector(productsSelectors.getDailyCalorieIntake);
+  let chosenDate = useSelector(productsSelectors.getChosenDate);
+  const currentDate = useSelector(productsSelectors.getTodayDate);
+  const products = useSelector(productsSelectors.getDiaryProducts);
   const userInfo = useSelector(productsSelectors.getUserInfo);
+  const productsNotRecommended = useSelector(
+    productsSelectors.getProductsNotRecommended
+  );
 
   const userRequest = {
     age: userInfo.age,
@@ -20,58 +30,42 @@ function RightSideBar() {
     currentWeight: userInfo.currentWeight,
     desiredWeight: userInfo.desiredWeight,
     height: userInfo.height,
-    language
+    language,
+  };
+
+  let kall = 0;
+  let porc = 0;
+  let consum = 0;
+  let cons = 0;
+
+  for (const product of products) {
+    kall = product.productId.calories;
+    porc = product.amount;
+    cons = Math.round((porc * kall) / 100);
+    consum += cons;
   }
 
-  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(userOperations.addUserInfo(userRequest));
   }, [language]);
 
-  const User = useSelector(state => state);
-
-  let dailyRate = User.user.dailyCalorieIntake;
-  const currentDate = useSelector(productsSelectors.getTodayDate);
-  let chosenDate = useSelector(productsSelectors.getChosenDate);
-  const products = useSelector(productsSelectors.getDiaryProducts);
-
-  userOperations.getDayProducts(chosenDate);
-
-  let kall = 0;
-  let porc = 0;
-
-  for (const product of products) {
-    kall += product.productId.calories;
-    porc += product.amount;
-  }
-
-  const { t } = useTranslation();
+  useEffect(() => {
+    dispatch(userOperations.getDayProducts(chosenDate));
+  }, [chosenDate]);
 
   useEffect(() => {
     if (dailyRate === '') {
       return (dailyRate = 0);
     }
-    setLeftCkal(Number(dailyRate) - Number(consuned));
-    setConsumed(Math.floor((porc * kall) / 100));
-    setNormal(Math.floor((consuned / dailyRate) * 100));
-    setCategory(User.user.productsNotRecommended);
-  }, [dailyRate, consuned, porc, kall, normal, chosenDate]);
+    setLeftCkal(Number(dailyRate) - Number(consum));
+    setConsumed(consum);
+    setNormal(((consum / dailyRate) * 100).toFixed(1));
+    setCategory(productsNotRecommended);
+  }, [dailyRate, consuned, porc, kall, normal, chosenDate, consum]);
 
   function addLeadingZeroKcal(value) {
     return String(value).padStart(3, '0');
   }
-
-  const date2 = new Date().getTime();
-  const dateToday = new Date(Number(`${date2}`));
-
-  let options = {
-    day: 'numeric',
-    month: 'numeric',
-    year: 'numeric',
-  };
-
-  const dateUser = '12.12.12';
-  const dateUserToday = dateToday.toLocaleDateString('en-US', options);
 
   return (
     <div className={s.container}>
@@ -120,7 +114,7 @@ function RightSideBar() {
           </div>
         ) : (
           <div className={s.box_food_list}>
-            {User.user.productsNotRecommended.map(i => (
+            {productsNotRecommended.map(i => (
               <p key={i} className={s.title}>
                 {i}
               </p>

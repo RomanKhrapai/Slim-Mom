@@ -1,4 +1,3 @@
-
 import { createSelector } from '@reduxjs/toolkit';
 const getIsFetchingCurent = state => state.auth.isFetchingCurrentUser;
 const getIsLoading = state => state.auth.isLoading;
@@ -11,6 +10,6 @@ const authSelectors = {
   getIsAuthorised,
   getIsLoading,
   getBloodType,
-  getUserInfo
+  getUserInfo,
 };
 export default authSelectors;

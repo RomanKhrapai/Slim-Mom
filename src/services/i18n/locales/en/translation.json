@@ -20,16 +20,18 @@
     "Your name": "Your name",
     "This fied is required": "This fied is required",
     "Invalid email address": "Invalid email address",
-    "This filed must contain more than 3 symbols": "This filed must contain more than 3 symbols",
-    "This filed must contain more than 8 symbols": "This filed must contain more than 8 symbols",
-    "This filed must contain only letters": "This filed must contain only letters",
+    "This field must contain more than 3 symbols": "This field must contain more than 3 symbols",
+    "This field must contain more than 8 symbols": "This field must contain more than 8 symbols",
+    "This field must contain only letters": "This field must contain only letters",
     "Ooops, something went wrong. Please, try again" : "Ooops, something went wrong. Please, try again",
     "You entered wrong email or password" : "You entered wrong email or password",
     "You havent logged out. We dont want to let you go" : "You havent logged out. We dont want to let you go",
     "We havent received your profile info. Please, try later" : "We havent received your profile info. Please, try later",
     "You have сreated your personal account sucsessfully!" : "You have сreated your personal account sucsessfully!",
-    "You have logged in successfully. Welcome back!" : "You have logged in successfully. Welcome back!",
-    "You have logged out. Will be waiting fo you!" : "You have logged out. Will be waiting fo you!"
+    "You have logged in successfully. Welcome back" : "You have logged in successfully. Welcome back!",
+    "You have logged out. Will be waiting fo you!" : "You have logged out. Will be waiting fo you!",
+    "This product is not found": "This product is not found",
+    "Cannot find products for this data": "Cannot find products for this data"
   },
 
   "calculator": {
@@ -67,7 +69,7 @@
   "Consumed": "Consumed",
   "Daily rate": "Daily rate",
   "n% of normal": "n% of normal",
-  "Foods you should not eat": "Foods you should not eat",
+  "Foods you should not eat": "Food not recommended",
   "Summary for": "Summary for",
   "Your diet will be displayed here": "Your diet will be displayed here",
 
@@ -83,6 +85,7 @@
     "g": "g",
     "kcal": "kcal",
     "Your amount is too long. Please, enter your amount in grams": "Your amount is too long. Please, enter your amount in grams",
-    "The list is empty": "The product list for this day is empty"
+    "The list is empty": "The product list for this day is empty",
+    "The product is not founded": "The product is not founded"
   }
 }

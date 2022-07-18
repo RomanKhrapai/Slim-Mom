@@ -61,7 +61,7 @@ export const App = () => {
       ) : (
         <>
           <Header />
-          <div className={s.button_theme_swither} onClick={toggleTheme}>
+          <div className={isDark? s.button_theme_swither_dark : s.button_theme_swither_light} onClick={toggleTheme}>
             {icon}
           </div>
           <Suspense fallback={<Loader />}>
@@ -90,7 +90,7 @@ export const App = () => {
                   path={'/calculator'}
                   element={
                     <PrivateRoute>
-                      <CalculatorPage />
+                      <CalculatorPage toggleModal={toggleModal} showModal={showModal} />
                     </PrivateRoute>
                   }
                 />

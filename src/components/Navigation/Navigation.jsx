@@ -79,7 +79,6 @@ const Navigation = () => {
   const token = localStorage.getItem('token');
 
   const currentLanguage = i18n.language;
-
   const opositiveLanguage = currentLanguage === 'uk' ? 'en' : 'uk';
 
   return (
@@ -137,12 +136,27 @@ const Navigation = () => {
             </NavLink>
           </div>
           <UserInfo />
+
+          <button
+            className={styles.languageBtn}
+            type="button"
+            onClick={e => i18n.changeLanguage(opositiveLanguage)}
+          >
+            <span className={styles.languageText}>
+              <span
+                className={
+                  isDark ? styles.currentLanguage_dark : styles.currentLanguage
+                }
+              >
+                {currentLanguage === 'uk' ? 'UK' : 'EN'}
+              </span>
+              {/* /{opositiveLanguage} */}
+            </span>
+          </button>
           <button
             className={styles.menu__button}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {/* <Cross className={styles.icons_dark}/> */}
-            {/* <Burger className={styles.icons_dark}/> */}
             {isDark ? (
               isMenuOpen ? (
                 <Cross className={styles.icons_dark} />
@@ -176,28 +190,25 @@ const Navigation = () => {
           >
             {t('navigation.Registration')}
           </NavLink>
+          <button
+            className={styles.languageBtnAuthorise}
+            type="button"
+            onClick={e => i18n.changeLanguage(opositiveLanguage)}
+          >
+            <span className={styles.languageText}>
+              <span
+                className={
+                  isAuthorised? (isDark ? styles.currentLanguage_dark : styles.currentLanguage):
+                  (isDark ? styles.currentLanguage_dark_authorised : styles.currentLanguage)
+                }
+              >
+                {currentLanguage === 'uk' ? 'UK' : 'EN'}
+              </span>
+              {/* /{opositiveLanguage} */}
+            </span>
+          </button>
         </>
       )}
-
-      <button
-        className={styles.languageBtn}
-        type="button"
-        onClick={e => i18n.changeLanguage(opositiveLanguage)}
-
-      >
-        <span className={styles.languageText}>
-          <span
-            className={
-              isDark ? styles.currentLanguage_dark : styles.currentLanguage
-            }
-          >
-
-            {currentLanguage}
-          </span>
-          /{opositiveLanguage}
-        </span>
-      </button>
-
     </nav>
   );
 };

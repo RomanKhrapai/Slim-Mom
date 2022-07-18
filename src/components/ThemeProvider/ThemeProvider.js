@@ -3,6 +3,7 @@ import React from 'react';
 export const ThemeContext = createContext();
 import PropTypes from 'prop-types';
 
+
 const themes = {
   dark: {
     backgroundColor: ' rgb(56, 55, 84)',
@@ -22,14 +23,13 @@ export const ThemeProvider = ({ children }) => {
   const theme = isDark ? themes.dark : themes.light;
 
   const toggleTheme = () => {
-    localStorage.setItem('isDark', JSON.stringify(!isDark));
+    // localStorage.setItem('isDark', JSON.stringify(!isDark));
     setIsDark(!isDark);
   };
 
   useEffect(() => {
-    if (localStorage.getItem('isDark') === true) {
-      setIsDark(isDark);
-    }
+    // localStorage.getItem('isDark') === true ? setIsDark(!isDark) : setIsDark(isDark) 
+
   }, []);
 
   return (

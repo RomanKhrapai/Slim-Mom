@@ -127,11 +127,8 @@ const DailyCaloriesForm = ({
           const valuesWithLanguage = { ...convertedType, language };
 
           if (isAuthorised) {
-
-            
+            const toNumberValues = changeType(values);
             dispatch(userOperations.addUserInfo(valuesWithLanguage)).then(() => {
-
-
               onOpenModal();
               dispatch(apdateUserInfo(valuesWithLanguage));
             });

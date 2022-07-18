@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import i18n from 'services/i18n/config';
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
@@ -13,7 +14,7 @@ const getRequestProducts = createAsyncThunk(
 
       return data.data.result;
     } catch (error) {
-      return rejectWithValue(toast.error('This product is not found'));
+      return rejectWithValue(toast.error(i18n.t('authentification.This product is not found')));
     }
   }
 );
@@ -26,7 +27,7 @@ const getOneProduct = createAsyncThunk(
 
       return data;
     } catch (error) {
-      return rejectWithValue(toast.error('Something wrong'));
+      return rejectWithValue(toast.error(i18n.t('authentification.Ooops, something went wrong. Please, try again')));
     }
   }
 );

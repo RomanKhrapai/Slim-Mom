@@ -27,7 +27,7 @@ export default function DiaryProductsList() {
     id: product._id,
     name: product.productId.title[productName],
     grams: product.amount,
-    calories: product.productId.calories
+    calories: Math.round(product.productId.calories * product.amount / 100),
   }))
   
 

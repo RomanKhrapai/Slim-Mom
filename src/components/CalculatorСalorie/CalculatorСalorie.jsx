@@ -15,7 +15,6 @@ const сalculatorСalorie = ({ onOpenModal }) => {
   const [activeModerate, setActiveModerate] = useState(false);
   // const [user, setUser] = useState({ height: '', age: '', currentWeight: '', desiredWeight: '', bloodType: '', language: "ua" })
   const user = useSelector(state => state.auth.user);
-  // console.log(user);
 
   const changeActive = () => {
     setActiveModerate(!activeModerate);
@@ -24,7 +23,7 @@ const сalculatorСalorie = ({ onOpenModal }) => {
   if (!activeModerate) {
     return (
       <>
-        <h2 className={s.title}>{t('calculator.Your Parametrs')}:</h2>
+        <h2 className={s.title}>{t('calculator.Your Parameters')}:</h2>
         <div>
           <UserInfo userData={user} />
           <Button type="button" className={style.Button} onClick={changeActive}>
