@@ -18,21 +18,19 @@ const MainPage = ({ showModal, toggleModal }) => {
 
   return (
     <div className={s.images_container}>
-    <Container className={s.container}>
-      <WrapperDisplayNone showModal={showModal}>
-      <PageTitle>{t('Calculate your daily calorie intake')}</PageTitle>
-        <DailyCaloriesForm
-          onOpenModal={toggleModal}
-        />
-      </WrapperDisplayNone>
-      { loading && <Loader /> }
-      {showModal && (
-        <Modal onClose={toggleModal}>
-          <ModalContent onClose={toggleModal}/>
-        </Modal>
-      )}
-    </Container>
-</div>
+      <Container className={s.container}>
+        <WrapperDisplayNone showModal={showModal}>
+          <PageTitle>{t('Calculate your daily calorie intake')}</PageTitle>
+          <DailyCaloriesForm onOpenModal={toggleModal} />
+        </WrapperDisplayNone>
+        {loading && <Loader />}
+        {showModal && (
+          <Modal onClose={toggleModal}>
+            <ModalContent onClose={toggleModal} />
+          </Modal>
+        )}
+      </Container>
+    </div>
   );
 };
 
