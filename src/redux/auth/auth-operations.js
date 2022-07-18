@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import i18n from 'services/i18n/config';
 
-axios.defaults.baseURL = 'https://slim-mom-dev.herokuapp.com/api/';
+axios.defaults.baseURL = 'https://slim-mom-server.herokuapp.com/api/';
 
 const token = {
   set(token) {
