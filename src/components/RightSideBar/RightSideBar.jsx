@@ -101,6 +101,7 @@ function RightSideBar() {
             <span>{t('n% of normal')}</span>{' '}
             <span>
               {normal == 0 ? 0 : normal}
+
               <span className={s.span_kcal}>%</span>
             </span>
           </li>
