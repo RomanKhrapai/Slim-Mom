@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import s from './MainPage.module.scss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import PageTitle from '../components/PageTitle/PageTitle';
 import DailyCaloriesForm from 'components/DailyCaloriesForm';
@@ -11,8 +11,23 @@ import ModalContent from 'components/Modal/ModalContent';
 import WrapperDisplayNone from 'components/WrapperDisplayNone/WrapperDisplayNone';
 import Container from 'components/Container/Container';
 import Loader from '../components/Loader';
-
+import { useSearchParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import authOperations from '../redux/auth/auth-operations';
 const MainPage = ({ showModal, toggleModal }) => {
+  const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const refreshToken = searchParams.get('refreshToken');
+  const accessToken = searchParams.get('accessToken');
+  useEffect(() => {
+    if (refreshToken && accessToken) {
+      searchParams.delete('refreshToken');
+      searchParams.delete('accessToken');
+      dispatch(authOperations.fetchCurrentUser({ refreshToken, accessToken }));
+      setSearchParams(searchParams);
+    }
+  }, [refreshToken, searchParams, accessToken]);
+
   const { t, i18n } = useTranslation();
   const loading = useSelector(state => state.auth.isLoading);
 
