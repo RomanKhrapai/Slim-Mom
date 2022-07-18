@@ -4,20 +4,22 @@ $mobileBackgoundColor: #264061;
 $mobileActiveColor: #ffffff;
 
 .languageBtn {
-  margin-bottom: -9px;
-  @media screen and (max-width: 768px) {
+  margin-left: 0px;
+  margin-bottom: 0px;
+   @media screen and (min-width: 1280px) {
     margin-left: auto;
-  }
-  @media screen and (max-width: 1280px) {
-    margin-bottom: 0px;
-  }
+    margin-bottom: -9px;
+ }
 }
 
 .languageBtnAuthorise{
   margin-left: auto;
   margin-bottom: 0px;
+  @media screen and (min-width: 768px) {
+    margin-left: 0px;
+  }
 
-  @media screen and (min-width: 1281px) {
+  @media screen and (min-width: 1280px) {
     margin-left: 5px;
     margin-bottom: -8px;
    }}
