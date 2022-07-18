@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './navigation.module.scss';
 import { NavLink } from 'react-router-dom';
+import { LanguageButton } from 'components/LanguageButton/LanguageButton';
 import largeLogo from '../../images/logo.svg';
 import mediumLogo from '../../images/logo1-tablet.svg';
 import smallLogo from '../../images/logo1-mobile.svg';
@@ -27,19 +28,11 @@ import { ReactComponent as Burger } from '../../images/white-burger.svg';
 const Navigation = () => {
   const [{ isDark }] = useContext(ThemeContext);
   const isAuthorised = useSelector(authSelectors.getIsAuthorised);
-
-
-  // const languageClassToggle = (e) =>{
-  //   const firstChildClass = e.currentTarget.firstChild.firstChild;
-  //   const secondChildClass = e.currentTarget.firstChild.lastChild
-  //   firstChildClass.className.includes(styles.currentLanguage)? firstChildClass.className = styles.secondaryLanguage:  firstChildClass.className = styles.currentLanguage;
-  //   secondChildClass.className.includes(styles.currentLanguage)? secondChildClass.className = styles.secondaryLanguage:  secondChildClass.className = styles.currentLanguage
-  // }
-
-  const getNavLinkClassName = ({ isActive }) =>
+     
+    const getNavLinkClassName = ({ isActive }) =>
     isActive
-      ? `${styles.nav__link_active} ${styles.nav__link}`
-      : styles.nav__link;
+    ? `${styles.nav__link_active} ${styles.nav__link}`
+    : styles.nav__link;
 
   const getNavLinkClassNameDark = ({ isActive }) =>
     isActive
@@ -50,7 +43,7 @@ const Navigation = () => {
     isActive
       ? `${styles.nav__link__loggedIn_active} ${styles.nav__link__loggedIn}`
       : styles.nav__link__loggedIn;
-
+      
   const getLoggedInLinkClassNameDark = ({ isActive }) =>
     isActive
       ? `${styles.nav__link__loggedIn_active_dark} ${styles.nav__link__loggedIn_dark}`
@@ -75,12 +68,9 @@ const Navigation = () => {
   };
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  
   const token = localStorage.getItem('token');
-
-  const currentLanguage = i18n.language;
-  const opositiveLanguage = currentLanguage === 'uk' ? 'en' : 'uk';
-
+  
   return (
     <nav>
       <NavLink
@@ -137,22 +127,8 @@ const Navigation = () => {
           </div>
           <UserInfo />
 
-          <button
-            className={styles.languageBtn}
-            type="button"
-            onClick={e => i18n.changeLanguage(opositiveLanguage)}
-          >
-            <span className={styles.languageText}>
-              <span
-                className={
-                  isDark ? styles.currentLanguage_dark : styles.currentLanguage
-                }
-              >
-                {currentLanguage === 'uk' ? 'UK' : 'EN'}
-              </span>
-              {/* /{opositiveLanguage} */}
-            </span>
-          </button>
+          <LanguageButton />
+
           <button
             className={styles.menu__button}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -190,23 +166,7 @@ const Navigation = () => {
           >
             {t('navigation.Registration')}
           </NavLink>
-          <button
-            className={styles.languageBtnAuthorise}
-            type="button"
-            onClick={e => i18n.changeLanguage(opositiveLanguage)}
-          >
-            <span className={styles.languageText}>
-              <span
-                className={
-                  isAuthorised? (isDark ? styles.currentLanguage_dark : styles.currentLanguage):
-                  (isDark ? styles.currentLanguage_dark_authorised : styles.currentLanguage)
-                }
-              >
-                {currentLanguage === 'uk' ? 'UK' : 'EN'}
-              </span>
-              {/* /{opositiveLanguage} */}
-            </span>
-          </button>
+          <LanguageButton />
         </>
       )}
     </nav>

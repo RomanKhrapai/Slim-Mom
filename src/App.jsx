@@ -42,6 +42,9 @@ export const App = () => {
   }, [isDark]);
 
   useEffect(() => {
+    const currentLanguage = i18n.language;
+    if(currentLanguage !== 'uk'){ changeLanguage("en")}
+
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
 
