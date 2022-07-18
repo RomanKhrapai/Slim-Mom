@@ -4,10 +4,19 @@ import { createPortal } from 'react-dom';
 import s from '../Modal/Modal.module.scss';
 import crossIcon from '../../images/cross.svg';
 import arrowIcon from '../../images/arrow1.svg';
-
+import classNames from 'classnames';
 const modalRoot = document.querySelector('#modal-root');
 
-export default function Modal({ children, onClose }) {
+export default function Modal({ children, onClose, className }) {
+
+  const backdrop = classNames(s.modal, className);
+  const modal = classNames(s.modal, className);
+  const close_butto = classNames(s.modal__close_button, className);
+  const cross_button = classNames(s.modal__cross_icon, className);
+  const modal_close_mobile = classNames(s.modal__close_mobile, className);
+  const modal_arrow_icon  = classNames(s.modal__arrow_icon, className);
+
+
   const handleKeyDown = event => {
     if (event.code === 'Escape') {
       onClose();
@@ -27,13 +36,13 @@ export default function Modal({ children, onClose }) {
   }, []);
 
   return createPortal(
-    <div className={s.backdrope} onClick={handleBackdropClick}>
-      <div className={s.modal}>
-        <button className={s.modal__close_button} onClick={onClose}>
-          <img className={s.modal__cross_icon} src={crossIcon} alt="cross" />
+    <div className={backdrop} onClick={handleBackdropClick}>
+      <div className={modal}>
+        <button className={close_butto } onClick={onClose}>
+          <img className={cross_button} src={crossIcon} alt="cross" />
         </button>
-        <button className={s.modal__close_mobile} onClick={onClose}>
-          <img className={s.modal__arrow_icon} src={arrowIcon} alt="arrow" />
+        <button className={modal_close_mobile} onClick={onClose}>
+          <img className={modal_arrow_icon} src={arrowIcon} alt="arrow" />
         </button>
         {children}
       </div>

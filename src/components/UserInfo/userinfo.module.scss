@@ -4,12 +4,15 @@ $firstColor: #9b9faa;
 .userinfo {
   display: flex;
   margin-left: auto;
+  align-items: baseline;
   font-family: 'GothemProBold';
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
   line-height: 13px;
-
+  // @media screen and (min-width: 1280px) {
+  //   align-items: baseline;
+  // }
   h3 {
 
     margin: 0;
@@ -29,6 +32,10 @@ $firstColor: #9b9faa;
     &:focus {
       background-color: black;
     }
+
+    // @media screen and (min-width: 1280px) {
+    //   align-items: end;
+    // }
   }
 
   button {
