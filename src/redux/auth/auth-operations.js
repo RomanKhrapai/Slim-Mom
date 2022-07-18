@@ -132,15 +132,24 @@ export const logOut = createAsyncThunk(
 
 const fetchCurrentUser = createAsyncThunk(
   'auth/current',
-  async (_, thunkAPI) => {
-    const persistedToken = thunkAPI.getState().auth.token;
+  async (tokens, thunkAPI) => {
 
-    if (persistedToken === null) {
+    const persistedToken = thunkAPI.getState().auth.token;
+    if (persistedToken === null || !tokens) {
       return thunkAPI.rejectWithValue();
     }
-    token.set(persistedToken);
+    if(persistedToken){
+      token.set(persistedToken);
+    }else{
+
+      token.set(tokens.accessToken);
+    }
+
     try {
       const { data } = await axios.get('users/current-user');
+      if(tokens) {
+        return {...data, ...tokens };
+      }
       return data;
     } catch (error) {
       return thunkAPI
@@ -150,6 +159,27 @@ const fetchCurrentUser = createAsyncThunk(
     }
   }
 );
+
+// const RefreshToken = createAsyncThunk(
+//   'auth/refreshToken',
+//   async (userData, { rejectWithValue }) => {
+//     try {
+//       const { data } = await axios.post('/auth/login', userData);
+//       token.set(data.accessToken);
+//       localStorage.setItem('refreshToken', data.refreshToken);
+//       toast.success(
+//         i18n.t('authentification.You have logged in successfully. Welcome back')
+//       );
+//       return data;
+//     } catch (error) {
+//       return rejectWithValue(
+//         toast.error(
+//           i18n.t('authentification.You entered wrong email or password')
+//         )
+//       );
+//     }
+//   }
+// );
 
 const authOperations = {
   signUpUser,
