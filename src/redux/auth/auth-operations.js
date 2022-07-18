@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import i18n from 'services/i18n/config';
 
-axios.defaults.baseURL = 'https://slim-mom-server.herokuapp.com/api/';
+axios.defaults.baseURL = 'https://slim-mom-dev.herokuapp.com/api/';
 
 const token = {
   set(token) {
@@ -22,20 +22,24 @@ axios.interceptors.response.use(
     const originalRequest = error.config;
     if (
       error.response.status === 400 &&
-      error.response.data.message === 'Expired token' &&
       error.config &&
-      !error.config._isRetry
+      !error.config._isRetry &&
+      error.response.data.message === 'Expired token'
     ) {
       originalRequest._isRetry = true;
       try {
         const refreshToken = localStorage.getItem('refreshToken');
-        token.set(refreshToken);
-        const { data } = await axios.get('/auth/refresh-token');
+        const { data } = await axios.post('/auth/refresh-token', {
+          refreshToken,
+        });
         token.set(data.accessToken);
+        localStorage.setItem('refreshToken', data.refreshToken);
+        originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
         return axios.request(originalRequest);
       } catch (error) {
-        toast.error(i18n.t('authentification. You need to login'));
-        console.log('Not authorized');
+        console.log(error);
+        toast.error('You need to login');
+          
       }
     }
     throw error;
@@ -53,6 +57,7 @@ const signUpUser = createAsyncThunk(
           password: userData.password,
         });
         token.set(loginResponse.data.accessToken);
+        localStorage.setItem('refreshToken', loginResponse.data.refreshToken);
         toast.success(
           i18n.t(
             'authentification.You have сreated your personal account sucsessfully!'
@@ -88,6 +93,7 @@ const logIn = createAsyncThunk(
     try {
       const { data } = await axios.post('/auth/login', userData);
       token.set(data.accessToken);
+      localStorage.setItem('refreshToken', data.refreshToken);
       toast.success(
         i18n.t('authentification.You have logged in successfully. Welcome back')
       );
@@ -100,7 +106,7 @@ const logIn = createAsyncThunk(
       );
     }
   }
-); 
+);
 
 export const logOut = createAsyncThunk(
   'auth/logout',
@@ -108,6 +114,7 @@ export const logOut = createAsyncThunk(
     try {
       await axios.get('/auth/logout');
       token.unset();
+      localStorage.removeItem('refreshToken');
       toast.success(
         i18n.t('authentification.You have logged out. Will be waiting fo you!')
       );
