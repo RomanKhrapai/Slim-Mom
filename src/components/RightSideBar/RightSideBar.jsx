@@ -41,7 +41,7 @@ function RightSideBar() {
   for (const product of products) {
     kall = product.productId.calories;
     porc = product.amount;
-    cons = Math.ceil((porc * kall) / 100);
+    cons = Math.round((porc * kall) / 100);
     consum += cons;
   }
 
@@ -59,7 +59,7 @@ function RightSideBar() {
     }
     setLeftCkal(Number(dailyRate) - Number(consum));
     setConsumed(consum);
-    setNormal(Math.ceil((consum / dailyRate) * 100));
+    setNormal(((consum / dailyRate) * 100).toFixed(1));
     setCategory(productsNotRecommended);
   }, [dailyRate, consuned, porc, kall, normal, chosenDate, consum]);
 
