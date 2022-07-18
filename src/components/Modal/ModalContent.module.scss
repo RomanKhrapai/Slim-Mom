@@ -100,16 +100,16 @@
 
 .modal__list_wrapper {
   max-width: 320px;
-  margin-left: auto;
+
   margin-right: auto;
+  margin-left: auto;
   padding-left: 20px;
   padding-right: 20px;
   color: rgb(56, 55, 84);
-  // @media screen and(min-width: 768px) {
-  //   margin: 0;
-  //   padding-left: 171px;
-  //   padding-right: 171px;
-  // }
+  @media screen and(min-width: 768px) {
+    margin-left: 151px;
+
+  }
 }
 
 .button_additional {

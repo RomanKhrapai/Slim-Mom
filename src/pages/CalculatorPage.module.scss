@@ -1,4 +1,5 @@
 .container {
+
     // height: 100vh;
     width: 320px;
     margin-left: auto;
@@ -16,5 +17,14 @@ padding-bottom: 41px;
       max-width: 1280px;
       padding:293px 104px 111px 16px;
 
-    }
+
+  @media screen and (min-width: 768px) {
+    width: 768px;
+    padding: 180px 90px 48px 32px;
   }
+
+  @media screen and (min-width: 1280px) {
+    max-width: 1280px;
+    padding: 293px 104px 0 16px;
+  }
+}
