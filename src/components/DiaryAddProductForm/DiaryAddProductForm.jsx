@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
 import productsSelectors from '../../redux/user/user-selector';
+import authSelectors from 'redux/auth/auth-selectors';
 import userOperations from '../../redux/user/user-operation';
 import i18n from '../../services/i18n/config';
 import classNames from 'classnames';
@@ -23,6 +24,7 @@ export default function DiaryAddProductForm({
   const [productList, setProductList] = useState([]);
   const [chosenProduct, setChosenProduct] = useState('');
   const currentDate = useSelector(productsSelectors.getTodayDate);
+  const groupBlood = useSelector(authSelectors.getBloodType);
 
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -161,7 +163,11 @@ export default function DiaryAddProductForm({
                   <li
                     key={product._id}
                     className={
-                      isDark ? style.productListItemDark : style.productListItem
+                      !product.groupBloodNotAllowed[groupBlood]
+                        ? style.foodNotRecommended
+                        : undefined + isDark
+                        ? style.productListItemDark
+                        : style.productListItem
                     }
                     onClick={() => {
                       setChosenProduct(product._id);
