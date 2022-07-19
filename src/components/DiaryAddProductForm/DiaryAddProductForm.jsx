@@ -12,8 +12,13 @@ import style from './DiaryAddProductForm.module.scss';
 import addIcon from '../../images/plus-icon.svg';
 import arrow from '../../images/arrow1.svg';
 import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
+import { useFilterSringToQuery } from 'hooks/useFilterSringToQuery';
 
-export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen, addClass }) {
+export default function DiaryAddProductForm({
+  isFormOpen,
+  setIsFormOpen,
+  addClass,
+}) {
   const [{ isDark }] = useContext(ThemeContext);
   const [productList, setProductList] = useState([]);
   const [chosenProduct, setChosenProduct] = useState('');
@@ -26,19 +31,23 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen, addClas
     const errors = {};
     if (!values.productName) {
       errors.productName = t('diary.Required');
-    // } else if (!(/^[A-Za-zА-Яа-я0-9]+$/).test(values.productName)) {
+      // } else if (!(/^[A-Za-zА-Яа-я0-9]+$/).test(values.productName)) {
     } else if (typeof values.productName !== 'string') {
-      errors.productName = t('diary.Your request should not have a specific symbols');
+      errors.productName = t(
+        'diary.Your request should not have a specific symbols'
+      );
     } else if (values.productName.length > 50) {
       errors.productName = t('diary.Your request is too long');
     }
 
     if (!values.productAmount) {
       errors.productAmount = t('diary.Required');
-    } else if (!(/^[0-9]+$/).test(values.productAmount)) {
+    } else if (!/^[0-9]+$/.test(values.productAmount)) {
       errors.productAmount = t('diary.Must be a number');
     } else if (values.productAmount.length > 10) {
-      errors.productAmount = t('diary.Your amount is too long. Please, enter your amount in grams');
+      errors.productAmount = t(
+        'diary.Your amount is too long. Please, enter your amount in grams'
+      );
     }
 
     return errors;
@@ -48,17 +57,36 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen, addClas
     initialValues: { productName: '', productAmount: '' },
     validate,
     onSubmit: (values, { resetForm }) => {
+      let productId = chosenProduct;
+      if (productList.length !== 0 && !productId) {
+        const value = productList.find(
+          product =>
+            product.title.en === formik.values.productName ||
+            product.title.ua === formik.values.productName
+        );
+        if (!value) {
+          alert('Виберіть продукт зі списку');
+          return;
+        } else {
+          productId = value._id;
+        }
+      }
+
+      if (!productId) {
+        alert('такого продукту немає');
+        return;
+      }
       const data = {
-        productId: chosenProduct,
+        productId,
         amount: values.productAmount,
         date: currentDate,
-      }
-      dispatch(userOperations.addProductToDiary(data))
-      resetForm();
-      formik.values.productAmount = ''
+      };
+      dispatch(userOperations.addProductToDiary(data));
+      resetForm({ values: { productName: '', productAmount: '' } });
+      setProductList([]);
+      setChosenProduct('');
     },
   });
-
 
   useEffect(async () => {
     const request = formik.values.productName.trim();
@@ -68,14 +96,16 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen, addClas
   }, [formik.values.productName]);
 
   useEffect(() => {
-    if (chosenProduct === productList[0]?._id && productList?.length === 1) {
+    if (chosenProduct === productList[0]?._id && productList.length === 1) {
       setProductList([]);
     }
   }, [chosenProduct, productList]);
 
   const getProducts = async userRequest => {
     try {
-      const { data } = await axios.get(`/products?title=${userRequest}`);
+      const { data } = await axios.get(
+        `/products?title=${useFilterSringToQuery(userRequest)}`
+      );
       return data.data.result;
     } catch (error) {
       console.log(error);
@@ -88,7 +118,11 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen, addClas
   };
 
   const openFormClasses = classNames(style.form, style.form__isOpen, addClass);
-  const closeFormClasses = classNames(style.form, style.form__isClosed, addClass);
+  const closeFormClasses = classNames(
+    style.form,
+    style.form__isClosed,
+    addClass
+  );
 
   return (
     <form
@@ -112,30 +146,41 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen, addClas
             : null}
         </div>
 
-        <div className={isDark? style.productListContainerDark :style.productListContainer}>
-          {/* {formik.values.productName.length > 0 ? */}
-          {productList.length > 0 ?
-          <ul>
-            {productList.map(product => {
-              const productName =
-                i18n.language === 'uk' ? product.title.ua : product.title.en;
-              return (
-                <li
-                  key={product._id}
-                  className={isDark? style.productListItemDark : style.productListItem}
-                  onClick={() => {
-                    setChosenProduct(product._id);
-                    formik.values.productName = productName;
-
-                  }}
-                >
-                  {productName}
-                </li>
-              );
-            })}
-          </ul>
-          : <p>{(formik.values.productName.length > 3 && productList === []) && t("diary.The product is not founded")}</p>
+        <div
+          className={
+            isDark ? style.productListContainerDark : style.productListContainer
           }
+        >
+          {/* {formik.values.productName.length > 0 ? */}
+          {productList.length > 0 ? (
+            <ul>
+              {productList.map(product => {
+                const productName =
+                  i18n.language === 'uk' ? product.title.ua : product.title.en;
+                return (
+                  <li
+                    key={product._id}
+                    className={
+                      isDark ? style.productListItemDark : style.productListItem
+                    }
+                    onClick={() => {
+                      setChosenProduct(product._id);
+                      formik.values.productName = productName;
+                      setProductList([]);
+                    }}
+                  >
+                    {productName}
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            <p>
+              {formik.values.productName.length > 3 &&
+                productList === [] &&
+                t('diary.The product is not founded')}
+            </p>
+          )}
         </div>
       </div>
 
@@ -180,5 +225,4 @@ DiaryAddProductForm.propTypes = {
   isFormOpen: PropTypes.bool,
   setIsFormOpen: PropTypes.func,
   addClass: PropTypes.string,
-
 };
