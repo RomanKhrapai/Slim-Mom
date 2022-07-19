@@ -34,8 +34,7 @@ const CalculatorPage = ({toggleModal, showModal}) => {
         </WrapperDisplayNone>
         {loading && <Loader />}
       </Container>
-      <RightSideBar />
-      {loading && <Loader />}
+      <RightSideBar />      
       {showModal && (
         <Modal onClose={toggleModal}>
           <ModalContent onClose={toggleModal} />
