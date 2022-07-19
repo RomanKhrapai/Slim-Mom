@@ -5,10 +5,9 @@ $mobileActiveColor: #ffffff;
 
 .languageBtn {
   margin-left: 0px;
-  margin-bottom: 0px;
+  margin-bottom: 1px;
   @media screen and (min-width: 1280px) {
     margin-left: auto;
-    margin-bottom: -9px;   
   }
 }
 
