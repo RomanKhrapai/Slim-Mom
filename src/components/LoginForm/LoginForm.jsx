@@ -25,14 +25,14 @@ const LoginForm = () => {
         const errors = {};
                
         if (!values.email) {
-          errors.email = t('authentification.This fied is required');
+          errors.email = t('authentification.This field is required');
         } else if (
           !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
           errors.email = t('authentification.Invalid email address');
         }
 
         if (!values.password) {
-          errors.password = t('authentification.This fied is required');
+          errors.password = t('authentification.This field is required');
         }
         return errors;
       }}
@@ -64,7 +64,7 @@ const LoginForm = () => {
           {errors.email && touched.email && (
                   <div className={s.errorMessage}>{errors.email}</div>
                 )}
-          <label className={getActiveClass(values.email)} htmlFor="email">{t('authentification.Email')}</label>
+          <label className={getActiveClass(values.email)} htmlFor="email">{t('authentification.Email')} *</label>
           </div>
           <div className={s.inputBox_last}>
           <input
@@ -78,7 +78,7 @@ const LoginForm = () => {
             {errors.password && touched.password && (
                   <div className={s.errorMessage}>{errors.password}</div>
                 )}
-          <label className={getActiveClass(values.password)} htmlFor="password">{t('authentification.Password')}</label>
+          <label className={getActiveClass(values.password)} htmlFor="password">{t('authentification.Password')} *</label>
           </div>
           <button className={s.login_button} type="submit">
           {t('navigation.Sign In')}
