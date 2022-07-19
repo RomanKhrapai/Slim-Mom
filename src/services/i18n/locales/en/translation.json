@@ -41,10 +41,9 @@
     "Revoke Changes": "Revoke Changes",
     "Your Parameters": "Your Parameters",
 
-    "heightError": "Enter your height within {{min}} - {{max}} cm",
-    "ageError": "Enter your age within {{min}} - {{max}}",
-    "currentError": "Enter your weight within {{min}} - {{max}} kg",
-    "desiredError": "Enter your weight within {{min}} - {{max}} kg",
+    "Enter your height within 100 - 250 cm": "Enter your height within 100 - 250 cm",
+    "Enter your age within 18 - 100": "Enter your age within 18 - 100",
+    "Enter your weight within 20 - 500 kg": "Enter your weight within 20 - 500 kg",
     "Only numerics": "Only numerics",
 
     "Height": "Height",
