@@ -23,6 +23,7 @@ function RightSideBar() {
   const productsNotRecommended = useSelector(
     productsSelectors.getProductsNotRecommended
   );
+  console.log('userInfo', userInfo);
 
   const userRequest = {
     age: userInfo.age,
@@ -54,7 +55,7 @@ function RightSideBar() {
   }, [language]);
 
   useEffect(() => {
-    if (products === []) {
+    if (products === [] || chosenDate === '' || !chosenDate) {
       return;
     }
 
@@ -88,7 +89,7 @@ function RightSideBar() {
           <li className={s.title}>
             <span>{t('Left')}</span>{' '}
             <span className={leftCkal < 0 ? s.error : s.good}>
-              {addLeadingZeroKcal(leftCkal)}
+              {leftCkal === 0 ? addLeadingZeroKcal('0') : leftCkal}
               <span className={s.span_kcal}>{t('kcal')}</span>
             </span>{' '}
           </li>
