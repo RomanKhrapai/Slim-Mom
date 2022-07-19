@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import authOperations from 'redux/auth/auth-operations.js';
 import { useContext } from 'react';
 import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
-
+import EllipsisText from "react-ellipsis-text";
 
   const UserInfo = () => {
   const [{isDark}] = useContext(ThemeContext)
@@ -21,7 +21,7 @@ import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
 
   return (
       <div className={styles.userinfo}>
-        <h3 className={user.name !== "" ? styles.light : undefined}>{user.name === '' ? 'Name' : user.name}</h3>
+      <h3 className={user.name !== "" ? styles.light : undefined}>{user.name === '' ? 'Name' : <EllipsisText text={user.name} length={6} tailClassName={ styles.myTail } />}</h3>
         <div className={styles.vector1} />
         <button className={isDark ? styles.button_dark : undefined} onClick={() => tryLogOut()}>{t("navigation.Sign Out")}</button>
       </div>
