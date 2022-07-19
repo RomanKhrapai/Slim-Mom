@@ -50,50 +50,6 @@
   }
 }
 
-.button_theme_swither_dark {
-  position: absolute;
-  bottom: 30px;
-  // left: 30px;
-  margin-left: 20px;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  padding-left: 10px;
-  padding-top: 10px;
-  background-color: rgb(56, 55, 84);
-
-  @media screen and (max-width: 492px) {
-    bottom: 5px;
-    right: 10px;
-    width: 44px;
-    height: 44px;
-    padding-top: 2px;
-    padding-left: 2px;
-    background-color: rgb(56, 55, 84);
-  }
-}
-
-.button_theme_swither_light {
-  position: absolute;
-  bottom: 30px;
-  margin-left: 20px;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  padding-left: 10px;
-  padding-top: 10px;
-  background-color: rgb(255, 255, 255);
-
-
-  @media screen and (max-width: 492px) {
-    padding: 0;
-    bottom: 5px;
-    right: 10px;
-    width: 42px;
-    height: 42px;
-    background-color: transparent;
-  }
-}
 
 .visibleElement {
   visibility: visible;

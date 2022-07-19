@@ -17,6 +17,7 @@ import {
 import { useSelector } from 'react-redux';
 import { useContext } from 'react';
 import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
+import ThemeButton from 'components/ThemeProvider/ThemeButton';
 
 import authSelectors from 'redux/auth/auth-selectors';
 import { ReactComponent as LogoNew } from '../../images/logo-new.svg';
@@ -126,6 +127,8 @@ const Navigation = () => {
             </NavLink>
           </div>
           <UserInfo />
+
+<ThemeButton/>
 
           <LanguageButton />
 
