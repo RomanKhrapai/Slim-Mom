@@ -40,6 +40,7 @@ axios.interceptors.response.use(
       } catch (error) {
         console.log(error);
         toast.error('You need to login');
+        window.location.reload();
       }
     }
     throw error;
