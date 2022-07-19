@@ -16,7 +16,7 @@ function RightSideBar() {
   const { t } = useTranslation();
 
   let dailyRate = useSelector(productsSelectors.getDailyCalorieIntake);
-  let chosenDate = useSelector(productsSelectors.getChosenDate);
+  const chosenDate = useSelector(productsSelectors.getChosenDate);
   const currentDate = useSelector(productsSelectors.getTodayDate);
   const products = useSelector(productsSelectors.getDiaryProducts);
   const userInfo = useSelector(productsSelectors.getUserInfo);
@@ -46,10 +46,18 @@ function RightSideBar() {
   }
 
   useEffect(() => {
+    if (userInfo.dailyCalorieIntake === null || userInfo === null) {
+      return;
+    }
+
     dispatch(userOperations.addUserInfo(userRequest));
   }, [language]);
 
   useEffect(() => {
+    if (products === []) {
+      return;
+    }
+
     dispatch(userOperations.getDayProducts(chosenDate));
   }, [chosenDate]);
 
@@ -57,6 +65,7 @@ function RightSideBar() {
     if (dailyRate === '') {
       return (dailyRate = 0);
     }
+
     setLeftCkal(Number(dailyRate) - Number(consum));
     setConsumed(consum);
     setNormal(((consum / dailyRate) * 100).toFixed(1));
@@ -91,7 +100,7 @@ function RightSideBar() {
             </span>{' '}
           </li>
           <li className={s.title}>
-            <span>{t('Daily rate')}</span>{' '}
+            <span>{t('Daily rate')}</span>
             <span>
               {addLeadingZeroKcal(dailyRate)}
               <span className={s.span_kcal}>{t('kcal')}</span>
@@ -101,6 +110,7 @@ function RightSideBar() {
             <span>{t('n% of normal')}</span>{' '}
             <span>
               {normal == 0 ? 0 : normal}
+
               <span className={s.span_kcal}>%</span>
             </span>
           </li>

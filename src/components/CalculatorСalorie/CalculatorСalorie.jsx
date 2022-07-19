@@ -10,10 +10,8 @@ import PropTypes from 'prop-types';
 
 const сalculatorСalorie = ({ onOpenModal }) => {
   // функція для перекладу
-  // console.log(onOpenModal);
   const { t } = useTranslation();
   const [activeModerate, setActiveModerate] = useState(false);
-  // const [user, setUser] = useState({ height: '', age: '', currentWeight: '', desiredWeight: '', bloodType: '', language: "ua" })
   const user = useSelector(state => state.auth.user);
 
   const changeActive = () => {
@@ -39,7 +37,10 @@ const сalculatorСalorie = ({ onOpenModal }) => {
   return (
     <div className={s.box}>
       <div>
-        <DailyCaloriesForm userData={user} onOpenModal={onOpenModal} />
+        {user.height && (
+          <DailyCaloriesForm userData={user} onOpenModal={onOpenModal} />
+        )}
+        {!user.height && <DailyCaloriesForm onOpenModal={onOpenModal} />}
         <Button type="button" onClick={changeActive} className={s.button}>
           {t('calculator.Revoke Changes')}
         </Button>
