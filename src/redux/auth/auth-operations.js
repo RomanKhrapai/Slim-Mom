@@ -19,7 +19,6 @@ const token = {
   },
 };
 
-
 axios.interceptors.response.use(
   config => {
     return config;
@@ -158,7 +157,7 @@ const fetchCurrentUser = createAsyncThunk(
 
     try {
       const { data } = await axios.get('users/current-user');
-      console.log(data);
+
       if (tokens) {
         return { data, ...tokens };
       }

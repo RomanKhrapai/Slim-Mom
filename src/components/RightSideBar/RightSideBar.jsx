@@ -23,7 +23,6 @@ function RightSideBar() {
   const productsNotRecommended = useSelector(
     productsSelectors.getProductsNotRecommended
   );
-  console.log('userInfo', userInfo);
 
   const userRequest = {
     age: userInfo.age,
