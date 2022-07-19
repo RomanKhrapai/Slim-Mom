@@ -3,6 +3,10 @@ import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import i18n from 'services/i18n/config';
 import { setDefaultNamespace } from 'i18next';
+import { useDispatch } from 'react-redux';
+// import authSlice from './auth-reducer';
+
+// console.log(authSlice);
 
 axios.defaults.baseURL = 'https://slim-mom-server.herokuapp.com/api/';
 
@@ -14,6 +18,7 @@ const token = {
     axios.defaults.headers.common.Authorization = '';
   },
 };
+
 
 axios.interceptors.response.use(
   config => {
@@ -39,6 +44,9 @@ axios.interceptors.response.use(
         return axios.request(originalRequest);
       } catch (error) {
         console.log(error);
+        // const dispatch = useDispatch();
+        // logoutUser()
+        // dispatch(logoutUser())
         toast.error('You need to login');
       }
     }

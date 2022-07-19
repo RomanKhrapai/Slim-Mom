@@ -86,6 +86,7 @@
       "kcal": "ккал",
       "Your amount is too long. Please, enter your amount in grams": "Завелике число. Будь ласка, введіть кількість у грамах",
       "The list is empty": "Список продуктів на цей день відсутній",
-      "The product is not founded": "Продукт не знайдено"
+      "The product is not founded": "Продукт не знайдено",
+      "The amount has to be bigger that 0": "Значення має бути більше нуля"
   }
 }

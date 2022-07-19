@@ -48,6 +48,10 @@ export default function DiaryAddProductForm({
       errors.productAmount = t(
         'diary.Your amount is too long. Please, enter your amount in grams'
       );
+    } else if (Number(values.productAmount) === 0) {
+      errors.productAmount = t(
+        'diary.The amount has to be bigger that 0'
+      );
     }
 
     return errors;
@@ -176,9 +180,8 @@ export default function DiaryAddProductForm({
             </ul>
           ) : (
             <p>
-              {formik.values.productName.length > 3 &&
-                productList === [] &&
-                t('diary.The product is not founded')}
+              {(formik.values.productName.length > 3 && productList.length === 0 ) ?
+                t('diary.The product is not founded') : null}
             </p>
           )}
         </div>

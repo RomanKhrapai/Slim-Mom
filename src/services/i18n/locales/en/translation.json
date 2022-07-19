@@ -85,6 +85,7 @@
     "kcal": "kcal",
     "Your amount is too long. Please, enter your amount in grams": "Your amount is too long. Please, enter your amount in grams",
     "The list is empty": "The product list for this day is empty",
-    "The product is not founded": "The product is not founded"
+    "The product is not founded": "The product is not founded",
+    "The amount has to be bigger that 0": "The amount has to be bigger that 0"
   }
 }
