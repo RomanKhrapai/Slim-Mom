@@ -81,15 +81,33 @@ nav {
   }
 
   .nav__link__loggedIn_dark {
-    margin-right: 16px;
-    margin-bottom: 5px;
+
+    margin: 0 0 40px 0;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
     color: $firstColor;
     transition: 0.3s ease;
+    &:hover,
+    &:focus {
+      color: $mobileActiveColor;
+    }
 
+    @media screen and (min-width: 1280px){
+    // margin-right: 16px;
+    // margin-bottom: 5px;
+    margin: 0 16px 5px 0;
+    color: $firstColor;
+    transition: 0.3s ease;
+    font-size: 14px;
+    line-height: 13px;
+    letter-spacing: 0.04em;
     &:hover,
     &:focus {
       color: rgb(255, 255, 255);
     }
+    }
+
   }
 
   .nav__link__loggedIn_dark.nav__link__loggedIn_active_dark {
