@@ -43,7 +43,9 @@ export const App = () => {
 
   useEffect(() => {
     const currentLanguage = i18n.language;
-    if(currentLanguage !== 'uk'){ changeLanguage("en")}
+    if (currentLanguage !== 'uk') {
+      changeLanguage('en');
+    }
 
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
@@ -64,7 +66,14 @@ export const App = () => {
       ) : (
         <>
           <Header />
-          <div className={isDark? s.button_theme_swither_dark : s.button_theme_swither_light} onClick={toggleTheme}>
+          <div
+            className={
+              isDark
+                ? s.button_theme_swither_dark
+                : s.button_theme_swither_light
+            }
+            onClick={toggleTheme}
+          >
             {icon}
           </div>
           <Suspense fallback={<Loader />}>
@@ -93,7 +102,10 @@ export const App = () => {
                   path={'/calculator'}
                   element={
                     <PrivateRoute>
-                      <CalculatorPage toggleModal={toggleModal} showModal={showModal} />
+                      <CalculatorPage
+                        toggleModal={toggleModal}
+                        showModal={showModal}
+                      />
                     </PrivateRoute>
                   }
                 />
