@@ -155,20 +155,20 @@ export default function DiaryAddProductForm({
         >
           {/* {formik.values.productName.length > 0 ? */}
           {productList.length > 0 ? (
-            <ul>
+            <ul className={style.productList}>
               {productList.map(product => {
                 const productName =
                   i18n.language === 'uk' ? product.title.ua : product.title.en;
+                const darkStyles = product.groupBloodNotAllowed[groupBlood]
+                  ? `${style.productListItemDark} ${style.foodNotRecommended}`
+                  : `${style.productListItemDark}`;
+                const whiteStyles = product.groupBloodNotAllowed[groupBlood]
+                  ? `${style.productListItem} ${style.foodNotRecommended}`
+                  : `${style.productListItem}`;
                 return (
                   <li
                     key={product._id}
-                    className={
-                      !product.groupBloodNotAllowed[groupBlood]
-                        ? style.foodNotRecommended
-                        : undefined + isDark
-                        ? style.productListItemDark
-                        : style.productListItem
-                    }
+                    className={isDark ? darkStyles : whiteStyles}
                     onClick={() => {
                       setChosenProduct(product._id);
                       formik.values.productName = productName;
