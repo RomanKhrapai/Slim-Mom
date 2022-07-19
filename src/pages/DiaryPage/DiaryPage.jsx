@@ -15,12 +15,15 @@ import globalStyles from '../../App.module.scss';
 export default function DiaryPage() {
   const currentDate = useSelector(productsSelectors.getTodayDate);
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const [chosenDate, setChosenDate] = useState(currentDate)
+  const [chosenDate, setChosenDate] = useState(currentDate);
 
   userOperations.getDayProducts(chosenDate);
   const { t } = useTranslation();
 
-  const addClass = (chosenDate === currentDate) ? globalStyles.visibleElement : globalStyles.hiddenElement;
+  const addClass =
+    chosenDate === currentDate
+      ? globalStyles.visibleElement
+      : globalStyles.hiddenElement;
   const classesForButton = `${style.buttonShowAddProductForm} ${addClass}`;
 
   return (
@@ -28,25 +31,28 @@ export default function DiaryPage() {
       <Container className={style.diaryContainer}>
         <h1 className={style.hidden}>{t('diary.Diary')}</h1>
 
-        <DiaryDateСalendar chosenDate={chosenDate} setChosenDate={setChosenDate} />
-          <DiaryAddProductForm
-            isFormOpen={isFormOpen}
-            setIsFormOpen={() => setIsFormOpen(false)}
-            addClass={addClass}
-          />
+        <DiaryDateСalendar
+          chosenDate={chosenDate}
+          setChosenDate={setChosenDate}
+        />
+        <DiaryAddProductForm
+          isFormOpen={isFormOpen}
+          setIsFormOpen={() => setIsFormOpen(false)}
+          addClass={addClass}
+        />
         <DiaryProductsList />
 
-          <button
-            type="button"
-            className={classesForButton}
-            onClick={() => setIsFormOpen(true)}
-          >
-            <img
-              src={addIcon}
-              alt={`add product icon`}
-              className={style.addIcon}
-            />
-          </button>
+        <button
+          type="button"
+          className={classesForButton}
+          onClick={() => setIsFormOpen(true)}
+        >
+          <img
+            src={addIcon}
+            alt={`add product icon`}
+            className={style.addIcon}
+          />
+        </button>
       </Container>
       <RightSideBar />
     </div>
