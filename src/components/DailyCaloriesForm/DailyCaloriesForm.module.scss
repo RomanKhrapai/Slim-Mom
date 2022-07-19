@@ -78,7 +78,6 @@
 }
 
 .labelBlood {
-  // margin-bottom: 8px;
   @media screen and (min-width: 768px) {
     border-bottom: 1px solid #e0e0e0;
     padding-bottom: 8px;
@@ -167,11 +166,14 @@
 
 .errorMessage {
   position: absolute;
-  bottom: -70%;
+  padding-top: 2px;
+  bottom: -44%;
+  width: 100%;
   font-size: 8px;
   line-height: 1.2em;
   letter-spacing: 0.04em;
   color: #fc842d;
+  border-top: 1px solid #fc842d;
 }
 
 .Btn {
