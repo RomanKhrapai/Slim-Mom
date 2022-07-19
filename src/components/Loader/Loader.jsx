@@ -6,7 +6,7 @@ import s from './Loader.module.scss';
 
 const Loader = () => {
   const [{isDark}] = useContext(ThemeContext);
-  console.log(isDark)
+
 return (<div className={isDark ? s.loader_dark : s.loader}>
   <span>S</span>
   <span>l</span>
