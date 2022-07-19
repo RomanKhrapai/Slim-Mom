@@ -100,20 +100,18 @@
     font: Verdana;
     font-weight: 700;
     font-size: 250%;
-    background: linear-gradient(180deg, $buttons-color 100%, rgb(56, 55, 84)100%);
+    background: linear-gradient(180deg, $buttons-color 100%, $dark-theme-background-color 100%);
     text-shadow: 5px 5px 5px rgba(56, 55, 84, 0.3);
     opacity: 0.8;
     border-radius: 4px;
 
-    @media screen and(max-width: 767px) {
-        left: 50%;
+    @media screen and(max-width: 767px) {        
         width: 175px;
         font-weight: 500;
         font-size: 140%;
     }
 
-    @media screen and (min-width: 768px) and (max-width: 1279px) {
-        left: 50%;
+    @media screen and (min-width: 768px) and (max-width: 1279px) {       
         width: 280px;
         font-weight: 600;
         font-size: 200%;
@@ -160,7 +158,7 @@
     height: 100px;
     line-height: 120px;
     width: 50px;
-    background: linear-gradient(180deg, rgb(56, 55, 84) 50%, $buttons-color 100%);
+    background: linear-gradient(180deg, $dark-theme-background-color 50%, $buttons-color 100%);
     animation: up 2s infinite;
 
     @media screen and (max-width: 767px) {
