@@ -33,6 +33,9 @@ export default function DiaryDateCalendar({ chosenDate, setChosenDate }) {
     setFormattedDate(formattedDate);
   };
 
+  const createdAt = useSelector(state => state.auth.user.createdAt);
+  const createdDate = moment(createdAt).subtract(1, 'day'); 
+
   return (
     <div className={style.datepicker}>
       <h2 className={isDark ? style.title_light : style.title}>
@@ -52,7 +55,7 @@ export default function DiaryDateCalendar({ chosenDate, setChosenDate }) {
             <Datetime
               isValidDate={current => {
                 let today = new Date();
-                return current.isBefore(today);
+                return current.isAfter(createdDate) && current.isBefore(today)
               }}
               value={parsedDate}
               input={false}

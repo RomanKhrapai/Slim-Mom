@@ -66,11 +66,13 @@ $firstColor: #9b9faa;
     }
   }
 }
-@media screen and (min-width: 1280px) {
-  .userinfo {
-    margin-bottom: 4px;
-  }
-}
+
+// @media screen and (min-width: 1280px) {
+//     .userinfo {
+//       margin-bottom: 4px;
+//     }
+//   }
+
 @media screen and (max-width: 1280px) and (min-width: 768px) {
   .userinfo {
     margin-right: 10px;
@@ -122,4 +124,7 @@ $firstColor: #9b9faa;
   @media screen and (min-width: 1280px) {
     color: #212121;
   }
+}
+.myTail {
+  color: #FC842D;
 }
