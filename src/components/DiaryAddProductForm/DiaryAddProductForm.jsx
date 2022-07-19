@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useFormik } from 'formik';
 import PropTypes from 'prop-types';
@@ -11,8 +11,10 @@ import classNames from 'classnames';
 import style from './DiaryAddProductForm.module.scss';
 import addIcon from '../../images/plus-icon.svg';
 import arrow from '../../images/arrow1.svg';
+import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
 
 export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen, addClass }) {
+  const [{ isDark }] = useContext(ThemeContext);
   const [productList, setProductList] = useState([]);
   const [chosenProduct, setChosenProduct] = useState('');
   const currentDate = useSelector(productsSelectors.getTodayDate);
@@ -110,7 +112,7 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen, addClas
             : null}
         </div>
 
-        <div className={style.productListContainer}>
+        <div className={isDark? style.productListContainerDark :style.productListContainer}>
           {/* {formik.values.productName.length > 0 ? */}
           {productList.length > 0 ?
           <ul>
@@ -120,7 +122,7 @@ export default function DiaryAddProductForm({ isFormOpen, setIsFormOpen, addClas
               return (
                 <li
                   key={product._id}
-                  className={style.productListItem}
+                  className={isDark? style.productListItemDark : style.productListItem}
                   onClick={() => {
                     setChosenProduct(product._id);
                     formik.values.productName = productName;

@@ -11,7 +11,6 @@ import { useDispatch } from 'react-redux';
 import authOperations from 'redux/auth/auth-operations';
 import Loader from 'components/Loader';
 import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
-import { BsSun, BsMoon } from 'react-icons/bs';
 import authSelectors from 'redux/auth/auth-selectors';
 import { PrivateRoute, PublicRoute } from 'components/Routers';
 
@@ -22,8 +21,7 @@ const DiaryPage = lazy(() => import('./pages/DiaryPage/DiaryPage'));
 const CalculatorPage = lazy(() => import('./pages/CalculatorPage'));
 
 export const App = () => {
-  const [{ theme, isDark }, toggleTheme] = useContext(ThemeContext);
-  const [icon, setIcon] = useState(<BsSun size={40} />);
+  const [{ theme}] = useContext(ThemeContext);
   const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurent);
   const isAuthorised = useSelector(authSelectors.getIsAuthorised);
 
@@ -32,14 +30,6 @@ export const App = () => {
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => setShowModal(!showModal);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (isDark) {
-      setIcon(<BsMoon size={40} />);
-    } else {
-      setIcon(<BsSun size={40} />);
-    }
-  }, [isDark]);
 
   useEffect(() => {
     const currentLanguage = i18n.language;
@@ -66,16 +56,6 @@ export const App = () => {
       ) : (
         <>
           <Header />
-          <div
-            className={
-              isDark
-                ? s.button_theme_swither_dark
-                : s.button_theme_swither_light
-            }
-            onClick={toggleTheme}
-          >
-            {icon}
-          </div>
           <Suspense fallback={<Loader />}>
             <Routes>
               <Route path="/" element={<Outlet />}>

@@ -128,6 +128,9 @@ nav {
       color: black;
     }
   }
+    .menu__button {
+    margin-left: 20px;
+  }
 
 }
 @media screen and (max-width: 1280px) and (min-width: 320px) {
@@ -141,9 +144,9 @@ nav {
       color: $activeColor;
     }
   }
-  .menu__button {
-    margin-left: 25px;
-  }
+  // .menu__button {
+  //   margin-left: 10px;
+  // }
 }
 @media screen and (max-width: 1280px) {
   nav {
@@ -243,7 +246,7 @@ nav {
     height: calc(100% - 122px);
   }
   .menu__button {
-    // margin-left: auto;
+    margin-left: 10px;
   }
 }
 
