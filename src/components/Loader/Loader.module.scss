@@ -71,22 +71,114 @@
     line-height: 120px;
     width: 50px;
     background: linear-gradient(180deg, $main-background-color 50%, $buttons-color 100%);
-    animation: up 2s infinite;   
-    
+    animation: up 2s infinite;
+
     @media screen and (max-width: 767px) {
         width: 25px;
         font-weight: 400;
-        height: 50px;        
+        height: 50px;
         line-height: 60px;
     }
 
     @media screen and (min-width: 768px) and (max-width: 1279px) {
         width: 40px;
         font-weight: 500;
-        height: 75px;       
+        height: 75px;
         line-height: 90px;
     }
 }
+
+
+.loader_dark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 350px;
+    color: $main-background-color;
+    font: Verdana;
+    font-weight: 700;
+    font-size: 250%;
+    background: linear-gradient(180deg, $buttons-color 100%, rgb(56, 55, 84)100%);
+    text-shadow: 5px 5px 5px rgba(56, 55, 84, 0.3);
+    opacity: 0.8;
+    border-radius: 4px;
+
+    @media screen and(max-width: 767px) {
+        left: 50%;
+        width: 175px;
+        font-weight: 500;
+        font-size: 140%;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1279px) {
+        left: 50%;
+        width: 280px;
+        font-weight: 600;
+        font-size: 200%;
+    }
+}
+
+.loader_dark:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.loader_dark span {
+    float: left;
+    height: 100px;
+    line-height: 120px;
+    width: 50px;
+
+    @media screen and(max-width: 767px) {
+        width: 25px;
+        font-weight: 400;
+        height: 50px;
+        line-height: 60px;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1279px) {
+        width: 40px;
+        font-weight: 500;
+        height: 75px;
+        line-height: 90px;
+    }
+}
+
+
+.covers_dark {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border: none;
+}
+
+.covers_dark span {
+    float: left;
+    height: 100px;
+    line-height: 120px;
+    width: 50px;
+    background: linear-gradient(180deg, rgb(56, 55, 84) 50%, $buttons-color 100%);
+    animation: up 2s infinite;
+
+    @media screen and (max-width: 767px) {
+        width: 25px;
+        font-weight: 400;
+        height: 50px;
+        line-height: 60px;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1279px) {
+        width: 40px;
+        font-weight: 500;
+        height: 75px;
+        line-height: 90px;
+    }
+}
+
+
 
 @keyframes up {
     0% {
@@ -128,5 +220,29 @@
 }
 
 .covers span:nth-child(7) {
+    animation-delay: .857142s;
+}
+
+.covers_dark span:nth-child(2) {
+    animation-delay: .142857s;
+}
+
+.covers_dark span:nth-child(3) {
+    animation-delay: .285714s;
+}
+
+.covers_dark span:nth-child(4) {
+    animation-delay: .428571s;
+}
+
+.covers_dark span:nth-child(5) {
+    animation-delay: .571428s;
+}
+
+.covers_dark span:nth-child(6) {
+    animation-delay: .714285s;
+}
+
+.covers_dark span:nth-child(7) {
     animation-delay: .857142s;
 }

@@ -1,9 +1,13 @@
 import React from 'react';
+import { useContext } from 'react';
+import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
 import s from './Loader.module.scss';
 
 
 const Loader = () => {
-return (<div className={s.loader}>
+  const [{isDark}] = useContext(ThemeContext);
+  console.log(isDark)
+return (<div className={isDark ? s.loader_dark : s.loader}>
   <span>S</span>
   <span>l</span>
   <span>i</span>
@@ -12,7 +16,7 @@ return (<div className={s.loader}>
   <span>o</span>
   <span>m</span>
   
- <div className={s.covers}>
+ <div className={isDark ? s.covers_dark : s.covers}>
     <span></span>
     <span></span>
     <span></span>
