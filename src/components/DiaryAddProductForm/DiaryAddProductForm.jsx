@@ -198,7 +198,7 @@ export default function DiaryAddProductForm({
               })}
             </ul>
           ) : (
-            infoInput && <pclassName={isDark? style.productListPDark : undefined}>
+            infoInput && <p className={isDark? style.productListPDark : undefined}>
               {(formik.values.productName.length > 3 && productList.length === 0 ) ?
                 t('diary.The product is not founded') : null}</p>
           )}
