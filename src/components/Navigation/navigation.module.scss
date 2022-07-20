@@ -24,7 +24,7 @@ nav {
     }
   }
 
-  .vector1_dark{
+  .vector1_dark {
     width: 36px;
     height: 4px;
     background-color: #e0e0e0;
@@ -34,7 +34,7 @@ nav {
     transition: 0.3s ease;
     border: none;
 
-    @media screen and (max-width: 1280px){
+    @media screen and (max-width: 1279px) {
       display: none;
     }
   }
@@ -81,7 +81,6 @@ nav {
   }
 
   .nav__link__loggedIn_dark {
-
     margin: 0 0 40px 0;
     font-weight: 700;
     font-size: 24px;
@@ -93,21 +92,20 @@ nav {
       color: $mobileActiveColor;
     }
 
-    @media screen and (min-width: 1280px){
-    // margin-right: 16px;
-    // margin-bottom: 5px;
-    margin: 0 16px 5px 0;
-    color: $firstColor;
-    transition: 0.3s ease;
-    font-size: 14px;
-    line-height: 13px;
-    letter-spacing: 0.04em;
-    &:hover,
-    &:focus {
-      color: rgb(255, 255, 255);
+    @media screen and (min-width: 1280px) {
+      // margin-right: 16px;
+      // margin-bottom: 5px;
+      margin: 0 16px 5px 0;
+      color: $firstColor;
+      transition: 0.3s ease;
+      font-size: 14px;
+      line-height: 13px;
+      letter-spacing: 0.04em;
+      &:hover,
+      &:focus {
+        color: rgb(255, 255, 255);
+      }
     }
-    }
-
   }
 
   .nav__link__loggedIn_dark.nav__link__loggedIn_active_dark {
@@ -146,12 +144,11 @@ nav {
       color: black;
     }
   }
-    .menu__button {
+  .menu__button {
     margin-left: 20px;
   }
-
 }
-@media screen and (max-width: 1280px) and (min-width: 320px) {
+@media screen and (max-width: 1279px) and (min-width: 320px) {
   nav {
     align-items: center;
 
@@ -166,7 +163,7 @@ nav {
   //   margin-left: 10px;
   // }
 }
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1279px) {
   nav {
     align-items: center;
 
@@ -258,7 +255,7 @@ nav {
     }
   }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .menu {
     top: 122px;
     height: calc(100% - 122px);
@@ -267,7 +264,6 @@ nav {
     margin-left: 10px;
   }
 }
-
 
 .logo_wrapper {
   display: flex;
@@ -358,7 +354,6 @@ nav {
   }
 }
 
-
-.icons_dark{
+.icons_dark {
   fill: #fff;
 }

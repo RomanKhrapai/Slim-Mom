@@ -72,7 +72,7 @@ $firstColor: #9b9faa;
   .userinfo {
     margin-right: 15px;
   }
-  }
+}
 
 @media screen and (max-width: 1280px) and (min-width: 768px) {
   .userinfo {
@@ -118,8 +118,11 @@ $firstColor: #9b9faa;
 }
 
 .light {
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     color: #212121;
+  }
+  @media screen and (min-width: 768px) {
+    color: #fff;
   }
 
   @media screen and (min-width: 1280px) {
@@ -127,5 +130,5 @@ $firstColor: #9b9faa;
   }
 }
 .myTail {
-  color: #FC842D;
+  color: #fc842d;
 }
