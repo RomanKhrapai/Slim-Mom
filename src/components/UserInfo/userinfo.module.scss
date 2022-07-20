@@ -12,6 +12,7 @@ $firstColor: #9b9faa;
 
   h3 {
     margin: 0;
+
     cursor: default;
   }
 
@@ -114,12 +115,14 @@ $firstColor: #9b9faa;
 }
 
 .dark {
+  padding-top: 2px;
   @media screen and (min-width: 768px) {
     color: #fff;
   }
 }
 
 .light {
+  padding-top: 2px;
   @media screen and (max-width: 767px) {
     color: #212121;
   }
