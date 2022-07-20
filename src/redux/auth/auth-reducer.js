@@ -7,7 +7,7 @@ const initialState = {
   isAuthorised: false,
   isLoading: false,
   token: null,
-  isFetchingCurrentUser: false,
+  isFetchingCurrentUser: true,
 };
 const authSlice = createSlice({
   name: 'auth',
@@ -18,7 +18,7 @@ const authSlice = createSlice({
     },
     logoutUser(state, action) {
       state.isAuthorised = false;
-    }
+    },
   },
   extraReducers: {
     [authOperations.signUpUser.pending]: (state, action) => {
@@ -96,7 +96,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { apdateUserInfo, 
-  logoutUser 
-} = authSlice.actions;
+export const { apdateUserInfo, logoutUser } = authSlice.actions;
 export default authSlice.reducer;
