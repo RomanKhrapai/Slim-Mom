@@ -1,18 +1,17 @@
-import { Formik } from 'formik';
 import React from 'react';
+import { Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
-import i18n from '../../services/i18n/config';
-
 import PropTypes from 'prop-types';
-
-import s from './DailyCaloriesForm.module.scss';
-import Button from 'components/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { apdateUserInfo } from 'redux/auth/auth-reducer';
 import userOperations from '../../redux/user/user-operation';
 import Loader from '../Loader';
 import authSelectors from 'redux/auth/auth-selectors';
+
+import i18n from '../../services/i18n/config';
+import s from './DailyCaloriesForm.module.scss';
+import Button from 'components/Button/Button';
 
 const DailyCaloriesForm = ({
   userData = {
@@ -28,8 +27,7 @@ const DailyCaloriesForm = ({
   const dispatch = useDispatch();
   const isAuthorised = useSelector(authSelectors.getIsAuthorised);
   const loading = useSelector(state => state.user.isLoading);
-  const language = i18n.language === 'uk' ? "ua" : "en";
-  
+  const language = i18n.language === 'uk' ? 'ua' : 'en';
 
   const changeType = values => ({
     height: Number(values.height),
@@ -69,44 +67,44 @@ const DailyCaloriesForm = ({
             values.height < valueRequire.height.min ||
             values.height > valueRequire.height.max
           ) {
-            errors.height = "Enter your height within 100 - 250 cm";
+            errors.height = 'Enter your height within 100 - 250 cm';
           }
 
           if (
             values.age < valueRequire.age.min ||
             values.age > valueRequire.age.max
           ) {
-            errors.age = "Enter your age within 18 - 100";
+            errors.age = 'Enter your age within 18 - 100';
           }
 
           if (
             values.currentWeight < valueRequire.weight.min ||
             values.currentWeight > valueRequire.weight.max
           ) {
-            errors.currentWeight = "Enter your weight within 20 - 500 kg";
+            errors.currentWeight = 'Enter your weight within 20 - 500 kg';
           }
 
           if (
             values.desiredWeight < valueRequire.weight.min ||
             values.desiredWeight > valueRequire.weight.max
           ) {
-            errors.desiredWeight = "Enter your weight within 20 - 500 kg";
+            errors.desiredWeight = 'Enter your weight within 20 - 500 kg';
           }
 
           if (!+values.height) {
-            errors.height = 'Only numerics'; 
+            errors.height = 'Only numerics';
           }
 
           if (!+values.age) {
-            errors.age = 'Only numerics'; 
+            errors.age = 'Only numerics';
           }
 
           if (!+values.currentWeight) {
-            errors.currentWeight = 'Only numerics'; 
+            errors.currentWeight = 'Only numerics';
           }
 
           if (!+values.desiredWeight) {
-            errors.desiredWeight = 'Only numerics'; 
+            errors.desiredWeight = 'Only numerics';
           }
 
           return errors;
@@ -116,15 +114,19 @@ const DailyCaloriesForm = ({
           const valuesWithLanguage = { ...convertedType, language };
 
           if (isAuthorised) {
-            dispatch(userOperations.addUserInfo(valuesWithLanguage)).then(() => {
-              onOpenModal();
-              dispatch(apdateUserInfo(valuesWithLanguage));
-            });
+            dispatch(userOperations.addUserInfo(valuesWithLanguage)).then(
+              () => {
+                onOpenModal();
+                dispatch(apdateUserInfo(valuesWithLanguage));
+              }
+            );
           } else {
-            dispatch(userOperations.addVisitorInfo(valuesWithLanguage)).then(() => {
-              onOpenModal();
-              resetForm();
-            });
+            dispatch(userOperations.addVisitorInfo(valuesWithLanguage)).then(
+              () => {
+                onOpenModal();
+                resetForm();
+              }
+            );
           }
         }}
       >
@@ -151,7 +153,9 @@ const DailyCaloriesForm = ({
                     required
                   />
                   {errors.height && touched.height && (
-                    <div className={s.errorMessage}>{t(`calculator.${errors.height}`)}</div>
+                    <div className={s.errorMessage}>
+                      {t(`calculator.${errors.height}`)}
+                    </div>
                   )}
                   <label
                     className={getActiveClass(values.height)}
@@ -172,7 +176,9 @@ const DailyCaloriesForm = ({
                     required
                   />
                   {errors.age && touched.age && (
-                    <div className={s.errorMessage}>{t(`calculator.${errors.age}`)}</div>
+                    <div className={s.errorMessage}>
+                      {t(`calculator.${errors.age}`)}
+                    </div>
                   )}
                   <label className={getActiveClass(values.age)} htmlFor="age">
                     {t('calculator.Age')} *
@@ -190,7 +196,9 @@ const DailyCaloriesForm = ({
                     required
                   />
                   {errors.currentWeight && touched.currentWeight && (
-                    <div className={s.errorMessage}>{t(`calculator.${errors.currentWeight}`)}</div>
+                    <div className={s.errorMessage}>
+                      {t(`calculator.${errors.currentWeight}`)}
+                    </div>
                   )}
                   <label
                     className={getActiveClass(values.currentWeight)}
@@ -211,7 +219,9 @@ const DailyCaloriesForm = ({
                     required
                   />
                   {errors.desiredWeight && touched.desiredWeight && (
-                    <div className={s.errorMessage}>{t(`calculator.${errors.desiredWeight}`)}</div>
+                    <div className={s.errorMessage}>
+                      {t(`calculator.${errors.desiredWeight}`)}
+                    </div>
                   )}
                   <label
                     className={getActiveClass(values.desiredWeight)}

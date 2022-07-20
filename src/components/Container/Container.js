@@ -1,15 +1,11 @@
 import React from 'react';
-import s from '../Container/Container.module.scss';
 import PropTypes from 'prop-types';
+
 import classNames from 'classnames';
 
-export default function Container({ children, className}) {
+export default function Container({ children, className }) {
   const classes = classNames(className);
-  return (
-    <div className={classes}>
-      {children}
-    </div>
-  );
+  return <div className={classes}>{children}</div>;
 }
 
 Container.propTypes = {

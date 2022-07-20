@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
-import style from '../DailyCaloriesForm/DailyCaloriesForm.module.scss';
+
 import s from './CalculatorCalorie.module.scss';
 const UserInfo = ({ userData }) => {
   const { t } = useTranslation();
