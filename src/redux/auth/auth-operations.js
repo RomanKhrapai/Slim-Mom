@@ -3,7 +3,9 @@ import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import i18n from 'services/i18n/config';
 
-axios.defaults.baseURL = 'https://slim-mom-dev.herokuapp.com/api/';
+axios.defaults.baseURL = 'https://slim-mom-server.herokuapp.com/api/';
+//axios.defaults.baseURL = 'https://slim-mom-dev.herokuapp.com/api/';
+//axios.defaults.baseURL = 'http://localhost:3001/api/';
 
 const token = {
   set(token) {
@@ -140,6 +142,7 @@ axios.interceptors.response.use(
     return config;
   },
   async error => {
+    console.log(1111);
     const originalRequest = error.config;
     if (
       error.response.status === 400 &&
@@ -147,6 +150,7 @@ axios.interceptors.response.use(
       !error.config._isRetry &&
       error.response.data.message === 'Expired token'
     ) {
+      console.log(222);
       originalRequest._isRetry = true;
       try {
         const refreshToken = localStorage.getItem('refreshToken');
@@ -162,9 +166,11 @@ axios.interceptors.response.use(
         }
       } catch (error) {
         console.log(error);
+        console.log(333);
         if (error?.message === 'Request failed with status code 500') {
           localStorage.setItem('refreshToken', '');
-          document.location.replace('https://slim-mom7.netlify.app');
+          // document.location.replace('https://slim-mom7.netlify.app');
+          // document.location.replace('http://localhost:3000/');
         }
         // toast.error('You need to login');
       }
