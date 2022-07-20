@@ -3,6 +3,10 @@ import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import i18n from 'services/i18n/config';
 import { setDefaultNamespace } from 'i18next';
+import { useDispatch } from 'react-redux';
+// import authSlice from './auth-reducer';
+
+// console.log(authSlice);
 
 axios.defaults.baseURL = 'https://slim-mom-server.herokuapp.com/api/';
 
@@ -14,6 +18,7 @@ const token = {
     axios.defaults.headers.common.Authorization = '';
   },
 };
+
 
 const signUpUser = createAsyncThunk(
   'auth/register',
@@ -119,7 +124,7 @@ const fetchCurrentUser = createAsyncThunk(
 
     try {
       const { data } = await axios.get('users/current-user');
-      console.log(data);
+
       if (tokens) {
         return { data, ...tokens };
       }

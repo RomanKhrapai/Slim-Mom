@@ -16,6 +16,9 @@ const authSlice = createSlice({
     apdateUserInfo(state, action) {
       state.user = { ...state.user, ...action.payload };
     },
+    logoutUser(state, action) {
+      state.isAuthorised = false;
+    }
   },
   extraReducers: {
     [authOperations.signUpUser.pending]: (state, action) => {
@@ -93,5 +96,7 @@ const authSlice = createSlice({
   },
 });
 
-export const { apdateUserInfo } = authSlice.actions;
+export const { apdateUserInfo, 
+  logoutUser 
+} = authSlice.actions;
 export default authSlice.reducer;
