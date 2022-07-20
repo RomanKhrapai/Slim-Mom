@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 
 export default function GoogleButton({ name }) {
   const { t } = useTranslation();
-  console.log(name);
   return (
     <a
       className={s.login_link}
