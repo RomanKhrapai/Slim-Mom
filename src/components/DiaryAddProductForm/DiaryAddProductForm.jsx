@@ -11,7 +11,6 @@ import productsSelectors from '../../redux/user/user-selector';
 import authSelectors from 'redux/auth/auth-selectors';
 import userOperations from '../../redux/user/user-operation';
 import i18n from '../../services/i18n/config';
-import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
 import { useFilterSringToQuery } from 'hooks/useFilterSringToQuery';
 
 import addIcon from '../../images/plus-icon.svg';
@@ -24,10 +23,10 @@ export default function DiaryAddProductForm({
   setIsFormOpen,
   addClass,
 }) {
-  const [{ isDark }] = useContext(ThemeContext);
+  const isDark = useSelector(state => state.theme.isDark);
   const [productList, setProductList] = useState([]);
   const [chosenProduct, setChosenProduct] = useState('');
-  const [infoInput, setInfoInput] = useState('');
+  const [infoInput, setInfoInput] = useState(false);
   const currentDate = useSelector(productsSelectors.getTodayDate);
   const groupBlood = useSelector(authSelectors.getBloodType);
 
@@ -82,7 +81,7 @@ export default function DiaryAddProductForm({
       }
 
       if (!productId) {
-        setInfoInput(i18n.t('diary.The product is not founded'));
+        setInfoInput(true);
         return;
       }
       const data = {
@@ -100,18 +99,19 @@ export default function DiaryAddProductForm({
   useEffect(async () => {
     try {
       const request = formik.values.productName.trim();
-      setInfoInput('');
+      setInfoInput(false);
       setProductList([]);
+      setChosenProduct('');
       if (request.length > 2) {
         const result = await getProducts(request);
         if (result.length === 0) {
-          setInfoInput(i18n.t('diary.The product is not founded'));
+          setInfoInput(true);
         } else {
           setProductList(result);
         }
       }
     } catch (error) {
-      toast.info(i18n.t('diary.Select a product from the list'));
+      toast.info(i18n.t('diary.The product is not founded'));
     }
   }, [formik.values.productName]);
 
@@ -199,7 +199,14 @@ export default function DiaryAddProductForm({
               })}
             </ul>
           ) : (
-            infoInput && <p>{infoInput}</p>
+            infoInput && (
+              <p className={isDark ? style.productListPDark : undefined}>
+                {formik.values.productName.length > 3 &&
+                productList.length === 0
+                  ? t('diary.The product is not founded')
+                  : null}
+              </p>
+            )
           )}
         </div>
       </div>

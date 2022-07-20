@@ -6,7 +6,7 @@ import moment from 'moment';
 
 import { changeData } from '../../redux/user/user-action';
 import Modal from '../Modal';
-import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
+
 
 import calendarIcon from '../../images/icon-calendar.svg';
 
@@ -14,7 +14,8 @@ import 'react-datetime/css/react-datetime.css';
 import style from './DiaryDateСalendar.module.scss';
 
 export default function DiaryDateCalendar({ chosenDate, setChosenDate }) {
-  const [{ isDark }] = useContext(ThemeContext);
+
+  const isDark = useSelector((state) => state.theme.isDark);
   const [formattedDate, setFormattedDate] = useState(chosenDate);
   const [parsedDate, setParsedDate] = useState(Date.now());
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
