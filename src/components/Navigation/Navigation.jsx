@@ -15,8 +15,6 @@ import {
   useGetTypeOfScreen,
 } from '../../hooks/useGetTypeOfScreen';
 import { useSelector } from 'react-redux';
-import { useContext } from 'react';
-import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
 import ThemeButton from 'components/ThemeProvider/ThemeButton';
 
 import authSelectors from 'redux/auth/auth-selectors';
@@ -27,7 +25,7 @@ import { ReactComponent as Cross } from '../../images/white-cross.svg';
 import { ReactComponent as Burger } from '../../images/white-burger.svg';
 
 const Navigation = () => {
-  const [{ isDark }] = useContext(ThemeContext);
+  const isDark = useSelector((state) => state.theme.isDark);
   const isAuthorised = useSelector(authSelectors.getIsAuthorised);
      
     const getNavLinkClassName = ({ isActive }) =>
@@ -87,7 +85,7 @@ const Navigation = () => {
                 : styles.logo_wrapper
             }
           >
-            <LogoNew className={styles.logo_new} />
+            <LogoNew className={isAuthorised ? styles.logo_new : styles.logo_new_unauthorised} />
             <div
               className={
                 !isAuthorised
@@ -95,7 +93,7 @@ const Navigation = () => {
                   : styles.words_wrapper
               }
             >
-              <Slim className={styles.slim} />
+              <Slim className={ isAuthorised ? styles.slim : styles.slim_unauthorised } />
               <Mom className={styles.mom} />
             </div>
           </div>
@@ -158,13 +156,14 @@ const Navigation = () => {
       ) : (
         <>
           <NavLink
-            className={isDark ? getNavLinkClassNameDark : getNavLinkClassName}
+  
+            className={(isAuthorised && isDark )? getNavLinkClassNameDark : getNavLinkClassName}
             to={'/login'}
           >
             {t('navigation.Sign In')}
           </NavLink>
           <NavLink
-            className={isDark ? getNavLinkClassNameDark : getNavLinkClassName}
+            className={(isAuthorised && isDark)? getNavLinkClassNameDark : getNavLinkClassName}
             to={'/registration'}
           >
             {t('navigation.Registration')}

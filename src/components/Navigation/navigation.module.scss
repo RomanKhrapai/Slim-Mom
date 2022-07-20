@@ -317,9 +317,29 @@ nav {
   }
 }
 
+.logo_new_unauthorised {
+  width: 47px;
+  fill: rgb(5, 5, 5);
+
+  @media screen and (min-width: 1280px) {
+    width: 70px;
+  }
+}
+
 .slim {
   width: 47px;
   fill: white;
+  margin-left: 10.3px;
+
+  @media screen and (min-width: 1280px) {
+    width: 50px;
+    margin-left: -10px;
+  }
+}
+
+.slim_unauthorised {
+  width: 47px;
+  fill: rgb(0, 0, 0);
   margin-left: 10.3px;
 
   @media screen and (min-width: 1280px) {

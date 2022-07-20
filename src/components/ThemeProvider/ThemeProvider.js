@@ -1,39 +1,36 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext } from 'react';
+import { useSelector } from 'react-redux';
 import React from 'react';
 export const ThemeContext = createContext();
 import PropTypes from 'prop-types';
-
+import authSelectors from 'redux/auth/auth-selectors';
 
 const themes = {
   dark: {
     backgroundColor: ' rgb(56, 55, 84)',
     color: 'white',
     stroke: ' rgb(255, 255, 255)',
-    fill:  'rgb(255, 255, 255)',
-    
+    fill: 'rgb(255, 255, 255)',
   },
   light: {
     backgroundColor: 'white',
-    // color:"black"
   },
 };
 
 export const ThemeProvider = ({ children }) => {
-  const [isDark, setIsDark] = useState(false);
-  const theme = isDark ? themes.dark : themes.light;
+  const isDark = useSelector(state => state.theme.isDark);
+  const isAuthorised = useSelector(authSelectors.getIsAuthorised);
+  let theme = isDark ? themes.dark : themes.light;
 
-  const toggleTheme = () => {
-    // localStorage.setItem('isDark', JSON.stringify(!isDark));
-    setIsDark(!isDark);
-  };
-
-  useEffect(() => {
-    // localStorage.getItem('isDark') === true ? setIsDark(!isDark) : setIsDark(isDark) 
-
-  }, []);
+  if (!isAuthorised || !isDark) {
+    theme = themes.light;
+  }
+  else{
+    theme = themes.dark
+  }
 
   return (
-    <ThemeContext.Provider value={[{ theme, isDark }, toggleTheme]}>
+    <ThemeContext.Provider value={[{ theme }]}>
       {children}
     </ThemeContext.Provider>
   );

@@ -1,10 +1,14 @@
 import {React,useContext,useState,useEffect} from "react"
+import { useSelector, useDispatch } from "react-redux";
 import { ThemeContext } from "./ThemeProvider"
 import { BsSun, BsMoon } from 'react-icons/bs';
 import s from './ThemeButton.module.scss'
+import { toggleTheme } from 'redux/theme/themeSlice';
 
 export default function ThemeButton(){
-    const [{isDark }, toggleTheme] = useContext(ThemeContext);
+    // const [{isDark }, toggleTheme] = useContext(ThemeContext);
+    const dispatch = useDispatch();
+    const isDark = useSelector((state) => state.theme.isDark);
     const [icon, setIcon] = useState(<BsSun size={20} />);
 
     useEffect(() => {
@@ -22,7 +26,7 @@ export default function ThemeButton(){
             ? s.button_theme_swither_dark
             : s.button_theme_swither_light
         }
-        onClick={toggleTheme}
+        onClick={() => dispatch(toggleTheme())}
       >
         {icon}
       </div>
