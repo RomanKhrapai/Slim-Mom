@@ -3,12 +3,10 @@ import { useTranslation } from 'react-i18next';
 import styles from './userinfo.module.scss'
 import { useDispatch, useSelector } from 'react-redux';
 import authOperations from 'redux/auth/auth-operations.js';
-import { useContext } from 'react';
-import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
 import EllipsisText from "react-ellipsis-text";
 
   const UserInfo = () => {
-  const [{isDark}] = useContext(ThemeContext)
+    const isDark = useSelector((state) => state.theme.isDark);
 
   const { user } = useSelector(state => state.auth)
   // console.log(user);

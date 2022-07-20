@@ -13,6 +13,7 @@ import storage from 'redux-persist/lib/storage';
 import authSlice from './auth/auth-reducer';
 import userSlice from './user/user-reducer';
 import productSlice from './products/products-reducer';
+import themeSlice from './theme/themeSlice';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -28,6 +29,13 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
+const themePersistConfig = {
+  key: 'theme',
+  storage,
+  whitelist: ['isDark'],
+};
+
+
 const initialState = { user: '' };
 
 export const store = configureStore({
@@ -35,6 +43,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authSlice),
     user: userSlice,
     product: productSlice,
+    theme: persistReducer(themePersistConfig,themeSlice) ,
   },
   initialState: initialState,
   middleware,

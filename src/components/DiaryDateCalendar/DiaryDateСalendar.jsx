@@ -8,10 +8,10 @@ import Datetime from 'react-datetime';
 import { changeData } from '../../redux/user/user-action';
 import moment from 'moment';
 import Modal from '../Modal';
-import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
+
 
 export default function DiaryDateCalendar({ chosenDate, setChosenDate }) {
-  const [{ isDark }] = useContext(ThemeContext);
+  const isDark = useSelector((state) => state.theme.isDark);
   const dispatch = useDispatch();
 
   // const [formattedDate, setFormattedDate] = useState(moment().format('DD, MM, YYYY').split(', ').join('.'));

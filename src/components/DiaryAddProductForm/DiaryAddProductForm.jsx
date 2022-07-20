@@ -12,7 +12,6 @@ import classNames from 'classnames';
 import style from './DiaryAddProductForm.module.scss';
 import addIcon from '../../images/plus-icon.svg';
 import arrow from '../../images/arrow1.svg';
-import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
 import { useFilterSringToQuery } from 'hooks/useFilterSringToQuery';
 
 export default function DiaryAddProductForm({
@@ -20,7 +19,7 @@ export default function DiaryAddProductForm({
   setIsFormOpen,
   addClass,
 }) {
-  const [{ isDark }] = useContext(ThemeContext);
+  const isDark = useSelector((state) => state.theme.isDark);
   const [productList, setProductList] = useState([]);
   const [chosenProduct, setChosenProduct] = useState('');
   const currentDate = useSelector(productsSelectors.getTodayDate);
@@ -185,7 +184,7 @@ export default function DiaryAddProductForm({
               })}
             </ul>
           ) : (
-            <p>
+            <p className={isDark? style.productListPDark : undefined}>
               {(formik.values.productName.length > 3 && productList.length === 0 ) ?
                 t('diary.The product is not founded') : null}
             </p>

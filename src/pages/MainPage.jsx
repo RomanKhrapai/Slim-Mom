@@ -14,6 +14,7 @@ import Loader from '../components/Loader';
 import { useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import authOperations from '../redux/auth/auth-operations';
+
 const MainPage = ({ showModal, toggleModal }) => {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
