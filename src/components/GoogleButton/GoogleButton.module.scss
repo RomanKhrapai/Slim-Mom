@@ -1,0 +1,38 @@
+@import '../../Scss/variables.scss';
+
+.googleIcon {
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+}
+.google_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login_link {
+  text-decoration: none;
+  font-family: 'VerdanaBold';
+  display: block;
+  width: 210px;
+  height: 43px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.2;
+
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.04em;
+  border-color: transparent;
+  color: $main-background-color;
+  background: $buttons-color;
+  margin-top: 10px;
+  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  border-radius: 30px;
+  cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    margin-left: 0;
+  }
+}
