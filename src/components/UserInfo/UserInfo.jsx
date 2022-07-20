@@ -1,16 +1,16 @@
-import React, {useState, useEffect} from "react"
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import styles from './userinfo.module.scss'
+import styles from './userinfo.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import authOperations from 'redux/auth/auth-operations.js';
-import EllipsisText from "react-ellipsis-text";
+import EllipsisText from 'react-ellipsis-text';
 
-  const UserInfo = () => {
-    const isDark = useSelector((state) => state.theme.isDark);
+const UserInfo = () => {
+  const isDark = useSelector(state => state.theme.isDark);
 
-  const { user } = useSelector(state => state.auth)
+  const { user } = useSelector(state => state.auth);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const tryLogOut = async () => {
@@ -18,12 +18,27 @@ import EllipsisText from "react-ellipsis-text";
   };
 
   return (
-      <div className={styles.userinfo}>
-      <h3 className={user.name !== "" ? styles.light : undefined}>{user.name === '' ? 'Name' : <EllipsisText text={user.name} length={6} tailClassName={ styles.myTail } />}</h3>
-        <div className={styles.vector1} />
-        <button className={isDark ? styles.button_dark : undefined} onClick={() => tryLogOut()}>{t("navigation.Sign Out")}</button>
-      </div>
-  )
-}
+    <div className={styles.userinfo}>
+      <h3 className={user.name !== '' ? styles.light : styles.dark}>
+        {user.name === '' ? (
+          'Name'
+        ) : (
+          <EllipsisText
+            text={user.name}
+            length={6}
+            tailClassName={styles.myTail}
+          />
+        )}
+      </h3>
+      <div className={styles.vector1} />
+      <button
+        className={isDark ? styles.button_dark : undefined}
+        onClick={() => tryLogOut()}
+      >
+        {t('navigation.Sign Out')}
+      </button>
+    </div>
+  );
+};
 
 export default UserInfo;
