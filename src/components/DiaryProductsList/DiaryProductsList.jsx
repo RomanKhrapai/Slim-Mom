@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import DiaryProductsListItem from '../DiaryProductsListItem';
 import { useSelector, useDispatch } from 'react-redux';
-import userOperations from '../../redux/user/user-operation';
-import productsSelectors from '../../redux/user/user-selector';
-import i18n from '../../services/i18n/config';
 import { useTable } from 'react-table';
 import EllipsisText from 'react-ellipsis-text';
 import { t } from 'i18next';
+
+import DiaryProductsListItem from '../DiaryProductsListItem';
+import userOperations from '../../redux/user/user-operation';
+import productsSelectors from '../../redux/user/user-selector';
+import i18n from '../../services/i18n/config';
+
 import style from './DiaryProductsList.module.scss';
 
 export default function DiaryProductsList() {

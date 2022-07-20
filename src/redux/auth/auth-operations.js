@@ -169,7 +169,7 @@ axios.interceptors.response.use(
         console.log(333);
         if (error?.message === 'Request failed with status code 500') {
           localStorage.setItem('refreshToken', '');
-          // document.location.replace('https://slim-mom7.netlify.app');
+          document.location.replace('https://slim-mom7.netlify.app');
           // document.location.replace('http://localhost:3000/');
         }
         // toast.error('You need to login');

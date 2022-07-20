@@ -4,16 +4,19 @@ import { useFormik } from 'formik';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
+import classNames from 'classnames';
+
 import productsSelectors from '../../redux/user/user-selector';
 import authSelectors from 'redux/auth/auth-selectors';
 import userOperations from '../../redux/user/user-operation';
 import i18n from '../../services/i18n/config';
-import classNames from 'classnames';
-import style from './DiaryAddProductForm.module.scss';
-import addIcon from '../../images/plus-icon.svg';
-import arrow from '../../images/arrow1.svg';
 import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
 import { useFilterSringToQuery } from 'hooks/useFilterSringToQuery';
+
+import addIcon from '../../images/plus-icon.svg';
+import arrow from '../../images/arrow1.svg';
+
+import style from './DiaryAddProductForm.module.scss';
 
 export default function DiaryAddProductForm({
   isFormOpen,
@@ -51,9 +54,7 @@ export default function DiaryAddProductForm({
         'diary.Your amount is too long. Please, enter your amount in grams'
       );
     } else if (Number(values.productAmount) === 0) {
-      errors.productAmount = t(
-        'diary.The amount has to be bigger that 0'
-      );
+      errors.productAmount = t('diary.The amount has to be bigger that 0');
     }
 
     return errors;
@@ -186,8 +187,9 @@ export default function DiaryAddProductForm({
             </ul>
           ) : (
             <p>
-              {(formik.values.productName.length > 3 && productList.length === 0 ) ?
-                t('diary.The product is not founded') : null}
+              {formik.values.productName.length > 3 && productList.length === 0
+                ? t('diary.The product is not founded')
+                : null}
             </p>
           )}
         </div>
