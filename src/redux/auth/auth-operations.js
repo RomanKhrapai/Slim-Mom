@@ -2,13 +2,8 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import i18n from 'services/i18n/config';
-import { setDefaultNamespace } from 'i18next';
-import { useDispatch } from 'react-redux';
-// import authSlice from './auth-reducer';
 
-// console.log(authSlice);
-
-axios.defaults.baseURL = 'https://slim-mom-server.herokuapp.com/api/';
+axios.defaults.baseURL = 'https://slim-mom-dev.herokuapp.com/api/';
 
 const token = {
   set(token) {
@@ -18,7 +13,6 @@ const token = {
     axios.defaults.headers.common.Authorization = '';
   },
 };
-
 
 const signUpUser = createAsyncThunk(
   'auth/register',
@@ -168,7 +162,7 @@ axios.interceptors.response.use(
         console.log(error);
         if (error?.message === 'Request failed with status code 500') {
           localStorage.setItem('refreshToken', '');
-          document.location.replace('http://localhost:3000/login');
+          document.location.replace('https://slim-mom7.netlify.app');
         }
         // toast.error('You need to login');
       }
