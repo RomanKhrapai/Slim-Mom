@@ -142,7 +142,6 @@ axios.interceptors.response.use(
     return config;
   },
   async error => {
-    console.log(1111);
     const originalRequest = error.config;
     if (
       error.response.status === 400 &&
@@ -150,7 +149,6 @@ axios.interceptors.response.use(
       !error.config._isRetry &&
       error.response.data.message === 'Expired token'
     ) {
-      console.log(222);
       originalRequest._isRetry = true;
       try {
         const refreshToken = localStorage.getItem('refreshToken');
@@ -165,8 +163,6 @@ axios.interceptors.response.use(
           return axios.request(originalRequest);
         }
       } catch (error) {
-        console.log(error);
-        console.log(333);
         if (error?.message === 'Request failed with status code 500') {
           localStorage.setItem('refreshToken', '');
           document.location.replace('https://slim-mom7.netlify.app');

@@ -23,13 +23,13 @@
     "This field must contain more than 3 symbols": "This field must contain more than 3 symbols",
     "This field must contain more than 8 symbols": "This field must contain more than 8 symbols",
     "This field must contain only letters": "This field must contain only letters",
-    "Ooops, something went wrong. Please, try again" : "Ooops, something went wrong. Please, try again",
-    "You entered wrong email or password" : "You entered wrong email or password",
-    "You havent logged out. We dont want to let you go" : "You havent logged out. We dont want to let you go",
-    "We havent received your profile info. Please, try later" : "We havent received your profile info. Please, try later",
-    "You have сreated your personal account sucsessfully!" : "You have сreated your personal account sucsessfully!",
-    "You have logged in successfully. Welcome back" : "You have logged in successfully. Welcome back!",
-    "You have logged out. Will be waiting fo you!" : "You have logged out. Will be waiting fo you!",
+    "Ooops, something went wrong. Please, try again": "Ooops, something went wrong. Please, try again",
+    "You entered wrong email or password": "You entered wrong email or password",
+    "You havent logged out. We dont want to let you go": "You havent logged out. We dont want to let you go",
+    "We havent received your profile info. Please, try later": "We havent received your profile info. Please, try later",
+    "You have сreated your personal account sucsessfully!": "You have сreated your personal account sucsessfully!",
+    "You have logged in successfully. Welcome back": "You have logged in successfully. Welcome back!",
+    "You have logged out. Will be waiting fo you!": "You have logged out. Will be waiting fo you!",
     "This product is not found": "This product is not found",
     "Cannot find products for this data": "Cannot find products for this data"
   },
@@ -86,6 +86,7 @@
     "Your amount is too long. Please, enter your amount in grams": "Your amount is too long. Please, enter your amount in grams",
     "The list is empty": "The product list for this day is empty",
     "The product is not founded": "The product is not founded",
-    "The amount has to be bigger that 0": "The amount has to be bigger that 0"
+    "The amount has to be bigger that 0": "The amount has to be bigger that 0",
+    "Select a product from the list": "Select a product from the list"
   }
 }
