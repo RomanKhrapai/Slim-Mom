@@ -21,7 +21,7 @@ $mobileActiveColor: #ffffff;
 
   @media screen and (min-width: 1280px) {
     margin-left: 15px;
-    height: auto;   
+    height: auto;
   }
 }
 
@@ -29,8 +29,8 @@ $mobileActiveColor: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;  
-  padding: 0px;
+  width: 40px;
+  padding: 2px 0 0 0;
   background-color: transparent;
   border: none;
   border-radius: 30px;
