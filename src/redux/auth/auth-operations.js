@@ -66,7 +66,9 @@ const logIn = createAsyncThunk(
 
       localStorage.setItem('refreshToken', data.refreshToken);
       toast.success(
-        i18n.t('authentification.You have logged in successfully. Welcome back')
+        i18n.t(
+          'authentification.You have logged in successfully. Welcome back!'
+        )
       );
       return data;
     } catch (error) {
