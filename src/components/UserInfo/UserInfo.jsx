@@ -25,7 +25,7 @@ const UserInfo = () => {
         ) : (
           <EllipsisText
             text={user.name}
-            length={6}
+            length={10}
             tailClassName={styles.myTail}
           />
         )}
