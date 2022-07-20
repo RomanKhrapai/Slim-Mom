@@ -1,24 +1,29 @@
 import React, { useState, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import 'react-datetime/css/react-datetime.css';
-import style from './DiaryDateСalendar.module.scss';
-import calendarIcon from '../../images/icon-calendar.svg';
 import Datetime from 'react-datetime';
-import { changeData } from '../../redux/user/user-action';
 import moment from 'moment';
+
+import { changeData } from '../../redux/user/user-action';
 import Modal from '../Modal';
 
 
+import calendarIcon from '../../images/icon-calendar.svg';
+
+import 'react-datetime/css/react-datetime.css';
+import style from './DiaryDateСalendar.module.scss';
+
 export default function DiaryDateCalendar({ chosenDate, setChosenDate }) {
+
   const isDark = useSelector((state) => state.theme.isDark);
-  const dispatch = useDispatch();
-
-  // const [formattedDate, setFormattedDate] = useState(moment().format('DD, MM, YYYY').split(', ').join('.'));
   const [formattedDate, setFormattedDate] = useState(chosenDate);
-
   const [parsedDate, setParsedDate] = useState(Date.now());
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const createdAt = useSelector(state => state.auth.user.createdAt);
+
+  const dispatch = useDispatch();
+
+  const createdDate = moment(createdAt).subtract(1, 'day');
 
   const getDateTime = momentDate => {
     const parsedDate = Date.parse(momentDate._d.toString());
@@ -32,9 +37,6 @@ export default function DiaryDateCalendar({ chosenDate, setChosenDate }) {
     setParsedDate(parsedDate);
     setFormattedDate(formattedDate);
   };
-
-  const createdAt = useSelector(state => state.auth.user.createdAt);
-  const createdDate = moment(createdAt).subtract(1, 'day'); 
 
   return (
     <div className={style.datepicker}>
@@ -55,7 +57,7 @@ export default function DiaryDateCalendar({ chosenDate, setChosenDate }) {
             <Datetime
               isValidDate={current => {
                 let today = new Date();
-                return current.isAfter(createdDate) && current.isBefore(today)
+                return current.isAfter(createdDate) && current.isBefore(today);
               }}
               value={parsedDate}
               input={false}

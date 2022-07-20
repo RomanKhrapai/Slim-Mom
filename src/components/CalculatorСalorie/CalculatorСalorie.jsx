@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+
+import PropTypes from 'prop-types';
 import DailyCaloriesForm from '../DailyCaloriesForm';
 import UserInfo from './UserInfo';
 import Button from 'components/Button/Button';
+
 import s from './CalculatorCalorie.module.scss';
-import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import style from '../DailyCaloriesForm//DailyCaloriesForm.module.scss';
-import PropTypes from 'prop-types';
+
 
 const сalculatorСalorie = ({ onOpenModal }) => {
-  // функція для перекладу
   const { t } = useTranslation();
   const [activeModerate, setActiveModerate] = useState(false);
   const user = useSelector(state => state.auth.user);

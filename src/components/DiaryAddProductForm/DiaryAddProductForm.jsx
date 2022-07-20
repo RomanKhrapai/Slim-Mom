@@ -4,15 +4,19 @@ import { useFormik } from 'formik';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
+import classNames from 'classnames';
+import { toast } from 'react-toastify';
+
 import productsSelectors from '../../redux/user/user-selector';
 import authSelectors from 'redux/auth/auth-selectors';
 import userOperations from '../../redux/user/user-operation';
 import i18n from '../../services/i18n/config';
-import classNames from 'classnames';
-import style from './DiaryAddProductForm.module.scss';
+import { useFilterSringToQuery } from 'hooks/useFilterSringToQuery';
+
 import addIcon from '../../images/plus-icon.svg';
 import arrow from '../../images/arrow1.svg';
-import { useFilterSringToQuery } from 'hooks/useFilterSringToQuery';
+
+import style from './DiaryAddProductForm.module.scss';
 
 export default function DiaryAddProductForm({
   isFormOpen,
@@ -22,6 +26,7 @@ export default function DiaryAddProductForm({
   const isDark = useSelector((state) => state.theme.isDark);
   const [productList, setProductList] = useState([]);
   const [chosenProduct, setChosenProduct] = useState('');
+  const [infoInput, setInfoInput] = useState('');
   const currentDate = useSelector(productsSelectors.getTodayDate);
   const groupBlood = useSelector(authSelectors.getBloodType);
 
@@ -50,9 +55,7 @@ export default function DiaryAddProductForm({
         'diary.Your amount is too long. Please, enter your amount in grams'
       );
     } else if (Number(values.productAmount) === 0) {
-      errors.productAmount = t(
-        'diary.The amount has to be bigger that 0'
-      );
+      errors.productAmount = t('diary.The amount has to be bigger that 0');
     }
 
     return errors;
@@ -70,7 +73,7 @@ export default function DiaryAddProductForm({
             product.title.ua === formik.values.productName
         );
         if (!value) {
-          alert('Виберіть продукт зі списку');
+          toast.info(i18n.t('diary.Select a product from the list'));
           return;
         } else {
           productId = value._id;
@@ -78,7 +81,7 @@ export default function DiaryAddProductForm({
       }
 
       if (!productId) {
-        alert('такого продукту немає');
+        setInfoInput(i18n.t('diary.The product is not founded'));
         return;
       }
       const data = {
@@ -94,9 +97,20 @@ export default function DiaryAddProductForm({
   });
 
   useEffect(async () => {
-    const request = formik.values.productName.trim();
-    if (request.length > 2) {
-      setProductList(await getProducts(request));
+    try {
+      const request = formik.values.productName.trim();
+      setInfoInput('');
+      setProductList([]);
+      if (request.length > 2) {
+        const result = await getProducts(request);
+        if (result.length === 0) {
+          setInfoInput(i18n.t('diary.The product is not founded'));
+        } else {
+          setProductList(result);
+        }
+      }
+    } catch (error) {
+      toast.info(i18n.t('diary.Select a product from the list'));
     }
   }, [formik.values.productName]);
 
@@ -113,7 +127,7 @@ export default function DiaryAddProductForm({
       );
       return data.data.result;
     } catch (error) {
-      console.log(error);
+      toast.info(i18n.t('diary.Select a product from the list'));
     }
   };
 
@@ -184,10 +198,9 @@ export default function DiaryAddProductForm({
               })}
             </ul>
           ) : (
-            <p className={isDark? style.productListPDark : undefined}>
+            infoInput && <pclassName={isDark? style.productListPDark : undefined}>
               {(formik.values.productName.length > 3 && productList.length === 0 ) ?
-                t('diary.The product is not founded') : null}
-            </p>
+                t('diary.The product is not founded') : null}</p>
           )}
         </div>
       </div>
