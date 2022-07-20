@@ -73,7 +73,6 @@ const userSlice = createSlice({
       state.diary = action.payload;
     },
     [userOperations.getDayProducts.rejected]: (state, action) => {
-      // console.log(action);
       state.isLoading = false;
     },
     [userOperations.addProductToDiary.pending]: (state, action) => {

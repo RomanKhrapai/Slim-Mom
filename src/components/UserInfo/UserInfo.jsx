@@ -11,7 +11,7 @@ import EllipsisText from "react-ellipsis-text";
   const [{isDark}] = useContext(ThemeContext)
 
   const { user } = useSelector(state => state.auth)
-  // console.log(user);
+
   const dispatch = useDispatch()
   const { t } = useTranslation();
 
