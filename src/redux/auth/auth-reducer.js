@@ -7,7 +7,7 @@ const initialState = {
   isAuthorised: false,
   isLoading: false,
   token: null,
-  isFetchingCurrentUser: true,
+  isFetchingCurrentUser: false,
 };
 const authSlice = createSlice({
   name: 'auth',
@@ -91,6 +91,7 @@ const authSlice = createSlice({
     },
     [authOperations.logOut.rejected]: (state, action) => {
       state.isLoading = false;
+      state.isAuthorised = false;
     },
   },
 });

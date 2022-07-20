@@ -20,40 +20,6 @@ const token = {
 };
 
 
-axios.interceptors.response.use(
-  config => {
-    return config;
-  },
-  async error => {
-    const originalRequest = error.config;
-    if (
-      error.response.status === 400 &&
-      error.config &&
-      !error.config._isRetry &&
-      error.response.data.message === 'Expired token'
-    ) {
-      originalRequest._isRetry = true;
-      try {
-        const refreshToken = localStorage.getItem('refreshToken');
-        const { data } = await axios.post('/auth/refresh-token', {
-          refreshToken,
-        });
-        token.set(data.accessToken);
-        localStorage.setItem('refreshToken', data.refreshToken);
-        originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
-        return axios.request(originalRequest);
-      } catch (error) {
-        console.log(error);
-        // const dispatch = useDispatch();
-        // logoutUser()
-        // dispatch(logoutUser())
-        toast.error('You need to login');
-      }
-    }
-    throw error;
-  }
-);
-
 const signUpUser = createAsyncThunk(
   'auth/register',
   async (userData, { rejectWithValue }) => {
@@ -158,7 +124,7 @@ const fetchCurrentUser = createAsyncThunk(
 
     try {
       const { data } = await axios.get('users/current-user');
-      console.log(data);
+
       if (tokens) {
         return { data, ...tokens };
       }
@@ -173,26 +139,43 @@ const fetchCurrentUser = createAsyncThunk(
   }
 );
 
-// const RefreshToken = createAsyncThunk(
-//   'auth/refreshToken',
-//   async (userData, { rejectWithValue }) => {
-//     try {
-//       const { data } = await axios.post('/auth/login', userData);
-//       token.set(data.accessToken);
-//       localStorage.setItem('refreshToken', data.refreshToken);
-//       toast.success(
-//         i18n.t('authentification.You have logged in successfully. Welcome back')
-//       );
-//       return data;
-//     } catch (error) {
-//       return rejectWithValue(
-//         toast.error(
-//           i18n.t('authentification.You entered wrong email or password')
-//         )
-//       );
-//     }
-//   }
-// );
+axios.interceptors.response.use(
+  config => {
+    return config;
+  },
+  async error => {
+    const originalRequest = error.config;
+    if (
+      error.response.status === 400 &&
+      error.config &&
+      !error.config._isRetry &&
+      error.response.data.message === 'Expired token'
+    ) {
+      originalRequest._isRetry = true;
+      try {
+        const refreshToken = localStorage.getItem('refreshToken');
+
+        if (refreshToken) {
+          const { data } = await axios.post('/auth/refresh-token', {
+            refreshToken,
+          });
+          token.set(data.accessToken);
+          localStorage.setItem('refreshToken', data.refreshToken);
+          originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
+          return axios.request(originalRequest);
+        }
+      } catch (error) {
+        console.log(error);
+        if (error?.message === 'Request failed with status code 500') {
+          localStorage.setItem('refreshToken', '');
+          document.location.replace('http://localhost:3000/login');
+        }
+        // toast.error('You need to login');
+      }
+    }
+    throw error;
+  }
+);
 
 const authOperations = {
   signUpUser,

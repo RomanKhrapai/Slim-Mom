@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
 import productsSelectors from '../../redux/user/user-selector';
+import authSelectors from 'redux/auth/auth-selectors';
 import userOperations from '../../redux/user/user-operation';
 import i18n from '../../services/i18n/config';
 import classNames from 'classnames';
@@ -23,6 +24,7 @@ export default function DiaryAddProductForm({
   const [productList, setProductList] = useState([]);
   const [chosenProduct, setChosenProduct] = useState('');
   const currentDate = useSelector(productsSelectors.getTodayDate);
+  const groupBlood = useSelector(authSelectors.getBloodType);
 
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -157,16 +159,20 @@ export default function DiaryAddProductForm({
         >
           {/* {formik.values.productName.length > 0 ? */}
           {productList.length > 0 ? (
-            <ul>
+            <ul className={style.productList}>
               {productList.map(product => {
                 const productName =
                   i18n.language === 'uk' ? product.title.ua : product.title.en;
+                const darkStyles = product.groupBloodNotAllowed[groupBlood]
+                  ? `${style.productListItemDark} ${style.foodNotRecommended}`
+                  : `${style.productListItemDark}`;
+                const whiteStyles = product.groupBloodNotAllowed[groupBlood]
+                  ? `${style.productListItem} ${style.foodNotRecommended}`
+                  : `${style.productListItem}`;
                 return (
                   <li
                     key={product._id}
-                    className={
-                      isDark ? style.productListItemDark : style.productListItem
-                    }
+                    className={isDark ? darkStyles : whiteStyles}
                     onClick={() => {
                       setChosenProduct(product._id);
                       formik.values.productName = productName;
