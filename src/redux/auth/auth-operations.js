@@ -30,7 +30,7 @@ const signUpUser = createAsyncThunk(
 
         toast.success(
           i18n.t(
-            'authentification.You have сreated your personal account sucsessfully!'
+            'authentification.You have сreated your personal account sucsessfully'
           )
         );
         return { ...loginResponse.data, isAuthorised: true };
