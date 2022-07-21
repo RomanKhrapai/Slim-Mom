@@ -5,19 +5,19 @@
   min-width: 320px;
   margin-left: auto;
   margin-right: auto;
-  min-height: 560px;
+
+  height: 600px;
   padding: 152px 20px 41px 20px;
 
   @media screen and (min-width: 768px) {
-   width: 768px;
+    width: 768px;
     padding: 180px 90px 48px 32px;
     min-height: auto;
   }
 
   @media screen and (min-width: 1280px) {
     max-width: 1280px;
-    padding:293px 104px 0 16px;
-
+    padding: 293px 104px 0 16px;
   }
 }
 
