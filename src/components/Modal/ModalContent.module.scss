@@ -13,7 +13,6 @@
   margin: 0 auto 40px auto;
   margin-bottom: 40px;
 
-
   color: $title-color;
 
   @media screen and(min-width: 768px) {
@@ -81,7 +80,8 @@
 .modal__list {
   display: block;
   padding: 0 0 0 20px;
-  // text-align: center;
+  max-height: 112px;
+  overflow-y: auto;
   margin: 20px 0 0 0;
   font-style: normal;
   font-weight: 400;
@@ -108,7 +108,6 @@
   color: rgb(56, 55, 84);
   @media screen and(min-width: 768px) {
     margin-left: 151px;
-
   }
 }
 
