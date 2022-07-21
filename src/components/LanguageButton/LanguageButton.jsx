@@ -1,9 +1,10 @@
-import styles from '../Navigation/navigation.module.scss';
-import s from './languageButton.module.scss'
 import React from 'react';
-import i18n from 'services/i18n/config';
 import { useSelector } from 'react-redux';
+import i18n from 'services/i18n/config';
 import authSelectors from 'redux/auth/auth-selectors';
+
+import s from './languageButton.module.scss'
+import styles from '../Navigation/navigation.module.scss';
 
 
 export const LanguageButton = () => {

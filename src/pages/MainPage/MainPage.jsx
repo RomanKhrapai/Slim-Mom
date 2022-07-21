@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
+import {React, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
-import s from './MainPage.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
-
-import PageTitle from '../components/PageTitle/PageTitle';
+import authOperations from '../../redux/auth/auth-operations';
+import PageTitle from '../../components/PageTitle/PageTitle';
 import DailyCaloriesForm from 'components/DailyCaloriesForm';
 import Modal from 'components/Modal';
 import ModalContent from 'components/Modal/ModalContent';
 import WrapperDisplayNone from 'components/WrapperDisplayNone/WrapperDisplayNone';
 import Container from 'components/Container/Container';
-import Loader from '../components/Loader';
-import { useSearchParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import authOperations from '../redux/auth/auth-operations';
+import Loader from '../../components/Loader';
+
+import s from './MainPage.module.scss';
 
 const MainPage = ({ showModal, toggleModal }) => {
   const dispatch = useDispatch();

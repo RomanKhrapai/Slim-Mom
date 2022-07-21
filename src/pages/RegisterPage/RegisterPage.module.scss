@@ -1,4 +1,4 @@
-@import "../../Scss/variables.scss";
+@import "../../styles/variables.scss";
 
 .registration_title {
   font-style: normal;
@@ -46,10 +46,10 @@
   
 
   @media screen and (min-width: 768px) {
-    background-image: url('../../images/banana-tablet.png'),
-      url('../../images/strawberry.png'),
-      url('../../images/leaves-tablet-login.png'),
-      url('../../images/vector-tablet.png');
+    background-image: url('../../assets/images/banana-tablet.png'),
+      url('../../assets/images/strawberry.png'),
+      url('../../assets/images/leaves-tablet-login.png'),
+      url('../../assets/images/vector-tablet.png');
     background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
     background-size: auto, auto, auto, auto;
     background-position: top 620px right -250px, top 480px right -60px,
@@ -57,9 +57,9 @@
   }
 
   @media screen and (min-width: 1280px) {
-    background-image: url('../../images/leaves.png'),
-      url('../../images/banana.png'), url('../../images/strawberry.png'),
-      url('../../images/vector.png');
+    background-image: url('../../assets/images/leaves.png'),
+      url('../../assets/images/banana.png'), url('../../assets/images/strawberry.png'),
+      url('../../assets/images/vector.png');
     background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
     background-size: auto, auto, auto, auto;
     background-position: top right 200px, top -120px right -270px,

@@ -1,8 +1,9 @@
 import React from 'react';
-import RegisterForm from "../../components/RegisterForm/RegisterForm";
 import { useTranslation } from 'react-i18next';
-import s from './RegisterPage.module.scss';
+import RegisterForm from "../../components/RegisterForm/RegisterForm";
 import Container from 'components/Container/Container';
+
+import s from './RegisterPage.module.scss';
 
 export default function RegisterView() {
 

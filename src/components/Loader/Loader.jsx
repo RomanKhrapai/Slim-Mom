@@ -1,13 +1,14 @@
 import React from 'react';
-import { useContext } from 'react';
-import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
+import { useSelector } from 'react-redux';
+import authSelectors from 'redux/auth/auth-selectors';
 import s from './Loader.module.scss';
 
 
 const Loader = () => {
-  const [{isDark}] = useContext(ThemeContext);
+  const isDark = useSelector((state) => state.theme.isDark);
+  const isAuthorised = useSelector(authSelectors.getIsAuthorised);
 
-return (<div className={isDark ? s.loader_dark : s.loader}>
+return (<div className={(isAuthorised && isDark) ? s.loader_dark : s.loader}>
   <span>S</span>
   <span>l</span>
   <span>i</span>
@@ -16,7 +17,7 @@ return (<div className={isDark ? s.loader_dark : s.loader}>
   <span>o</span>
   <span>m</span>
   
- <div className={isDark ? s.covers_dark : s.covers}>
+ <div className={(isAuthorised && isDark) ? s.covers_dark : s.covers}>
     <span></span>
     <span></span>
     <span></span>
