@@ -1,14 +1,13 @@
 import React, { useState, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
 import Datetime from 'react-datetime';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 
 import { changeData } from '../../redux/user/user-action';
 import Modal from '../Modal';
 
-
-import calendarIcon from '../../images/icon-calendar.svg';
+import calendarIcon from '../../assets/images/icon-calendar.svg';
 
 import 'react-datetime/css/react-datetime.css';
 import style from './DiaryDateСalendar.module.scss';

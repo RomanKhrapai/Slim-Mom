@@ -1,8 +1,9 @@
 import React from 'react';
-import s from './PageTitle.module.scss';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { useSelector } from 'react-redux';
+
+import s from './PageTitle.module.scss';
 
 export default function PageTitle({ children, className, ...attrs }) {
   const isDark = useSelector((state) => state.theme.isDark);

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import s from './RightSideBar.module.scss';
+import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../services/i18n/config';
-import { useSelector, useDispatch } from 'react-redux';
 import { productsSelectors, userOperations } from '../../redux/user';
+
+import s from './RightSideBar.module.scss';
 
 function RightSideBar() {
   const [leftCkal, setLeftCkal] = useState(0);

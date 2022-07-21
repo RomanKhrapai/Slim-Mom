@@ -3,19 +3,19 @@
 @font-face {
   font-family: "Verdana";
   src: local("Verdana"),
-   url("./fonts/Verdana/Verdana.ttf") format("truetype");
+   url("./assets/fonts/Verdana/Verdana.ttf") format("truetype");
   font-weight: normal;
   }
   @font-face {
     font-family: "VerdanaBold";
     src: local("VerdanaBold"),
-     url("./fonts/Verdana/Verdana-Bold.ttf") format("truetype");
+     url("./assets/fonts/Verdana/Verdana-Bold.ttf") format("truetype");
     font-weight: bold;
     }
     @font-face {
       font-family: "GothemProBold";
       src: local("GothemProBold"),
-       url("./fonts/Gotham-Pro/GothamPro-Bold.ttf")format("truetype");
+       url("./assets/fonts/Gotham-Pro/GothamPro-Bold.ttf")format("truetype");
       font-weight: bold;
       }
   

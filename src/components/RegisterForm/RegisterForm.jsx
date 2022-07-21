@@ -1,11 +1,12 @@
-import { Formik } from 'formik';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { Formik } from 'formik';
 import authOperations from 'redux/auth/auth-operations.js';
 import Loader from '../Loader';
-import s from './RegisterForm.module.scss';
 import GoogleButton from 'components/GoogleButton/GoogleButton';
+
+import s from './RegisterForm.module.scss';
 
 const getActiveClass = condition => {
   if (condition) return `${s.label} ${s.labelAbsolute} ${s.labelFocus}`;
