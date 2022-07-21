@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { userOperations, productsSelectors } from '../../redux/user';
 import PropTypes from 'prop-types';
+
+import { userOperations, productsSelectors } from '../../redux/user';
+import closeGreySvg from '../../assets/images/close-button-grey.svg';
+
 import style from './DiaryProductsListItem.module.scss';
-import closeGreySvg from '../../images/close-button-grey.svg';
 
 export default function DiaryProductsListItem(rowItem) {
   const dispatch = useDispatch();

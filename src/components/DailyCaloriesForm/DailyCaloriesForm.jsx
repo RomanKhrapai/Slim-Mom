@@ -1,17 +1,16 @@
 import React from 'react';
-import { Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
+import { Formik } from 'formik';
+import PropTypes from 'prop-types';
 
 import { apdateUserInfo } from 'redux/auth/auth-reducer';
 import userOperations from '../../redux/user/user-operation';
-import Loader from '../Loader';
 import authSelectors from 'redux/auth/auth-selectors';
-
 import i18n from '../../services/i18n/config';
-import s from './DailyCaloriesForm.module.scss';
+import Loader from '../Loader';
 import Button from 'components/Button/Button';
+import s from './DailyCaloriesForm.module.scss';
 
 const DailyCaloriesForm = ({
   userData = {

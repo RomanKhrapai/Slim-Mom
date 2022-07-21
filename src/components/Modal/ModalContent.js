@@ -1,10 +1,11 @@
 import { React } from 'react';
-import styles from '../Modal/ModalContent.module.scss';
-import { useTranslation } from 'react-i18next';
-import Button from 'components/Button/Button';
-import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
+import Button from 'components/Button/Button';
+
+import styles from '../Modal/ModalContent.module.scss';
 
 export default function ModalContent({ onClose }) {
   const { t, i18n } = useTranslation();

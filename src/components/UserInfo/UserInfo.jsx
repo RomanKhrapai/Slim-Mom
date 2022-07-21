@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import styles from './userinfo.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import authOperations from 'redux/auth/auth-operations.js';
 import EllipsisText from 'react-ellipsis-text';
+
+import styles from './userinfo.module.scss';
 
 const UserInfo = () => {
   const isDark = useSelector(state => state.theme.isDark);
