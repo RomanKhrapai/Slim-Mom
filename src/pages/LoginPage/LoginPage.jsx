@@ -1,8 +1,11 @@
 import React from 'react';
-import LoginForm from "../../components/LoginForm/LoginForm";
 import { useTranslation } from 'react-i18next';
-import s from'./LoginPage.module.scss';
+import LoginForm from "../../components/LoginForm/LoginForm";
 import Container from 'components/Container/Container';
+
+import s from'./LoginPage.module.scss';
+
+
 export default function LoginView() {
 
   const { t } = useTranslation();

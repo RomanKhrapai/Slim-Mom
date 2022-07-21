@@ -1,4 +1,4 @@
-@import '../src/Scss/variables.scss';
+@import '../src/styles/variables.scss';
 
 * {
   box-sizing: border-box;
@@ -29,9 +29,9 @@
   margin-left: auto;
 
   @media screen and (min-width: 768px) {
-    background-image: url('./images/banana-tablet.png'),
-      url('./images/leaves-tablet.png'), url('./images/strawberry-tablet.png'),
-      url('./images/vector-tablet.png');
+    background-image: url('./assets/images/banana-tablet.png'),
+      url('./assets/images/leaves-tablet.png'), url('./assets/images/strawberry-tablet.png'),
+      url('./assets/images/vector-tablet.png');
     background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
     background-size: auto, auto, auto, auto;
     background-position: top 630px right -270px, top 520px right 150px,
@@ -41,8 +41,8 @@
   @media screen and (min-width: 1280px) {
     margin: 0;
     // padding-left: 16px;
-    background-image: url('./images/leaves.png'), url('./images/banana.png'),
-      url('./images/strawberry.png'), url('./images/vector.png');
+    background-image: url('./assets/images/leaves.png'), url('./assets/images/banana.png'),
+      url('./assets/images/strawberry.png'), url('./assets/images/vector.png');
     background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
     background-size: auto, auto, auto, auto;
     background-position: top right 200px, top -120px right -270px,

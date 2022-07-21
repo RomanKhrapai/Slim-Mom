@@ -1,8 +1,9 @@
 import React from 'react';
-import s from './GoogleButton.module.scss';
 import { useTranslation } from 'react-i18next';
-import google from '../../images/google.svg';
 import PropTypes from 'prop-types';
+import google from '../../assets/images/google.svg';
+
+import s from './GoogleButton.module.scss';
 
 export default function GoogleButton({ name }) {
   const { t } = useTranslation();

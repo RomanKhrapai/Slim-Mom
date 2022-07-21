@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { useFormik } from 'formik';
 import PropTypes from 'prop-types';
-import { useTranslation } from 'react-i18next';
-import { useSelector, useDispatch } from 'react-redux';
 import classNames from 'classnames';
 import { toast } from 'react-toastify';
 
@@ -13,8 +13,8 @@ import userOperations from '../../redux/user/user-operation';
 import i18n from '../../services/i18n/config';
 import { useFilterSringToQuery } from 'hooks/useFilterSringToQuery';
 
-import addIcon from '../../images/plus-icon.svg';
-import arrow from '../../images/arrow1.svg';
+import addIcon from '../../assets/images/plus-icon.svg';
+import arrow from '../../assets/images/arrow1.svg';
 
 import style from './DiaryAddProductForm.module.scss';
 

@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { userOperations, productsSelectors } from '../../redux/user';
 import { useTranslation } from 'react-i18next';
+import { userOperations, productsSelectors } from '../../redux/user';
 import DiaryDateСalendar from '../../components/DiaryDateCalendar';
 import DiaryAddProductForm from '../../components/DiaryAddProductForm';
 import DiaryProductsList from '../../components/DiaryProductsList';
 import Container from 'components/Container/Container';
-import addIcon from '../../images/plus-icon.svg';
 import RightSideBar from '../../components/RightSideBar';
+import addIcon from '../../assets/images/plus-icon.svg';
+
+import globalStyles from '../../App.module.scss';
 import style from './DiaryPage.module.scss';
 import s from '../../components/RightSideBar/RightSideBar.module.scss';
-import globalStyles from '../../App.module.scss';
 
 export default function DiaryPage() {
   const currentDate = useSelector(productsSelectors.getTodayDate);

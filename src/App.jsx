@@ -1,24 +1,24 @@
 import { React, lazy, Suspense, useState, useContext, useEffect } from 'react';
-import { ToastContainer } from 'react-toastify';
+import { useSelector,useDispatch } from 'react-redux';
 import { Outlet, Route, Routes } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import i18n from './services/i18n/config';
 import { useTranslation } from 'react-i18next';
-import Header from 'components/Header';
-import s from 'App.module.scss';
+import i18n from './services/i18n/config';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useDispatch } from 'react-redux';
 import authOperations from 'redux/auth/auth-operations';
-import Loader from 'components/Loader';
-import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
 import authSelectors from 'redux/auth/auth-selectors';
+import Header from 'components/Header';
+import Loader from 'components/Loader';
 import { PrivateRoute, PublicRoute } from 'components/Routers';
+import { ThemeContext } from 'components/ThemeProvider/ThemeProvider';
+
+import s from 'App.module.scss';
 
 const LoginView = lazy(() => import('./pages/LoginPage/LoginPage'));
 const RegisterView = lazy(() => import('./pages/RegisterPage/RegisterPage'));
-const MainPage = lazy(() => import('./pages/MainPage'));
+const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
 const DiaryPage = lazy(() => import('./pages/DiaryPage/DiaryPage'));
-const CalculatorPage = lazy(() => import('./pages/CalculatorPage'));
+const CalculatorPage = lazy(() => import('./pages/CalculatorPage/CalculatorPage'));
 
 export const App = () => {
   const [{ theme}] = useContext(ThemeContext);

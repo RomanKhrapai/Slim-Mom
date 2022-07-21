@@ -1,9 +1,10 @@
 import { React, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
+import PropTypes from 'prop-types';
+import crossIcon from '../../assets/images/cross.svg';
+import arrowIcon from '../../assets/images/arrow1.svg';
+
 import s from '../Modal/Modal.module.scss';
-import crossIcon from '../../images/cross.svg';
-import arrowIcon from '../../images/arrow1.svg';
 
 const modalRoot = document.querySelector('#modal-root');
 

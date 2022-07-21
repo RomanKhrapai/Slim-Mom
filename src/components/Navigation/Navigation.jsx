@@ -1,28 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import styles from './navigation.module.scss';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { LanguageButton } from 'components/LanguageButton/LanguageButton';
-import largeLogo from '../../images/logo.svg';
-import mediumLogo from '../../images/logo1-tablet.svg';
-import smallLogo from '../../images/logo1-mobile.svg';
-import menuSvg from '../../images/burger-menu1.svg';
-import closeSvg from '../../images/close-button1.svg';
-import UserInfo from '../UserInfo';
+import { useTranslation } from 'react-i18next';
 import i18n from 'services/i18n/config';
+import authSelectors from 'redux/auth/auth-selectors';
+import { LanguageButton } from 'components/LanguageButton/LanguageButton';
+import ThemeButton from 'components/ThemeProvider/ThemeButton';
+import UserInfo from '../UserInfo';
+
 import {
   screenTypes,
   useGetTypeOfScreen,
 } from '../../hooks/useGetTypeOfScreen';
-import { useSelector } from 'react-redux';
-import ThemeButton from 'components/ThemeProvider/ThemeButton';
+import { ReactComponent as LogoNew } from '../../assets/images/logo-new.svg';
+import { ReactComponent as Slim } from '../../assets/images/slim.svg';
+import { ReactComponent as Mom } from '../../assets/images/mom.svg';
+import { ReactComponent as Cross } from '../../assets/images/white-cross.svg';
+import { ReactComponent as Burger } from '../../assets/images/white-burger.svg';
+import largeLogo from '../../assets/images/logo.svg';
+import mediumLogo from '../../assets/images/logo1-tablet.svg';
+import smallLogo from '../../assets/images/logo1-mobile.svg';
+import menuSvg from '../../assets/images/burger-menu1.svg';
+import closeSvg from '../../assets/images/close-button1.svg';
 
-import authSelectors from 'redux/auth/auth-selectors';
-import { ReactComponent as LogoNew } from '../../images/logo-new.svg';
-import { ReactComponent as Slim } from '../../images/slim.svg';
-import { ReactComponent as Mom } from '../../images/mom.svg';
-import { ReactComponent as Cross } from '../../images/white-cross.svg';
-import { ReactComponent as Burger } from '../../images/white-burger.svg';
+import styles from './navigation.module.scss';
 
 const Navigation = () => {
   const isDark = useSelector((state) => state.theme.isDark);

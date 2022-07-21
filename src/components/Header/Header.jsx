@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import styles from './header.module.scss';
 import Navigation from '../Navigation';
+import styles from './header.module.scss';
 
 const Header = () => {
   return (

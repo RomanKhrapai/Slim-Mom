@@ -1,9 +1,8 @@
-import { createContext } from 'react';
+import {React, createContext } from 'react';
 import { useSelector } from 'react-redux';
-import React from 'react';
-export const ThemeContext = createContext();
 import PropTypes from 'prop-types';
 import authSelectors from 'redux/auth/auth-selectors';
+export const ThemeContext = createContext();
 
 const themes = {
   dark: {

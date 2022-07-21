@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTable } from 'react-table';
 import EllipsisText from 'react-ellipsis-text';
+import PropTypes from 'prop-types';
 import { t } from 'i18next';
 
 import DiaryProductsListItem from '../DiaryProductsListItem';
