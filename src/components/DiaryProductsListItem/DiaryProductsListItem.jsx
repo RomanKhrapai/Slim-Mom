@@ -2,13 +2,19 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { useTranslation } from 'react-i18next';
+import {confirmWindow} from '../ConfirmBox/ConfirmWindow'
+
+
 import { userOperations, productsSelectors } from '../../redux/user';
 import closeGreySvg from '../../assets/images/close-button-grey.svg';
+
 
 import style from './DiaryProductsListItem.module.scss';
 
 export default function DiaryProductsListItem(rowItem) {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const currentDate = useSelector(productsSelectors.getTodayDate);
   let chosenDate = useSelector(productsSelectors.getChosenDate);
 
@@ -28,7 +34,9 @@ export default function DiaryProductsListItem(rowItem) {
           data-id={row.id}
           className={style.closeButton}
           onClick={() => {
-            dispatch(userOperations.removeProductFromDiary(row.original.id));
+            const message = t('diary.Are you shure, that you want to delete this product?')
+            confirmWindow( message, t('Yes'), t("No"), ()=>{dispatch(userOperations.removeProductFromDiary(row.original.id))})
+            ;
           }}
         >
           <img
