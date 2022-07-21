@@ -2,13 +2,16 @@
   "Calculate your daily calorie intake": "Розрахуйте свою денну норму калорій прямо зараз",
   "Register": "Реєстрація",
   "Sign In": "Увійти",
+  "Yes": "Так",
+  "No": "Ні",
 
   "navigation": {
     "Diary": "Щоденник",
     "Calculator": "Калькулятор",
     "Sign In": "Увійти",
     "Registration": "Реєстрація",
-    "Sign Out": "Вийти"
+    "Sign Out": "Вийти",
+    "Are you sure you want to log out of your account?": "Ви впевнені, що бажаєте вийти зі свого облікового запису?"
   },
 
   "authentification": {
@@ -33,14 +36,14 @@
     "This product is not found": "Продукт не знайдено",
     "Cannot find products for this data": "Продукти за цим запитом не знайдено"
   },
-
+  
   "calculator": {
     "Change information": "Редагувати інформацію",
     "Add information": "Додати інформацію",
     "View your losing weight plan": "Переглянути свій план схуднення",
     "Revoke Changes": "Відмінити зміни",
     "Your Parameters": "Ваші параметри",
-
+    
     "Enter your height within 100 - 250 cm": "Ваш зріст має бути в діапазоні 100 - 250 см",
     "Enter your age within 18 - 100": "Ваш вік має бути в діапазоні 18 - 100 років",
     "Enter your weight within 20 - 500 kg": "Ваша поточна вага має бути в діапазоні 20 - 500 кг",
@@ -71,7 +74,7 @@
   "Foods you should not eat": "Продукти, які вам не слід їсти",
   "Summary for": "Підсумок на",
   "Your diet will be displayed here": "Тут буде відображено вашу дієту",
-
+  
   "diary": {
     "Diary": "Щоденник",
     "Add": "Додати",
@@ -87,6 +90,7 @@
     "The list is empty": "Список продуктів на цей день відсутній",
     "The product is not founded": "Продукт не знайдено",
     "The amount has to be bigger that 0": "Значення має бути більше нуля",
-    "Select a product from the list": "Оберіть продукт зі списку"
+    "Select a product from the list": "Оберіть продукт зі списку",
+    "Are you shure, that you want to delete this product?": "Ви впевнені що бажаєте видвлити цей продукт"
   }
 }

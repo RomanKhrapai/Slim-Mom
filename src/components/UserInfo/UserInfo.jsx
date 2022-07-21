@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import styles from './userinfo.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import authOperations from 'redux/auth/auth-operations.js';
+import { confirmWindow } from 'components/ConfirmBox/ConfirmWindow';
 import EllipsisText from 'react-ellipsis-text';
 
 const UserInfo = () => {
@@ -14,7 +15,9 @@ const UserInfo = () => {
   const { t } = useTranslation();
 
   const tryLogOut = async () => {
-    dispatch(authOperations.logOut());
+     const message = t('navigation.Are you sure you want to log out of your account?');
+    confirmWindow(message,t("Yes"), t("No"), ()=>{ dispatch(authOperations.logOut())})
+   
   };
 
   return (
@@ -33,7 +36,7 @@ const UserInfo = () => {
       <div className={styles.vector1} />
       <button
         className={isDark ? styles.button_dark : undefined}
-        onClick={() => tryLogOut()}
+        onClick={() =>  tryLogOut()}
       >
         {t('navigation.Sign Out')}
       </button>
