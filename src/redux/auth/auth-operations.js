@@ -2,7 +2,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import i18n from 'services/i18n/config';
-m
+
 axios.defaults.baseURL = 'https://web-production-fe46.up.railway.app/api/';
 //axios.defaults.baseURL = 'https://slim-mom-dev.herokuapp.com/api/';
 //axios.defaults.baseURL = 'http://localhost:3001/api/';
