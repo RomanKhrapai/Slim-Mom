@@ -10,7 +10,7 @@ export default function GoogleButton({ name }) {
   return (
     <a
       className={s.login_link}
-      href="https://slim-mom-server.herokuapp.com/api/auth/google"
+      href="https://web-production-fe46.up.railway.app/api/auth/google"
     >
       <div className={s.google_box}>
         <img src={google} alt={`add product icon`} className={s.googleIcon} />
